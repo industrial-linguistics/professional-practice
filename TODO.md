@@ -4,7 +4,7 @@
 
 - [x] Clean up the tables and dot points in the README so that they are in proper markdown format. They are in a mixture of lines, unicode dotpoints, tab separated texts and so on
 
-- [ ] Create a separate to-do list file with everything that was in the README.md file (and remove it from README.md)
+- [x] Create a separate to-do list file with everything that was in the README.md file (and remove it from README.md)
 
 - [ ] Create an `envsetup.sh` file with the necessary software that we will use for the pipeline
 
