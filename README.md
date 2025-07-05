@@ -1,7 +1,8 @@
 # IT Pofessional Practice
 
-All the things you need to know to get started in your IT career. This started as a plan for a university-level subject
-(which didn't go ahead for other reasons).
+All the things you need to know to get started in your IT career. This
+started as a plan for a university-level subject (which didn't go
+ahead for other reasons).
 
 You can browse through everything here for free to see if you like
 it. If you are wanting to embed this into your corporate training (for
