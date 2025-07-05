@@ -5,10 +5,12 @@ on:
     types: [opened, synchronize]
     # Optional: Only run on specific file changes
     # paths:
-    #   - "src/**/*.ts"
-    #   - "src/**/*.tsx"
-    #   - "src/**/*.js"
-    #   - "src/**/*.jsx"
+       - "src/**/*.ts"
+       - "src/**/*.tsx"
+       - "src/**/*.js"
+       - "src/**/*.jsx"
+       - "**/*.go"
+       - "**/*.py"
 
 jobs:
   claude-review:
