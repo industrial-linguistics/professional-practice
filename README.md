@@ -156,3 +156,7 @@ duration 4
 - A test suite that takes the audio from the generated videos, transcribes it and confirms that it accurately reflects what we wrote
 
 - Generation of an e-book (in PDF and EPUB formats) from all the parts combined
+
+## Repository Structure
+
+This repository contains Go source code, course content and automation scripts. A full description of the layout is available in [docs/directory-structure.md](docs/directory-structure.md).
