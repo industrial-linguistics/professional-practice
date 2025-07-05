@@ -73,6 +73,11 @@ Key Resources
 Currently, none of the steps required to take this content and turn it into watchable video content or e-learning SCORM
 files exists yet.
 
+# Raw material
+
+- `cmd/voicer/main.go` was pulled in from another project, and shows how to call the ElevenLabs API 
+
+- `raw-notes.txt` some text that I wrote that is relevant to a few topics
 
 # To-do 
 
@@ -155,4 +160,6 @@ duration 4
 
 - Generate SCORM or equivalent e-learning format files from the videos and the quiz questions
 
-- A test suite that takes the audio from the generated videos, transcribes it and 
+- A test suite that takes the audio from the generated videos, transcribes it and confirms that it accurately reflects what we wrote
+
+- Generation of an e-book (in PDF and EPUB formats) from all the parts combined
