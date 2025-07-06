@@ -59,7 +59,7 @@ Use the checklist below to track progress for each part.
 - [ ] Create quiz questions
 
 #### Part 7 – Open-Source & Indigenous Digital Sovereignty
-- [ ] Outline objectives and key topics
+- [x] Outline objectives and key topics
 - [ ] Create to-do list items for each topic to draft slides and write narratives
 - [ ] Create quiz questions
 
