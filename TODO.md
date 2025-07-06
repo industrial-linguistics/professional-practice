@@ -23,7 +23,14 @@ Use the checklist below to track progress for each part.
 
 #### Part 1 – ITIL Foundations
 - [x] Outline objectives and key topics
-- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [x] Create to-do list items for each topic to draft slides and write narratives
+- [ ] Draft slides and narrative: Overview of ITIL 4 and why it matters
+- [ ] Draft slides and narrative: Service value chain and continual improvement
+- [ ] Draft slides and narrative: Incident vs request fulfilment workflows
+- [ ] Draft slides and narrative: Escalation paths and support tiers (L1/L2/L3)
+- [ ] Draft slides and narrative: Major incident management drill
+- [ ] Draft slides and narrative: ServiceNow as an ITIL visual guide
+- [ ] Draft slides and narrative: Job roles across the service lifecycle
 - [ ] Create quiz questions
 
 #### Part 2 – ITIL Deep Dive
