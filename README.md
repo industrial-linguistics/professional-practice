@@ -81,3 +81,7 @@ into SCORM or e-book formats. The step-by-step checklist is maintained in [TODO.
 This repository contains Go source code, course content and automation scripts. A full description of the layout is available in [docs/directory-structure.md](docs/directory-structure.md).
 
 For a list of outstanding tasks and ideas, see [TODO.md](TODO.md).
+
+## Development Environment
+
+Run `./envsetup.sh` to install Node.js, npm, ffmpeg, Go, `jq` and the Marp CLI.
