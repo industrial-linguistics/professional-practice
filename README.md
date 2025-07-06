@@ -63,8 +63,11 @@ Key Resources
 
 # Slide Rendering Pipeline
 
-Currently, none of the steps required to take this content and turn it into watchable video content or e-learning SCORM
-files exists yet.
+The repository includes scripts that convert slide decks and narratives into finished video lessons.
+Each slide's text is sent to ElevenLabs for narration and cached in S3. Slides are exported to PNG
+using Marp, then stitched into a silent video. The cached audio segments are concatenated and merged
+with the video to create the final lesson, which can be uploaded along with quiz material and packaged
+into SCORM or e-book formats. The step-by-step checklist is maintained in [TODO.md](TODO.md).
 
 # Raw material
 
