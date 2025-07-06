@@ -8,6 +8,8 @@
 
 - [x] Create an `envsetup.sh` file with the necessary software that we will use for the pipeline
 
+**NOTE:** Each part should highlight relevant job roles, typical seniority levels, entry pathways, suitable personality traits, proportions of such roles in organisations and likely career progressions.
+
 ### Content to be created
 
 Each part of the course requires its own learning objectives, slides,
@@ -20,7 +22,7 @@ narratives and quiz questions. The overall workflow for a part is:
 Use the checklist below to track progress for each part.
 
 #### Part 1 – ITIL Foundations
-- [ ] Outline objectives and key topics
+- [x] Outline objectives and key topics
 - [ ] Create to-do list items for each topic to draft slides and write narratives
 - [ ] Create quiz questions
 
