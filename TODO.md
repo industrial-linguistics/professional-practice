@@ -10,27 +10,54 @@
 
 ### Content to be created
 
-We need to create overviews and plans for each of the parts. What are
-the lesson objectives? What sections will we have? What topics do we
-need to cover? We then need to create to-do list items for each topic
-that we need to create, including to-do items for creating
-presentations, narratives and quiz questions.
+Each part of the course requires its own learning objectives, slides,
+narratives and quiz questions. The overall workflow for a part is:
 
-- [ ] Part 1
+1. Outline topics and objectives.
+2. Create to-do list items for each topic to draft slides and write narratives.
+3. Prepare quiz questions.
 
-- [ ] Part 2
+Use the checklist below to track progress for each part.
 
-- [ ] Part 3
+#### Part 1 – ITIL Foundations
+- [ ] Outline objectives and key topics
+- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [ ] Create quiz questions
 
-- [ ] Part 4
+#### Part 2 – ITIL Deep Dive
+- [ ] Outline objectives and key topics
+- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [ ] Create quiz questions
 
-- [ ] Part 5
+#### Part 3 – High-Velocity Delivery
+- [ ] Outline objectives and key topics
+- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [ ] Create quiz questions
 
-- [ ] Part 6
+#### Part 4 – Blameless RCA & Continuous Improvement
+- [ ] Outline objectives and key topics
+- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [ ] Create quiz questions
 
-- [ ] Part 7
+#### Part 5 – Vendor/MSP & CRM Lifecycle
+- [ ] Outline objectives and key topics
+- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [ ] Create quiz questions
 
-- [ ] Part 8
+#### Part 6 – Start-ups & Small-Biz IT
+- [ ] Outline objectives and key topics
+- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [ ] Create quiz questions
+
+#### Part 7 – Open-Source & Indigenous Digital Sovereignty
+- [ ] Outline objectives and key topics
+- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [ ] Create quiz questions
+
+#### Part 8 – Project Studio and Presentations
+- [ ] Outline objectives and key topics
+- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [ ] Create quiz questions
 
 
 ### Legislation
@@ -45,41 +72,35 @@ These need to go into week 5 when talking about contract SLAs I guess. Unless 
 
 ### Rendering pipeline
 
-Each part is rendered separately. We should have intelligent github workflows so that we can automate the whole process, but
-only do the minimal amount of audio re-rendering (and consequential other re-rendering) when things change.
+Each part is rendered separately. We should have intelligent GitHub workflows so that we can automate the whole process, but only do the minimal amount of audio re-rendering (and consequential other re-rendering) when things change.
 
-Tech we need:
-
-- Render the narrative for each slide to audio sentence-by-sentence through ElevenLabs (with preceeding and following sentences as context). The secret `ELEVENLABS_API_KEY` is in place in github.
-
-- Calculate the checksum of the tuple (the text-normalised version of the sentence, the context, the voice ID). Store the resulting audio in an s3 bucket. The secret `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` are in place in github. If there's already an audio file in s3 at that path, don't render the audio, use the one that is already in s3.
-
-- Render the slides with Marp to PNG
-
-- For each slide, work out how long the audio is going to be, and then create `slides.txt` like this for each part:
-
-```
-file 'slide-01.png'
-duration 5
-file 'slide-02.png'
-duration 7
-file 'slide-03.png'
-duration 4
-```
-
-- Generate a silent video from the slides
-
-- Concatenate the audio
-
-- Combine the video and audio
-
-- Upload that render to s3 and some video hosting site (possibly just a static website)
-
-- Convert questions into a suitable format
-
-- Generate SCORM or equivalent e-learning format files from the videos and the quiz questions
-
-- A test suite that takes the audio from the generated videos, transcribes it and confirms that it accurately reflects what we wrote
-
-- Generation of an e-book (in PDF and EPUB formats) from all the parts combined
+- [ ] **Set up automation workflow**
+  - Configure GitHub Actions to trigger the build process.
+  - Ensure minimal re-rendering by checking for changes in source content before rebuilding assets.
+- [ ] **Narration to audio**
+  - For each slide, send the text to ElevenLabs (include preceding/following sentences for context).
+  - Save the generated audio file using a checksum of `(normalized text, context, voice ID)`.
+- [ ] **Audio caching**
+  - Use the checksum as an S3 path and skip rendering when the file already exists.
+- [ ] **Slide rendering**
+  - Convert slide decks to PNG images using Marp.
+- [ ] **Timing file generation**
+  - Determine audio length for each slide.
+  - Produce `slides.txt` entries (e.g., `file 'slide-01.png'`, `duration 5`).
+- [ ] **Silent video creation**
+  - Combine PNG slides into a silent video following `slides.txt`.
+- [ ] **Audio concatenation**
+  - Merge all slide audio segments into one track.
+- [ ] **Video/audio merge**
+  - Combine the silent video and the concatenated audio into the final video.
+- [ ] **Upload step**
+  - Upload the final video to S3 and the chosen hosting platform.
+- [ ] **Question format conversion**
+  - Transform quiz questions into the required format for the learning platform.
+- [ ] **E-learning package generation**
+  - Package the videos and questions into SCORM or another e-learning format.
+- [ ] **Automated test suite**
+  - Build tests that transcribe the rendered audio and verify it matches the text source.
+- [ ] **E-book generation**
+  - Compile all parts into a single e-book (PDF and EPUB).
 
