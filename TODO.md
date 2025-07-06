@@ -6,7 +6,7 @@
 
 - [x] Create a separate to-do list file with everything that was in the README.md file (and remove it from README.md)
 
-- [ ] Create an `envsetup.sh` file with the necessary software that we will use for the pipeline
+- [x] Create an `envsetup.sh` file with the necessary software that we will use for the pipeline
 
 ### Content to be created
 

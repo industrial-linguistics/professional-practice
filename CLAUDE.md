@@ -27,7 +27,7 @@ The course is designed around practical, industry-relevant skills:
 Key items that need to be completed:
 1. Clean up markdown formatting in README.md tables and lists
 2. Create separate todo list file and remove from README.md
-3. Create `envsetup.sh` with required development tools
+3. `envsetup.sh` created with required development tools
 4. Develop content plans for each of the 8 course parts
 5. Build automated rendering pipeline for presentations and video content
 
