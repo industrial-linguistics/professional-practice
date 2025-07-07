@@ -26,7 +26,7 @@ Use the checklist below to track progress for each part.
 - [x] Create to-do list items for each topic to draft slides and write narratives
 - [x] Draft slides and narrative: Overview of ITIL 4 and why it matters
 - [x] Draft slides and narrative: Service value chain and continual improvement
-- [ ] Draft slides and narrative: Incident vs request fulfilment workflows
+- [x] Draft slides and narrative: Incident vs request fulfilment workflows
 - [ ] Draft slides and narrative: Escalation paths and support tiers (L1/L2/L3)
 - [ ] Draft slides and narrative: Major incident management drill
 - [ ] Draft slides and narrative: ServiceNow as an ITIL visual guide
