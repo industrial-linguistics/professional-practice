@@ -5,3 +5,5 @@ The narrative files under `content/**/` are the verbatim scripts fed into the te
 Because every line is spoken, **do not include headings or bullet points**. Instead, save a separate `.md` file for each slide in a `narratives/` folder next to the slide deck. Name them `01.md`, `02.md` and so on to match the slide order.
 
 You may indicate delivery style with bracketed notes, e.g. `[excitedly]`, and split the script between "Speaker 1" and "Speaker 2" if you want a dialog. Keep the tone friendly and feel free to use analogies, humour and real-world examples to hold the listener's attention.
+
+Avoid adding a bracketed note to every line. Only use one when the feeling or emphasis would not be obvious from the words themselves.
