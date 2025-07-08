@@ -1,0 +1,28 @@
+name: Build Run Sheets
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nodejs npm ffmpeg jq
+          sudo npm install -g @marp-team/marp-cli
+          ./scripts/install_chrome.sh
+          go mod download
+      - name: Generate run sheets
+        run: |
+          ./scripts/generate_run_sheets.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: run-sheets
+          path: run-sheets/*.pdf
