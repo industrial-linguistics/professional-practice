@@ -19,6 +19,15 @@ jobs:
           sudo npm install -g @marp-team/marp-cli
           ./scripts/install_chrome.sh
           go mod download
+      - name: Verify fonts
+        run: |
+          ls -l /usr/share/fonts/truetype/dejavu/DejaVuSans*.ttf
+          fc-list | grep -i dejavu | head
+      - name: Build
+        run: |
+          go vet ./...
+          go build ./cmd/render-slides
+          go build ./cmd/run_sheets
       - name: Generate run sheets
         run: |
           ./scripts/generate_run_sheets.sh

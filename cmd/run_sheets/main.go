@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 	"sort"
@@ -9,6 +10,25 @@ import (
 
 	"github.com/jung-kurt/gofpdf"
 )
+
+func copyFont(src, dstDir string) error {
+	in, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer in.Close()
+	if err := os.MkdirAll(dstDir, 0755); err != nil {
+		return err
+	}
+	outPath := filepath.Join(dstDir, filepath.Base(src))
+	out, err := os.Create(outPath)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+	_, err = io.Copy(out, in)
+	return err
+}
 
 func addTopic(pdf *gofpdf.Fpdf, part string, topicPath string, baseFont string, imageRoot string) error {
 	topic := strings.Title(strings.ReplaceAll(filepath.Base(topicPath), "-", " "))
@@ -40,9 +60,9 @@ func addTopic(pdf *gofpdf.Fpdf, part string, topicPath string, baseFont string, 
 	return nil
 }
 
-func buildPart(partPath string, imageRoot string, outputDir string, baseFont string) error {
+func buildPart(partPath string, imageRoot string, outputDir string, baseFont, fontDir string) error {
 	part := filepath.Base(partPath)
-	pdf := gofpdf.New("P", "mm", "A4", "")
+	pdf := gofpdf.New("P", "mm", "A4", fontDir)
 	pdf.SetAutoPageBreak(true, 15)
 	pdf.AddPage()
 	pdf.SetFont(baseFont, "B", 20)
@@ -85,13 +105,18 @@ func main() {
 	}
 
 	baseFont := "Helvetica"
-	fontDir := filepath.Join(string(os.PathSeparator), "usr", "share", "fonts", "truetype", "dejavu")
-	fontRegular := filepath.Join(fontDir, "DejaVuSans.ttf")
-	fontBold := filepath.Join(fontDir, "DejaVuSans-Bold.ttf")
+	systemFontDir := filepath.Join(string(os.PathSeparator), "usr", "share", "fonts", "truetype", "dejavu")
+	fontRegular := filepath.Join(systemFontDir, "DejaVuSans.ttf")
+	fontBold := filepath.Join(systemFontDir, "DejaVuSans-Bold.ttf")
+	localFontDir := filepath.Join(root, "assets", "fonts")
 
 	useDejaVu := false
 	if _, err := os.Stat(fontRegular); err == nil {
-		useDejaVu = true
+		if err := copyFont(fontRegular, localFontDir); err == nil {
+			if err := copyFont(fontBold, localFontDir); err == nil {
+				useDejaVu = true
+			}
+		}
 	}
 
 	entries, err := os.ReadDir(contentRoot)
@@ -104,11 +129,11 @@ func main() {
 	for _, entry := range entries {
 		if entry.IsDir() {
 			partPath := filepath.Join(contentRoot, entry.Name())
-			pdf := gofpdf.New("P", "mm", "A4", "")
+			pdf := gofpdf.New("P", "mm", "A4", localFontDir)
 			pdf.SetAutoPageBreak(true, 15)
 			if useDejaVu {
-				pdf.AddUTF8Font("DejaVu", "", fontRegular)
-				pdf.AddUTF8Font("DejaVu", "B", fontBold)
+				pdf.AddUTF8Font("DejaVu", "", "DejaVuSans.ttf")
+				pdf.AddUTF8Font("DejaVu", "B", "DejaVuSans-Bold.ttf")
 				baseFont = "DejaVu"
 			}
 			pdf.AddPage()
