@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y nodejs npm ffmpeg jq
+          sudo apt-get install -y nodejs npm ffmpeg jq fonts-dejavu-core
           sudo npm install -g @marp-team/marp-cli
           ./scripts/install_chrome.sh
           go mod download
