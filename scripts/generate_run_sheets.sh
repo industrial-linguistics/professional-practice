@@ -5,4 +5,4 @@ set -e
 GOFLAGS="" go run ./cmd/render-slides
 
 # Generate PDFs
-GOFLAGS="" go run ./cmd/run-sheets
+GOFLAGS="" go run ./cmd/run_sheets
