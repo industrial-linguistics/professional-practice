@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/fs"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -10,6 +11,10 @@ import (
 )
 
 func main() {
+	if _, err := exec.LookPath("marp"); err != nil {
+		log.Fatalf("marp CLI not found: %v", err)
+	}
+
 	root, err := filepath.Abs(".")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -34,6 +39,7 @@ func main() {
 		}
 		parts := strings.Split(rel, string(os.PathSeparator))
 		if len(parts) < 2 {
+			log.Printf("skipping %s: unexpected path", path)
 			return nil
 		}
 		part := parts[0]
