@@ -85,8 +85,9 @@ func main() {
 	}
 
 	baseFont := "Helvetica"
-	fontRegular := "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-	fontBold := "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+	fontDir := filepath.Join(string(os.PathSeparator), "usr", "share", "fonts", "truetype", "dejavu")
+	fontRegular := filepath.Join(fontDir, "DejaVuSans.ttf")
+	fontBold := filepath.Join(fontDir, "DejaVuSans-Bold.ttf")
 
 	useDejaVu := false
 	if _, err := os.Stat(fontRegular); err == nil {
