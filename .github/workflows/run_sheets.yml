@@ -34,6 +34,9 @@ jobs:
       - name: Convert run sheets to HTML
         run: |
           ./scripts/generate_run_sheets_html.sh
+      - name: Update website index
+        run: |
+          ./scripts/generate_website_index.sh
       - name: Prepare SSH key
         if: secrets.DEPLOYMENT_SSH_KEY != ''
         env:
