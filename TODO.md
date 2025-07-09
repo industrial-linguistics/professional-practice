@@ -7,6 +7,7 @@
 - [x] Create a separate to-do list file with everything that was in the README.md file (and remove it from README.md)
 
 - [x] Create an `envsetup.sh` file with the necessary software that we will use for the pipeline
+- [ ] Update `index.html` whenever the pipeline produces new artifacts
 
 **NOTE:** Each part should highlight relevant job roles, typical seniority levels, entry pathways, suitable personality traits, proportions of such roles in organisations and likely career progressions.
 
