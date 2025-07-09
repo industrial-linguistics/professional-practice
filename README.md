@@ -44,14 +44,6 @@ development work for everyone.
 | A2: Tiny Pipeline + RCA (pairs) | 30% | Wk 8 | Build the 3-step GitHub Actions pipeline, trigger a forced failure, run a blameless post-mortem, improve the metric. (ULO 2, 4) |
 | A3: Capstone Proposal & Pitch (teams 4-5) | 50% | Report Wk 12, viva Wk 13 | Design an IT service for a real community org (indigenous or social-impact). Must justify framework choices, innovation pathway, long-term ethics & sustainability. Includes 10-min board-style pitch + questioning. (ULO 1-5) |
 
-
-| Task | Notes |
-| --- | --- |
-| A1 Role-Mapping Reflection (20%) | Now draws on ITIL weeks 1-2 and CRM week 5. |
-| A2 Tiny Pipeline + RCA (30%) | Unchanged (weeks 3-4 feed it). |
-| A3 Capstone Proposal & Pitch (50%) | Keep structure; students may optionally integrate Salesforce or ServiceNow elements to strengthen justification under ULO 4-5. |
----
-
 Key Resources
 
 - ITIL 4 Foundation
