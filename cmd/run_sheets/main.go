@@ -96,7 +96,7 @@ func addTopic(pdf *gofpdf.Fpdf, part string, topicPath string, baseFont string, 
 	sort.Strings(narratives)
 
 	for i, img := range images {
-		pdf.ImageOptions(img, 15, pdf.GetY(), 180, 0, false, gofpdf.ImageOptions{ImageType: "PNG"}, 0, "")
+		pdf.ImageOptions(img, 15, pdf.GetY(), 180, 0, true, gofpdf.ImageOptions{ImageType: "PNG"}, 0, "")
 		pdf.Ln(2)
 		if i < len(narratives) {
 			b, err := os.ReadFile(narratives[i])
