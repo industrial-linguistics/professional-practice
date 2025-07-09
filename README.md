@@ -67,6 +67,7 @@ into SCORM or e-book formats. The step-by-step checklist is maintained in [TODO.
 
 - `raw-notes.txt` some text that I wrote that is relevant to a few topics
 - `docs/narrative-guidelines.md` explains how each slide's script lives in its own file and offers tips on style and word counts
+- `docs/genius-of-crowds-httpd.md` documents the OpenBSD httpd configuration used for genius-of-crowds.com
 
 
 ## Repository Structure
