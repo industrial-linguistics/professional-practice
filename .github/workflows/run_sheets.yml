@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y nodejs npm ffmpeg jq fonts-dejavu-core
+          sudo apt-get install -y nodejs npm ffmpeg jq fonts-dejavu-core poppler-utils rsync
           sudo npm install -g @marp-team/marp-cli
           ./scripts/install_chrome.sh
           go mod download
@@ -31,6 +31,22 @@ jobs:
       - name: Generate run sheets
         run: |
           ./scripts/generate_run_sheets.sh
+      - name: Convert run sheets to HTML
+        run: |
+          ./scripts/generate_run_sheets_html.sh
+      - name: Prepare SSH key
+        if: secrets.DEPLOYMENT_SSH_KEY != ''
+        env:
+          DEPLOYMENT_SSH_KEY: ${{ secrets.DEPLOYMENT_SSH_KEY }}
+        run: |
+          echo "$DEPLOYMENT_SSH_KEY" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+          echo "DEPLOYMENT_SSH_KEY=/tmp/deploy_key" >> $GITHUB_ENV
+      - name: Deploy website
+        if: secrets.DEPLOYMENT_SSH_KEY != ''
+        run: |
+          ./scripts/deploy_website.sh
+          rm -f /tmp/deploy_key
       - uses: actions/upload-artifact@v4
         with:
           name: run-sheets
