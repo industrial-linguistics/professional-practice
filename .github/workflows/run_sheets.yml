@@ -7,8 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DEPLOYMENT_SSH_KEY: ${{ secrets.DEPLOYMENT_SSH_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
@@ -37,15 +35,18 @@ jobs:
         run: |
           ./scripts/generate_run_sheets_html.sh
       - name: Prepare SSH key
-        if: env.DEPLOYMENT_SSH_KEY != ''
+        if: secrets.DEPLOYMENT_SSH_KEY != ''
+        env:
+          DEPLOYMENT_SSH_KEY: ${{ secrets.DEPLOYMENT_SSH_KEY }}
         run: |
           echo "$DEPLOYMENT_SSH_KEY" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
           echo "DEPLOYMENT_SSH_KEY=/tmp/deploy_key" >> $GITHUB_ENV
       - name: Deploy website
-        if: env.DEPLOYMENT_SSH_KEY != ''
+        if: secrets.DEPLOYMENT_SSH_KEY != ''
         run: |
           ./scripts/deploy_website.sh
+          rm -f /tmp/deploy_key
       - uses: actions/upload-artifact@v4
         with:
           name: run-sheets
