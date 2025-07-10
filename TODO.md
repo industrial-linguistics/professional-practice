@@ -31,7 +31,7 @@ Use the checklist below to track progress for each part.
 - [x] Draft slides and narrative: Escalation paths and support tiers (L1/L2/L3)
 - [x] Draft slides and narrative: Major incident management drill
 - [x] Draft slides and narrative: ServiceNow as an ITIL visual guide
-- [ ] Draft slides and narrative: Job roles across the service lifecycle
+- [x] Draft slides and narrative: Job roles across the service lifecycle
 - [ ] Create quiz questions
 
 #### Part 2 – ITIL Deep Dive
