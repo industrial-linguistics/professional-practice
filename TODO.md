@@ -35,7 +35,7 @@ Use the checklist below to track progress for each part.
 - [x] Create quiz questions
 
 #### Part 2 – ITIL Deep Dive
-- [ ] Outline objectives and key topics
+- [x] Outline objectives and key topics
 - [ ] Create to-do list items for each topic to draft slides and write narratives
 - [ ] Create quiz questions
 
