@@ -32,7 +32,7 @@ Use the checklist below to track progress for each part.
 - [x] Draft slides and narrative: Major incident management drill
 - [x] Draft slides and narrative: ServiceNow as an ITIL visual guide
 - [x] Draft slides and narrative: Job roles across the service lifecycle
-- [ ] Create quiz questions
+- [x] Create quiz questions
 
 #### Part 2 – ITIL Deep Dive
 - [ ] Outline objectives and key topics
