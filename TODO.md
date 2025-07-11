@@ -46,7 +46,7 @@ Use the checklist below to track progress for each part.
 - [x] Create quiz questions
 
 #### Part 3 – High-Velocity Delivery
-- [ ] Outline objectives and key topics
+- [x] Outline objectives and key topics
 - [ ] Create to-do list items for each topic to draft slides and write narratives
 - [ ] Create quiz questions
 
