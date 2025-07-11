@@ -41,7 +41,7 @@ Use the checklist below to track progress for each part.
 - [x] Draft slides and narrative: Change enablement vs release management
 - [x] Draft slides and narrative: Problem management techniques for root cause analysis
 - [x] Draft slides and narrative: Building and maintaining a configuration management database (CMDB)
-- [ ] Draft slides and narrative: Continual improvement frameworks and maturity assessments
+- [x] Draft slides and narrative: Continual improvement frameworks and maturity assessments
 - [ ] Draft slides and narrative: Metrics and reporting dashboards for process performance
 - [ ] Create quiz questions
 

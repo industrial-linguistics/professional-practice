@@ -54,6 +54,30 @@ The rendering pipeline will use:
 - ServiceNow student sandbox
 - GitHub Education Pack for CI/CD
 
+## Working with TODO.md
+
+When asked to "do the next item on the todo list":
+1. Check TODO.md for the next uncompleted item (marked with `- [ ]`)
+2. Use TodoWrite to track the task in progress
+3. Complete the work following existing content patterns and guidelines
+4. Mark the item as completed in TODO.md with `- [x]`
+5. Update the TodoWrite status to completed
+
+## Content Creation Guidelines
+
+### Slides and Narratives Structure
+- Content lives in `content/part-XX/topic-name/`
+- Each topic has a `slides.md` file and `narratives/` directory
+- Narratives are numbered `01-intro.md`, `02-topic.md`, etc.
+- Follow the two-speaker conversational format established in existing content
+- Aim for ~100 words per narrative (1 minute of speech)
+- Reference `docs/narrative-guidelines.md` for style requirements
+
+### Git Workflow Preferences
+- Commit Claude-generated content with proper attribution to Claude
+- Use descriptive commit messages that explain what was added/changed
+- Credit format: "Co-Authored-By: Claude <noreply@anthropic.com>"
+
 ## Notes
 
 This is an academic project focused on IT professional development rather than software engineering. The content emphasizes practical industry skills, role understanding, and professional practices rather than technical implementation details.
