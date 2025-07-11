@@ -43,7 +43,7 @@ Use the checklist below to track progress for each part.
 - [x] Draft slides and narrative: Building and maintaining a configuration management database (CMDB)
 - [x] Draft slides and narrative: Continual improvement frameworks and maturity assessments
 - [x] Draft slides and narrative: Metrics and reporting dashboards for process performance
-- [ ] Create quiz questions
+- [x] Create quiz questions
 
 #### Part 3 – High-Velocity Delivery
 - [ ] Outline objectives and key topics
