@@ -42,7 +42,7 @@ Use the checklist below to track progress for each part.
 - [x] Draft slides and narrative: Problem management techniques for root cause analysis
 - [x] Draft slides and narrative: Building and maintaining a configuration management database (CMDB)
 - [x] Draft slides and narrative: Continual improvement frameworks and maturity assessments
-- [ ] Draft slides and narrative: Metrics and reporting dashboards for process performance
+- [x] Draft slides and narrative: Metrics and reporting dashboards for process performance
 - [ ] Create quiz questions
 
 #### Part 3 – High-Velocity Delivery
@@ -119,4 +119,3 @@ Each part is rendered separately. We should have intelligent GitHub workflows so
   - Build tests that transcribe the rendered audio and verify it matches the text source.
 - [ ] **E-book generation**
   - Compile all parts into a single e-book (PDF and EPUB).
-
