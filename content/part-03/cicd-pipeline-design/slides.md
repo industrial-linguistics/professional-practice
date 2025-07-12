@@ -8,6 +8,14 @@ title: CI/CD Pipeline Design Principles
 
 ---
 
+## Why CI/CD?
+- Manual deployments are slow and error-prone
+- Automation ensures repeatable releases
+- Quick feedback helps teams of any size
+- Lets engineers focus on features, not shipping chores
+
+---
+
 ## Core principles
 - Automate build, test and deploy steps
 - Build once, deploy many times
@@ -20,7 +28,7 @@ title: CI/CD Pipeline Design Principles
 - Trigger on source control events
 - Build artifacts in a clean environment
 - Run tests to validate changes
-- Deploy progressively through environments
+- Deploy progressively from dev to prod
 
 ---
 
