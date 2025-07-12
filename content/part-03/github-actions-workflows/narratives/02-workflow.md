@@ -1,3 +1,2 @@
-Speaker 1: A workflow begins with a trigger like a push, pull request, or scheduled time.
-Speaker 2: Within the workflow, jobs run on virtual machines or containers. Each job has steps that call reusable actions or execute commands directly.
-Speaker 1: Because the workflow file lives alongside the code, changes to automation follow the same review process as code changes.
+Speaker 1: A workflow begins when something triggers it—a push, a pull request, or even a timer that runs nightly. That signal tells GitHub to read a YAML file. YAML might look fancy, but it’s really just a plain list of instructions that humans and computers can both read.
+Speaker 2: Inside the workflow, jobs spin up their own virtual machines or containers. Each job performs a series of steps, often by calling reusable actions that act like community-made shortcuts. You can also run commands directly if you need something custom. Because the workflow file sits in the repo, any tweaks to automation get reviewed just like code changes.
