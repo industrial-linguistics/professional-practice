@@ -49,7 +49,7 @@ Use the checklist below to track progress for each part.
 - [x] Outline objectives and key topics
 - [x] Create to-do list items for each topic to draft slides and write narratives
  - [x] Draft slides and narrative: DORA metrics and DevOps performance measurement
-- [ ] Draft slides and narrative: Trunk-based development vs feature branching strategies
+ - [x] Draft slides and narrative: Trunk-based development vs feature branching strategies
 - [ ] Draft slides and narrative: CI/CD pipeline design principles and implementation
 - [ ] Draft slides and narrative: SRE error budgets and service level objectives
 - [ ] Draft slides and narrative: GitHub Actions workflows and automation
