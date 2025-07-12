@@ -48,7 +48,7 @@ Use the checklist below to track progress for each part.
 #### Part 3 – High-Velocity Delivery
 - [x] Outline objectives and key topics
 - [x] Create to-do list items for each topic to draft slides and write narratives
-- [ ] Draft slides and narrative: DORA metrics and DevOps performance measurement
+ - [x] Draft slides and narrative: DORA metrics and DevOps performance measurement
 - [ ] Draft slides and narrative: Trunk-based development vs feature branching strategies
 - [ ] Draft slides and narrative: CI/CD pipeline design principles and implementation
 - [ ] Draft slides and narrative: SRE error budgets and service level objectives
