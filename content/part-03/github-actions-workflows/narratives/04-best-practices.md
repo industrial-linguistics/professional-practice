@@ -1,3 +1,2 @@
-Speaker 1: Workflows can also handle deployments and notifications. Use environments with required reviewers to gate releases.
-Speaker 2: Integrating cloud provider actions simplifies infrastructure tasks, while chat or email notifications keep everyone informed.
-Speaker 1: Keep jobs concise and restrict permissions. Monitoring run times helps catch slow steps before they frustrate developers.
+Speaker 1: Workflows can do more than tests—they can deploy applications to staging or production. By using environments with required reviewers, you prevent accidental releases. Think of it as a bouncer checking IDs before any code goes live.
+Speaker 2: Many cloud providers publish ready-made actions, making it easy to create or tear down infrastructure on demand. The workflow can also fire off chat or email alerts so everyone stays in the loop. Keep each job focused and grant only the permissions it really needs. Watching run times helps you detect slow steps before they frustrate the team.

@@ -1,2 +1,2 @@
-Speaker 1: Developers love automation that lives close to their code. GitHub Actions delivers exactly that by running workflows whenever something happens in the repository.
-Speaker 2: Instead of relying on external tools, you define everything in one place and let GitHub orchestrate the sequence of steps.
+Speaker 1: Before tools like GitHub Actions, teams often had to manually copy files to servers every time something changed. GitHub Actions puts an end to that headache by running your automation directly from the repository. Whenever code is pushed or a pull request opens, the workflow springs to life automatically.
+Speaker 2: Picture a workflow like a recipe that GitHub follows step by step. The instructions sit right beside your code so updates are reviewed just like any other change. Every bug fix or new feature passes through the same checks, and newcomers can easily understand the process just by reading the file.

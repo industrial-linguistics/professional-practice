@@ -1,2 +1,2 @@
-Speaker 2: Many teams start by automating build and test steps. Matrix jobs let you verify code across multiple platforms with minimal repetition.
-Speaker 1: Dependency caching speeds things up, while artifact uploads hand results off to later jobs such as packaging or release.
+Speaker 2: One of the first tasks to automate is building and testing code. Instead of running commands manually, the workflow does it for you every time new changes arrive. Matrix jobs are like cloning yourself across several test machines, so you can verify the code on Windows, Linux, and macOS without writing separate scripts.
+Speaker 1: To speed things up, GitHub Actions caches downloaded dependencies so they aren't fetched again on every run. When the tests complete, the workflow stores the results as artifacts. Those artifacts feed into later jobs for packaging or deployment, ensuring nothing gets lost between steps.

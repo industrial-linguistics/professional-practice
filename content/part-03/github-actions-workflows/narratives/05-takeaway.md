@@ -1,2 +1,2 @@
-Speaker 2: When teams treat workflows like code, automation grows alongside the project itself.
-Speaker 1: GitHub Actions provides a secure and flexible platform to build, test, and deploy with confidence.
+Speaker 2: When teams treat workflows as part of the codebase, automation naturally grows with the project. You gain a clear history of every change instead of a fragile checklist hidden on someone’s laptop. New hires can read the workflow files and quickly see how everything fits together.
+Speaker 1: GitHub Actions becomes the reliable engine behind each build, test, and deploy. Because credentials are stored as encrypted secrets and releases use controlled environments, you can trust the process with sensitive tasks. The end result is smoother releases and less time spent firefighting, leaving more room for real improvements.
