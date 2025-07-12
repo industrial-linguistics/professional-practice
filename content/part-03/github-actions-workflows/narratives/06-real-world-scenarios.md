@@ -1,0 +1,2 @@
+Speaker 1: Picture working on a support desk. A user submits a ticket about a broken login page. With automation, a workflow can grab logs from the server and attach them to the ticket before you even open it.
+Speaker 2: QA engineers might set up workflows that run a battery of tests whenever new code is pushed. It’s like having a robot assistant checking every corner of the application for you. Project managers benefit too because each successful run posts a status update to the team chat. Automation saves time across roles and reduces human error.
