@@ -53,7 +53,7 @@ Use the checklist below to track progress for each part.
  - [x] Draft slides and narrative: CI/CD pipeline design principles and implementation
  - [x] Draft slides and narrative: SRE error budgets and service level objectives
  - [x] Draft slides and narrative: GitHub Actions workflows and automation
-- [ ] Draft slides and narrative: DevOps, SRE and platform engineering career paths
+ - [x] Draft slides and narrative: DevOps, SRE and platform engineering career paths
 - [ ] Create quiz questions
 
 #### Part 4 – Blameless RCA & Continuous Improvement
