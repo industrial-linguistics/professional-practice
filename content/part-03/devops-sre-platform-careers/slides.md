@@ -11,17 +11,17 @@ title: DevOps, SRE and Platform Engineering Career Paths
 ## DevOps engineers
 - Automate build and deployment pipelines
 - Bridge gaps between dev and ops teams
-- Focus on speed with stability
-- Entry via sysadmin or developer backgrounds
-- Grow from junior \($70k+) to senior \($120k+) roles
+- Certifications: AWS DevOps Pro or CKAD
+- Love problem solving and communication
+- Often remote with on-call rotation
 
 ---
 
 ## Site reliability engineers
 - Uphold service level objectives
-- Monitor systems and respond to incidents
-- Balance feature velocity with reliability
-- Emphasise automation and observability
+- Monitor systems & run incident drills
+- Tools: Kubernetes, Prometheus, chaos tests
+- Calm under pressure and metrics-driven
 - Senior specialists often earn $140k+
 
 ---
@@ -29,9 +29,9 @@ title: DevOps, SRE and Platform Engineering Career Paths
 ## Platform engineers
 - Build internal tooling and paved roads
 - Provide reusable infrastructure modules
-- Partner with developers for productivity
+- Contribute to open source like Backstage
 - Enable self-service environments
-- Progress toward architect-level positions
+- Path toward architect or product roles
 
 ---
 
