@@ -58,7 +58,18 @@ Use the checklist below to track progress for each part.
 
 #### Part 4 – Blameless RCA & Continuous Improvement
 - [x] Outline objectives and key topics
-- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [x] Create to-do list items for each topic to draft slides and write narratives
+ - [ ] Draft slides and narrative: Post-mortem culture: fostering open discussion and avoiding finger-pointing
+ - [ ] Draft slides and narrative: Root cause analysis frameworks such as five-whys and fishbone diagrams
+ - [ ] Draft slides and narrative: Kaizen versus corrective actions, and when to use each approach
+ - [ ] Draft slides and narrative: Integrating RCA records with ServiceNow problem tickets and GitHub issues
+ - [ ] Draft slides and narrative: Tracking improvement through deployment metrics and incident trends
+ - [ ] Draft slides and narrative: Typical post-mortem agenda, attendee roles and documentation standards
+ - [ ] Draft slides and narrative: Managing emotions and cultural barriers to blameless discussions
+ - [ ] Draft slides and narrative: Communicating outcomes and tracking action items for accountability
+ - [ ] Draft slides and narrative: Alert correlation and incident timeline reconstruction techniques
+ - [ ] Draft slides and narrative: Log analysis methods and using Git blame constructively
+ - [ ] Draft slides and narrative: Metrics to monitor: MTTR trends, recurrence rates and action item completion
 - [ ] Create quiz questions
 
 #### Part 5 – Vendor/MSP & CRM Lifecycle
