@@ -1,0 +1,3 @@
+Speaker 1: We've talked about how to run a blameless post-mortem, but what happens to those findings afterward? They shouldn't live in an email chain that gets lost next week.
+Speaker 2: Exactly. The best place for that information is your ticketing system, usually as a ServiceNow problem record. From there, you can link follow‑up work in GitHub so nothing slips through the cracks.
+Speaker 1: Today we'll walk through how RCA notes move from a post‑mortem document into ServiceNow and then connect to GitHub issues. Once you see the workflow, recording and tracking improvements becomes almost automatic.
