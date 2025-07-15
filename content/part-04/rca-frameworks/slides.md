@@ -12,29 +12,35 @@ title: Root Cause Analysis Frameworks
 - Moves discussion from blame to causes
 - Provides a repeatable structure
 - Helps teams collaborate on facts
+- Records findings for future reviews
 
 ---
 
 ## The Five Whys
-- Ask "why" repeatedly until the underlying cause emerges
-- Works well for straightforward issues
-- Keep digging until answers stop revealing new info
+- Start with the observed symptom
+- Ask "why" until the root cause appears
+- Example: website down → misconfigured script → missing peer review
+- Avoid stopping before evidence runs out
 
 ---
 
 ## Fishbone diagrams
-- Visualise categories like process, people, and tools
+- Visualise categories: People, Process, Technology, Environment, Materials, Methods
 - Brainstorm potential contributors in each branch
-- Great for complex or multifactor problems
+- Useful for multifactor problems or when Five Whys stalls
+- Document the diagram in the post-mortem
 
 ---
 
 ## Choosing the right approach
-- Start simple with Five Whys
-- Use Fishbone when several factors interact
-- Document findings to feed into post-mortems
+- Begin with Five Whys for straightforward chains
+- Switch to Fishbone for complex interactions
+- Combine approaches when needed
+- Capture all questions and evidence
+- Feed outcomes into problem tickets
 
 ---
 
 ## Key takeaway
-Structured analysis methods reveal true causes so improvements target the real problem.
+- Structured analysis methods reveal true causes so improvements target the real problem.
+- They support team learning and lasting improvements.

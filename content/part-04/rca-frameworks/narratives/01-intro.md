@@ -1,2 +1,2 @@
-Speaker 1: We've talked about discussing incidents without blaming people. Now let's dive into how we actually uncover the real causes.
-Speaker 2: Using a structured framework keeps everyone focused on facts and helps the team learn together.
+Speaker 1: We've spent time exploring how to hold post-mortems without pointing fingers. Now we need a toolkit for digging into the technical reasons behind failures. We'll cover two proven methods: the Five Whys and the fishbone diagram. Each provides a step-by-step path to go beyond symptoms and uncover the underlying system weaknesses.
+Speaker 2: Using a framework keeps the conversation grounded in evidence rather than opinions. Everyone participates by examining facts, which builds a shared understanding of the incident. These methods also help with documentation, since the process itself guides what to record. We'll see how they fit into the overall post-mortem workflow and how you can apply them in your own environment.

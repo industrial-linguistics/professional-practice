@@ -1,2 +1,2 @@
-Speaker 1: Tools like Five Whys and fishbone diagrams cut through noise and expose the true cause.
-Speaker 2: By capturing these insights, we turn one-off incidents into lessons that improve the system for everyone.
+Speaker 1: Whether you prefer the simplicity of Five Whys or the visual power of a fishbone diagram, the goal is the same: uncover the underlying cause so you can fix it for good. Treat each incident as a chance to strengthen your system, not as a failure to hide. When done consistently, these frameworks build a culture of learning.
+Speaker 2: Make it a habit to share your findings with the whole team and to track the resulting action items. Over time you'll see patterns in your incident trends and you'll develop a more robust improvement process. Mastering these analysis techniques is a valuable skill for any IT professional who wants to lead problem management efforts.

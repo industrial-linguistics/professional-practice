@@ -1,2 +1,2 @@
-Speaker 1: Start with the simplest approach first. If the Five Whys doesn't uncover enough detail, map out a fishbone.
-Speaker 2: Whatever you choose, document the path so your post-mortem tells the full story for future learners.
+Speaker 1: So how do you decide which tool to use? Start with the Five Whys if the problem seems to follow a single chain of events. It's fast and requires nothing more than a whiteboard. If the conversation stalls or new branches appear, switch to a fishbone diagram to capture the wider context. Sometimes you'll use both: the fishbone to map categories, then a Five Whys on each branch.
+Speaker 2: Keep in mind that no tool fits every situation. Highly complex or political issues may need a formal investigation beyond these techniques. Always document the questions asked, the evidence gathered, and the conclusions. That record becomes part of your post-mortem notes, and it helps the next team understand how you arrived at the root cause.
