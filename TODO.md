@@ -73,7 +73,7 @@ Use the checklist below to track progress for each part.
 - [ ] Create quiz questions
 
 #### Part 5 – Vendor/MSP & CRM Lifecycle
-- [ ] Outline objectives and key topics
+- [x] Outline objectives and key topics
 - [ ] Create to-do list items for each topic to draft slides and write narratives
 - [ ] Create quiz questions
 
