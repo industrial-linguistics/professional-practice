@@ -1,0 +1,3 @@
+Speaker 1: A successful post-mortem needs the right mix of perspectives. Incident responders bring the technical details and know exactly what they tried in the heat of the moment.
+Speaker 2: Service owners speak to business impact and can decide which fixes are worth prioritising. A facilitator keeps the conversation moving and makes sure quieter voices are heard.
+Speaker 1: You'll also want a scribe to capture notes and action items in a shared document or ticketing system. Finally, invite at least one stakeholder from the business side so the discussion stays grounded in user impact rather than just technical details.

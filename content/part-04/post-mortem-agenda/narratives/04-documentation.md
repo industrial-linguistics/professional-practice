@@ -1,0 +1,3 @@
+Speaker 1: Documentation is often the most overlooked part of a post-mortem. Use a central template so every incident report looks the same. Include the timeline, root cause details, impact assessment and action items.
+Speaker 2: Link your ServiceNow tickets or JIRA issues, plus any GitHub commits or pull requests that contain the fixes. This makes it easy for future teams to trace the history if something resurfaces.
+Speaker 1: Add metrics like MTTR and number of affected users. Summarise lessons learned in plain language so they can be reused in training or onboarding. Finally, store the report in a shared location and announce it to the team so knowledge spreads beyond those who attended the meeting.

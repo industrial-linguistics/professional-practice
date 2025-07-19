@@ -64,7 +64,7 @@ Use the checklist below to track progress for each part.
  - [x] Draft slides and narrative: Kaizen versus corrective actions, and when to use each approach
  - [x] Draft slides and narrative: Integrating RCA records with ServiceNow problem tickets and GitHub issues
  - [x] Draft slides and narrative: Tracking improvement through deployment metrics and incident trends
- - [ ] Draft slides and narrative: Typical post-mortem agenda, attendee roles and documentation standards
+ - [x] Draft slides and narrative: Typical post-mortem agenda, attendee roles and documentation standards
  - [ ] Draft slides and narrative: Managing emotions and cultural barriers to blameless discussions
  - [ ] Draft slides and narrative: Communicating outcomes and tracking action items for accountability
  - [ ] Draft slides and narrative: Alert correlation and incident timeline reconstruction techniques

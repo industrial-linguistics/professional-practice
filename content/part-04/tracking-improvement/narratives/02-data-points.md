@@ -1,3 +1,4 @@
-Speaker 1: Start with DORA metrics—deployment frequency, lead time, change failure rate and mean time to recovery.
-Speaker 2: Add incident counts and severities so you can spot patterns. Are deployments causing more issues or fewer?
-Speaker 1: Plot these numbers over time. Spikes might reveal gaps in testing or documentation that need attention.
+Speaker 1: Let's start with the basics—DORA metrics. Track deployment frequency, lead time for changes, change failure rate and mean time to recovery. These reveal how smoothly code travels from commit to production.
+Speaker 2: To gather them, use GitHub Insights or your CI/CD dashboard for deployment stats and JIRA or ServiceNow for incident logs. Establish a baseline before you roll out new processes so you can see the effect over time.
+Speaker 1: Good values differ by organisation, but watch for high failure rates or long recovery times. They often hint at inadequate testing or rushed releases. Connect these numbers to user experience: slower recovery means customers stuck on error pages longer.
+Speaker 2: Don't forget incident counts and severities. Plot everything on a timeline. If deployments spike but incident severity climbs with them, it might be time to revisit your quality gates rather than celebrate extra releases.
