@@ -1,0 +1,3 @@
+Speaker 1: Begin every post-mortem by walking through a concise timeline of events. Note when alerts fired, when the first responder acknowledged them and when service was restored. This sets a factual foundation and keeps speculation in check.
+Speaker 2: After the timeline, cover the business impact—how many users were affected and what the cost might be. Then move on to root cause analysis using a structured method like five whys or a fishbone diagram.
+Speaker 1: Capture action items as they're discussed and assign owners on the spot. End the meeting by confirming due dates and when follow-up reviews will happen. A typical agenda can wrap up in under 30 minutes when everyone sticks to these steps.

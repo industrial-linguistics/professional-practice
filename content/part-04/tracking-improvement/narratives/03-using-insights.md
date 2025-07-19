@@ -1,0 +1,4 @@
+Speaker 1: Once you've collected a few sprints of data, compare it to your baseline. Did your deployment lead time shrink? Are rollbacks less frequent?
+Speaker 2: If the numbers improve, highlight them in a quick dashboard demo during your post-mortems. Showing a trend line dropping from two‑week deployments to two‑day cycles can convince leadership to keep investing in automation.
+Speaker 1: When the metrics move the wrong way, dig into the timeline around each spike. Maybe a new testing tool slowed the pipeline or a Friday release pattern correlated with more incidents. Invite the team to suggest fixes rather than assign blame.
+Speaker 2: Present findings to management in plain language: "Our recovery time increased last month, likely due to rushed hotfixes. We propose adding a staging step." Real data helps secure approval for those changes and keeps everyone accountable.
