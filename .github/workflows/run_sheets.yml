@@ -1,8 +1,19 @@
 name: Build Run Sheets
 on:
   push:
-    branches: ["**"]
-  pull_request:
+    branches: ["main"]
+    paths:
+      - 'content/**'
+      - 'cmd/render-slides/**'
+      - 'cmd/run_sheets/**'
+      - 'scripts/generate_run_sheets.sh'
+      - 'scripts/generate_run_sheets_html.sh'
+      - 'scripts/generate_website_index.sh'
+      - 'scripts/deploy_website.sh'
+      - 'scripts/install_chrome.sh'
+      - '.github/workflows/run_sheets.yml'
+      - 'go.mod'
+      - 'go.sum'
 
 jobs:
   build:
@@ -38,7 +49,6 @@ jobs:
         run: |
           ./scripts/generate_website_index.sh
       - name: Prepare SSH key
-        if: secrets.DEPLOYMENT_SSH_KEY != ''
         env:
           DEPLOYMENT_SSH_KEY: ${{ secrets.DEPLOYMENT_SSH_KEY }}
         run: |
@@ -46,7 +56,6 @@ jobs:
           chmod 600 /tmp/deploy_key
           echo "DEPLOYMENT_SSH_KEY=/tmp/deploy_key" >> $GITHUB_ENV
       - name: Deploy website
-        if: secrets.DEPLOYMENT_SSH_KEY != ''
         run: |
           ./scripts/deploy_website.sh
           rm -f /tmp/deploy_key
