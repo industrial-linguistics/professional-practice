@@ -1,0 +1,1 @@
+Different cultures have different norms for giving feedback. Some teams avoid disagreement in public, while others expect blunt honesty. Set expectations that respectful critique is welcome, and pair newcomers with mentors who model the style.

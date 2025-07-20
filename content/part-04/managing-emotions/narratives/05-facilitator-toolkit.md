@@ -1,0 +1,1 @@
+A good facilitator reminds everyone of the shared goal: learning how to improve. They note emotional cues and may arrange one-on-one chats afterward if someone seems uncomfortable. Documenting feelings alongside facts helps track team health.

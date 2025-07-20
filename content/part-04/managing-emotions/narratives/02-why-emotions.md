@@ -1,0 +1,1 @@
+When stress spikes, people worry about being blamed. Fear can make them withhold details that are crucial for solving the issue. Recognising these feelings early keeps the conversation open and honest.
