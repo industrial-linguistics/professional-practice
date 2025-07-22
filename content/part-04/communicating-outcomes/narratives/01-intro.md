@@ -1,3 +1,4 @@
-Speaker 1: After the dust settles on a major outage, it's tempting to move on quickly.
-Speaker 2: But unless we broadcast what happened and what we're doing about it, the same issues come back to haunt us.
-Speaker 1: This segment explains how sharing post-mortem results keeps everyone on the same page and sets the stage for real improvement.
+Speaker 1: Once the dust finally settles—hopefully not literally falling from the ceiling onto your keyboard—it's tempting to simply move on.
+Speaker 2: We all want to forget the chaos, but if we don't discuss what happened, those same mistakes sneak back up on us.
+Speaker 1: This segment walks through why sharing the post-mortem results matters, how to keep different teams in the loop, and a few ways to make updates stick.
+Speaker 2: Think of it as sweeping up the debris, labeling the bags, and setting them out so everyone can recycle the lessons. Plus, a little openness keeps future dust from piling up again.
