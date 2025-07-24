@@ -1,4 +1,6 @@
-Speaker 1: Logs tell you what happened, and blame hints at why.
-Speaker 2: Use them together to fix problems and learn from them, not to point fingers.
-Speaker 1: The real goal is a stable system and shared ownership of the code.
-Speaker 2: Approach every investigation with curiosity, and improvement will follow.
+Speaker 1: Logs show what happened, and blame hints at who changed the code and why.
+Speaker 2: Used together, they help us resolve issues quickly without turning the post‑mortem into a witch hunt.
+Speaker 1: We also respect privacy, follow retention rules and document lessons learned.
+Speaker 2: That builds trust. People feel safe admitting mistakes, so the whole team improves.
+Speaker 1: The goal isn't to catch someone out; it's to make the system stronger after each incident.
+Speaker 2: Treat logs and blame as tools for insight, not weapons, and they'll guide your career as much as your code.

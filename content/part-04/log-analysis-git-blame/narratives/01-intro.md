@@ -1,4 +1,5 @@
-Speaker 1: Logs are where every small detail hides, from debug notes to outright errors.
-Speaker 2: Right, but staring at a wall of timestamps is useless unless you know what to look for.
-Speaker 1: We'll break down simple ways to sift through the noise and link events back to the code.
-Speaker 2: Then we'll touch on using Git blame without turning it into a witch hunt.
+Speaker 1: Logs are the storybook of every application. Each entry marks what happened and at what severity level.
+Speaker 2: Right, without them we'd be guessing whether a failure came from a bad deployment or a hardware hiccup.
+Speaker 1: Remember the checkout bug we chased for days? The logs finally showed payment timeouts minutes after a database lock warning.
+Speaker 2: Once we lined those timestamps up, the cause was obvious, and we avoided hours of finger-pointing.
+Speaker 1: That's why we dig through logs even when it's tedious. They turn hunches into hard evidence and help us spot patterns early.

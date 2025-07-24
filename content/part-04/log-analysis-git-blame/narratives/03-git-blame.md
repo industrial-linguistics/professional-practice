@@ -1,4 +1,6 @@
-Speaker 1: Git blame shows who last touched each line, but that's only the start of the story.
-Speaker 2: It's tempting to fire off accusatory messages, yet blame works best when you seek understanding.
-Speaker 1: Ask the author why the change was made and what problem it solved at the time.
-Speaker 2: Often you'll uncover hidden constraints or forgotten bug reports that explain the decision.
+Speaker 1: `git blame` shows who last touched a line, but that alone doesn't prove responsibility.
+Speaker 2: The author may have been fixing someone else's bug or working with incomplete specs.
+Speaker 1: When we spot a risky change, we message the contributor and ask what problem they were solving.
+Speaker 2: Usually we uncover useful context, like a last-minute hotfix that forced a quick decision.
+Speaker 1: We also use options like `-w` to ignore whitespace or `-C` to track code moved between files.
+Speaker 2: Used kindly, blame provides insight without turning conversations into witch hunts.

@@ -1,4 +1,6 @@
-Speaker 1: Start with simple searches or filters; grep is often enough to spot repeating errors.
-Speaker 2: When the data grows, tools like Splunk or Elastic let you correlate entries across services.
-Speaker 1: Tag key events so you can build timelines later, especially around deploys and incidents.
-Speaker 2: The goal is context, not just mountains of text.
+Speaker 1: When the app is small, a quick grep for "ERROR" usually does the trick.
+Speaker 2: Once you have several services, tools like Elastic or Splunk become essential.
+Speaker 1: They let you search structured fields and follow one request across many logs.
+Speaker 2: We tag every entry with a request ID so we can trace a user's journey end to end.
+Speaker 1: Dashboards help spot patterns too. A jump in WARN logs might reveal memory pressure before anything crashes.
+Speaker 2: Whatever tool you use, keep enough history so you can go back and learn from incidents.
