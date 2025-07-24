@@ -67,7 +67,7 @@ Use the checklist below to track progress for each part.
  - [x] Draft slides and narrative: Typical post-mortem agenda, attendee roles and documentation standards
  - [x] Draft slides and narrative: Managing emotions and cultural barriers to blameless discussions
  - [x] Draft slides and narrative: Communicating outcomes and tracking action items for accountability
- - [ ] Draft slides and narrative: Alert correlation and incident timeline reconstruction techniques
+ - [x] Draft slides and narrative: Alert correlation and incident timeline reconstruction techniques
  - [ ] Draft slides and narrative: Log analysis methods and using Git blame constructively
  - [ ] Draft slides and narrative: Metrics to monitor: MTTR trends, recurrence rates and action item completion
 - [ ] Create quiz questions
