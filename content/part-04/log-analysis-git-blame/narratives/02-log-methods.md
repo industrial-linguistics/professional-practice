@@ -1,4 +1,5 @@
 Speaker 1: When the app is small, a quick grep for "ERROR" usually does the trick.
+Speaker 2: But how do you even know where to start looking in a 10GB log file?
 Speaker 2: Once you have several services, tools like Elastic or Splunk become essential.
 Speaker 1: They let you search structured fields and follow one request across many logs.
 Speaker 2: We tag every entry with a request ID so we can trace a user's journey end to end.
