@@ -70,7 +70,7 @@ Use the checklist below to track progress for each part.
 - [x] Draft slides and narrative: Alert correlation and incident timeline reconstruction techniques
 - [x] Draft slides and narrative: Log analysis methods and using Git blame constructively
 - [x] Draft slides and narrative: Metrics to monitor: MTTR trends, recurrence rates and action item completion
-- [ ] Create quiz questions
+- [x] Create quiz questions
 
 #### Part 5 – Vendor/MSP & CRM Lifecycle
 - [x] Outline objectives and key topics
