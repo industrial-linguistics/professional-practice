@@ -20,6 +20,10 @@ This part demystifies how vendors and managed service providers handle the custo
 - The vendor engagement funnel and MSP service hand‑over points.
 - Challenger Sales mindset and qualification frameworks.
 - CRM fundamentals using Salesforce Trailhead modules.
+- How tech sales differs from other industries: recurring revenue models and rapid product cycles.
+- Multi-stakeholder buying committees and long deal cycles in enterprise tech.
+- Close alignment with product teams for solution selling and technical validation.
+- Customer success teams focused on adoption and expansion after go-live.
 - Lead scoring, opportunity progression and renewal alerts in CRM workflows.
 - Linking CRM milestones to ITIL change and incident processes.
 

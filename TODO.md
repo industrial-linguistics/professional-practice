@@ -74,6 +74,7 @@ Use the checklist below to track progress for each part.
 
 #### Part 5 – Vendor/MSP & CRM Lifecycle
 - [x] Outline objectives and key topics
+- [x] Expand topics to include how tech sales teams and processes differ from other industries
 - [ ] Create to-do list items for each topic to draft slides and write narratives
 - [ ] Create quiz questions
 
