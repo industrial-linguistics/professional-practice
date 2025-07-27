@@ -2,6 +2,10 @@
 
 This part demystifies how vendors and managed service providers handle the customer journey from first outreach to renewal. Students learn how CRM platforms coordinate sales commitments with ongoing service delivery.
 
+**Why This Matters**
+
+Whether you end up supporting a sales organisation or evaluating vendors, understanding the tech sales cycle helps you speak the language of budgets, renewals and customer success.
+
 ## Objectives
 
 - Describe the stages from lead generation through post‑sales account management.
@@ -18,14 +22,21 @@ This part demystifies how vendors and managed service providers handle the custo
 - Performance monitoring beyond renewals: service quality KPIs and improvement actions.
 - Cost optimisation strategies including usage analysis and contract renegotiation timing.
 - The vendor engagement funnel and MSP service hand‑over points.
-- Challenger Sales mindset and qualification frameworks.
+- Challenger Sales mindset with BANT and MEDDIC qualification frameworks.
+- Discovery call techniques for surfacing pain points.
+- Proof‑of‑concept management and success criteria.
+- Competitive displacement strategies in crowded markets.
 - CRM fundamentals using Salesforce Trailhead modules.
+- Key economics in tech sales: ARR vs one-time deals and land-and-expand growth.
+- Usage-based pricing models and churn prevention via customer health scoring.
 - How tech sales differs from other industries: recurring revenue models and rapid product cycles.
 - Multi-stakeholder buying committees and long deal cycles in enterprise tech.
 - Close alignment with product teams for solution selling and technical validation.
+- Sales engineering support: demo environments, RFP responses and integration planning.
 - Customer success teams focused on adoption and expansion after go-live.
 - Lead scoring, opportunity progression and renewal alerts in CRM workflows.
 - Linking CRM milestones to ITIL change and incident processes.
+- Hands-on scenario: walk through a Salesforce CRM opportunity from lead to close.
 
 ## Job Roles Focus
 
