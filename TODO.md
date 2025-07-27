@@ -75,7 +75,29 @@ Use the checklist below to track progress for each part.
 #### Part 5 – Vendor/MSP & CRM Lifecycle
 - [x] Outline objectives and key topics
 - [x] Expand outline on tech sales teams and processes and how they differ from non-tech industries
-- [ ] Create to-do list items for each topic to draft slides and write narratives
+- [x] Create to-do list items for each topic to draft slides and write narratives
+  - [ ] Draft slides and narrative: Vendor evaluation criteria and selection processes
+  - [ ] Draft slides and narrative: Contract negotiation basics covering SLA terms, pricing models and exit clauses
+  - [ ] Draft slides and narrative: Risk management: vendor lock-in, data security and business continuity planning
+  - [ ] Draft slides and narrative: Communication protocols for regular check-ins, escalation and reporting cadence
+  - [ ] Draft slides and narrative: Performance monitoring beyond renewals: service quality KPIs and improvement actions
+  - [ ] Draft slides and narrative: Cost optimisation strategies including usage analysis and contract renegotiation timing
+  - [ ] Draft slides and narrative: The vendor engagement funnel and MSP service hand-over points
+  - [ ] Draft slides and narrative: Challenger Sales mindset with BANT and MEDDIC qualification frameworks
+  - [ ] Draft slides and narrative: Discovery call techniques for surfacing pain points
+  - [ ] Draft slides and narrative: Proof-of-concept management and success criteria
+  - [ ] Draft slides and narrative: Competitive displacement strategies in crowded markets
+  - [ ] Draft slides and narrative: CRM fundamentals using Salesforce Trailhead modules
+  - [ ] Draft slides and narrative: Key economics in tech sales: ARR vs one-time deals and land-and-expand growth
+  - [ ] Draft slides and narrative: Usage-based pricing models and churn prevention via customer health scoring
+  - [ ] Draft slides and narrative: How tech sales differs from other industries: recurring revenue models and rapid product cycles
+  - [ ] Draft slides and narrative: Multi-stakeholder buying committees and long deal cycles in enterprise tech
+  - [ ] Draft slides and narrative: Close alignment with product teams for solution selling and technical validation
+  - [ ] Draft slides and narrative: Sales engineering support: demo environments, RFP responses and integration planning
+  - [ ] Draft slides and narrative: Customer success teams focused on adoption and expansion after go-live
+  - [ ] Draft slides and narrative: Lead scoring, opportunity progression and renewal alerts in CRM workflows
+  - [ ] Draft slides and narrative: Linking CRM milestones to ITIL change and incident processes
+  - [ ] Draft slides and narrative: Hands-on scenario: walk through a Salesforce CRM opportunity from lead to close
 - [ ] Create quiz questions
 
 #### Part 6 – Start-ups & Small-Biz IT
