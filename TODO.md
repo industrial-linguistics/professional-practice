@@ -76,7 +76,7 @@ Use the checklist below to track progress for each part.
 - [x] Outline objectives and key topics
 - [x] Expand outline on tech sales teams and processes and how they differ from non-tech industries
 - [x] Create to-do list items for each topic to draft slides and write narratives
-  - [ ] Draft slides and narrative: Vendor evaluation criteria and selection processes
+  - [x] Draft slides and narrative: Vendor evaluation criteria and selection processes
   - [ ] Draft slides and narrative: Contract negotiation basics covering SLA terms, pricing models and exit clauses
   - [ ] Draft slides and narrative: Risk management: vendor lock-in, data security and business continuity planning
   - [ ] Draft slides and narrative: Communication protocols for regular check-ins, escalation and reporting cadence
