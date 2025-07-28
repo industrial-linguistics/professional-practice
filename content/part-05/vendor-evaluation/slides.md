@@ -8,19 +8,33 @@ title: Vendor Evaluation and Selection
 
 ---
 
+## Why vendor selection matters
+- Hidden costs of a poor match ripple across departments
+- Failed vendors can leave you scrambling for alternatives
+- Reliable partners free your team to focus on strategy
+
+---
+
 ## Key evaluation criteria
-- Technical capability and scalability
-- Financial stability of the vendor
+- Technical capability, scalability and security record
+- Financial health and industry reputation
 - Cultural fit and communication style
-- Compliance, security and privacy track record
+- Compliance with privacy, legal and regulatory needs
 
 ---
 
 ## Selection process
-- Define requirements and scoring matrix
-- Issue RFP and gather proposals
-- Run demos and check references
-- Negotiate final terms and sign
+- Define requirements and a scoring matrix
+- Issue RFPs and compare proposals
+- Run demos with real data and check references
+- Negotiate service levels, pricing and exit clauses
+
+---
+
+## Risk management & ongoing relationships
+- Plan for backups and data portability
+- Track total cost of ownership and ROI
+- Schedule regular reviews and escalation paths
 
 ---
 
