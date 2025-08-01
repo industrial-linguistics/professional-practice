@@ -56,24 +56,56 @@ sunny.
 
 ## Financial risk assessment
 
-Technology budgets rarely stay static, and hidden vendor costs can wreck even the best-planned projects. Analyse licensing models carefully: is pricing based on users, data volume or something else entirely? Factor in currency fluctuations if you're paying in a foreign denomination, and watch out for automatic renewal clauses that increase fees each year. Startups may offer tempting discounts but could disappear before your contract ends, while large vendors might charge more but carry less financial risk. Case studies abound of companies spending hundreds of thousands migrating away from platforms that unexpectedly doubled their prices. A thorough financial review now prevents nasty surprises down the line.
+- Analyse licensing models carefully: is pricing based on users, data volume or something else entirely?
+- Watch for per-seat pricing that looks cheap at 10 users but explodes to $50K at 500.
+- Factor in currency swings and automatic renewal clauses that increase fees annually.
+- Weigh the stability of startups versus established firms—one may cost less but carry higher risk.
+
+Case studies abound of companies spending hundreds of thousands migrating away from platforms that unexpectedly doubled their prices. A thorough financial review now prevents nasty surprises down the line.
 
 ---
 
 ## Operational dependencies
 
-Relying on a single vendor can create a fragile chain of dependencies. If their service goes down, do your internal processes grind to a halt? Consider how long it would take staff to learn a replacement system or rebuild integrations. A real-world outage, like Slack's six-hour downtime in 2021, left many teams scrambling because chatbots and help desks all flowed through a single tool. Document alternative workflows and build training time into your budget so switching providers doesn't paralyse your organisation.
+Relying on a single vendor can create a fragile chain of dependencies. If their service goes down, do your internal processes grind to a halt? Consider how long it would take staff to learn a replacement system or rebuild integrations. A real-world outage, like Slack's six-hour downtime in 2021, left many teams scrambling because chatbots and help desks all flowed through a single tool. Document alternative workflows—when Slack is down, teams might revert to email threads and phone trees—and build training time into your budget so switching providers doesn't paralyse your organisation.
 
 ---
 
 ## Legal and compliance considerations
 
-Data sovereignty laws and industry regulations can dictate where and how vendor services operate. Ensure that contracts spell out who owns the data, how it may be used and what liability the vendor carries if they breach privacy or security requirements. Ask about compliance certifications relevant to your sector, such as HIPAA for health data or PCI DSS for payment processing. Some jurisdictions require your data to remain in-country, so confirm server locations and backup storage. Insurance coverage and indemnity clauses also play a role; they define who pays if things go wrong. Understanding these legal obligations up front reduces headaches later.
+Data sovereignty laws and industry regulations can dictate where and how vendor services operate. Ensure that contracts spell out who owns the data, how it may be used and what liability the vendor carries if they breach privacy or security requirements. Ask about compliance certifications relevant to your sector. For example, healthcare providers must verify HIPAA compliance before putting records in the cloud, while retailers may need PCI DSS for payment details. Some jurisdictions require your data to remain in-country, so confirm server locations and backup storage. Insurance coverage and indemnity clauses also play a role; they define who pays if things go wrong. Understanding these legal obligations up front reduces headaches later.
+
+---
+
+## Due diligence checklist
+
+- Evaluate financial stability and customer references
+- Review security certifications and audit reports
+- Test data export options before signing
+
+---
+
+## Red flags during selection
+
+- Evasive answers about pricing or compliance
+- No references or vague case studies
+- Unrealistic implementation timelines
+
+---
+
+## Exit strategy planning
+
+- Negotiate clear termination clauses and notice periods
+- Document data migration steps and associated costs
+- Keep alternative vendors in mind in case you need to switch
 
 ---
 
 ## Key takeaway
-Proactive risk planning keeps you in control if a vendor fails.
+
+- Ask about data export options before signing
+- Verify security certifications and test backups
+- Schedule regular reviews to keep risks visible
 
 ---
 

@@ -79,7 +79,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Vendor evaluation criteria and selection processes
   - [x] Draft slides and narrative: Contract negotiation basics covering SLA terms, pricing models and exit clauses
   - [x] Draft slides and narrative: Risk management: vendor lock-in, data security and business continuity planning
-  - [ ] Draft slides and narrative: Communication protocols for regular check-ins, escalation and reporting cadence
+  - [x] Draft slides and narrative: Communication protocols for regular check-ins, escalation and reporting cadence
   - [ ] Draft slides and narrative: Performance monitoring beyond renewals: service quality KPIs and improvement actions
   - [ ] Draft slides and narrative: Cost optimisation strategies including usage analysis and contract renegotiation timing
   - [ ] Draft slides and narrative: The vendor engagement funnel and MSP service hand-over points
