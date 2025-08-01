@@ -10,7 +10,7 @@ title: Vendor Communication Protocols
 
 ## Why establish protocols?
 
-Regular communication prevents misunderstandings and surfaces issues early. Clear expectations reduce friction when priorities shift or problems arise. Setting protocols upfront tells everyone who to contact and when. Without structure, updates happen randomly and serious concerns may get buried. Simple guidelines—like who runs meetings and how often reports are shared—keep the relationship healthy and ensure both sides know what success looks like.
+Regular communication prevents misunderstandings and surfaces issues early. Clear expectations reduce friction when priorities shift or problems arise. For example, if a cloud outage hits overnight, a defined escalation list ensures the right engineers are paged instead of a frantic email chain. Setting protocols upfront tells everyone who to contact and when. Without structure, updates happen randomly and serious concerns may get buried. Simple guidelines—like who runs meetings and how often reports are shared—keep the relationship healthy and ensure both sides know what success looks like.
 
 ---
 
@@ -18,7 +18,8 @@ Regular communication prevents misunderstandings and surfaces issues early. Clea
 
 - Schedule weekly or monthly calls depending on service criticality
 - Share agendas beforehand and track action items
-- Use these sessions to review metrics, roadmap changes and upcoming risks
+- Review ticket metrics, upcoming releases and potential risks
+- Allocate time for roadblocks or resource requests
 
 ---
 
@@ -40,6 +41,6 @@ Regular communication prevents misunderstandings and surfaces issues early. Clea
 
 ## Key takeaway
 
-Consistent communication builds trust and keeps projects on track.
+Consistent communication builds trust, keeps projects on track and provides metrics to gauge vendor responsiveness and issue resolution.
 
 ---

@@ -61,7 +61,8 @@ sunny.
 - Factor in currency swings and automatic renewal clauses that increase fees annually.
 - Weigh the stability of startups versus established firms—one may cost less but carry higher risk.
 
-Case studies abound of companies spending hundreds of thousands migrating away from platforms that unexpectedly doubled their prices. A thorough financial review now prevents nasty surprises down the line.
+- Case study: one firm spent $200K migrating from Oracle to PostgreSQL after licensing fees spiked.
+- Thorough financial reviews early on prevent nasty surprises later.
 
 ---
 
@@ -101,11 +102,13 @@ Data sovereignty laws and industry regulations can dictate where and how vendor 
 
 ---
 
-## Key takeaway
+ ## Key takeaway
 
-- Ask about data export options before signing
-- Verify security certifications and test backups
-- Schedule regular reviews to keep risks visible
+ - Ask about data export options before signing
+ - Verify security certifications and test backups
+ - Schedule regular reviews to keep risks visible
+ - Document who owns each vendor relationship internally
+ - Hold a quarterly risk review to track emerging issues
 
 ---
 
