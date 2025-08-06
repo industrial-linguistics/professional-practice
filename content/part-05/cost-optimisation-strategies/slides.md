@@ -10,7 +10,7 @@ title: Cost Optimisation Strategies
 
 ## Why cost management matters
 
-Unwatched subscriptions and idle cloud resources quietly drain budgets. Like gym memberships, software licences are easy to buy and surprisingly hard to cancel. Industry surveys show 10–20% of IT spend goes to tools nobody uses. Definitions help: “shelfware” is software bought but never used, and “over‑provisioning” is paying for more capacity than required. By reviewing spend quarterly, finance, procurement and IT ops keep the budget aligned with actual value and avoid nasty surprises at renewal time.
+Unwatched subscriptions and idle cloud resources quietly drain budgets. Like gym memberships, software licences are easy to buy and surprisingly hard to cancel. Industry surveys show 10–20% of IT spend goes to tools nobody uses. Definitions help: “shelfware” is software bought but never used, and “over‑provisioning” is paying for more capacity than required. By reviewing spend quarterly, finance, procurement and IT ops keep the budget aligned with actual value and avoid nasty surprises at renewal time. These habits scale for small businesses too; trimming a few idle subscriptions can free cash for marketing or salaries.
 
 ---
 
@@ -22,13 +22,13 @@ Start with the basics: how many licences did you pay for and how many people act
 
 ## Common cost traps
 
-Many budgets leak through small oversights. Auto‑escalating pricing clauses quietly raise rates each year. Per‑user pricing, when only a fraction of accounts are active, wastes money. Teams often juggle Slack, Teams and Discord simultaneously or leave development environments running 24/7. Each issue seems minor until multiplied across months. A friendly quarterly audit with a checklist for these traps keeps them from snowballing and frees cash for strategic projects instead of needless subscriptions.
+Many budgets leak through small oversights. Auto‑escalating pricing clauses quietly raise rates each year. Per‑user pricing, when only a fraction of accounts are active, wastes money and leaves phantom licences for departed staff. Teams often juggle Slack, Teams and Discord simultaneously, run overlapping monitoring tools or keep development environments scaled for production loads and running 24/7. Each issue seems minor until multiplied across months. A friendly quarterly audit with a checklist for these traps keeps them from snowballing and frees cash for strategic projects instead of needless subscriptions.
 
 ---
 
 ## Renegotiation timing
 
-Vendors love auto‑renewals because they lock in last year’s price without questions. Set calendar reminders ninety days before each contract anniversary so you steer the discussion. Bring concrete examples such as “Our usage dropped 30% since remote work ended, so we’d like to downgrade from Enterprise to Standard tier.” Ask about discount levels, bundle options and payment per active user. Negotiations become a normal business conversation when backed by usage data rather than a desperate plea at the last minute.
+Vendors love auto‑renewals because they lock in last year’s price without questions. Set calendar reminders ninety days before each contract anniversary so you steer the discussion. Bring concrete examples such as “Our usage dropped 30% since remote work ended, so we’d like to downgrade from Enterprise to Standard tier.” Ask about discount levels, bundle options and payment per active user. Remember, account managers have quotas too—they want to keep you as a customer. Negotiations become a normal business conversation when backed by usage data rather than a desperate plea at the last minute.
 
 ---
 
@@ -52,6 +52,6 @@ Cost control isn’t just a finance chore. **Procurement analysts** negotiate te
 
 ## Key takeaway
 
-Optimising vendor spend is an ongoing process, not a one‑off audit. Regular reviews, awareness of common traps and a clear negotiation playbook keep budgets lean without harming service quality. Approach cost data with a bit of humour—you might find you’re paying for 500 seats when half your team still thinks “the cloud” is just weather. The savings you uncover can fund innovation rather than waste, turning cost control into a strategic advantage.
+Optimising vendor spend is an ongoing process, not a one‑off audit. Regular reviews, awareness of common traps and a clear negotiation playbook keep budgets lean without harming service quality. Whether you’re a five‑person startup or a global enterprise, the discipline is the same. Approach cost data with a bit of humour—you might find you’re paying for 500 seats when half your team still thinks “the cloud” is just weather. The savings you uncover can fund innovation rather than waste, turning cost control into a strategic advantage.
 
 ---
