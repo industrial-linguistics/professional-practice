@@ -81,7 +81,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Risk management: vendor lock-in, data security and business continuity planning
   - [x] Draft slides and narrative: Communication protocols for regular check-ins, escalation and reporting cadence
   - [x] Draft slides and narrative: Performance monitoring beyond renewals: service quality KPIs and improvement actions
-  - [ ] Draft slides and narrative: Cost optimisation strategies including usage analysis and contract renegotiation timing
+  - [x] Draft slides and narrative: Cost optimisation strategies including usage analysis and contract renegotiation timing
   - [ ] Draft slides and narrative: The vendor engagement funnel and MSP service hand-over points
   - [ ] Draft slides and narrative: Challenger Sales mindset with BANT and MEDDIC qualification frameworks
   - [ ] Draft slides and narrative: Discovery call techniques for surfacing pain points
