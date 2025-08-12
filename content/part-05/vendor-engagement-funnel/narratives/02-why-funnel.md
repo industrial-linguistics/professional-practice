@@ -1,3 +1,5 @@
-Speaker 1: Why bother with a formal funnel?
-Speaker 2: Without one, conversations jump around and critical steps get skipped.
-Speaker 1: A defined funnel keeps stakeholders aligned and highlights when to involve the MSP.
+Speaker 1: Picture this—finance wants a new expense system by next month.
+Speaker 2: Without a funnel, IT gets an email saying "We signed with Vendor X, they're calling you tomorrow."
+Speaker 1: And suddenly the "simple" app has to talk to payroll, reporting and that mystery server under someone's desk.
+Speaker 2: A structured funnel would have asked the right questions, pulled in finance, legal and end users, and maybe spotted that Microsoft 365 already had the feature.
+Speaker 1: Plus it flags when an MSP should own rollout so half the team doesn't think the cloud is weather.

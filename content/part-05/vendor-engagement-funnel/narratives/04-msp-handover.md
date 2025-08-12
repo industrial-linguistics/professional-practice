@@ -1,4 +1,6 @@
-Speaker 1: Where do MSPs typically take the baton?
-Speaker 2: Delivery teams step in after the contract is signed and scope is agreed.
-Speaker 1: During onboarding, day-to-day tasks move to the MSP as runbooks solidify.
-Speaker 2: When everything stabilises, account managers handle reviews and escalate issues.
+Speaker 1: So when do we actually hand things to an MSP?
+Speaker 2: Usually right after the contract, once the sales team vanishes and the real work starts.
+Speaker 1: They promise to take the pain away, but someone still has to manage the people managing the pain.
+Speaker 2: During onboarding we document playbooks so routine jobs—like a small firm backing up to AWS—can shift to the MSP.
+Speaker 1: What if requirements are fuzzy?
+Speaker 2: Then tickets ping-pong, costs rise and everyone wonders what they signed up for. Clear handovers and check-ins keep it tidy.
