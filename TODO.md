@@ -83,7 +83,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Performance monitoring beyond renewals: service quality KPIs and improvement actions
   - [x] Draft slides and narrative: Cost optimisation strategies including usage analysis and contract renegotiation timing
   - [x] Draft slides and narrative: The vendor engagement funnel and MSP service hand-over points
-  - [ ] Draft slides and narrative: Challenger Sales mindset with BANT and MEDDIC qualification frameworks
+  - [x] Draft slides and narrative: Challenger Sales mindset with BANT and MEDDIC qualification frameworks
   - [ ] Draft slides and narrative: Discovery call techniques for surfacing pain points
   - [ ] Draft slides and narrative: Proof-of-concept management and success criteria
   - [ ] Draft slides and narrative: Competitive displacement strategies in crowded markets
