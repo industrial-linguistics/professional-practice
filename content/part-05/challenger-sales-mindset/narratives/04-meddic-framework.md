@@ -1,4 +1,4 @@
-Speaker 1: MEDDIC goes deeper by mapping how a deal will actually get approved.
-Speaker 2: Right, you look at the metrics that matter, find the economic buyer, and learn their decision criteria and process.
-Speaker 1: Identifying pain and a true champion tells you whether the deal has internal momentum.
-Speaker 2: Without those pieces, you're guessing about where a proposal stands.
+Speaker 1: MEDDIC sounds like a prescription drug, but skip a step and the deal still hurts. In IT, a security tool may need sign‑off from risk, legal, and finance before a check is cut.
+Speaker 2: So map Metrics, Economic buyer, Decision criteria, Decision process, Identify pain, and find a Champion. Ask, "What metrics matter to leadership?" and "Who loses sleep if this fails?"
+Speaker 1: If your contact can't introduce the economic buyer, they're an influencer, not the decision maker.
+Speaker 2: And without a named pain and champion pushing internally, procurement becomes a black hole.

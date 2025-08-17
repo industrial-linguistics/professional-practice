@@ -1,4 +1,4 @@
-Speaker 1: When you challenge the status quo, those BANT or MEDDIC questions feel more natural.
-Speaker 2: Exactly, the insight hooks their interest, and qualification shows whether the problem is worth solving now.
-Speaker 1: Combining the approaches lets you map your solution to real pain and buying power.
-Speaker 2: It turns a cold call into a concrete plan with clear next steps.
+Speaker 1: The magic happens when Challenger insight sets the stage and BANT or MEDDIC confirms the show should go on. You might reframe a hospital’s slow admissions as a data issue, then verify the COO has budget this quarter.
+Speaker 2: In IT or retail, the pattern is the same—teach, tailor, take control, then qualify. Red flags like "we’re just exploring" signal the pain isn’t urgent.
+Speaker 1: These frameworks also help non‑sales roles prioritize projects or vendors.
+Speaker 2: They’re universal filters for where to invest energy, whether you’re closing software deals or choosing a cybersecurity internship.
