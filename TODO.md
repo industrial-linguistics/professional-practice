@@ -85,7 +85,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: The vendor engagement funnel and MSP service hand-over points
   - [x] Draft slides and narrative: Challenger Sales mindset with BANT and MEDDIC qualification frameworks
   - [x] Draft slides and narrative: Discovery call techniques for surfacing pain points
-  - [ ] Draft slides and narrative: Proof-of-concept management and success criteria
+  - [x] Draft slides and narrative: Proof-of-concept management and success criteria
   - [ ] Draft slides and narrative: Competitive displacement strategies in crowded markets
   - [ ] Draft slides and narrative: CRM fundamentals using Salesforce Trailhead modules
   - [ ] Draft slides and narrative: Key economics in tech sales: ARR vs one-time deals and land-and-expand growth
