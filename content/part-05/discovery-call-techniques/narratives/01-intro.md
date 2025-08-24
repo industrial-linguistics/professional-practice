@@ -1,2 +1,4 @@
-Speaker 1: Many reps treat discovery calls as mini demos, but the point is to uncover the client's real struggles.
-Speaker 2: Right, a good discovery call feels more like a conversation than a pitch, and the best insights often come from letting the customer talk.
+Speaker 1: Many reps treat discovery calls as mini demos, but the point is to uncover the client's real struggles. I learned that after a prospect sat through my entire slide deck and then said their real issue was a three-hour daily reboot cycle.
+Speaker 2: Exactly. When we focus on curiosity instead of pitch, clients open up about things like legacy servers that crash every Monday or a "temporary" security patch that's been in place for a year.
+Speaker 1: Framing the call as a joint investigation sets a collaborative tone. You're not there to sell yet; you're there to understand why their help desk ticket volume doubled or why their cloud bill keeps creeping up.
+Speaker 2: And when they realize you're genuinely trying to solve the puzzle, not just push a product, they start treating you like a partner rather than another vendor with a quota to hit.

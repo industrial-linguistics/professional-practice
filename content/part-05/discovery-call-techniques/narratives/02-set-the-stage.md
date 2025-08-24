@@ -1,2 +1,4 @@
-Speaker 1: Doing a bit of homework lets you skip basic questions and quickly establish credibility.
-Speaker 2: Then set a simple agenda: where they are now, what's in the way, and what a good outcome looks like.
+Speaker 1: Doing a bit of homework lets you skip basic questions and quickly establish credibility. A quick, totally professional LinkedIn stalk tells you if they're expanding, downsizing, or just posted about a security scare.
+Speaker 2: Then set a simple agenda: where they are now, what's in the way, and what a good outcome looks like. In virtual calls, share it in chat so no one gets lost in the tabs.
+Speaker 1: I also check cultural cues. A client in Tokyo may expect a longer warm-up, while a New Yorker wants to dive in. Either way, a warm opener like "How are you keeping your remote team connected?" gets them talking.
+Speaker 2: That question alone once uncovered a firm running four different chat tools. By the time we got to solutions, they were practically begging for a unified platform.
