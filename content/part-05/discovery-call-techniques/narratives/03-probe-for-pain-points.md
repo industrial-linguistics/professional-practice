@@ -1,0 +1,4 @@
+Speaker 1: Open-ended prompts like "What's slowing your team down?" invite them to vent about the real issues. I spent years asking yes-or-no questions and wondering why the conversations went nowhere.
+Speaker 2: And if there's a pause, sit with it—count to five, sip your coffee. People hate silence and often fill it with the good stuff, like how server downtime is costing them $10k an hour or how their CRM still doesn't talk to the help desk.
+Speaker 1: One client finally admitted they copy-paste data between five systems every morning. That awkward pause exposed a $50k problem they hadn't even quantified.
+Speaker 2: Another confessed audit season turns into "spreadsheet panic week" because their security controls are duct-taped together. None of that shows up if you're busy pitching instead of probing.
