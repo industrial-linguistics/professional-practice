@@ -89,7 +89,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Competitive displacement strategies in crowded markets
   - [x] Draft slides and narrative: CRM fundamentals using Salesforce Trailhead modules
   - [x] Draft slides and narrative: Key economics in tech sales: ARR vs one-time deals and land-and-expand growth
-  - [ ] Draft slides and narrative: Usage-based pricing models and churn prevention via customer health scoring
+  - [x] Draft slides and narrative: Usage-based pricing models and churn prevention via customer health scoring
   - [ ] Draft slides and narrative: How tech sales differs from other industries: recurring revenue models and rapid product cycles
   - [ ] Draft slides and narrative: Multi-stakeholder buying committees and long deal cycles in enterprise tech
   - [ ] Draft slides and narrative: Close alignment with product teams for solution selling and technical validation
