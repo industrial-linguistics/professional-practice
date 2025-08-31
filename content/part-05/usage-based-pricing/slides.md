@@ -10,15 +10,23 @@ title: Usage-Based Pricing and Churn Prevention
 
 ## What is usage-based pricing?
 Charges scale with consumption rather than fixed licences.
-It lowers initial commitment and grows as usage climbs.
+Like paying for electricity or Netflix hours, not annual seats.
+Lower initial commitment and grows as usage climbs.
 
 ---
 
 ## Common usage metrics
-- API calls or transactions
-- Data volume processed
+- API calls or transactions (e.g., $0.01 per call)
+- Data stored or transferred ($0.023/GB on S3)
 - Seats activated per month
 - Compute or storage hours
+
+---
+
+## Hybrid pricing models
+- Base fee plus metered add-ons
+- Smooths cash flow while keeping upside
+- Example: reserved capacity + burst pricing
 
 ---
 
@@ -26,6 +34,7 @@ It lowers initial commitment and grows as usage climbs.
 - Fair mapping of cost to value
 - Easier entry for small customers
 - Expansion built into adoption
+- Aligns expenses with cloud bills
 
 ---
 
@@ -33,6 +42,20 @@ It lowers initial commitment and grows as usage climbs.
 - Revenue becomes harder to forecast
 - Spiky bills can shock customers
 - Requires solid telemetry and billing
+
+---
+
+## Setting up usage tracking systems
+- Instrument features and log events
+- Pipeline data into metering tools
+- Data quality and alerts prevent disputes
+
+---
+
+## Pricing psychology
+- Customers like control over spend
+- Transparent calculators ease fear
+- Humor and framing influence perception
 
 ---
 
