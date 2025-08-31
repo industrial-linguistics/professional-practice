@@ -1,4 +1,4 @@
-Speaker 1: Annual recurring revenue, or ARR, is the heartbeat of most SaaS companies.
-Speaker 2: It captures the contracted value of subscriptions, smoothed over a year.
-Speaker 1: One-time deals look good in the month they close but disappear from forecasts.
-Speaker 2: That's why investors treat a dollar of ARR as more valuable than a dollar of services work.
+Speaker 1: You know how Netflix charges every month? ARR is that idea applied to business software.
+Speaker 2: Right—take all the subscription contracts and imagine them as steady monthly income.
+Speaker 1: Salesforce flaunts over thirty billion in ARR, while a consulting shop lives off project spikes.
+Speaker 2: Investors love that predictability; one-off services cash just doesn't get the same respect.

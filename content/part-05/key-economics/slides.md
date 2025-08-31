@@ -9,9 +9,7 @@ title: Key Economics in Tech Sales
 ---
 
 ## ARR vs one-time deals
-- ARR: subscription revenue recognised annually
-- One-time deals: perpetual licence or project fees
-- Investors favour recurring revenue streams
+Annual recurring revenue acts like a subscription—think Netflix but for business tools. It smooths contracted income into a predictable stream, so Salesforce can tout more than $30B in ARR while a consulting firm chases project spikes. One-time deals land big cheques but reset the counter every quarter and muddy forecasts.
 
 ---
 
@@ -25,21 +23,37 @@ Hardware purchases or consulting engagements may still use up-front billing. The
 
 ---
 
+## Pricing models
+- Per-seat licences scale with headcount but can cap expansion.
+- Usage-based fees map cost to consumption, common for fintech APIs.
+- Tiered feature bundles let customers graduate as needs grow.
+- The pricing mix shapes upsell paths and revenue predictability.
+
+---
+
+## Contract structures
+- Annual terms give frequent renewal checkpoints.
+- Multi-year deals lock in revenue but may require discounts.
+- Up-front prepay boosts cash flow; quarterly payments ease budgets.
+- Auto-renew clauses and payment terms influence churn risk.
+
+---
+
 ## Land-and-expand strategy
 Start with a small beachhead contract, prove value, then add seats, features or new divisions. Success relies on customer success teams to nurture accounts and spot expansion triggers.
 
 ---
 
 ## Metrics to watch
-- ARR / MRR and annual contract value
-- Gross retention vs net retention
-- Expansion revenue from cross-sell and upsell
-- Payback period on customer acquisition cost
+- ARR and MRR show the recurring base; **ACV** measures a contract's annual value.
+- Gross retention under 90% signals churn problems; net retention over 100% shows healthy expansion.
+- Track customer lifetime value, LTV:CAC ratios and expansion revenue from cross-sell or upsell.
+- Payback period asks how many months before acquisition cost is recovered.
 
 ---
 
 ## Practical exercise: revenue mix
-Analyse a sample company with 500k ARR and 200k in one-time services. Estimate the impact if 20% of one-time work converted to subscriptions and model the new ARR.
+A sample company has $500k ARR and $200k in one-time services. If 20% of services shift to subscriptions, add $40k to ARR for a new total of $540k while services drop to $160k. Recalculate the revenue mix and discuss how recurring dollars might change valuation and hiring plans.
 
 ---
 
