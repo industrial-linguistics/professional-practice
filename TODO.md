@@ -90,8 +90,8 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: CRM fundamentals using Salesforce Trailhead modules
   - [x] Draft slides and narrative: Key economics in tech sales: ARR vs one-time deals and land-and-expand growth
   - [x] Draft slides and narrative: Usage-based pricing models and churn prevention via customer health scoring
-  - [ ] Draft slides and narrative: How tech sales differs from other industries: recurring revenue models and rapid product cycles
-  - [ ] Draft slides and narrative: Multi-stakeholder buying committees and long deal cycles in enterprise tech
+  - [x] Draft slides and narrative: How tech sales differs from other industries: recurring revenue models and rapid product cycles
+  - [x] Draft slides and narrative: Multi-stakeholder buying committees and long deal cycles in enterprise tech
   - [ ] Draft slides and narrative: Close alignment with product teams for solution selling and technical validation
   - [ ] Draft slides and narrative: Sales engineering support: demo environments, RFP responses and integration planning
   - [ ] Draft slides and narrative: Customer success teams focused on adoption and expansion after go-live
