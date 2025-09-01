@@ -10,33 +10,37 @@ title: Tech Sales vs Other Industries
 
 ## Recurring revenue models
 - Subscriptions replace one-off deals
-- Revenue depends on retention
-- Land-and-expand beats big bang sales
+- Retention is king—no more "always be closing"
+- Netflix's DVD-to-streaming shift shows subscription power
+- Free trials hook users before the first invoice
 
 ---
 
 ## Land and expand mindset
 - Start small then grow account value
-- Success teams drive adoption
-- Upsells rely on proof of value
+- Salesforce landed a team then rolled out company-wide
+- Slack and Zoom seed free teams before sales calls
+- Sales engineers help validate technical fit
 
 ---
 
 ## Rapid product cycles
 - Releases ship weekly not yearly
-- Sales must learn features fast
-- Feedback loops tighten
+- Reps and sales engineers brief constantly
+- Dashboards show which features customers adopt
+- Product-led growth turns usage into new pitches
 
 ---
 
 ## Metrics obsession
 - ARR, MRR and churn rates matter
-- Usage telemetry guides outreach
+- Usage telemetry guides outreach; reps check dashboards like anxious parents
+- Freemium funnels require conversion tracking
 - Forecasts update constantly
 
 ---
 
 ## Key takeaway
-Tech sales thrives on ongoing relationships and quick iteration.
+Tech sales blends product-led growth, sales engineering and relentless retention.
 
 ---
