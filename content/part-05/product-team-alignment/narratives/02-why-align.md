@@ -1,0 +1,4 @@
+Speaker 1: What's the upside of looping product in early?
+Speaker 2: We avoid custom promises that engineering can't deliver.
+Speaker 1: And product hears fresh customer pain points straight from the source.
+Speaker 2: Which can reshape the roadmap faster than any survey.
