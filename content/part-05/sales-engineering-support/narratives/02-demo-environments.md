@@ -1,5 +1,6 @@
-Speaker 1: The first task is crafting demo environments that feel real.
-Speaker 2: Reusing generic data won't cut it; prospects want to see their world reflected.
-Speaker 1: Sales engineers script sample workflows and document setup so it can be repeated.
-Speaker 2: A good demo lets stakeholders click around and imagine adoption.
-Speaker 1: It's the difference between a vague pitch and a tangible solution.
+Speaker 1: First stop is the demo environment, the stage set for prospects.
+Speaker 2: We clone real systems, scrub the data, and swap "John Doe" for something believable.
+Speaker 1: Like spinning up a CRM with actual regional sales numbers so dashboards don't scream Lorem ipsum.
+Speaker 2: We script scenarios based on discovery calls and keep snapshots so the next reset takes minutes.
+Speaker 1: A clean sandbox lets stakeholders click around without fear of breaking production.
+Speaker 2: When they see their world reflected, the product stops being abstract and starts feeling inevitable.
