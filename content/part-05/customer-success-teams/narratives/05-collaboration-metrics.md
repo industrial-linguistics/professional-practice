@@ -1,4 +1,6 @@
-Speaker 1: Customer success doesn't work in a vacuum.
-Speaker 2: They partner with sales on upsell timing and with support when incidents spike.
-Speaker 1: Metrics like health scores, net promoter and feature adoption show where to focus.
-Speaker 2: Sharing those insights with product teams influences the roadmap and keeps customers invested.
+Speaker 1: All that tracking must take a lot of cooperation across teams.
+Speaker 2: It does. CS shares usage trends with product, flags billing risks for sales, and pings support when tickets spike.
+Speaker 1: And those "health scores" everyone talks about—what's actually in them?
+Speaker 2: Usually logins, feature depth, survey results, even how many tickets a client raises. It's a bit like checking pulse, blood pressure, and mood in one snapshot.
+Speaker 1: Handy, because asking "How are you feeling?" doesn't scale to thousands of customers.
+Speaker 2: Exactly, and when a score dips, there's a playbook ready before renewal panic sets in.

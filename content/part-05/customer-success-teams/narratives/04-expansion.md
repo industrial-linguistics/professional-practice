@@ -1,4 +1,8 @@
-Speaker 1: Once a team sees value, success managers look for logical expansions.
-Speaker 2: Maybe it's enabling a premium feature or rolling the product out to another region.
-Speaker 1: They link those suggestions to business outcomes, not just feature lists.
-Speaker 2: When renewal season approaches, there's already a roadmap for growth instead of a scramble.
+Speaker 1: Once adoption's on track, is the CSM done?
+Speaker 2: Hardly. That's when they look for new value. Maybe the client loves reporting but hasn't tried automation yet.
+Speaker 1: Upsell time?
+Speaker 2: More like matchmaking. They connect usage gaps to business goals and suggest features that solve real pains.
+Speaker 1: Any examples?
+Speaker 2: Gainsight flagged a yellow health score for a fintech client. The CSM introduced workflow automation and closed a 30% expansion before renewal even came up.
+Speaker 1: Sounds less pushy, more advisor.
+Speaker 2: Exactly—helping customers win is the best sales pitch.
