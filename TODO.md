@@ -94,7 +94,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Multi-stakeholder buying committees and long deal cycles in enterprise tech
   - [x] Draft slides and narrative: Close alignment with product teams for solution selling and technical validation
   - [x] Draft slides and narrative: Sales engineering support: demo environments, RFP responses and integration planning
-  - [ ] Draft slides and narrative: Customer success teams focused on adoption and expansion after go-live
+  - [x] Draft slides and narrative: Customer success teams focused on adoption and expansion after go-live
   - [ ] Draft slides and narrative: Lead scoring, opportunity progression and renewal alerts in CRM workflows
   - [ ] Draft slides and narrative: Linking CRM milestones to ITIL change and incident processes
   - [ ] Draft slides and narrative: Hands-on scenario: walk through a Salesforce CRM opportunity from lead to close
