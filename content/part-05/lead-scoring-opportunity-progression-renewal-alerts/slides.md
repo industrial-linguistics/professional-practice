@@ -6,6 +6,11 @@ title: Lead Scoring, Opportunity Progression and Renewal Alerts
 # Lead Scoring & Renewal Signals
 *Keeping CRM pipelines healthy*
 
+### Learning objectives
+- Understand how lead scoring improves sales efficiency
+- Recognize the components of effective renewal management
+- Identify career opportunities in revenue operations
+
 ---
 
 ## Why scoring and alerts matter
@@ -22,7 +27,19 @@ Assign points for traits that correlate with wins. Explicit data covers company 
 
 ## Building the scoring model
 
-Start simple: +10 points for ICP industry, +5 for director-level titles, +15 for a demo request. Subtract points for students or competitors. Review closed-won data quarterly to adjust weights. Tools like HubSpot, Salesforce or Pipedrive support formula fields or Einstein/AI scoring, but the logic should remain transparent so sellers trust the numbers.
+Start simple: A SaaS company might give +10 points for technology firms with 100-500 employees, +15 when an IT Director downloads the security whitepaper and -5 for .edu email addresses. Subtract points for competitors or student researchers. Review closed-won data quarterly to adjust weights. Tools like HubSpot, Salesforce or Pipedrive support formula fields or Einstein/AI scoring, but the logic should remain transparent so sellers trust the numbers.
+
+---
+
+## Data privacy and compliance
+
+Lead scoring must respect consent. Document lawful bases, honour unsubscribe preferences and minimize access to personal data. Configure GDPR or CCPA fields in the CRM and ensure synced tools update or delete records when prospects opt out. Trust erodes faster than any score if privacy rules are ignored.
+
+---
+
+## Integration challenges
+
+Scoring shines when marketing automation, product usage and support systems sync cleanly. Expect mismatched fields, duplicate records or differing unique IDs. Use middleware or iPaaS tools, enforce naming conventions and schedule data-quality audits so automation fires on reliable signals instead of stale or conflicting data.
 
 ---
 
@@ -34,13 +51,25 @@ Create clear exit criteria for each pipeline stage—"Qualified" means budget, a
 
 ## Automation and task queues
 
-Use CRM workflows to convert high-scoring leads into opportunities, notify account executives and add tasks. Sequence emails can nurture mid-tier scores until they are ready. When opportunities stagnate past the expected duration, trigger reminders or manager check-ins. Automations keep momentum without relying on memory.
+Use CRM workflows to convert high-scoring leads into opportunities, notify account executives and add tasks. Sequence emails can nurture mid-tier scores until they are ready. When opportunities stagnate past the expected duration, trigger reminders or manager check-ins. Run A/B tests on scoring thresholds or follow-up cadences to ensure automation produces conversations, not noise.
+
+---
+
+## Testing and tuning scoring models
+
+Pilot new scoring formulas with a subset of leads, comparing conversion, velocity and rep feedback. Alternate threshold values or point weights in structured experiments so marketing and sales can prove which model accelerates pipeline without overwhelming teams. Document findings and iterate like any other growth experiment.
 
 ---
 
 ## Renewal alerts and health signals
 
-Tag every account with contract start, renewal and notice periods. Integrate product usage or support ticket data to flag declining logins, low NPS or unresolved issues. Create dashboards showing accounts 120/90/60 days from renewal with health colour codes. Customer success and sales should meet monthly to action the list before any surprises reach the finance team.
+Tag every account with contract start, renewal and notice periods. Integrate product usage or support ticket data to flag declining logins, low NPS or unresolved issues. Imagine a customer whose login frequency drops from daily to weekly three months before renewal—that is a red flag worth investigating. Create dashboards showing accounts 120/90/60 days from renewal with health colour codes. Customer success and sales should meet monthly to action the list before any surprises reach the finance team.
+
+---
+
+## Churn prediction models
+
+Move beyond binary alerts by combining product usage, support sentiment and contract value into predictive models. Use machine learning or rules-based health scores to forecast churn probability, then route high-risk accounts for executive reviews or value-add campaigns. Always balance prediction accuracy with interpretability so teams know which levers to pull.
 
 ---
 
@@ -52,7 +81,15 @@ Monitor lead-to-opportunity conversion, average score of closed-won deals, stage
 
 ## Careers and collaboration
 
-Revenue operations analysts design scoring models, marketing operations maintain automations and customer success managers interpret renewal signals. Entry-level coordinators might clean data or build reports before progressing to RevOps manager or lifecycle marketing roles. Soft skills like stakeholder facilitation and curiosity about customer behaviour make these careers thrive.
+Revenue operations analysts design scoring models, marketing operations maintain automations and customer success managers interpret renewal signals. A data coordinator cleaning duplicate leads might progress to a Marketing Operations Specialist designing scoring models and eventually to a Senior RevOps Manager overseeing the entire revenue tech stack. Soft skills like stakeholder facilitation and curiosity about customer behaviour make these careers thrive.
+
+---
+
+## Common pitfalls
+
+- Over-engineering scoring models that sales teams do not trust
+- Setting renewal alerts too late for meaningful intervention
+- Tracking metrics that fail to drive clear action plans
 
 ---
 
