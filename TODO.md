@@ -98,7 +98,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Lead scoring, opportunity progression and renewal alerts in CRM workflows
   - [x] Draft slides and narrative: Linking CRM milestones to ITIL change and incident processes
   - [x] Draft slides and narrative: Hands-on scenario: walk through a Salesforce CRM opportunity from lead to close
-- [ ] Create quiz questions
+- [x] Create quiz questions
 
 #### Part 6 – Start-ups & Small-Biz IT
 - [ ] Outline objectives and key topics
