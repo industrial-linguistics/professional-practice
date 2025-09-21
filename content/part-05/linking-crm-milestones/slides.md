@@ -31,6 +31,15 @@ essments and comms happen before a contract closes—protecting customer trust a
 
 ---
 
+## When the alignment breaks
+
+- **MegaCorp 2022** – deal closed without notifying change managers; go-live clashed with a data-centre freeze and cost 12 hours of downtime
+- **HealthcareCo** – missing renewal-to-incident review meant pricing ignored chronic SLA breaches and triggered legal escalation
+- **StartUp X** – marketing promised premium support tier but CRM never updated, so incidents paged the wrong on-call crew
+- Debrief every miss to update required fields, automation owners and CAB checklists
+
+---
+
 ## Triggering change records from the CRM
 
 - Create automation that opens a "pre-change" record when the stage reaches *Proposal*
@@ -58,12 +67,30 @@ essments and comms happen before a contract closes—protecting customer trust a
 
 ---
 
+## Integration pitfalls to watch
+
+- API users without least-privilege scopes lead to audit findings—lock them down with dedicated roles
+- Mismatched picklists cause automation to fail silently; institute nightly sync checks
+- Dual ownership of incident data (CRM vs ITSM) confuses escalation paths—publish a single-source-of-truth policy
+- Forgetting sandbox-to-prod deployment plans leaves integrations broken after releases; pair DevOps and admins on change reviews
+
+---
+
 ## Collaboration rituals
 
 - Weekly revenue-ops & service management sync to review upcoming milestones
 - Joint pipeline reviews focus on accounts entering change-heavy stages
 - Run "reverse demos" where ITIL teams show sales how incidents are triaged
 - Share an integrated dashboard: pipeline, change calendar, major incident log
+
+---
+
+## ROI modeling example
+
+- Input: $450k annual revenue at risk from change-related incidents, $120k integration project cost
+- Alignment reduces failed changes by 40%, cutting incident hours by 600 and avoiding $300k SLA penalties
+- Automation saves 8 FTE hours per deal cycle; across 40 deals equals 320 hours (~$48k) back to the teams
+- Payback <12 months with $228k net benefit plus compliance posture improvements
 
 ---
 
@@ -82,6 +109,17 @@ essments and comms happen before a contract closes—protecting customer trust a
 - **Service Transition Managers** translate change standards into CRM guidance
 - **Platform Engineers** build the integrations and monitor data quality
 - Early-career CRM admins can grow into ITSM integration specialists or service portfolio managers
+- Skill ladder: Salesforce Administrator → ITIL Foundation → ServiceNow System Admin → ITIL Practitioner/DevOps Institute certs
+- Pair hands-on integration projects with CAB participation to accelerate promotion readiness
+
+---
+
+## CAB meeting simulation
+
+- Scenario: Opportunity at *Proposal* stage requests expedited deployment for a banking client
+- CRM change checklist auto-populates risk, revenue impact and customer communication plan for the CAB agenda
+- Change manager quizzes sales on blackout dates; jointly agree to pilot in sandbox with staged rollout
+- Decision recorded in both CRM and ITSM, triggering follow-up tasks for documentation and customer briefing
 
 ---
 

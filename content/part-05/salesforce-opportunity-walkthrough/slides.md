@@ -61,6 +61,7 @@ s and coordinate with pre-sales and delivery teams.
 
 - Generate formal quote via CPQ, capturing pricing, term length and SLA tier
 - Capture security review status and attach signed data processing agreements
+- Log competitors in the related list, note their strengths/risks, and trigger battle-card tasks for marketing support
 - Track executive sponsor commitment and procurement steps in opportunity fields
 - Use Salesforce approvals to route discount requests and contract exceptions
 
@@ -91,6 +92,7 @@ s and coordinate with pre-sales and delivery teams.
 - **Service Transition Manager** ensures ITIL change preparation and onboarding readiness
 - Skills gained—Salesforce automation, mutual plans, compliance coordination—set up progression into enterprise sales leadership
 or revenue operations
+- Career ladder: Salesforce Administrator certification → ITIL Foundation → ServiceNow System Admin or CAB participation for integration credibility
 
 ---
 
