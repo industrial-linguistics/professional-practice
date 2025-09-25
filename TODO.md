@@ -108,7 +108,7 @@ Use the checklist below to track progress for each part.
 #### Part 7 – Open-Source & Indigenous Digital Sovereignty
 - [x] Outline objectives and key topics
 - [x] Create to-do list items for each topic to draft slides and write narratives
-  - [ ] Draft slides and narrative: FOSS licensing options and obligations (e.g. MIT, GPL, Apache)
+  - [x] Draft slides and narrative: FOSS licensing options and obligations (e.g. MIT, GPL, Apache)
   - [ ] Draft slides and narrative: Community governance structures from single maintainer to foundations
   - [ ] Draft slides and narrative: Maori case study highlighting Indigenous data sovereignty in action
   - [ ] Draft slides and narrative: Balancing openness with cultural safety and responsible data sharing

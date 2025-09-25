@@ -94,9 +94,11 @@ title: FOSS Licensing Options and Obligations
 ---
 
 ## Career pathways & responsibilities
-- Roles: Open-source program office (OSPO) managers, developer advocates, legal counsels
-- Entry routes: community contributions, compliance internships, dual STEM-law studies
-- Growth: progress to OSPO director or head of developer relations safeguarding ecosystem health
+- Roles & ratios: OSPO managers, developer advocates and legal counsels (typically 1–2 OSPO staff per 50–80 engineers)
+- Typical seniority: mid-level engineers/lawyers stepping into governance after 5–7 years experience
+- Entry pathways: community contributors, compliance interns, dual STEM-law graduates and policy analysts rotating from procurement teams
+- Personality traits: detail-obsessed, diplomatic, values-driven collaborators who can translate legal nuance for technologists
+- Progression: OSPO analyst → manager → director/VP stewarding ecosystem strategy across the organisation
 - Case study: Signal keeps its GPL core open to ensure privacy protections stay inspectable—driving demand for specialised compliance engineers
 
 ---
