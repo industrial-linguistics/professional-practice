@@ -103,7 +103,7 @@ Use the checklist below to track progress for each part.
 #### Part 6 – Start-ups & Small-Biz IT
 - [x] Outline objectives and key topics
 - [x] Create to-do list items for each topic to draft slides and write narratives
-- [ ] Create quiz questions
+- [x] Create quiz questions
 
 #### Part 7 – Open-Source & Indigenous Digital Sovereignty
 - [x] Outline objectives and key topics
