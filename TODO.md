@@ -109,7 +109,7 @@ Use the checklist below to track progress for each part.
 - [x] Outline objectives and key topics
 - [x] Create to-do list items for each topic to draft slides and write narratives
   - [x] Draft slides and narrative: FOSS licensing options and obligations (e.g. MIT, GPL, Apache)
-  - [ ] Draft slides and narrative: Community governance structures from single maintainer to foundations
+  - [x] Draft slides and narrative: Community governance structures from single maintainer to foundations
   - [ ] Draft slides and narrative: Maori case study highlighting Indigenous data sovereignty in action
   - [ ] Draft slides and narrative: Balancing openness with cultural safety and responsible data sharing
   - [ ] Draft slides and narrative: The “community tech-lead” role and career pathways in open-source projects

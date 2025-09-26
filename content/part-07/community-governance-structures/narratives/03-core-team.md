@@ -1,0 +1,3 @@
+Speaker 1: Once you have three to ten maintainers, things shift to a core team model. That’s where you add deliberate roles—reviewers, release leads, community moderators—and rotate them so nobody becomes the bottleneck. It also helps to document how decisions get recorded. Lazy consensus, for example, means proposals pass unless someone objects within a set timeframe.
+
+Speaker 2: The key is transparency. Publish decision logs in GitHub Discussions or a public Notion space so contributors can follow the reasoning. Projects like Mastodon grew healthier when they defined working groups for moderation, infrastructure and community, instead of relying on late-night DMs with the founder.

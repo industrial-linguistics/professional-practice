@@ -1,0 +1,3 @@
+Speaker 1: When projects hit enterprise scale, they often seek a foundation or fiscal sponsor. That legal wrapper handles trademarks, bank accounts and insurance while letting maintainers stay focused on the code. Foundations typically set up a board plus a technical steering committee, which keeps roadmap authority with engineers but adds accountability and succession planning.
+
+Speaker 2: Membership tiers and contributor licence agreements might feel bureaucratic, yet they unlock grants, corporate dues and formal code of conduct enforcement. Think about the CNCF or Apache—they provide neutral infrastructure, security audits and marketing muscle, which are hard to sustain as volunteers once Fortune 500 companies depend on your project.

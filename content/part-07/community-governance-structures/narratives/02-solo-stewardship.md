@@ -1,0 +1,3 @@
+Speaker 1: In the solo maintainer phase, governance is basically the maintainer’s judgment plus whatever norms they capture in the README. That works because decisions are fast, but it concentrates risk. If they get sick or start a new job, issues and security patches stall. I like asking solo maintainers to publish a roadmap and contributor expectations so the community knows how to help.
+
+Speaker 2: Another practical step is to recruit lieutenants. Give a few trusted contributors triage or release permissions, even on a trial basis. It lowers the bus factor and gives the maintainer a support network before stress turns into burnout.
