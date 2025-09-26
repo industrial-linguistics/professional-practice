@@ -1,0 +1,3 @@
+Speaker 1: From a technical perspective, they forked Mozilla Common Voice to jump-start infrastructure but stripped anything that conflicted with Māori governance. Storage sits in AWS Auckland zones with encryption keys controlled by Te Hiku, and every data access is logged for auditing by the board.
+
+Speaker 2: The roles are interesting too. They formalised “data kaitiaki” positions—people fluent in te reo who also understand privacy law. These staff sign off on data queries and review model outputs for cultural harm. It’s a career path that blends community leadership with product management skills.
