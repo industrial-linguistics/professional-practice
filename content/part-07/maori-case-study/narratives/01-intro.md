@@ -1,0 +1,3 @@
+Speaker 1: We wanted a case study that shows Indigenous communities leading their own digital futures, not being passive data subjects. Te Hiku Media is perfect because it’s iwi-owned, rooted in te ao Māori values and has built genuinely world-class AI tools while keeping sovereignty over the language assets.
+
+Speaker 2: Exactly. Their work illustrates that “open” doesn’t have to mean “public domain.” They use openness strategically—sharing with whānau, iwi partners and trusted researchers—while still protecting taonga. It gives us a concrete example of cultural protocols shaping a modern machine learning program.

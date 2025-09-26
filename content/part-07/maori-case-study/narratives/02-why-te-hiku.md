@@ -1,0 +1,3 @@
+Speaker 1: The organisation started as an iwi radio network in the Far North. Because they’ve been recording kaumātua voices for decades, they hold archives that Silicon Valley can’t replicate. When tech giants offered compute credits in exchange for the data, Te Hiku pushed back—they wanted partnership, not extraction.
+
+Speaker 2: Right, and that refusal is significant. Instead of chasing the fastest growth, they prioritised mana motuhake—self-determination. They sought funding from Māori trusts and philanthropies aligned with language revitalisation. That let them set terms before letting anyone access the corpus.
