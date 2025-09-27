@@ -113,7 +113,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Maori case study highlighting Indigenous data sovereignty in action
   - [x] Draft slides and narrative: Balancing openness with cultural safety and responsible data sharing
   - [x] Draft slides and narrative: The “community tech-lead” role and career pathways in open-source projects
-- [ ] Create quiz questions
+- [x] Create quiz questions
 
 #### Part 8 – Project Studio and Presentations
 - [ ] Outline objectives and key topics
