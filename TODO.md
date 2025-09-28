@@ -103,7 +103,7 @@ Use the checklist below to track progress for each part.
 #### Part 6 – Start-ups & Small-Biz IT
 - [x] Outline objectives and key topics
 - [x] Create to-do list items for each topic to draft slides and write narratives
-  - [ ] Draft slides and narrative: Business continuity planning essentials for small teams, including the MongoDB outage anecdote
+  - [x] Draft slides and narrative: Business continuity planning essentials for small teams, including the MongoDB outage anecdote
   - [ ] Draft slides and narrative: Capstone red team group exercise structure and maturity model mapping activity
   - [ ] Draft slides and narrative: Capstone remediation roadmap with take-home planning and reflection prompts
   - [ ] Draft slides and narrative: Cloud versus on-premise decisions, including free tier comparisons and container adoption timing

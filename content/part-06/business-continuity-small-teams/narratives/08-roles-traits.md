@@ -1,0 +1,3 @@
+# Roles, traits and progression
+
+Connect continuity to career paths. In small companies, the responsibility often starts with a founder, support lead or operations generalist who sees the risk gap. Over time, that person can evolve into a dedicated resilience or risk leader. Highlight common entry routes: support engineers who love process, MSP partners who build playbooks for multiple clients, and fractional CTOs hired to impose discipline. Traits to emphasise include calm decision-making, documentation as a habit, and empathy when delivering bad news. Show the growth arc—generalist, continuity lead, head of resilience—to make the work aspirational.

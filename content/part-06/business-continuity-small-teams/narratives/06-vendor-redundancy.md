@@ -1,0 +1,3 @@
+# Vendor and tooling redundancy
+
+Small teams lean heavily on SaaS platforms; continuity depends on mapping those dependencies. Have learners list every critical tool—billing, auth, support desk—and note what happens if each one fails. Discuss negotiating emergency credits or burst capacity clauses with core vendors so finance is not scrambling mid-crisis. Remind them to keep offline copies of vendor contracts, API credentials and support phone numbers for when SSO or password managers are unavailable. Encourage creativity around manual workarounds, like exporting tickets to spreadsheets or rerouting payments temporarily.

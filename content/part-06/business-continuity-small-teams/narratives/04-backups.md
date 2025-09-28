@@ -1,0 +1,3 @@
+# Backup and data recovery essentials
+
+Highlight the non-negotiables. Automate backups and verify they are running with alerts and dashboards. Include both daily snapshots and point-in-time recovery for transactional systems. Stress that off-site storage—another region, another provider or even encrypted cold storage—is what protects against ransomware and regional outages. Retention policies matter: know what to keep for compliance and what you are allowed to delete. Finally, ownership: attach names to each datastore so vacations or turnover do not stall restores. Documentation should include exact commands and authentication paths.
