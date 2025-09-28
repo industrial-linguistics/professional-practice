@@ -1,3 +1,0 @@
-# Why continuity matters
-
-Small teams often run on heroic effort and implicit knowledge. That works until the first 2am outage, when the only person who knows the database password is on a long-haul flight. Continuity planning simply writes down how to keep serving customers when something fails. You map what is mission-critical, who relies on it and how quickly you need it back. That clarity protects revenue, contractual obligations and your team’s sanity. Treat continuity as an investment in stability, not a bureaucratic distraction. A lightweight plan beats improvising under pressure every single time.

@@ -1,3 +1,0 @@
-# Sarah's MongoDB crash night
-
-Use the anecdote to make risk tangible. Sarah was running a lean platform team for a fintech start-up when MongoDB disk usage crept up unnoticed. Without disk alerts or on-call cover, the cluster froze just after 1am. Support tickets piled up while customers screenshot error pages on social media. By the time Sarah woke up, backups were stale and the restore checklist referenced engineers who no longer worked there. What fixed it was not heroics—it was rebuilding the plan the next day: current credentials, tested restores and a proper contact tree. Learners should feel that pain before they experience it.
