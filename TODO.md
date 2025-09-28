@@ -103,6 +103,29 @@ Use the checklist below to track progress for each part.
 #### Part 6 – Start-ups & Small-Biz IT
 - [x] Outline objectives and key topics
 - [x] Create to-do list items for each topic to draft slides and write narratives
+  - [ ] Draft slides and narrative: Business continuity planning essentials for small teams, including the MongoDB outage anecdote
+  - [ ] Draft slides and narrative: Capstone red team group exercise structure and maturity model mapping activity
+  - [ ] Draft slides and narrative: Capstone remediation roadmap with take-home planning and reflection prompts
+  - [ ] Draft slides and narrative: Cloud versus on-premise decisions, including free tier comparisons and container adoption timing
+  - [ ] Draft slides and narrative: Day zero assessment checklist covering identity, endpoint, backup and security controls
+  - [ ] Draft slides and narrative: Day zero core services setup—from incorporation and domains to devices—with Sarah's DNS cautionary tale
+  - [ ] Draft slides and narrative: Fractional CTO and MSP partnership models with evaluation questions
+  - [ ] Draft slides and narrative: Guest speaker ideas and the perspectives they bring to the session
+  - [ ] Draft slides and narrative: Investor due diligence preparation, red flags and policy-to-board mapping tips
+  - [ ] Draft slides and narrative: Legal compliance reality check across milestones, open source duties and privacy-by-design
+  - [ ] Draft slides and narrative: Lightweight SaaS selection trade-offs and the Zoom-to-Teams migration case study
+  - [ ] Draft slides and narrative: Mock vendor evaluation role-play structure and discussion prompts
+  - [ ] Draft slides and narrative: Pre-seed tool stack, monthly costs and decision cues for staying lean
+  - [ ] Draft slides and narrative: Regional compliance considerations and global data governance expectations
+  - [ ] Draft slides and narrative: Remote-first reality check for onboarding, device logistics and distributed contractors
+  - [ ] Draft slides and narrative: Remote talent logistics at scale—from hardware standards to automated access reviews
+  - [ ] Draft slides and narrative: Scaling support processes, help desks, knowledge bases and ITSM tooling choices
+  - [ ] Draft slides and narrative: Security baselines on a shoestring, including outsourced SOC and lightweight monitoring defaults
+  - [ ] Draft slides and narrative: Series A tool stack, costs and serverless versus container trade-offs
+  - [ ] Draft slides and narrative: Series B enterprise stack, integrations and cost modelling worksheet
+  - [ ] Draft slides and narrative: Shadow IT and low-code experimentation with guardrails against over-permissioning
+  - [ ] Draft slides and narrative: Start-up budgeting and FinOps with cloud credit optimisation talking points
+  - [ ] Draft slides and narrative: Vendor management rhythms, cadence rituals, scorecards and make-vs-buy considerations
 - [x] Create quiz questions
 
 #### Part 7 – Open-Source & Indigenous Digital Sovereignty
