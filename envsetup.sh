@@ -6,7 +6,7 @@ echo "deb [trusted=yes] https://packages.industrial-linguistics.com/revoicer/deb
 
 # Install base tools
 sudo apt-get update
-sudo apt-get install -y nodejs npm ffmpeg golang-go jq
+sudo apt-get install -y nodejs npm ffmpeg golang-go jq revoicer
 
 # Install Marp CLI for slide rendering
 sudo npm install -g @marp-team/marp-cli
