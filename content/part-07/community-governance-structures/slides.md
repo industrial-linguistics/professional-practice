@@ -6,7 +6,7 @@ title: Community Governance Structures in Open Source
 # Governance Journeys
 *How open-source projects evolve from a single maintainer to community institutions*
 
-Projects rarely jump from hobby repo to nonprofit overnight. Healthy governance grows in layers: early contributors document norms alongside code; mid-stage teams add facilitation rituals; mature foundations balance budgets, legal protection and public accountability. Each step should lower individual load and widen community agency rather than calcify power. Remember governance is people-work across cultures and time zones—stewardship means designing decision paths that are legible to newcomers, respectful of marginalised voices and responsive when circumstances change.
+We’re zooming out from the Te Hiku example now to examine mainstream open-source communities. Projects rarely jump from hobby repo to nonprofit overnight. Healthy governance grows in layers: early contributors document norms alongside code; mid-stage teams add facilitation rituals; mature foundations balance budgets, legal protection and public accountability. Each step should lower individual load and widen community agency rather than calcify power. Remember governance is people-work across cultures and time zones—stewardship means designing decision paths that are legible to newcomers, respectful of marginalised voices and responsive when circumstances change.
 
 ---
 
