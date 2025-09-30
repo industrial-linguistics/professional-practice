@@ -107,7 +107,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Capstone red team group exercise structure and maturity model mapping activity
   - [x] Draft slides and narrative: Capstone remediation roadmap with take-home planning and reflection prompts
   - [x] Draft slides and narrative: Cloud versus on-premise decisions, including free tier comparisons and container adoption timing
-  - [ ] Draft slides and narrative: Day zero assessment checklist covering identity, endpoint, backup and security controls
+  - [x] Draft slides and narrative: Day zero assessment checklist covering identity, endpoint, backup and security controls
   - [ ] Draft slides and narrative: Day zero core services setup—from incorporation and domains to devices—with Sarah's DNS cautionary tale
   - [ ] Draft slides and narrative: Fractional CTO and MSP partnership models with evaluation questions
   - [ ] Draft slides and narrative: Guest speaker ideas and the perspectives they bring to the session
