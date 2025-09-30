@@ -7,3 +7,4 @@
 
 ## Notes
 - Plan the take-home remediation roadmap and reflection prompts for the capstone.
+- Include slides on risk communication, change management, measurement and available templates to support non-technical learners.
