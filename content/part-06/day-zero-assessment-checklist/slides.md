@@ -11,6 +11,7 @@ title: Day-Zero Startup IT Assessment
 ## Why a day-zero checklist?
 - Founders are wiring payroll, domains and devices while investors expect security by default.
 - Early missteps compound: a shared admin login today becomes a breach notification tomorrow.
+- For instance, that shared “admin123” password for your accounting software that “everyone knows” becomes a $50K breach notification when a disgruntled contractor uses it six months after leaving.
 - A structured checklist turns tribal knowledge into a repeatable onboarding ritual for every new hire and contractor.
 - It also creates a baseline for MSP handovers, cyber insurance applications and due diligence conversations.
 
@@ -36,6 +37,7 @@ title: Day-Zero Startup IT Assessment
 ## Identity foundations
 - Map every system to an identity source: HR roster, Google Workspace, Microsoft 365, or a password manager.
 - Require MFA on admin, finance and customer data tools before inviting the next hire.
+- Picture this: your sales director leaves on Friday afternoon. Without documented processes, their Salesforce admin access, Slack ownership of customer channels, and shared Dropbox folders remain active over the weekend.
 - Document joiner/mover/leaver steps, including who revokes access when someone exits suddenly.
 - Capture shared secrets in a vault with rotation dates rather than in spreadsheets or chat threads.
 - Flag gaps like personal email accounts on vendor contracts so legal can renegotiate early.
@@ -54,9 +56,44 @@ title: Day-Zero Startup IT Assessment
 ## Backups and data protection
 - Identify critical data stores: source code, CRM, finance, shared drives and product telemetry.
 - Verify at least one automated backup exists with retention that meets contractual promises.
+- One startup lost three months of customer support tickets when their help desk vendor had a data center fire. They assumed “it’s SaaS, they handle backups” until the fine print said otherwise.
 - Test a sample restore quarterly and document who validated it, how long it took and what broke.
 - Outline manual fallback workflows—exporting CSVs, printing key documents, or switching to a secondary tool.
 - Track compliance drivers (tax, privacy, contracts) that dictate how long data must stay recoverable.
+
+---
+
+## Cloud-first vs. hybrid realities
+- Catalogue where workloads actually live: fully managed SaaS, cloud-native infrastructure or a closet server humming beside the coffee machine.
+- Cloud-first startups lean on identity providers and vendor assurances—validate export options and incident SLAs.
+- Hybrid environments demand network diagrams, VPN policies and clear ownership for patching on-prem gear.
+- Flag data residency constraints early; some investors or customers will demand proof of where data rests.
+
+---
+
+## Budget reality check
+- Triage controls by risk and runway: what must be solved with $500/month versus what waits for a $5K allocation.
+- Highlight quick wins—enforcing MFA, password managers, baseline device hardening—before pricier SIEMs or MDR contracts.
+- Map spend to milestones (Series A, first enterprise customer) so finance understands why costs jump.
+- Capture deferred items with explicit triggers: “Upgrade logging when monthly recurring revenue hits $250K.”
+
+---
+
+## Common day-zero pitfalls
+- Relying on personal Gmail accounts for vendor contracts and Stripe access.
+- Skipping device encryption because “it’s just a prototype laptop.”
+- Assuming vendors manage backups, incident response or compliance obligations without written proof.
+- Forgetting to offboard contractors, leaving privileged accounts active for months.
+- Treating security tasks as “best effort,” so they die in the backlog when sales gets hectic.
+
+---
+
+## Vendor due diligence quick wins
+- Create a lightweight intake form covering data stored, access model, compliance attestations and breach history.
+- Ask for security documentation (SOC 2, pen test summary) before signing, not after the renewal.
+- Verify termination clauses: how fast can you retrieve or purge data when the contract ends?
+- Add vendors to your asset and identity maps so joiner/leaver workflows catch shared integrations.
+- Keep a template questionnaire email ready to send the moment a new tool is proposed.
 
 ---
 
@@ -73,6 +110,9 @@ title: Day-Zero Startup IT Assessment
 - A scored checklist PDF or Notion page with red/amber/green status and named owners.
 - A 30/60/90-day roadmap of remediation tasks aligned to risk and business milestones.
 - Updated runbooks: account lifecycle, device setup, backup testing and escalation paths.
+- Template email scripts for vendor security questionnaires and customer assurances.
+- Starter policy templates (access control, device, incident response) ready for quick customization.
+- Quick-reference cards for emergency procedures—lost device, suspected phishing, production outage.
 - A shared folder with evidence—screenshots, policy links, vendor contracts—for future audits or funding rounds.
 - A follow-up session booked to review progress before the next hire or investor meeting.
 
