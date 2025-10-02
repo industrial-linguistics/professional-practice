@@ -34,6 +34,8 @@ title: Day-Zero Core Services Setup
 
 ## Productivity suite and identity backbone
 - Choose Google Workspace or Microsoft 365 based on customer expectations and toolchain fit
+- Example: a B2B SaaS startup picked Google Workspace because enterprise buyers expected Google SSO integration
+- Compare costs early—Google Workspace Business Standard at $12/user/month vs Microsoft 365 Business Premium at $22/user/month
 - Establish a primary identity provider and enforce MFA on admin roles from day one
 - Create shared mailboxes (hello@, finance@) and delegated calendar access for founders
 - Sync HR roster or interim spreadsheet to drive joiner/mover/leaver workflows
@@ -50,6 +52,8 @@ title: Day-Zero Core Services Setup
 
 ## Device procurement and setup
 - Order a buffer of laptops with baseline images, asset tags and shipping templates
+- Plan inventory—for a two-person team, order three laptops so a backup is ready for demos or travel hiccups
+- Budget $1,500–2,000 per laptop including warranty, MDM licensing and shipping
 - Pre-stage admin accounts in MDM or Autopilot/Zero Touch before boxes leave the supplier
 - Document loaner process plus travel kits (power adapters, privacy filters, LTE dongles)
 - Track serial numbers, warranty dates and assigned owners in the asset register
@@ -60,7 +64,30 @@ title: Day-Zero Core Services Setup
 - Enable password manager, phishing reporting button and security awareness bite-size modules
 - Turn on default logging, backup policies and conditional access before inviting new users
 - Generate break-glass accounts with hardware keys stored off-site under dual control
+- Recommend starter tooling: 1Password for teams ($8/user/month), Microsoft Defender for Business or Google Workspace security center
 - Add founders to incident bridge, legal counsel and cyber insurer contact lists
+
+---
+
+## Budgeting for day-zero services
+- Reserve $200–500/month for productivity suite licensing, domain registration and DNS hosting
+- Allow 2–3 weeks for hardware procurement, imaging and inevitable shipping delays
+- Line up $1,000–3,000 for incorporation legal fees plus trademark searches
+- Pre-approve founder credit cards so vendor sign-ups are not stalled at payment screens
+
+---
+
+## Early compliance and data residency
+- Confirm whether early contracts mandate specific data locations or certifications
+- Document which services store data in which regions (e.g. Slack US, email EU) to avoid surprises
+- Draft a lightweight privacy policy before collecting any customer information
+- Flag GDPR, CCPA or industry rules that influence vendor shortlists and architecture choices
+
+---
+
+## When day-zero planning goes wrong
+Real examples teach better than theoretical checklists.
+Let's see how a simple DNS mistake nearly derailed a promising startup.
 
 ---
 
@@ -83,5 +110,6 @@ title: Day-Zero Core Services Setup
 ## Key takeaway
 A disciplined day-zero setup makes incorporation, domains, devices and security feel intentional.
 Treat the checklist as a living runbook that survives founder vacations, vendor turnover and the first due-diligence call.
+Your assignment: craft a day-zero checklist for a hypothetical startup, noting where outside experts are required.
 
 ---
