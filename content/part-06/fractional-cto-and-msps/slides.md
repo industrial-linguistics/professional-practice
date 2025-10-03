@@ -13,7 +13,7 @@ title: Working with Fractional CTOs and MSPs
 - Fractional CTOs, virtual CIOs and MSPs fill different gaps across strategy, delivery and run operations
 - Typical engagements run 6–18 months until hiring a permanent leader or internal capability matures
 - Expect blended fees: day-rates for discovery, retainers for leadership time, per-incident or per-device MSP charges
-- Stage cues: pre-seed firms borrow architecture patterns, Series A scale to multi-region uptime, Series B demand compliance-rigour and portfolio planning
+- Stage cues: pre-seed firms borrow architecture patterns, Series A scale to multi-region uptime, Series B demand compliance rigour and portfolio planning
 - Equity trade-offs: 0.5–1% advisor equity versus a $150k cash salary keeps burn low when revenue is volatile
 
 ---
