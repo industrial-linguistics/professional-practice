@@ -110,7 +110,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Day zero assessment checklist covering identity, endpoint, backup and security controls
   - [x] Draft slides and narrative: Day zero core services setup—from incorporation and domains to devices—with Sarah's DNS cautionary tale
   - [x] Draft slides and narrative: Fractional CTO and MSP partnership models with evaluation questions
-  - [ ] Draft slides and narrative: Guest speaker ideas and the perspectives they bring to the session
+  - [x] Draft slides and narrative: Guest speaker ideas and the perspectives they bring to the session
   - [ ] Draft slides and narrative: Investor due diligence preparation, red flags and policy-to-board mapping tips
   - [ ] Draft slides and narrative: Legal compliance reality check across milestones, open source duties and privacy-by-design
   - [ ] Draft slides and narrative: Lightweight SaaS selection trade-offs and the Zoom-to-Teams migration case study

@@ -1,0 +1,3 @@
+## Logistics and prep tips
+
+Spell out the operating rhythm so organisers are not scrambling. Recommend sourcing speakers 6–8 weeks in advance, confirming NDAs, slide-sharing permissions and accessibility needs. Pair each guest with a learner moderator responsible for research, intros and audience questions; schedule a 30-minute prep call to align on flow. Provide context briefs that summarise audience maturity, session goals and no-go topics. Finally, plan to capture the session for reuse—obtain consent, organise recording and editing support, and publish assets to the cohort hub with clear access controls.

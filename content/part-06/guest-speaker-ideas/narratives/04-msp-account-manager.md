@@ -1,0 +1,3 @@
+## Startup-focused MSP account manager
+
+Introduce the MSP account manager as the operator who turns contracts into day-to-day coverage. Encourage them to deconstruct a typical co-managed support relationship: who fields which tickets, how they integrate tooling, what on-call escalation looks like in practice. Ask for anonymised SLA dashboards showing healthy and unhealthy trends so learners can interpret their own metrics. Cover pricing levers—per device, per user, compliance surcharges—and how those evolve with headcount or regulatory scope. Include guidance on running quarterly business reviews that focus on backlog burn-down and continuous improvement rather than endless upsells.

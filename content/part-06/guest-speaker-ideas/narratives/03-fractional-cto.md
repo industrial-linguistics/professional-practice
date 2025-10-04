@@ -1,0 +1,3 @@
+## Fractional CTO perspective
+
+Position the fractional CTO as the voice of experience when the wheels wobble. Have them walk through their first 90-day plan: stabilise the architecture, triage tech debt, prioritise hires and embed lightweight governance. Ask for stories contrasting a pre-seed engagement—where they're duct-taping shipping velocity—with a Series B client that needs compliance, forecasting and stakeholder management. Prompt them to discuss pitfalls like unclear decision rights, unpaid scope creep and what happens when teams assume an advisor is on-call 24/7. Close with a practical readiness checklist founders can complete before reaching out to fractional leaders.
