@@ -21,6 +21,7 @@ title: Guest Speaker Ideas
 - Contrast survival tactics for pre-seed scrappiness vs Series B controls
 - Highlight pitfalls: unclear decision rights, unpaid discovery work, treating advisory time as unlimited
 - Leave learners with a one-page readiness checklist before engaging fractional leaders
+- They’ll help you understand why “it works on my machine” isn’t a deployment strategy
 
 ---
 
@@ -29,6 +30,7 @@ title: Guest Speaker Ideas
 - Bring real SLA dashboards and explain what healthy vs risky metrics look like
 - Discuss how pricing levers change with headcount, device mix and compliance demands
 - Coach teams on running quarterly business reviews that stay actionable instead of salesy
+- Learn the difference between “managed services” and “managed chaos”
 
 ---
 
@@ -37,6 +39,7 @@ title: Guest Speaker Ideas
 - Explain how IT maturity influences valuation, board confidence and follow-on funding
 - Share anonymised red/green flags spotted during data-room reviews
 - Encourage founders to build "diligence-ready" documentation habits from day one
+- Discover why your investor’s technical due diligence isn’t just checking if you have Wi-Fi
 
 ---
 
