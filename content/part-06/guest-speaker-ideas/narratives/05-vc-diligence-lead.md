@@ -1,0 +1,3 @@
+## VC diligence or portfolio operations lead
+
+Frame the investor representative as a reality check on what external stakeholders scrutinise. Have them outline their diligence checklist: security controls, revenue instrumentation, resilience plans, staffing and cultural signals. Request anonymised red and green flag examples pulled from data-room reviews—missing access logs, surprise shadow IT, or great runbooks that sped up approval. Explore how IT maturity shifts valuation conversations, board confidence and follow-on funding decisions. Reinforce that the best preparation is building diligence-ready documentation and repeating tabletop drills long before a term sheet appears.
