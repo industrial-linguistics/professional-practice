@@ -21,6 +21,7 @@ title: Pre-Seed Tool Stack Example
 - Optimise for tools that bundle multiple workflows (email + drive + calendar).
 - Prefer monthly billing until product-market fit is clearer.
 - Track true cost-to-serve: count founders, contractors and bots that consume paid seats.
+- Typical trap: founder signs up for Asana, designer wants Figma, engineer prefers Jira—suddenly you're burning $150/month on tools that do not sync.
 
 ---
 
@@ -29,6 +30,7 @@ title: Pre-Seed Tool Stack Example
 - **Slack Pro – $54**: async conversations, searchable history, guest channels.
 - Decision cue: stay on Starter/Pro tiers until customers demand SSO or retention beyond 90 days.
 - If procurement pushes for Microsoft 365 parity, document the total migration lift before agreeing.
+- Capture GDPR and Australian Privacy Act considerations early, including where primary data resides and which regions host backups.
 
 ---
 
@@ -37,6 +39,7 @@ title: Pre-Seed Tool Stack Example
 - **Airtable Team – $20**: structured CRM-lite, partnership pipeline, lightweight inventory tracking.
 - Resist the urge to split into six niche apps; combine databases and pages before expanding.
 - Revisit seat counts monthly—viewers can stay free while editors hold licences.
+- Build standard operating procedures and onboarding playbooks here so new hires land smoothly within week one.
 
 ---
 
@@ -45,13 +48,15 @@ title: Pre-Seed Tool Stack Example
 - Enforce hardware security keys via Google Advanced Protection only after a high-risk trigger.
 - Enable Google Workspace context-aware access instead of buying a dedicated CASB this early.
 - Document joiner/mover/leaver steps in Notion to make offboarding a 10-minute ritual.
+- Scenario: contractor Sarah offboards a dev, but without the checklist they keep Drive access six months later—privacy review nightmare.
 
 ---
 
 ## Optional add-ons when justified
-- **Calendly Teams (pay-per-user)** once demo volume >10/week and founders become scheduling bottlenecks.
+- **Calendly Teams (pay-per-user)** once demo volume >10/week and founders become scheduling bottlenecks—because nobody wants to spend more time scheduling meetings than having them.
 - **Gusto or Rippling contractor payroll** when payments exceed quarterly manual workflows.
 - **Freshdesk Growth** if support volume surpasses shared inbox discipline.
+- Map API/SSO integrations before adding tools so automation flows stay intact and you avoid integration debt.
 - Tie every add-on to a measurable pain point with a sunset review date.
 
 ---
@@ -61,6 +66,7 @@ title: Pre-Seed Tool Stack Example
 - Google Workspace upgrade emails? Stay put until storage or legal hold needs are real.
 - Vendors offering "founder discounts" for 24-month commitments—compare to the cash runway impact.
 - When a board advisor insists on a tool, ask them to map the exact control gap it closes.
+- Example: Slack touts 99.99% uptime on Enterprise, but your Pro plan already meets customer SLAs—keep the cash.
 
 ---
 
@@ -69,6 +75,7 @@ title: Pre-Seed Tool Stack Example
 - Replace Airtable with HubSpot Starter when marketing automation is a priority.
 - Document why each substitution preserves the $200/month guardrail.
 - Keep a single source of truth for domains, billing owners and renewal dates.
+- Maintain exit plans: note export formats, backup cadence and how you unwind vendor lock-in before upgrading.
 
 ---
 
