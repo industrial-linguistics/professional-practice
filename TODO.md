@@ -117,7 +117,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Mock vendor evaluation role-play structure and discussion prompts
   - [x] Draft slides and narrative: Pre-seed tool stack, monthly costs and decision cues for staying lean
   - [x] Draft slides and narrative: Regional compliance considerations and global data governance expectations
-  - [ ] Draft slides and narrative: Remote-first reality check for onboarding, device logistics and distributed contractors
+  - [x] Draft slides and narrative: Remote-first reality check for onboarding, device logistics and distributed contractors
   - [ ] Draft slides and narrative: Remote talent logistics at scale—from hardware standards to automated access reviews
   - [ ] Draft slides and narrative: Scaling support processes, help desks, knowledge bases and ITSM tooling choices
   - [ ] Draft slides and narrative: Security baselines on a shoestring, including outsourced SOC and lightweight monitoring defaults
