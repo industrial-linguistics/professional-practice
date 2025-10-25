@@ -121,7 +121,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Remote talent logistics at scale—from hardware standards to automated access reviews
   - [x] Draft slides and narrative: Scaling support processes, help desks, knowledge bases and ITSM tooling choices
   - [x] Draft slides and narrative: Security baselines on a shoestring, including outsourced SOC and lightweight monitoring defaults
-  - [ ] Draft slides and narrative: Series A tool stack, costs and serverless versus container trade-offs
+  - [x] Draft slides and narrative: Series A tool stack, costs and serverless versus container trade-offs
   - [ ] Draft slides and narrative: Series B enterprise stack, integrations and cost modelling worksheet
   - [ ] Draft slides and narrative: Shadow IT and low-code experimentation with guardrails against over-permissioning
   - [ ] Draft slides and narrative: Start-up budgeting and FinOps with cloud credit optimisation talking points
