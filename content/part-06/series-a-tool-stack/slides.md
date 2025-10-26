@@ -13,6 +13,7 @@ title: Series A Tool Stack Example
 - Board asks for proof of internal controls before approving new spend.
 - Customers now require SOC 2 reports, SSO and incident response evidence.
 - Guardrail: keep the SaaS core near **$2K/month** while funding product growth.
+- Example: TechCorp just landed their first hospital client who requires documented incident response within 4 hours, SSO for 200+ users, and quarterly security attestations before approving the next $2M round.
 
 ---
 
@@ -34,6 +35,7 @@ title: Series A Tool Stack Example
 - Automate joiner/mover/leaver with HR triggers (Rippling, Deel, HiBob).
 - Capture MFA posture reports for diligence rooms.
 - Budget buffer: +$120/month for adaptive policies or Advanced Server Access if engineers need SSH brokering.
+- Remember: if someone leaves and can still access Slack three days later, you're not building a security culture—you're building a revenge thriller.
 
 ---
 
@@ -43,6 +45,7 @@ title: Series A Tool Stack Example
 - Provision guest accounts for agencies via Okta to keep audit trails clean.
 - Record renewal dates and owners in a finance ledger so nothing auto-renews unnoticed.
 - Shared etiquette: move post-mortems and decision logs into Confluence within 24 hours to keep Slack from becoming your memory.
+- Pro tip: "surprise auto-renew" Slack messages have ended more Series A rounds than failed product demos.
 
 ---
 
@@ -52,6 +55,14 @@ title: Series A Tool Stack Example
 - **Opsgenie** standard plan wires alerts to on-call, with post-incident templates exported for compliance.
 - Integrate Jira tickets with GitHub or GitLab so release notes and change approvals are auditable.
 - Expect cost to rise ~15% once you cross 50 technical seats—document the trigger in your forecast.
+
+---
+
+## Security incident workflow drill
+- Map Level 1, 2 and executive responders with 4-hour response expectations for regulated clients.
+- Run quarterly tabletop exercises with customer-specific playbooks and document evidence in Confluence.
+- Capture who declares incidents, who briefs customers and who closes the loop with investors.
+- Template: one-page flowchart + 90-day review log to share with the board and that first hospital customer.
 
 ---
 
@@ -81,6 +92,7 @@ title: Series A Tool Stack Example
 | Operations | Observability (CloudWatch + Lumigo) = $70 | Observability (Datadog APM + Logs) = $180 |
 | Staffing | 0.5 platform engineer (shared) | 1 FTE platform/SRE for cluster upkeep |
 | **Total** | **$380 + shared headcount** | **$680 + dedicated headcount** |
+- Example scenario: fintech API handling 80M monthly transactions with market-hour spikes—serverless absorbs bursts, while containers force you to pay for 23 hours of idle capacity.
 - Serverless stays cheaper until workloads exceed 100M requests/month or need long-running compute.
 - Containers make sense when you require custom networking, GPU jobs or predictable workloads.
 
@@ -91,6 +103,15 @@ title: Series A Tool Stack Example
 - Budget for Terraform/Terragrunt and cluster hardening audits before migrating.
 - Pilot with managed Fargate/ECS to avoid Kubernetes overhead unless you already have deep ops talent.
 - Document the total cost of ownership—tools, observability, people—in the board pack.
+- Real case: GrowthCo hit $0.62 per 1K Lambda invocations and 150ms cold starts; six-week Fargate migration cut costs 40% but required hiring a $160K/year platform engineer.
+
+---
+
+## Vendor evaluation checklist
+- Score vendors on security posture (SSO, SCIM, audit trails) before features or UI polish.
+- Compare downgrade paths, integration APIs and roadmap transparency in a two-page matrix for leadership.
+- Ask for customer references facing your exact regulator before signing multi-year deals.
+- Track exit clauses and data export guarantees in a shared deal room to avoid compliance surprises.
 
 ---
 
@@ -100,14 +121,23 @@ title: Series A Tool Stack Example
 - Present a time-to-value chart: Okta deployed in 3 weeks, Vanta audit ready in 90 days, Atlassian reporting in 1 sprint.
 - Highlight scalability: all contracts scale to 100 seats without renegotiation.
 - Build an exit plan slide noting downgrade paths if growth slows.
+- When investors ask "why not build it ourselves?", show them the fantasy salary for a security engineer who also runs RevOps, incident response and data pipelines. Spoiler: that person doesn't exist.
+
+---
+
+## Failure stories: skipping the basics
+- Startup A delayed SSO: ex-marketer downloaded 400 contacts post-departure, triggering a 60-day remediation slog.
+- Startup B ignored incident tabletop drills and learned during a live outage that legal had zero scripts.
+- Startup C never built a vendor scorecard; a hidden auto-renew locked them into $90K of unused analytics credits.
+- Tie every anecdote back to the category budget so the cautionary tales translate into action items.
 
 ---
 
 ## Workshop prompt for learners
-- Map your current stack against the five categories and highlight gaps.
-- Draft a $2K/month budget, including assumptions and credits you are counting on.
-- Identify the metric or risk that justifies each line item for the board memo.
-- Debate whether your workloads justify serverless, containers or a hybrid, citing cost data.
-- Capture the action plan in Confluence with owners and review dates.
+- 15 min: Map your current stack against the five categories and highlight gaps.
+- 20 min: Draft a $2K/month budget with assumptions, credits and identified downgrade triggers.
+- 15 min: Identify the metric or risk that justifies each line item for the board memo—capture sample outputs.
+- 20 min: Debate architecture choice with a cost table; assign a peer reviewer to challenge your numbers.
+- 10 min: Present the action plan to another team, gather feedback and document owners plus review dates in Confluence.
 
 ---
