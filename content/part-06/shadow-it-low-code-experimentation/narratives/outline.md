@@ -6,5 +6,5 @@
 - [x] Offer guardrails to empower experimentation without losing control of data or access.
 
 ## Notes
-- Discuss empowering teams with no-code while avoiding chaos and accidental over-permissioning.
-- Narrative now emphasises responsible experimentation, logging, and career pathways for citizen developers.
+- Discuss empowering teams with no-code while avoiding chaos, accidental over-permissioning, and surprise compliance gaps.
+- Narrative now emphasises responsible experimentation, logging, vendor lock-in awareness, detection tactics, and career pathways for citizen developers.
