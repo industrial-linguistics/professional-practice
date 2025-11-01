@@ -138,12 +138,6 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: The “community tech-lead” role and career pathways in open-source projects
 - [x] Create quiz questions
 
-#### Part 8 – Project Studio and Presentations
-- [ ] Outline objectives and key topics
-- [ ] Create to-do list items for each topic to draft slides and write narratives
-- [ ] Create quiz questions
-
-
 ### Legislation
 
 There are a few things that IT people need to know about Australian legislation.
