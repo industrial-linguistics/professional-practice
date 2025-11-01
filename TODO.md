@@ -124,7 +124,7 @@ Use the checklist below to track progress for each part.
   - [x] Draft slides and narrative: Series A tool stack, costs and serverless versus container trade-offs
   - [x] Draft slides and narrative: Series B enterprise stack, integrations and cost modelling worksheet
   - [x] Draft slides and narrative: Shadow IT and low-code experimentation with guardrails against over-permissioning
-  - [ ] Draft slides and narrative: Start-up budgeting and FinOps with cloud credit optimisation talking points
+  - [x] Draft slides and narrative: Start-up budgeting and FinOps with cloud credit optimisation talking points
   - [ ] Draft slides and narrative: Vendor management rhythms, cadence rituals, scorecards and make-vs-buy considerations
 - [x] Create quiz questions
 
