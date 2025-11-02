@@ -3,3 +3,5 @@
 Wrap the segment by connecting rituals to resilience. When vendors share the same cadence as the core team, surprises shrink and response times improve. Scorecards turn debates into collaborative problem solving. A living make-vs-buy framework ensures the relationship continues to serve strategy rather than legacy decisions.
 
 Leave learners with an action plan: schedule the next three vendor touchpoints, refresh the scorecard template, and document the thresholds that would trigger an insourcing review. These steps show that governance can be lightweight yet powerful when it is intentional.
+
+Close with a gut-check question: could a new team member understand your vendor relationships from the documentation alone? If not, the rhythms outlined here will highlight where to invest next.
