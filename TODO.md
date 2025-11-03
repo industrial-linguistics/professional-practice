@@ -141,11 +141,11 @@ Use the checklist below to track progress for each part.
 ### Legislation
 
 There are a few things that IT people need to know about Australian legislation.
-	
-- Aus. Privacy Act 1988 (especially APP 11 on security)
-- Critical Infrastructure Act 2018 – SLAs can hinge on it for some clients
-- EU GDPR
-- China's PIPL
+
+- [x] Aus. Privacy Act 1988 (especially APP 11 on security) — covered in the Part 5 "Legislation and SLA Compliance" deck.
+- [x] Critical Infrastructure Act 2018 – SLAs can hinge on it for some clients — addressed alongside the Privacy Act in the same deck.
+- [x] EU GDPR — included in the Part 5 compliance material.
+- [x] China's PIPL — included in the Part 5 compliance material.
 These need to go into week 5 when talking about contract SLAs I guess. Unless they need a separate week?
 
 ### Rendering pipeline
