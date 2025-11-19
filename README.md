@@ -61,6 +61,20 @@ using Marp, then stitched into a silent video. The cached audio segments are con
 with the video to create the final lesson, which can be uploaded along with quiz material and packaged
 into SCORM or e-book formats. The step-by-step checklist is maintained in [TODO.md](TODO.md).
 
+## Automation commands
+
+- `scripts/render_lesson.sh` – build narration, timing manifests and the final MP4 for a single lesson
+  with per-slide audio hashing (`PART=part-01 TOPIC=overview VOICE=Greg scripts/render_lesson.sh`).
+- `scripts/render_all_lessons.sh` – regenerate slide PNGs via Marp and render every lesson (or filter
+  via `PART`/`TOPIC`).
+- `scripts/qa_transcripts.sh` – optional QA step that transcribes rendered narration with Whisper and
+  flags low-similarity matches to the original text.
+- `scripts/build_ebook.sh` – compile all slides and narratives into a combined Markdown file and, when
+  `pandoc` is available, PDF/EPUB outputs under `build/ebooks/`.
+
+The GitHub Actions workflow `.github/workflows/render-lessons.yml` ties these steps together and only
+triggers when content or pipeline scripts change.
+
 # Raw material
 
 - `cmd/voicer/main.go` was pulled in from another project, and shows how to call the ElevenLabs API 

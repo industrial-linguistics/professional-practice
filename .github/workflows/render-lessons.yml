@@ -1,0 +1,95 @@
+name: Render Lessons
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - 'content/**'
+      - 'cmd/render-slides/**'
+      - 'scripts/render_lesson.sh'
+      - 'scripts/render_all_lessons.sh'
+      - 'scripts/build_ebook.sh'
+      - 'scripts/qa_transcripts.sh'
+      - 'go.mod'
+      - 'go.sum'
+      - '.github/workflows/render-lessons.yml'
+  pull_request:
+    paths:
+      - 'content/**'
+      - 'cmd/render-slides/**'
+      - 'scripts/render_lesson.sh'
+      - 'scripts/render_all_lessons.sh'
+      - 'scripts/build_ebook.sh'
+      - 'scripts/qa_transcripts.sh'
+      - 'go.mod'
+      - 'go.sum'
+      - '.github/workflows/render-lessons.yml'
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      render: ${{ steps.filter.outputs.render }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            render:
+              - 'content/**'
+              - 'cmd/render-slides/**'
+              - 'scripts/render_lesson.sh'
+              - 'scripts/render_all_lessons.sh'
+              - 'scripts/build_ebook.sh'
+              - 'scripts/qa_transcripts.sh'
+              - 'go.mod'
+              - 'go.sum'
+              - '.github/workflows/render-lessons.yml'
+
+  build:
+    needs: changes
+    if: needs.changes.outputs.render == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg jq python3-pip
+          pip3 install --user openai-whisper || true
+          npm install -g @marp-team/marp-cli
+          go mod download
+      - name: Render lessons
+        env:
+          VOICE: Greg
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          ./scripts/render_all_lessons.sh
+      - name: QA narration transcripts
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          ./scripts/qa_transcripts.sh
+      - name: Build course e-book
+        run: |
+          ./scripts/build_ebook.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rendered-lessons
+          path: build/**/final.mp4
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: narration-manifests
+          path: build/**/manifests/*
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ebooks
+          path: build/ebooks/*
+          if-no-files-found: warn
