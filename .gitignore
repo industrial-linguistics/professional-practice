@@ -4,3 +4,5 @@ assets/fonts/
 /render-slides
 /run_sheets
 *.deb
+
+build/
