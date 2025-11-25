@@ -4,7 +4,7 @@
 - Create a flowchart that branches on "service degraded?" and "pre-approved workflow?" leading to either the Incident path or Request path. Use colour-coding for urgency to reflect the MTTR focus on incidents versus satisfaction focus on requests.
 
 ## Service Value Chain (Part 1)
-- Add a wheel or cyclical diagram mapping "Plan → Improve → Engage → Design & Transition → Obtain/Build → Deliver & Support" with arrows to show continual improvement and feedback loops across activities.
+- [x] Add a wheel or cyclical diagram mapping "Plan → Improve → Engage → Design & Transition → Obtain/Build → Deliver & Support" with arrows to show continual improvement and feedback loops across activities. *Completed: Added to content/part-01/value-chain/slides.md*
 
 ## DORA Metrics Overview (Part 3)
 - Include a quadrant or radar chart that plots Deployment Frequency, Lead Time, Change Failure Rate and MTTR to visually contrast current vs target performance.

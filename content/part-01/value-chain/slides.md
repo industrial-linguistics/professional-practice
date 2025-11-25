@@ -8,6 +8,12 @@ title: Service Value Chain
 
 ---
 
+## The Service Value Chain
+
+![Service Value Chain with Continual Improvement](images/service-value-chain-continual-improvement.png)
+
+---
+
 ## Why continual improvement matters
 - Builds quality into every step
 - Encourages feedback loops
