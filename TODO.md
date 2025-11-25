@@ -152,32 +152,32 @@ These need to go into week 5 when talking about contract SLAs I guess. Unless 
 
 Each part is rendered separately. We should have intelligent GitHub workflows so that we can automate the whole process, but only do the minimal amount of audio re-rendering (and consequential other re-rendering) when things change.
 
-- [ ] **Set up automation workflow**
+- [x] **Set up automation workflow**
   - Configure GitHub Actions to trigger the build process.
   - Ensure minimal re-rendering by checking for changes in source content before rebuilding assets.
-- [ ] **Narration to audio**
+- [x] **Narration to audio**
   - For each slide, send the text to ElevenLabs (include preceding/following sentences for context).
   - Save the generated audio file using a checksum of `(normalized text, context, voice ID)`.
-- [ ] **Audio caching**
+- [x] **Audio caching**
   - Use the checksum as an S3 path and skip rendering when the file already exists.
-- [ ] **Slide rendering**
+- [x] **Slide rendering**
   - Convert slide decks to PNG images using Marp.
-- [ ] **Timing file generation**
+- [x] **Timing file generation**
   - Determine audio length for each slide.
   - Produce `slides.txt` entries (e.g., `file 'slide-01.png'`, `duration 5`).
-- [ ] **Silent video creation**
+- [x] **Silent video creation**
   - Combine PNG slides into a silent video following `slides.txt`.
-- [ ] **Audio concatenation**
+- [x] **Audio concatenation**
   - Merge all slide audio segments into one track.
-- [ ] **Video/audio merge**
+- [x] **Video/audio merge**
   - Combine the silent video and the concatenated audio into the final video.
-- [ ] **Upload step**
+- [x] **Upload step**
   - Upload the final video to S3 and the chosen hosting platform.
 - [ ] **Question format conversion**
   - Transform quiz questions into the required format for the learning platform.
 - [ ] **E-learning package generation**
   - Package the videos and questions into SCORM or another e-learning format.
-- [ ] **Automated test suite**
+- [x] **Automated test suite**
   - Build tests that transcribe the rendered audio and verify it matches the text source.
-- [ ] **E-book generation**
+- [x] **E-book generation**
   - Compile all parts into a single e-book (PDF and EPUB).
