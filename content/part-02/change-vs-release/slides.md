@@ -15,6 +15,12 @@ title: Change Enablement vs Release Management
 
 ---
 
+## Minor Change Process Flow
+
+![ITIL Minor Change Process Flow](images/itil-minor-change.png)
+
+---
+
 ## Release management
 - Package changes for deployment
 - Coordinate release windows
