@@ -1,0 +1,163 @@
+name: Video Pipeline
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - 'content/**/slides.md'
+      - 'content/**/narratives/*.md'
+      - 'content/**/images/**'
+      - 'cmd/vtt-generator/**'
+      - 'cmd/render-slides/**'
+      - 'cmd/voicer/**'
+      - 'scripts/build_videos.sh'
+      - 'scripts/assemble_video.sh'
+      - 'scripts/validate_*.py'
+      - 'scripts/build_manifest.py'
+      - '.github/workflows/video-pipeline.yml'
+  workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Force rebuild all videos'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  build-videos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need history to detect changes
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ffmpeg \
+            nodejs \
+            npm \
+            fonts-dejavu-core \
+            bc
+
+      - name: Install Node dependencies
+        run: |
+          sudo npm install -g @marp-team/marp-cli
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          # Note: Whisper is optional for quality validation
+          # pip install openai-whisper jiwer
+          echo "Python dependencies installed"
+
+      - name: Install Go dependencies
+        run: |
+          go mod download
+
+      - name: Build Go tools
+        run: |
+          mkdir -p bin
+          go build -o bin/vtt-generator ./cmd/vtt-generator
+          go build -o bin/render-slides ./cmd/render-slides
+          go build -o bin/voicer ./cmd/voicer
+
+      - name: Restore build manifest
+        uses: actions/cache@v3
+        with:
+          path: .build-manifest.json
+          key: build-manifest-${{ github.sha }}
+          restore-keys: |
+            build-manifest-
+
+      - name: Check what needs to be built
+        id: check
+        run: |
+          if [ "${{ github.event.inputs.force_rebuild }}" = "true" ]; then
+            echo "Force rebuild requested"
+            python3 scripts/build_manifest.py reset
+          fi
+
+          python3 scripts/build_manifest.py check content > build-check.txt
+          cat build-check.txt
+
+          # Set output flag
+          if grep -q "nothing to build" build-check.txt; then
+            echo "needs_build=false" >> $GITHUB_OUTPUT
+          else:
+            echo "needs_build=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run pre-generation validation
+        if: steps.check.outputs.needs_build == 'true'
+        run: |
+          # Validate all topics that will be built
+          python3 scripts/build_manifest.py check content | \
+            grep "📹" | sed 's/.*📹 //' | \
+            xargs -r python3 scripts/validate_content.py || true
+
+      - name: Build videos
+        if: steps.check.outputs.needs_build == 'true'
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          VOICER_S3_BUCKET: ${{ secrets.VOICER_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION || 'us-east-1' }}
+        run: |
+          # Run the build pipeline
+          bash scripts/build_videos.sh
+
+      - name: Generate test report
+        if: always() && steps.check.outputs.needs_build == 'true'
+        run: |
+          python3 scripts/build_manifest.py status > test-report.txt
+          cat test-report.txt
+
+      - name: Upload build manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-manifest
+          path: .build-manifest.json
+
+      - name: Upload videos
+        if: success() && steps.check.outputs.needs_build == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos
+          path: |
+            content/**/final.mp4
+            content/**/subtitles.vtt
+
+      - name: Upload test report
+        if: always() && steps.check.outputs.needs_build == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: test-report.txt
+
+      - name: Save build manifest to cache
+        if: always()
+        uses: actions/cache/save@v3
+        with:
+          path: .build-manifest.json
+          key: build-manifest-${{ github.sha }}
+
+      - name: Check for failures
+        if: failure()
+        run: |
+          echo "❌ Video pipeline failed"
+          python3 scripts/build_manifest.py status
+          exit 1

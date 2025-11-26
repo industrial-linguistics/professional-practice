@@ -4,3 +4,16 @@ assets/fonts/
 /render-slides
 /run_sheets
 *.deb
+
+# Video pipeline outputs
+.build-manifest.json
+bin/
+content/**/subtitles.vtt
+content/**/audio.wav
+content/**/final.mp4
+content/**/temp/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
