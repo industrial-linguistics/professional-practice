@@ -22,8 +22,8 @@ This follows the usual `merah`/`raksasa` split: keep static/public output on `me
 
 - The account has been created with home directory `/home/professionalpractice`.
 - The repository is checked out at `/home/professionalpractice/devel/professional-practice`.
-- The remote checkout uses HTTPS because GitHub returned `Deploy keys are disabled for this repository` when adding a repository deploy key. The repository is public, so HTTPS is enough for read-only pulls without putting a broad GitHub user key on the host.
-- A dedicated GitHub SSH key exists at `/home/professionalpractice/.ssh/id_ed25519_github`, but it has not been added as a global GitHub account key.
+- The remote checkout uses SSH: `git@github.com:industrial-linguistics/professional-practice.git`.
+- A dedicated GitHub SSH key exists at `/home/professionalpractice/.ssh/id_ed25519_github`. SSH authentication to GitHub has been verified from the service account.
 - A dedicated `merah` SSH key exists at `/home/professionalpractice/.ssh/id_ed25519_merah` and has been installed into `professionalpractice@merah`.
 - `~/.ssh/config` maps `github.com` to the GitHub key and `merah` to the `merah` key.
 
@@ -50,12 +50,14 @@ ssh professionalpractice@raksasa 'cd ~/devel/professional-practice && go build -
 ssh professionalpractice@raksasa 'cd ~/devel/professional-practice && go build -o bin/vtt-generator ./cmd/vtt-generator'
 ssh professionalpractice@raksasa 'cd ~/devel/professional-practice && ./bin/vtt-generator content/part-01/overview'
 ssh professionalpractice@raksasa 'cd ~/devel/professional-practice && . ~/.config/professional-practice.env && ./bin/voicer -v content/part-01/overview/subtitles.vtt -o /tmp/profpractice-dryrun.wav --dry-run'
+ssh professionalpractice@raksasa 'ssh -T github.com'
+ssh professionalpractice@raksasa 'cd ~/devel/professional-practice && git ls-remote --heads origin main'
 ```
 
 S3 cache access was also checked from `professionalpractice@raksasa` using the Go AWS SDK against the `audio-fragments` bucket.
 
 ## Remaining decisions
 
-- If the repository later becomes private, either re-enable deploy keys for this repository or create a narrow machine credential. Do not add the service account's GitHub key as a broad user-level SSH key unless write access from `raksasa` is explicitly required.
+- If the GitHub key should be narrowed later, move it to a repository deploy key once repository settings allow deploy keys again.
 - If scheduled jobs need AWS CLI diagnostics, install `awscli` on `raksasa`; the current Go renderer does not need it.
 - Add a cron or systemd timer only after the audio queue policy is implemented, so generation does not compete with other ElevenLabs users.
