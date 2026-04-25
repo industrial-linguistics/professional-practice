@@ -2,7 +2,7 @@
 
 Last checked: 2026-04-25.
 
-This is the working queue for reviewed image batches. It is deliberately not an unattended generation queue: each weekly batch should select a few assets, draft prompts or diagram specs, generate candidates if needed, inspect the results, then commit only accepted assets and slide references.
+This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
 ## Status Values
 
@@ -19,10 +19,10 @@ This is the working queue for reviewed image batches. It is deliberately not an 
 2. Select 3-5 `ready` items, preferring assets that support validated or near-validated audio topics.
 3. For each item, choose `diagram`, `mockup`, or `raster-illustration`.
 4. Draft prompts/specs in the batch notes before generating any raster images.
-5. Generate or draw candidates.
-6. Inspect visual quality, factual fit, legibility at slide size and licensing risk.
-7. Save accepted assets under the target `images/` path and update `slides.md`.
-8. Record rejected candidates only in the review notes, not as committed course assets.
+5. Generate or draw candidates and render both the current slide and the proposed slide with the image inserted.
+6. Register candidates with `scripts/image_review_register.py` and sync them to the protected merah review site.
+7. Approve, reject or comment through the review site.
+8. Let the daily raksasa processor install approved assets and append rejected/commented candidates to `image-review/rework-queue.md`.
 
 ## Next Batch Candidate Set
 
