@@ -30,6 +30,8 @@ Recommended decision:
 
 ## Priority diagrams and images
 
+The structured production queue is maintained in [image-production-backlog.md](image-production-backlog.md).
+
 Use diagrams where the concept is process, dependency, decision, or role ownership. Use screenshots or realistic mockups where the concept is tool literacy.
 
 | Priority | Location | Asset | Purpose |
