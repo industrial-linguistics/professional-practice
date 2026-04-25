@@ -1,5 +1,7 @@
 # Diagram and Illustration Ideas
 
+For the fuller current inventory, priority list and QR-code decision, see [media-and-diagram-plan.md](media-and-diagram-plan.md).
+
 ## Incident vs Request Fulfilment (Part 1)
 - Create a flowchart that branches on "service degraded?" and "pre-approved workflow?" leading to either the Incident path or Request path. Use colour-coding for urgency to reflect the MTTR focus on incidents versus satisfaction focus on requests.
 

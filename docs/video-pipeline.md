@@ -207,7 +207,7 @@ The pipeline runs automatically on push via `.github/workflows/video-pipeline.ym
 Enable S3 caching to avoid regenerating unchanged audio:
 
 ```bash
-export VOICER_S3_BUCKET=my-bucket-name
+export VOICER_S3_BUCKET=audio-fragments
 export AWS_ACCESS_KEY_ID=xxx
 export AWS_SECRET_ACCESS_KEY=xxx
 ```
