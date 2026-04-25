@@ -18,3 +18,11 @@ content/**/temp/
 __pycache__/
 *.pyc
 *.pyo
+
+# Editor swap files
+*.swp
+*.swo
+*.swn
+.*.swp
+.*.swo
+.*.swn
