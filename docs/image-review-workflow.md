@@ -16,6 +16,7 @@ The image-generation workflow has three stages:
 - Protected CGI URL: `https://professional-practice.industrial-linguistics.com/cgi-bin/image-review.cgi`
 
 The CGI uses HTTP Basic Auth supplied by OpenBSD `httpd` and records `REMOTE_USER` in the review database.
+Keep the vhost `db/` directory group-writable and keep `image-review.sqlite` mode `0664`, so SQLite journal writes still work when the CGI runs as `www`. On OpenBSD, new files inherit the containing directory's group; the publish and sync scripts enforce the writable modes after copying the database.
 
 ## Candidate registration
 

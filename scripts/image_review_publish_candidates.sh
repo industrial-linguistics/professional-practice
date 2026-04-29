@@ -16,6 +16,7 @@ if [[ ! -f "$DB_PATH" ]]; then
   exit 1
 fi
 
-ssh "$REMOTE" "mkdir -p '$VHOST/htdocs/image-review/candidates'"
+ssh "$REMOTE" "mkdir -p '$VHOST/htdocs/image-review/candidates' '$VHOST/db' && chmod 775 '$VHOST/db'"
 rsync -a "$CANDIDATE_DIR/" "$REMOTE:$VHOST/htdocs/image-review/candidates/"
 scp "$DB_PATH" "$REMOTE:$VHOST/db/image-review.sqlite"
+ssh "$REMOTE" "chmod 664 '$VHOST/db/image-review.sqlite'"

@@ -18,6 +18,7 @@ if ! ssh "$REMOTE" "test -f '$VHOST/db/image-review.sqlite'"; then
   exit 0
 fi
 
+ssh "$REMOTE" "chmod 775 '$VHOST/db'"
 ssh "$REMOTE" "sqlite3 '$VHOST/db/image-review.sqlite' \".backup '$REMOTE_TMP'\""
 scp "$REMOTE:$REMOTE_TMP" "$DB_PATH"
 ssh "$REMOTE" "rm -f '$REMOTE_TMP'"
@@ -31,3 +32,4 @@ python3 scripts/image_review_process_reviews.py \
   --rework-file image-review/rework-queue.md
 
 scp "$DB_PATH" "$REMOTE:$VHOST/db/image-review.sqlite"
+ssh "$REMOTE" "chmod 664 '$VHOST/db/image-review.sqlite'"
