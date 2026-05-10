@@ -160,10 +160,15 @@ for TOPIC_PATH in "${TOPICS[@]}"; do
     if [ "$SKIP_AUDIO" != "true" ]; then
         echo ""
         echo -e "${YELLOW}[4/6] Generating audio with ElevenLabs...${NC}"
-        if ! ./bin/voicer \
-            -v "$TOPIC_PATH/subtitles.vtt" \
-            -o "$TOPIC_PATH/audio.wav" \
-            --autopad; then
+        VOICER_ARGS=(
+            -v "$TOPIC_PATH/subtitles.vtt"
+            -o "$TOPIC_PATH/audio.wav"
+            --autopad
+        )
+        if [ -n "${VOICER_TEMP_DIR:-}" ]; then
+            VOICER_ARGS+=(--temp-dir "$VOICER_TEMP_DIR")
+        fi
+        if ! ./bin/voicer "${VOICER_ARGS[@]}"; then
             echo -e "${RED}❌ Audio generation failed${NC}"
             FAILED_TOPICS+=("$TOPIC_PATH")
             continue
