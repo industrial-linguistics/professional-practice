@@ -1,6 +1,6 @@
 # Audio Generation Plan
 
-Last checked: 2026-04-25.
+Last checked: 2026-05-10.
 
 ## Current audio inventory
 
@@ -17,7 +17,16 @@ The course has enough draft material to make a substantial audio job, but it is 
 | Part 7 | 5 | 55 | 35 | 24.9 | 0 |
 | Total | 81 | 773 | 614 | 353.1 | 17 |
 
-Only `content/part-01/overview` currently has generated `audio.wav` and `final.mp4`.
+Generated outputs are kept out of source control. As of 2026-05-10 on `raksasa`, `audio.wav` and `final.mp4` have been produced for eight valid topics:
+
+- `content/part-01/overview`
+- `content/part-03/devops-sre-platform-careers`
+- `content/part-03/dora-metrics`
+- `content/part-03/sre-error-budgets`
+- `content/part-03/trunk-vs-feature-branching`
+- `content/part-04/managing-emotions`
+- `content/part-04/post-mortem-agenda`
+- `content/part-04/post-mortem-culture`
 
 The existing narratives total about 53,000 words. Depending on punctuation, speaker tags and model choice, that is roughly 320,000 to 380,000 text characters before the missing narratives are filled in. The complete course will likely be closer to 450,000 to 550,000 characters.
 
