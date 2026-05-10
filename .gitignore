@@ -9,6 +9,7 @@ assets/fonts/
 .build-manifest.json
 bin/
 state/
+logs/
 content/**/subtitles.vtt
 content/**/audio.wav
 content/**/final.mp4
