@@ -55,21 +55,22 @@ Current topics that pass slide/narrative parity:
 
 The policy should protect shared ElevenLabs credits used by other projects, especially `../robopastor`.
 
-Recommended first pass:
+Implemented first pass:
 
-1. Generate no more than 15,000 characters per day until `../inventory` has a shared ElevenLabs budget monitor.
-2. Run at most one `voicer` process at a time on `professionalpractice@raksasa`.
-3. Use a lock file such as `/home/professionalpractice/.cache/professional-practice-audio.lock`.
-4. Prefer late-night Sydney time windows unless another project owns that window.
-5. Stop immediately if an API response indicates rate limiting, quota exhaustion or billing errors.
-6. Never use `--force` for audio unless intentionally invalidating the cache.
-7. Always use `VOICER_S3_BUCKET=audio-fragments` so successful segments are reusable.
+1. Generate no more than 10,000 estimated Professional Practice characters per UTC day.
+2. Generate no more than 250,000 estimated Professional Practice characters per UTC month.
+3. Treat 500,000 shared ElevenLabs characters per account period as the hard spending cap; rollover balance is reserve, not the scheduled-work budget.
+4. Run at most one `voicer` process at a time on `professionalpractice@raksasa`.
+5. Use a lock file such as `/home/professionalpractice/.cache/professional-practice-audio.lock`.
+6. Stop immediately if the ElevenLabs subscription check fails, or if an API response indicates rate limiting, quota exhaustion or billing errors.
+7. Never use `--force` for audio unless intentionally invalidating the cache.
+8. Always use `VOICER_S3_BUCKET=audio-fragments` so successful segments are reusable.
 
-At 15,000 characters per day, the current existing narratives would take about 22-26 days if every segment were uncached. In practice it should be faster once S3 cache hits are counted.
+The worker estimates spend from the topic narrative text before claiming work. This is deliberately conservative: cache hits may mean the actual ElevenLabs charge is lower, but the cron should not keep spending simply because the account has rollover credits.
 
 ## Queue design
 
-Status: implemented as `scripts/audio_generation_worker.py`, called by `scripts/audio_generation_cron.sh` from `professionalpractice@raksasa`. The worker records state in `state/audio-worker-state.json` and per-topic logs in `logs/audio-generation/`; both are intentionally outside source control.
+Status: implemented as `scripts/audio_generation_worker.py`, called by `scripts/audio_generation_cron.sh` from `professionalpractice@raksasa`. The worker records state, estimated per-project usage events and budget-wait topics in `state/audio-worker-state.json`; per-topic logs live in `logs/audio-generation/`. Both paths are intentionally outside source control.
 
 The original proposed queue shape was:
 
@@ -103,7 +104,7 @@ The worker should:
 - The current `scripts/build_videos.sh` is topic-oriented, not budget-oriented. Add a separate slow worker rather than overloading this script.
 - `cmd/voicer` currently checks S3 only during real generation. A dedicated `--cache-status-json` mode would make the slow worker cleaner and avoid synthesizing just to learn cache state.
 - Keep generated `audio.wav`, `final.mp4`, slide PNGs and manifest output out of source control unless the distribution policy changes.
-- Once `../inventory` exposes a shared ElevenLabs budget or usage signal, the worker should read that before claiming work.
+- `../inventory` records shared ElevenLabs account usage and documents the project reporting contract. The worker currently enforces a local Professional Practice budget plus a live ElevenLabs subscription cap; a later inventory integration can import `state/audio-worker-state.json` usage events or replace the live subscription check with a central budget service.
 
 ## First render order
 
