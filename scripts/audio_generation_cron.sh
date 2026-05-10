@@ -5,8 +5,10 @@ REPO_ROOT=${REPO_ROOT:-/home/professionalpractice/devel/professional-practice}
 LOG_DIR=${AUDIO_WORKER_LOG_DIR:-$REPO_ROOT/logs/audio-generation}
 LOCK_FILE=${AUDIO_WORKER_LOCK_FILE:-/home/professionalpractice/.cache/professional-practice-audio.lock}
 MAX_TOPICS=${AUDIO_WORKER_MAX_TOPICS:-1}
+TMPDIR=${AUDIO_WORKER_TMPDIR:-/home/professionalpractice/.cache/professional-practice-audio-tmp}
+export TMPDIR
 
-mkdir -p "$LOG_DIR" "$(dirname "$LOCK_FILE")"
+mkdir -p "$LOG_DIR" "$(dirname "$LOCK_FILE")" "$TMPDIR"
 exec >> "$LOG_DIR/cron.log" 2>&1
 
 echo "=== $(date -Is) audio generation cron start ==="
