@@ -60,4 +60,4 @@ S3 cache access was also checked from `professionalpractice@raksasa` using the G
 
 - If the GitHub key should be narrowed later, move it to a repository deploy key once repository settings allow deploy keys again.
 - If scheduled jobs need AWS CLI diagnostics, install `awscli` on `raksasa`; the current Go renderer does not need it.
-- Add a cron or systemd timer only after the audio queue policy is implemented, so generation does not compete with other ElevenLabs users.
+- Audio generation is run from `professionalpractice@raksasa` with `scripts/audio_generation_cron.sh`. The wrapper takes a lock, pulls the latest `main`, sources `/home/professionalpractice/.config/professional-practice.env`, and invokes `scripts/audio_generation_worker.py` for a bounded number of valid topics per run.

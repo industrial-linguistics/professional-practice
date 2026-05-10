@@ -69,7 +69,9 @@ At 15,000 characters per day, the current existing narratives would take about 2
 
 ## Queue design
 
-Create a small queue file before enabling cron:
+Status: implemented as `scripts/audio_generation_worker.py`, called by `scripts/audio_generation_cron.sh` from `professionalpractice@raksasa`. The worker records state in `state/audio-worker-state.json` and per-topic logs in `logs/audio-generation/`; both are intentionally outside source control.
+
+The original proposed queue shape was:
 
 ```text
 state/audio-queue.tsv
