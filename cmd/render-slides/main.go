@@ -80,22 +80,14 @@ func main() {
 		if browserPath := os.Getenv("MARP_BROWSER_PATH"); browserPath != "" {
 			args = append([]string{"--browser", "chrome", "--browser-path", browserPath}, args...)
 		}
-		cmd := exec.Command("marp", args...)
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
-		cmd.Env = append(os.Environ(), "PUPPETEER_DANGEROUS_NO_SANDBOX=true")
-		fmt.Println("Running", strings.Join(cmd.Args, " "))
+		fmt.Println("Running", strings.Join(append([]string{"marp"}, args...), " "))
 		var lastErr error
 		for attempt := 1; attempt <= 3; attempt++ {
-			if err := cmd.Run(); err != nil {
+			if err := runMarp(args); err != nil {
 				lastErr = err
 				fmt.Fprintf(os.Stderr, "marp attempt %d failed: %v\n", attempt, err)
 				if attempt < 3 {
 					time.Sleep(time.Duration(attempt) * time.Second)
-					cmd = exec.Command("marp", args...)
-					cmd.Stdout = os.Stdout
-					cmd.Stderr = os.Stderr
-					cmd.Env = append(os.Environ(), "PUPPETEER_DANGEROUS_NO_SANDBOX=true")
 				}
 				continue
 			}
@@ -107,4 +99,14 @@ func main() {
 			os.Exit(1)
 		}
 	}
+}
+
+func runMarp(args []string) error {
+	cmd := exec.Command("marp", args...)
+	cmd.Env = append(os.Environ(), "PUPPETEER_DANGEROUS_NO_SANDBOX=true")
+	output, err := cmd.CombinedOutput()
+	if len(output) > 0 {
+		fmt.Print(string(output))
+	}
+	return err
 }
