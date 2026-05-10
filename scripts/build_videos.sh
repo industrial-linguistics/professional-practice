@@ -150,7 +150,7 @@ for TOPIC_PATH in "${TOPICS[@]}"; do
     # Step 3: Render slides
     echo ""
     echo -e "${YELLOW}[3/6] Rendering slides to PNG...${NC}"
-    if ! ./bin/render-slides; then
+    if ! ./bin/render-slides "$TOPIC_PATH"; then
         echo -e "${RED}❌ Slide rendering failed${NC}"
         FAILED_TOPICS+=("$TOPIC_PATH")
         continue

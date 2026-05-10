@@ -28,6 +28,13 @@ fi
 
 export PATH="$HOME/.local/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$PATH"
 
+if [[ -z "${MARP_BROWSER_PATH:-}" ]]; then
+  MARP_BROWSER_PATH="$(find "$HOME/.cache/puppeteer-browsers/chrome" -path '*/chrome-linux64/chrome' -type f 2>/dev/null | sort | tail -n 1 || true)"
+  export MARP_BROWSER_PATH
+fi
+
+export PUPPETEER_DANGEROUS_NO_SANDBOX=${PUPPETEER_DANGEROUS_NO_SANDBOX:-true}
+
 for required in git go python3 ffmpeg ffprobe marp flock; do
   if ! command -v "$required" >/dev/null 2>&1; then
     echo "missing required command: $required"
@@ -37,6 +44,11 @@ done
 
 if [[ -z "${ELEVENLABS_API_KEY:-}" ]]; then
   echo "ELEVENLABS_API_KEY is not configured"
+  exit 1
+fi
+
+if [[ -z "${MARP_BROWSER_PATH:-}" || ! -x "$MARP_BROWSER_PATH" ]]; then
+  echo "MARP_BROWSER_PATH is not configured or executable"
   exit 1
 fi
 

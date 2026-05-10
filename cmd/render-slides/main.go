@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/fs"
 	"log"
 	"os"
 	"os/exec"
@@ -23,40 +22,70 @@ func main() {
 	content := filepath.Join(root, "content")
 	outputRoot := filepath.Join(root, "assets", "slide-images")
 
-	err = filepath.WalkDir(content, func(path string, d fs.DirEntry, err error) error {
+	var slideFiles []string
+	if len(os.Args) > 1 {
+		for _, arg := range os.Args[1:] {
+			path := arg
+			if !filepath.IsAbs(path) {
+				path = filepath.Join(root, path)
+			}
+			info, err := os.Stat(path)
+			if err != nil {
+				fmt.Fprintln(os.Stderr, "error:", err)
+				os.Exit(1)
+			}
+			if info.IsDir() {
+				path = filepath.Join(path, "slides.md")
+			}
+			slideFiles = append(slideFiles, path)
+		}
+	} else {
+		err = filepath.WalkDir(content, func(path string, d os.DirEntry, err error) error {
+			if err != nil {
+				return err
+			}
+			if d.IsDir() || d.Name() != "slides.md" {
+				return nil
+			}
+			slideFiles = append(slideFiles, path)
+			return nil
+		})
 		if err != nil {
-			return err
+			fmt.Fprintln(os.Stderr, "error:", err)
+			os.Exit(1)
 		}
-		if d.IsDir() {
-			return nil
-		}
-		if d.Name() != "slides.md" {
-			return nil
-		}
+	}
+
+	for _, path := range slideFiles {
 		rel, err := filepath.Rel(content, path)
 		if err != nil {
-			return err
+			fmt.Fprintln(os.Stderr, "error:", err)
+			os.Exit(1)
 		}
 		parts := strings.Split(rel, string(os.PathSeparator))
 		if len(parts) < 2 {
 			log.Printf("skipping %s: unexpected path", path)
-			return nil
+			continue
 		}
 		part := parts[0]
 		topic := parts[1]
 		outDir := filepath.Join(outputRoot, part, topic)
 		if err := os.MkdirAll(outDir, 0755); err != nil {
-			return err
+			fmt.Fprintln(os.Stderr, "error:", err)
+			os.Exit(1)
 		}
 		outPattern := filepath.Join(outDir, "slide.png")
-		cmd := exec.Command("marp", "--images", "png", path, "-o", outPattern)
+		args := []string{"--images", "png", path, "-o", outPattern}
+		if browserPath := os.Getenv("MARP_BROWSER_PATH"); browserPath != "" {
+			args = append([]string{"--browser", "chrome", "--browser-path", browserPath}, args...)
+		}
+		cmd := exec.Command("marp", args...)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		fmt.Println("Running", strings.Join(cmd.Args, " "))
-		return cmd.Run()
-	})
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "error:", err)
-		os.Exit(1)
+		if err := cmd.Run(); err != nil {
+			fmt.Fprintln(os.Stderr, "error:", err)
+			os.Exit(1)
+		}
 	}
 }
