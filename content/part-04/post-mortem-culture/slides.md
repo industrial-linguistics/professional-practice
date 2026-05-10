@@ -40,6 +40,7 @@ Imagine your team's website crashed during a promotion because the database serv
 
 ## Quick reference phrases
 Keep these phrases handy when tensions rise. Start with "Help me understand..." or "What factors contributed to this event?" instead of "Who did it?" If someone's suggestion sounds accusatory, redirect gently: "Let's focus on how the process allowed this step." Ask, "What monitoring or review failed us?" rather than "Why didn't you catch this?" When summarizing, use "We learned that..." or "The system allowed..." to keep the spotlight on the workflow. Invite quiet participants with, "Anything we missed from your side?" These small shifts in language prevent defensiveness and encourage collaboration. Over time, speaking this way becomes second nature and shows leadership potential, especially for those looking to move into senior roles.
+
 ---
 
 ## Resources
