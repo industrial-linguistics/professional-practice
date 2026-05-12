@@ -126,7 +126,11 @@ index.write_text(
 print(f"Prepared {len(rows)} video(s), {fmt_size(total_size)} total, in {staging}")
 PY
 
+find "$STAGING_DIR" -type d -exec chmod 755 {} +
+find "$STAGING_DIR" -type f -exec chmod 644 {} +
+
 ssh "$REMOTE" "mkdir -p '$REMOTE_DIR'"
 rsync -az --delete "$STAGING_DIR"/ "$REMOTE:$REMOTE_DIR"/
+ssh "$REMOTE" "find '$REMOTE_DIR' -type d -exec chmod 755 {} + && find '$REMOTE_DIR' -type f -exec chmod 644 {} +"
 
 echo "Published videos to $REMOTE:$REMOTE_DIR"
