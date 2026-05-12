@@ -26,6 +26,7 @@ python3 - "$STAGING_DIR" <<'PY'
 from __future__ import annotations
 
 import html
+import hashlib
 import shutil
 import sys
 from pathlib import Path
@@ -70,12 +71,13 @@ for src in videos:
     part = rel.parts[0]
     topic = rel.parts[1]
     size = src.stat().st_size
+    version = hashlib.sha256(src.read_bytes()).hexdigest()[:12]
     rows.append(
         {
             "part": part,
             "topic": topic,
             "title": title_for(src.parent),
-            "href": f"{part}/{topic}/final.mp4",
+            "href": f"{part}/{topic}/final.mp4?v={version}",
             "size": size,
         }
     )
