@@ -51,7 +51,7 @@ func TestBuildAudioSegmentsAssignsSpeakerVoices(t *testing.T) {
 	}
 
 	segments := buildAudioSegments(subs, Config{
-		DefaultVoice: "Sophia",
+		DefaultVoice: "Anna",
 		OutputFormat: "pcm_44100",
 		TempDir:      t.TempDir(),
 		Speed:        1.0,
@@ -60,8 +60,8 @@ func TestBuildAudioSegmentsAssignsSpeakerVoices(t *testing.T) {
 	if len(segments) != 2 {
 		t.Fatalf("expected 2 segments, got %d", len(segments))
 	}
-	if segments[0].Voice != "Sophia" {
-		t.Fatalf("expected Speaker 1 to use Sophia, got %q", segments[0].Voice)
+	if segments[0].Voice != "Anna" {
+		t.Fatalf("expected Speaker 1 to use Anna, got %q", segments[0].Voice)
 	}
 	if segments[1].Voice != "Greg" {
 		t.Fatalf("expected Speaker 2 to use Greg, got %q", segments[1].Voice)

@@ -576,11 +576,11 @@ func main() {
 	rootCmd.Flags().StringVarP(&config.VTTFile, "vtt", "v", "", "VTT file to process (required)")
 	defaultVoice := os.Getenv("VOICER_DEFAULT_VOICE")
 	if defaultVoice == "" {
-		defaultVoice = "Sophia"
+		defaultVoice = "Anna"
 	}
-	rootCmd.Flags().StringVarP(&config.DefaultVoice, "voice", "d", defaultVoice, "Voice name (Sophia, Karol, Greg) or ElevenLabs voice ID (env: VOICER_DEFAULT_VOICE)")
+	rootCmd.Flags().StringVarP(&config.DefaultVoice, "voice", "d", defaultVoice, "Voice name (Anna, Sophia, Karol, Greg) or ElevenLabs voice ID (env: VOICER_DEFAULT_VOICE)")
 	rootCmd.Flags().StringArrayVar(&config.SpeakerVoiceOverrides, "speaker-voice", nil,
-		"Speaker voice mapping such as 'Speaker 1=Sophia'; repeat for multiple speakers (env: VOICER_SPEAKER_VOICES)")
+		"Speaker voice mapping such as 'Speaker 1=Anna'; repeat for multiple speakers (env: VOICER_SPEAKER_VOICES)")
 	rootCmd.Flags().StringVarP(&config.APIKeyFile, "key-file", "k", defaultAPIKeyFile, "File containing ElevenLabs API key")
 	rootCmd.Flags().StringVarP(&config.TempDir, "temp-dir", "t", defaultTempDir, "Temporary directory for audio segments")
 	rootCmd.Flags().IntVarP(&config.Limit, "limit", "l", 0, "Limit number of segments to process (0 for unlimited)")
@@ -614,6 +614,7 @@ func main() {
 
 // voiceIDMap maps voice names to ElevenLabs voice IDs
 var voiceIDMap = map[string]string{
+	"Anna":   "sx8pHRzXdQfuUYPGFK7X",
 	"Sophia": "LtPsVjX1k0Kl4StEMZPK",
 	"Karol":  "CpXHPGrpEmAzh8JTmnO8",
 	"Greg":   "7yYaoUVdbFZtJwHZqW9F",

@@ -80,7 +80,7 @@ Generates audio narration using ElevenLabs text-to-speech API.
 **Features:**
 - S3 caching with MD5 checksums (avoids regenerating unchanged audio)
 - Context-aware speech (uses previous/next text for natural flow)
-- Speaker-aware narration (`Speaker 1:` defaults to Sophia, `Speaker 2:` defaults to Greg)
+- Speaker-aware narration (`Speaker 1:` defaults to Anna, `Speaker 2:` defaults to Greg)
 - Pronunciation normalization for course-specific terms such as ITIL
 - Automatic padding calculation
 - Speed adjustment for timing alignment
@@ -98,7 +98,7 @@ bin/voicer \
 - `ELEVENLABS_API_KEY` - API key for ElevenLabs
 - `VOICER_S3_BUCKET` - S3 bucket for audio caching (optional)
 - `VOICER_SPEAKER_1_VOICE` / `VOICER_SPEAKER_2_VOICE` - override default speaker voices
-- `VOICER_SPEAKER_VOICES` - comma-separated overrides, for example `Speaker 1=Sophia,Speaker 2=Greg`
+- `VOICER_SPEAKER_VOICES` - comma-separated overrides, for example `Speaker 1=Anna,Speaker 2=Greg`
 
 ### 4. Video Assembler (`scripts/assemble_video.sh`)
 
