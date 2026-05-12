@@ -12,6 +12,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 
@@ -60,11 +61,16 @@ type AudioSegment struct {
 	Voice     string
 	Checksum  string  // Added checksum field
 	Speed     float64 // Speed factor for this segment (default 1.0)
+	Settings  VoiceSettings
 }
 
 // VoiceSettings represents the voice settings for ElevenLabs TTS.
 type VoiceSettings struct {
-	Speed float64 `json:"speed,omitempty"`
+	Stability       *float64 `json:"stability,omitempty"`
+	SimilarityBoost *float64 `json:"similarity_boost,omitempty"`
+	Style           *float64 `json:"style,omitempty"`
+	UseSpeakerBoost *bool    `json:"use_speaker_boost,omitempty"`
+	Speed           *float64 `json:"speed,omitempty"`
 }
 
 // TTSRequest is our request body for ElevenLabs TTS conversion.
@@ -405,13 +411,13 @@ func saveToWAV(pcm *PCMAudio, outputPath string) error {
 }
 
 // Calculate checksum for audio segment
-func calculateChecksum(text, prevText, nextText, voiceID string, speed float64) string {
+func calculateChecksum(text, prevText, nextText, voiceID string, settings VoiceSettings) string {
 	h := md5.New()
 	io.WriteString(h, text)
 	io.WriteString(h, prevText)
 	io.WriteString(h, nextText)
 	io.WriteString(h, voiceID)
-	io.WriteString(h, fmt.Sprintf("%.2f", speed)) // Include speed in checksum
+	io.WriteString(h, settings.cacheKey())
 	return hex.EncodeToString(h.Sum(nil))
 }
 
@@ -469,8 +475,8 @@ func printSegmentInfo(segments []AudioSegment) {
 			fmt.Printf("  Speaker: %s\n", segment.Speaker)
 		}
 		fmt.Printf("  Voice: %s\n", segment.Voice)
-		if segment.Speed != 1.0 {
-			fmt.Printf("  Speed: %.2f\n", segment.Speed)
+		if !segment.Settings.isEmpty() {
+			fmt.Printf("  Voice Settings: %s\n", segment.Settings.summary())
 		}
 		fmt.Printf("  Text: %s\n\n", segment.Text)
 	}
@@ -620,6 +626,133 @@ var voiceIDMap = map[string]string{
 	"Greg":   "7yYaoUVdbFZtJwHZqW9F",
 }
 
+func floatPtr(value float64) *float64 {
+	return &value
+}
+
+func boolPtr(value bool) *bool {
+	return &value
+}
+
+func (settings VoiceSettings) isEmpty() bool {
+	return settings.Stability == nil &&
+		settings.SimilarityBoost == nil &&
+		settings.Style == nil &&
+		settings.UseSpeakerBoost == nil &&
+		settings.Speed == nil
+}
+
+func (settings VoiceSettings) hasOnlySpeed() bool {
+	return settings.Stability == nil &&
+		settings.SimilarityBoost == nil &&
+		settings.Style == nil &&
+		settings.UseSpeakerBoost == nil &&
+		settings.Speed != nil
+}
+
+func (settings VoiceSettings) cacheKey() string {
+	if settings.isEmpty() {
+		return "1.00"
+	}
+	if settings.hasOnlySpeed() {
+		return fmt.Sprintf("%.2f", *settings.Speed)
+	}
+	payload, err := json.Marshal(settings)
+	if err != nil {
+		return fmt.Sprintf("%#v", settings)
+	}
+	return string(payload)
+}
+
+func (settings VoiceSettings) summary() string {
+	parts := make([]string, 0, 5)
+	if settings.Speed != nil {
+		parts = append(parts, fmt.Sprintf("speed=%.2f", *settings.Speed))
+	}
+	if settings.Stability != nil {
+		parts = append(parts, fmt.Sprintf("stability=%.2f", *settings.Stability))
+	}
+	if settings.SimilarityBoost != nil {
+		parts = append(parts, fmt.Sprintf("similarity_boost=%.2f", *settings.SimilarityBoost))
+	}
+	if settings.Style != nil {
+		parts = append(parts, fmt.Sprintf("style=%.2f", *settings.Style))
+	}
+	if settings.UseSpeakerBoost != nil {
+		parts = append(parts, fmt.Sprintf("speaker_boost=%t", *settings.UseSpeakerBoost))
+	}
+	return strings.Join(parts, ", ")
+}
+
+func (settings VoiceSettings) speedOrDefault(defaultSpeed float64) float64 {
+	if settings.Speed == nil {
+		return defaultSpeed
+	}
+	return *settings.Speed
+}
+
+func (settings *VoiceSettings) setSpeed(speed float64) {
+	settings.Speed = floatPtr(speed)
+}
+
+func voiceSettingsForVoice(voice string, defaultSpeed float64) VoiceSettings {
+	settings := VoiceSettings{}
+	if defaultSpeed != 1.0 {
+		settings.setSpeed(defaultSpeed)
+	}
+
+	if getVoiceID(voice) != voiceIDMap["Greg"] {
+		return settings
+	}
+
+	gregSpeed := defaultSpeed
+	if gregSpeed == 1.0 {
+		gregSpeed = 1.12
+	}
+	settings.setSpeed(envFloatOrDefault("VOICER_GREG_SPEED", gregSpeed))
+	settings.Stability = floatPtr(envFloatOrDefault("VOICER_GREG_STABILITY", 0.70))
+	settings.SimilarityBoost = floatPtr(envFloatFromNamesOrDefault([]string{
+		"VOICER_GREG_SIMILARITY_BOOST",
+		"VOICER_GREG_SIMILARITY",
+	}, 0.85))
+	settings.Style = floatPtr(envFloatOrDefault("VOICER_GREG_STYLE", 0.0))
+	settings.UseSpeakerBoost = boolPtr(envBoolOrDefault("VOICER_GREG_SPEAKER_BOOST", true))
+	return settings
+}
+
+func envFloatOrDefault(name string, fallback float64) float64 {
+	return envFloatFromNamesOrDefault([]string{name}, fallback)
+}
+
+func envFloatFromNamesOrDefault(names []string, fallback float64) float64 {
+	for _, name := range names {
+		raw := strings.TrimSpace(os.Getenv(name))
+		if raw == "" {
+			continue
+		}
+		value, err := strconv.ParseFloat(raw, 64)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Warning: ignoring invalid %s=%q: %v\n", name, raw, err)
+			return fallback
+		}
+		return value
+	}
+	return fallback
+}
+
+func envBoolOrDefault(name string, fallback bool) bool {
+	raw := strings.TrimSpace(os.Getenv(name))
+	if raw == "" {
+		return fallback
+	}
+	value, err := strconv.ParseBool(raw)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: ignoring invalid %s=%q: %v\n", name, raw, err)
+		return fallback
+	}
+	return value
+}
+
 // getVoiceID returns the voice ID for a given name or ID
 func getVoiceID(nameOrID string) string {
 	// Check if the name exists in our map
@@ -749,13 +882,15 @@ func buildAudioSegments(subs *astisub.Subtitles, config Config) []AudioSegment {
 			continue
 		}
 		voice := voiceForSpeaker(speaker, speakerVoices, config.DefaultVoice)
+		settings := voiceSettingsForVoice(voice, config.Speed)
 		segments = append(segments, AudioSegment{
 			StartTime: item.StartAt,
 			EndTime:   item.EndAt,
 			Text:      text,
 			Speaker:   speaker,
 			Voice:     voice,
-			Speed:     config.Speed,
+			Speed:     settings.speedOrDefault(config.Speed),
+			Settings:  settings,
 		})
 	}
 
@@ -771,7 +906,7 @@ func buildAudioSegments(subs *astisub.Subtitles, config Config) []AudioSegment {
 			segments[i].NextText = segments[i+1].Text
 		}
 		voiceID := getVoiceID(segments[i].Voice)
-		segments[i].Checksum = calculateChecksum(segments[i].Text, segments[i].PrevText, segments[i].NextText, voiceID, segments[i].Speed)
+		segments[i].Checksum = calculateChecksum(segments[i].Text, segments[i].PrevText, segments[i].NextText, voiceID, segments[i].Settings)
 		segments[i].Path = filepath.Join(config.TempDir, segments[i].Checksum+fileExt)
 	}
 
@@ -879,10 +1014,11 @@ func processSegments(segments []AudioSegment, config Config, apiKey string, subs
 				i := segmentIndex
 				segment := &segments[i]
 				segment.Speed = newSpeed
+				segment.Settings.setSpeed(newSpeed)
 
 				// Update checksum with new speed and resolved voice ID
 				voiceID := getVoiceID(segment.Voice)
-				segment.Checksum = calculateChecksum(segment.Text, segment.PrevText, segment.NextText, voiceID, newSpeed)
+				segment.Checksum = calculateChecksum(segment.Text, segment.PrevText, segment.NextText, voiceID, segment.Settings)
 
 				// Determine file extension based on output format and update path
 				fileExt := ".wav"
@@ -963,12 +1099,9 @@ func processSegment(segment *AudioSegment, i, totalSegments int, config Config, 
 		OutputFormat: config.OutputFormat,
 	}
 
-	// If speed is not default, add voice settings
-	if segment.Speed != 1.0 {
-		ttsRequest.VoiceSettings = &VoiceSettings{
-			Speed: segment.Speed,
-		}
-		fmt.Printf("Using speed %.2f for segment %d\n", segment.Speed, i+1)
+	if !segment.Settings.isEmpty() {
+		ttsRequest.VoiceSettings = &segment.Settings
+		fmt.Printf("Using voice settings for segment %d: %s\n", i+1, segment.Settings.summary())
 	}
 
 	// Add previous and next text for context
