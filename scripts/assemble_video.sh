@@ -118,6 +118,8 @@ done < "$TEMP_DIR/timings.txt"
 last_index=$(tail -n 1 "$TEMP_DIR/timings.txt" | cut -f1)
 last_slide="$SLIDES_DIR/slide.$(printf '%03d' "$last_index").png"
 echo "file '$last_slide'" >> "$CONCAT_FILE"
+echo "duration 0.033" >> "$CONCAT_FILE"
+echo "file '$last_slide'" >> "$CONCAT_FILE"
 
 echo "Created concat file with $(wc -l < "$CONCAT_FILE") entries"
 
@@ -145,10 +147,13 @@ AUDIO_DURATION=$(ffprobe -v error -show_entries format=duration -of default=nopr
 echo "Video duration: ${VIDEO_DURATION}s"
 echo "Audio duration: ${AUDIO_DURATION}s"
 
-# Check duration mismatch
-DURATION_DIFF=$(python3 -c "print(abs($VIDEO_DURATION - $AUDIO_DURATION))")
-if (( $(echo "$DURATION_DIFF > 1.0" | bc -l) )); then
-    echo "Warning: Video and audio duration differ by ${DURATION_DIFF}s"
+# Check that the silent video is long enough for the audio. It may be longer
+# because ffmpeg concat needs a duplicate final image; the final mux is trimmed
+# to the audio duration below.
+VIDEO_TOO_SHORT=$(python3 -c "print(1 if float('$VIDEO_DURATION') + 1.0 < float('$AUDIO_DURATION') else 0)")
+if [ "$VIDEO_TOO_SHORT" = "1" ]; then
+    DURATION_DIFF=$(python3 -c "print(float('$AUDIO_DURATION') - float('$VIDEO_DURATION'))")
+    echo "Warning: silent video is shorter than audio by ${DURATION_DIFF}s"
     echo "This may indicate a problem with timing"
 fi
 
@@ -158,6 +163,7 @@ FINAL_VIDEO="$OUTPUT_DIR/final.mp4"
 
 ffmpeg -y -i "$SILENT_VIDEO" -i "$AUDIO_FILE" \
     -c:v copy -c:a aac -b:a 192k \
+    -t "$AUDIO_DURATION" \
     -shortest \
     "$FINAL_VIDEO" 2>&1 | grep -v "deprecated pixel format"
 
