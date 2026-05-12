@@ -27,8 +27,10 @@ from __future__ import annotations
 
 import html
 import hashlib
+import re
 import shutil
 import sys
+import unicodedata
 from pathlib import Path
 
 staging = Path(sys.argv[1])
@@ -62,22 +64,32 @@ def title_for(topic_dir: Path) -> str:
     return topic_dir.name.replace("-", " ").title()
 
 
+def slugify(value: str) -> str:
+    normalized = unicodedata.normalize("NFKD", value)
+    ascii_value = normalized.encode("ascii", "ignore").decode("ascii")
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", ascii_value.lower()).strip("-")
+    slug = re.sub(r"-{2,}", "-", slug)
+    return slug or "video"
+
+
 rows = []
 for src in videos:
     rel = src.parent.relative_to(content)
-    dest = staging / rel / "final.mp4"
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(src, dest)
     part = rel.parts[0]
     topic = rel.parts[1]
+    title = title_for(src.parent)
+    filename = f"{part}-{slugify(title)}.mp4"
+    dest = staging / rel / filename
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dest)
     size = src.stat().st_size
     version = hashlib.sha256(src.read_bytes()).hexdigest()[:12]
     rows.append(
         {
             "part": part,
             "topic": topic,
-            "title": title_for(src.parent),
-            "href": f"{part}/{topic}/final.mp4?v={version}",
+            "title": title,
+            "href": f"{part}/{topic}/{filename}?v={version}",
             "size": size,
         }
     )
