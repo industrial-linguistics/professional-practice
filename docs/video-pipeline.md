@@ -99,7 +99,7 @@ bin/voicer \
 - `VOICER_S3_BUCKET` - S3 bucket for audio caching (optional)
 - `VOICER_SPEAKER_1_VOICE` / `VOICER_SPEAKER_2_VOICE` - override default speaker voices
 - `VOICER_SPEAKER_VOICES` - comma-separated overrides, for example `Speaker 1=Anna,Speaker 2=Greg`
-- `VOICER_GREG_SPEED`, `VOICER_GREG_STABILITY`, `VOICER_GREG_SIMILARITY_BOOST`, `VOICER_GREG_STYLE`, `VOICER_GREG_SPEAKER_BOOST` - override the pinned Greg voice settings. Defaults are tuned for a steadier cloned voice: speed `1.12`, stability `0.70`, similarity boost `0.85`, style `0.0`, speaker boost `true`.
+- `VOICER_GREG_SPEED`, `VOICER_GREG_STABILITY`, `VOICER_GREG_SIMILARITY_BOOST`, `VOICER_GREG_STYLE`, `VOICER_GREG_SPEAKER_BOOST` - override the pinned Greg voice settings. Defaults match the `Greg` voice used by robopastor: speed `1.0`, stability `0.50`, similarity boost `0.75`, style `0.0`, speaker boost `true`. The older cloned voice is still available as `GregClone`.
 
 ### 4. Video Assembler (`scripts/assemble_video.sh`)
 

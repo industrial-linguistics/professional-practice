@@ -584,7 +584,7 @@ func main() {
 	if defaultVoice == "" {
 		defaultVoice = "Anna"
 	}
-	rootCmd.Flags().StringVarP(&config.DefaultVoice, "voice", "d", defaultVoice, "Voice name (Anna, Sophia, Karol, Greg) or ElevenLabs voice ID (env: VOICER_DEFAULT_VOICE)")
+	rootCmd.Flags().StringVarP(&config.DefaultVoice, "voice", "d", defaultVoice, "Voice name (Anna, Sophia, Karol, Greg, GregClone) or ElevenLabs voice ID (env: VOICER_DEFAULT_VOICE)")
 	rootCmd.Flags().StringArrayVar(&config.SpeakerVoiceOverrides, "speaker-voice", nil,
 		"Speaker voice mapping such as 'Speaker 1=Anna'; repeat for multiple speakers (env: VOICER_SPEAKER_VOICES)")
 	rootCmd.Flags().StringVarP(&config.APIKeyFile, "key-file", "k", defaultAPIKeyFile, "File containing ElevenLabs API key")
@@ -620,10 +620,11 @@ func main() {
 
 // voiceIDMap maps voice names to ElevenLabs voice IDs
 var voiceIDMap = map[string]string{
-	"Anna":   "sx8pHRzXdQfuUYPGFK7X",
-	"Sophia": "LtPsVjX1k0Kl4StEMZPK",
-	"Karol":  "CpXHPGrpEmAzh8JTmnO8",
-	"Greg":   "7yYaoUVdbFZtJwHZqW9F",
+	"Anna":      "sx8pHRzXdQfuUYPGFK7X",
+	"Sophia":    "LtPsVjX1k0Kl4StEMZPK",
+	"Karol":     "CpXHPGrpEmAzh8JTmnO8",
+	"Greg":      "vTdXuGkq3ozMNBhP2Hz7",
+	"GregClone": "7yYaoUVdbFZtJwHZqW9F",
 }
 
 func floatPtr(value float64) *float64 {
@@ -707,14 +708,14 @@ func voiceSettingsForVoice(voice string, defaultSpeed float64) VoiceSettings {
 
 	gregSpeed := defaultSpeed
 	if gregSpeed == 1.0 {
-		gregSpeed = 1.12
+		gregSpeed = 1.0
 	}
 	settings.setSpeed(envFloatOrDefault("VOICER_GREG_SPEED", gregSpeed))
-	settings.Stability = floatPtr(envFloatOrDefault("VOICER_GREG_STABILITY", 0.70))
+	settings.Stability = floatPtr(envFloatOrDefault("VOICER_GREG_STABILITY", 0.50))
 	settings.SimilarityBoost = floatPtr(envFloatFromNamesOrDefault([]string{
 		"VOICER_GREG_SIMILARITY_BOOST",
 		"VOICER_GREG_SIMILARITY",
-	}, 0.85))
+	}, 0.75))
 	settings.Style = floatPtr(envFloatOrDefault("VOICER_GREG_STYLE", 0.0))
 	settings.UseSpeakerBoost = boolPtr(envBoolOrDefault("VOICER_GREG_SPEAKER_BOOST", true))
 	return settings

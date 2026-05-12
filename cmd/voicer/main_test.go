@@ -72,7 +72,7 @@ func TestBuildAudioSegmentsAssignsSpeakerVoices(t *testing.T) {
 	}
 }
 
-func TestBuildAudioSegmentsUsesConservativeGregVoiceSettings(t *testing.T) {
+func TestBuildAudioSegmentsUsesRobopastorGregVoiceSettings(t *testing.T) {
 	t.Setenv("VOICER_SPEAKER_VOICES", "")
 	t.Setenv("VOICER_SPEAKER_2_VOICE", "")
 	clearGregVoiceSettingsEnv(t)
@@ -99,29 +99,32 @@ func TestBuildAudioSegmentsUsesConservativeGregVoiceSettings(t *testing.T) {
 	if len(segments) != 1 {
 		t.Fatalf("expected 1 segment, got %d", len(segments))
 	}
+	if getVoiceID(segments[0].Voice) != "vTdXuGkq3ozMNBhP2Hz7" {
+		t.Fatalf("expected Greg to resolve to robopastor voice, got %q", getVoiceID(segments[0].Voice))
+	}
 	settings := segments[0].Settings
-	assertFloatPtr(t, settings.Speed, 1.12, "speed")
-	assertFloatPtr(t, settings.Stability, 0.70, "stability")
-	assertFloatPtr(t, settings.SimilarityBoost, 0.85, "similarity_boost")
+	assertFloatPtr(t, settings.Speed, 1.0, "speed")
+	assertFloatPtr(t, settings.Stability, 0.50, "stability")
+	assertFloatPtr(t, settings.SimilarityBoost, 0.75, "similarity_boost")
 	assertFloatPtr(t, settings.Style, 0.0, "style")
 	if settings.UseSpeakerBoost == nil || !*settings.UseSpeakerBoost {
 		t.Fatalf("expected speaker boost to be true, got %#v", settings.UseSpeakerBoost)
 	}
-	if segments[0].Speed != 1.12 {
-		t.Fatalf("expected segment speed 1.12, got %.2f", segments[0].Speed)
+	if segments[0].Speed != 1.0 {
+		t.Fatalf("expected segment speed 1.0, got %.2f", segments[0].Speed)
 	}
 }
 
 func TestChecksumChangesWithVoiceSettings(t *testing.T) {
 	base := VoiceSettings{
-		Speed: floatPtr(1.12),
+		Speed: floatPtr(1.0),
 	}
 	stable := VoiceSettings{
-		Stability:       floatPtr(0.70),
-		SimilarityBoost: floatPtr(0.85),
+		Stability:       floatPtr(0.50),
+		SimilarityBoost: floatPtr(0.75),
 		Style:           floatPtr(0.0),
 		UseSpeakerBoost: boolPtr(true),
-		Speed:           floatPtr(1.12),
+		Speed:           floatPtr(1.0),
 	}
 
 	baseChecksum := calculateChecksum("text", "prev", "next", voiceIDMap["Greg"], base)
