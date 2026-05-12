@@ -19,6 +19,7 @@ CONTENT_DIR="${CONTENT_DIR:-$PROJECT_ROOT/content}"
 FORCE_REBUILD="${FORCE_REBUILD:-false}"
 SKIP_VALIDATION="${SKIP_VALIDATION:-false}"
 SKIP_AUDIO="${SKIP_AUDIO:-false}"
+AUDIO_TRANSCRIPT_VALIDATION="${AUDIO_TRANSCRIPT_VALIDATION:-false}"
 
 # Check if ELEVENLABS_API_KEY is set
 if [ "$SKIP_AUDIO" != "true" ] && [ -z "$ELEVENLABS_API_KEY" ]; then
@@ -38,6 +39,7 @@ usage() {
     echo "  -f, --force        Force rebuild everything"
     echo "  -s, --skip-validation  Skip pre-generation validation"
     echo "  -a, --skip-audio   Skip audio generation (use existing)"
+    echo "  --audio-transcript-validation  Run ASR transcript validation after audio generation"
     echo "  -h, --help         Show this help"
     echo ""
     echo "Examples:"
@@ -61,6 +63,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         -a|--skip-audio)
             SKIP_AUDIO=true
+            shift
+            ;;
+        --audio-transcript-validation)
+            AUDIO_TRANSCRIPT_VALIDATION=true
             shift
             ;;
         -h|--help)
@@ -193,6 +199,16 @@ for TOPIC_PATH in "${TOPICS[@]}"; do
         echo -e "${RED}❌ Output validation failed${NC}"
         FAILED_TOPICS+=("$TOPIC_PATH")
         continue
+    fi
+
+    if [ "$AUDIO_TRANSCRIPT_VALIDATION" = "true" ]; then
+        echo ""
+        echo -e "${YELLOW}[extra] Validating audio transcript...${NC}"
+        if ! python3 scripts/validate_audio_transcript.py "$TOPIC_PATH"; then
+            echo -e "${RED}❌ Audio transcript validation failed${NC}"
+            FAILED_TOPICS+=("$TOPIC_PATH")
+            continue
+        fi
     fi
 
     # Update manifest

@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"time"
 
@@ -25,20 +26,21 @@ import (
 )
 
 type Config struct {
-	VTTFile       string
-	DefaultVoice  string
-	APIKeyFile    string
-	TempDir       string
-	OutputFile    string
-	Limit         int
-	Padding       time.Duration
-	VoiceMappings map[string]string
-	DryRun        bool
-	S3Bucket      string  // New S3 bucket parameter
-	OutputFormat  string  // New parameter for output format
-	AutoPad       bool    // Automatically add sufficient padding
-	AutoSpeed     bool    // Automatically speed up segments that are too long
-	Speed         float64 // Default speed for all segments
+	VTTFile               string
+	DefaultVoice          string
+	APIKeyFile            string
+	TempDir               string
+	OutputFile            string
+	Limit                 int
+	Padding               time.Duration
+	VoiceMappings         map[string]string
+	SpeakerVoiceOverrides []string
+	DryRun                bool
+	S3Bucket              string  // New S3 bucket parameter
+	OutputFormat          string  // New parameter for output format
+	AutoPad               bool    // Automatically add sufficient padding
+	AutoSpeed             bool    // Automatically speed up segments that are too long
+	Speed                 float64 // Default speed for all segments
 }
 
 // PCMAudio represents decoded PCM audio data
@@ -52,6 +54,10 @@ type AudioSegment struct {
 	StartTime time.Duration
 	EndTime   time.Duration
 	Text      string
+	PrevText  string
+	NextText  string
+	Speaker   string
+	Voice     string
 	Checksum  string  // Added checksum field
 	Speed     float64 // Speed factor for this segment (default 1.0)
 }
@@ -70,6 +76,12 @@ type TTSRequest struct {
 	VoiceSettings *VoiceSettings `json:"voice_settings,omitempty"`
 	OutputFormat  string         `json:"output_format,omitempty"` // This is a query param, not in the JSON. It shouldn't be here.
 }
+
+var (
+	speakerPrefixRe = regexp.MustCompile(`(?i)^\s*(Speaker\s+\d+)\s*:\s*(.*)$`)
+	vttVoiceRe      = regexp.MustCompile(`(?i)^\s*<v\s+([^>]+)>(.*)$`)
+	itilRe          = regexp.MustCompile(`(?i)\bITIL\b`)
+)
 
 // rawPCMToPCMAudio converts a raw PCM byte slice (16-bit, little-endian) into a PCMAudio struct.
 func rawPCMToPCMAudio(raw []byte, sampleRate int) (*PCMAudio, error) {
@@ -453,6 +465,10 @@ func printSegmentInfo(segments []AudioSegment) {
 		fmt.Printf("  Start Time: %v\n", segment.StartTime)
 		fmt.Printf("  End Time: %v\n", segment.EndTime)
 		fmt.Printf("  Duration: %v\n", segment.EndTime-segment.StartTime)
+		if segment.Speaker != "" {
+			fmt.Printf("  Speaker: %s\n", segment.Speaker)
+		}
+		fmt.Printf("  Voice: %s\n", segment.Voice)
 		if segment.Speed != 1.0 {
 			fmt.Printf("  Speed: %.2f\n", segment.Speed)
 		}
@@ -563,6 +579,8 @@ func main() {
 		defaultVoice = "Sophia"
 	}
 	rootCmd.Flags().StringVarP(&config.DefaultVoice, "voice", "d", defaultVoice, "Voice name (Sophia, Karol, Greg) or ElevenLabs voice ID (env: VOICER_DEFAULT_VOICE)")
+	rootCmd.Flags().StringArrayVar(&config.SpeakerVoiceOverrides, "speaker-voice", nil,
+		"Speaker voice mapping such as 'Speaker 1=Sophia'; repeat for multiple speakers (env: VOICER_SPEAKER_VOICES)")
 	rootCmd.Flags().StringVarP(&config.APIKeyFile, "key-file", "k", defaultAPIKeyFile, "File containing ElevenLabs API key")
 	rootCmd.Flags().StringVarP(&config.TempDir, "temp-dir", "t", defaultTempDir, "Temporary directory for audio segments")
 	rootCmd.Flags().IntVarP(&config.Limit, "limit", "l", 0, "Limit number of segments to process (0 for unlimited)")
@@ -611,6 +629,154 @@ func getVoiceID(nameOrID string) string {
 	return nameOrID
 }
 
+func resolveSpeakerVoices(config Config) map[string]string {
+	speakerVoices := map[string]string{
+		canonicalSpeakerKey("Speaker 1"): envOrDefault("VOICER_SPEAKER_1_VOICE", config.DefaultVoice),
+		canonicalSpeakerKey("Speaker 2"): envOrDefault("VOICER_SPEAKER_2_VOICE", "Greg"),
+	}
+
+	if envSpecs := strings.TrimSpace(os.Getenv("VOICER_SPEAKER_VOICES")); envSpecs != "" {
+		for _, spec := range strings.Split(envSpecs, ",") {
+			applySpeakerVoiceSpec(speakerVoices, spec)
+		}
+	}
+
+	for _, spec := range config.SpeakerVoiceOverrides {
+		applySpeakerVoiceSpec(speakerVoices, spec)
+	}
+
+	return speakerVoices
+}
+
+func envOrDefault(name, fallback string) string {
+	value := strings.TrimSpace(os.Getenv(name))
+	if value == "" {
+		return fallback
+	}
+	return value
+}
+
+func applySpeakerVoiceSpec(speakerVoices map[string]string, spec string) {
+	parts := strings.SplitN(spec, "=", 2)
+	if len(parts) != 2 {
+		return
+	}
+	speaker := canonicalSpeakerKey(parts[0])
+	voice := strings.TrimSpace(parts[1])
+	if speaker == "" || voice == "" {
+		return
+	}
+	speakerVoices[speaker] = voice
+}
+
+func canonicalSpeakerKey(label string) string {
+	label = strings.TrimSpace(strings.TrimSuffix(label, ":"))
+	fields := strings.Fields(label)
+	if len(fields) == 0 {
+		return ""
+	}
+	if strings.EqualFold(fields[0], "speaker") && len(fields) > 1 {
+		return "speaker " + fields[1]
+	}
+	return strings.ToLower(strings.Join(fields, " "))
+}
+
+func voiceForSpeaker(speaker string, speakerVoices map[string]string, defaultVoice string) string {
+	if voice, ok := speakerVoices[canonicalSpeakerKey(speaker)]; ok && strings.TrimSpace(voice) != "" {
+		return strings.TrimSpace(voice)
+	}
+	return defaultVoice
+}
+
+func parseSpokenLine(line string) (speaker string, text string) {
+	line = strings.TrimSpace(line)
+	if line == "" {
+		return "", ""
+	}
+	if match := vttVoiceRe.FindStringSubmatch(line); match != nil {
+		return strings.TrimSpace(match[1]), strings.TrimSpace(match[2])
+	}
+	if match := speakerPrefixRe.FindStringSubmatch(line); match != nil {
+		return strings.TrimSpace(match[1]), strings.TrimSpace(match[2])
+	}
+	return "", line
+}
+
+func normalizeSpeechText(text string) string {
+	text = strings.TrimSpace(text)
+	if match := speakerPrefixRe.FindStringSubmatch(text); match != nil {
+		text = strings.TrimSpace(match[2])
+	}
+	text = itilRe.ReplaceAllString(text, "eye-till")
+	return strings.TrimSpace(text)
+}
+
+func extractSubtitleTextAndSpeaker(item *astisub.Item) (string, string) {
+	var speaker string
+	textParts := make([]string, 0)
+	for _, line := range item.Lines {
+		var lineText strings.Builder
+		for _, lineItem := range line.Items {
+			lineText.WriteString(lineItem.Text)
+		}
+		currentSpeaker, currentText := parseSpokenLine(lineText.String())
+		if currentSpeaker == "" && line.VoiceName != "" {
+			currentSpeaker = line.VoiceName
+		}
+		if currentSpeaker != "" && speaker == "" {
+			speaker = currentSpeaker
+		}
+		currentText = normalizeSpeechText(currentText)
+		if currentText != "" {
+			textParts = append(textParts, currentText)
+		}
+	}
+	return strings.TrimSpace(strings.Join(textParts, " ")), speaker
+}
+
+func buildAudioSegments(subs *astisub.Subtitles, config Config) []AudioSegment {
+	speakerVoices := resolveSpeakerVoices(config)
+	fileExt := ".wav"
+	if config.OutputFormat == "mp3_44100" {
+		fileExt = ".mp3"
+	}
+
+	segments := make([]AudioSegment, 0)
+	for _, item := range subs.Items {
+		text, speaker := extractSubtitleTextAndSpeaker(item)
+		if text == "" {
+			continue
+		}
+		voice := voiceForSpeaker(speaker, speakerVoices, config.DefaultVoice)
+		segments = append(segments, AudioSegment{
+			StartTime: item.StartAt,
+			EndTime:   item.EndAt,
+			Text:      text,
+			Speaker:   speaker,
+			Voice:     voice,
+			Speed:     config.Speed,
+		})
+	}
+
+	if config.Limit > 0 && len(segments) > config.Limit {
+		segments = segments[:config.Limit]
+	}
+
+	for i := range segments {
+		if i > 0 {
+			segments[i].PrevText = segments[i-1].Text
+		}
+		if i < len(segments)-1 {
+			segments[i].NextText = segments[i+1].Text
+		}
+		voiceID := getVoiceID(segments[i].Voice)
+		segments[i].Checksum = calculateChecksum(segments[i].Text, segments[i].PrevText, segments[i].NextText, voiceID, segments[i].Speed)
+		segments[i].Path = filepath.Join(config.TempDir, segments[i].Checksum+fileExt)
+	}
+
+	return segments
+}
+
 func run(config Config) error {
 	// If S3 bucket is not specified, check environment variable
 	if config.S3Bucket == "" {
@@ -636,75 +802,7 @@ func run(config Config) error {
 	}
 
 	// Process subtitles and generate audio segments
-	segments := make([]AudioSegment, 0)
-	for i, item := range subs.Items {
-		if config.Limit > 0 && i >= config.Limit {
-			break
-		}
-
-		// Extract text
-		var text string
-		for _, line := range item.Lines {
-			for _, lineItem := range line.Items {
-				// Extract text, removing speaker tags if present
-				currentText := lineItem.Text
-				if strings.HasPrefix(currentText, "<v ") && strings.Contains(currentText, ">") {
-					parts := strings.SplitN(currentText, ">", 2)
-					if len(parts) == 2 {
-						currentText = strings.TrimSpace(parts[1])
-					}
-				}
-				text += " " + currentText
-			}
-		}
-		text = strings.TrimSpace(text)
-
-		// Get previous and next text for context
-		var prevText, nextText string
-		if i > 0 {
-			for _, line := range subs.Items[i-1].Lines {
-				for _, lineItem := range line.Items {
-					prevText += " " + lineItem.Text
-				}
-			}
-			prevText = strings.TrimSpace(prevText)
-		}
-
-		if i < len(subs.Items)-1 {
-			for _, line := range subs.Items[i+1].Lines {
-				for _, lineItem := range line.Items {
-					nextText += " " + lineItem.Text
-				}
-			}
-			nextText = strings.TrimSpace(nextText)
-		}
-
-		// Use the default speed from config
-		speed := config.Speed
-
-		// Get the actual voice ID and calculate checksum based on text, context, voice and speed
-		voiceID := getVoiceID(config.DefaultVoice)
-		checksum := calculateChecksum(text, prevText, nextText, voiceID, speed)
-
-		// Determine file extension based on output format
-		fileExt := ".wav"
-		if config.OutputFormat == "mp3_44100" {
-			fileExt = ".mp3"
-		}
-
-		// Set path based on checksum
-		audioFile := filepath.Join(config.TempDir, checksum+fileExt)
-
-		// Add segment to our list
-		segments = append(segments, AudioSegment{
-			Path:      audioFile,
-			StartTime: item.StartAt,
-			EndTime:   item.EndAt,
-			Text:      text,
-			Checksum:  checksum,
-			Speed:     speed,
-		})
-	}
+	segments := buildAudioSegments(subs, config)
 
 	// If dry-run is enabled, print segment information and exit
 	if config.DryRun {
@@ -781,18 +879,10 @@ func processSegments(segments []AudioSegment, config Config, apiKey string, subs
 				segment := &segments[i]
 				segment.Speed = newSpeed
 
-				// Generate new checksum for the segment with updated speed
-				var prevText, nextText string
-				if i > 0 {
-					prevText = segments[i-1].Text
-				}
-				if i < len(segments)-1 {
-					nextText = segments[i+1].Text
-				}
 				// Update checksum with new speed and resolved voice ID
-				voiceID := getVoiceID(config.DefaultVoice)
-				segment.Checksum = calculateChecksum(segment.Text, prevText, nextText, voiceID, newSpeed)
-			
+				voiceID := getVoiceID(segment.Voice)
+				segment.Checksum = calculateChecksum(segment.Text, segment.PrevText, segment.NextText, voiceID, newSpeed)
+
 				// Determine file extension based on output format and update path
 				fileExt := ".wav"
 				if config.OutputFormat == "mp3_44100" {
@@ -881,19 +971,19 @@ func processSegment(segment *AudioSegment, i, totalSegments int, config Config, 
 	}
 
 	// Add previous and next text for context
-	if i > 0 {
-		ttsRequest.PreviousText = segment.Text
+	if segment.PrevText != "" {
+		ttsRequest.PreviousText = segment.PrevText
 	}
-	if i < totalSegments-1 {
-		ttsRequest.NextText = segment.Text
+	if segment.NextText != "" {
+		ttsRequest.NextText = segment.NextText
 	}
 
 	// Get the actual voice ID from the name or ID
-	voiceID := getVoiceID(config.DefaultVoice)
-	
+	voiceID := getVoiceID(segment.Voice)
+
 	// Generate audio
 	fmt.Printf("Generating audio for segment %d/%d (from %v to %v) in %s format using voice %s... %s\n",
-		i+1, totalSegments, segment.StartTime, segment.EndTime, config.OutputFormat, config.DefaultVoice, segment.Text)
+		i+1, totalSegments, segment.StartTime, segment.EndTime, config.OutputFormat, segment.Voice, segment.Text)
 
 	audioData, err := textToSpeech(apiKey, voiceID, ttsRequest)
 	if err != nil {

@@ -20,13 +20,18 @@ type Config struct {
 }
 
 type Narrative struct {
-	Path     string
-	Text     string
-	WordCount int
-	Duration time.Duration
-	StartTime time.Duration
-	EndTime   time.Duration
+	Path       string
+	SlideIndex int
+	TurnIndex  int
+	Speaker    string
+	Text       string
+	WordCount  int
+	Duration   time.Duration
+	StartTime  time.Duration
+	EndTime    time.Duration
 }
+
+var speakerPrefixRe = regexp.MustCompile(`(?i)^\s*(Speaker\s+\d+)\s*:\s*(.*)$`)
 
 func main() {
 	var config Config
@@ -74,31 +79,47 @@ func run(config Config) error {
 	narratives := make([]Narrative, 0, len(files))
 	var cumulativeTime time.Duration = 0
 
-	for _, file := range files {
+	for fileIndex, file := range files {
 		content, err := os.ReadFile(file)
 		if err != nil {
 			return fmt.Errorf("failed to read %s: %v", file, err)
 		}
 
-		text := string(content)
-		text = cleanMarkdown(text)
-		wordCount := countWords(text)
-
-		// Calculate duration based on words per minute
-		durationSeconds := float64(wordCount) / config.WordsPerMinute * 60.0
-		duration := time.Duration(durationSeconds * float64(time.Second))
-
-		narrative := Narrative{
-			Path:      file,
-			Text:      text,
-			WordCount: wordCount,
-			Duration:  duration,
-			StartTime: cumulativeTime,
-			EndTime:   cumulativeTime + duration,
+		text := cleanMarkdown(string(content))
+		turns := splitSpeakerTurns(file, text)
+		fileWordCount := 0
+		for _, turn := range turns {
+			fileWordCount += turn.WordCount
+		}
+		if fileWordCount == 0 {
+			fileWordCount = 1
 		}
 
-		narratives = append(narratives, narrative)
-		cumulativeTime = narrative.EndTime
+		// Preserve one slide-sized timing block per narrative file, but emit
+		// separate WebVTT cues for each speaker turn inside that block.
+		durationSeconds := float64(fileWordCount) / config.WordsPerMinute * 60.0
+		fileDuration := time.Duration(durationSeconds * float64(time.Second))
+		fileStart := cumulativeTime
+		fileEnd := fileStart + fileDuration
+		turnStart := fileStart
+
+		for i, turn := range turns {
+			turnDuration := time.Duration(float64(fileDuration) * float64(turn.WordCount) / float64(fileWordCount))
+			turnEnd := turnStart + turnDuration
+			if i == len(turns)-1 {
+				turnEnd = fileEnd
+				turnDuration = turnEnd - turnStart
+			}
+			turn.SlideIndex = fileIndex + 1
+			turn.TurnIndex = i + 1
+			turn.StartTime = turnStart
+			turn.EndTime = turnEnd
+			turn.Duration = turnDuration
+			narratives = append(narratives, turn)
+			turnStart = turnEnd
+		}
+
+		cumulativeTime = fileEnd
 	}
 
 	// Validate if requested
@@ -110,11 +131,11 @@ func run(config Config) error {
 				return fmt.Errorf("failed to count slides: %v", err)
 			}
 
-			if slideCount != len(narratives) {
-				return fmt.Errorf("validation failed: %d slides but %d narratives", slideCount, len(narratives))
+			if slideCount != len(files) {
+				return fmt.Errorf("validation failed: %d slides but %d narratives", slideCount, len(files))
 			}
 
-			fmt.Printf("Validation passed: %d slides match %d narratives\n", slideCount, len(narratives))
+			fmt.Printf("Validation passed: %d slides match %d narratives\n", slideCount, len(files))
 		}
 	}
 
@@ -154,6 +175,72 @@ func cleanMarkdown(text string) string {
 	text = re.ReplaceAllString(text, "$1")
 
 	return strings.TrimSpace(text)
+}
+
+func splitSpeakerTurns(path string, text string) []Narrative {
+	lines := strings.Split(text, "\n")
+	turns := make([]Narrative, 0)
+	var speaker string
+	var textParts []string
+
+	flush := func() {
+		turnText := strings.TrimSpace(strings.Join(textParts, " "))
+		if turnText == "" {
+			textParts = nil
+			return
+		}
+		turns = append(turns, Narrative{
+			Path:      path,
+			Speaker:   speaker,
+			Text:      turnText,
+			WordCount: countWords(turnText),
+		})
+		textParts = nil
+	}
+
+	for _, line := range lines {
+		line = strings.TrimSpace(line)
+		if line == "" {
+			continue
+		}
+		if match := speakerPrefixRe.FindStringSubmatch(line); match != nil {
+			flush()
+			speaker = canonicalSpeakerLabel(match[1])
+			if strings.TrimSpace(match[2]) != "" {
+				textParts = append(textParts, strings.TrimSpace(match[2]))
+			}
+			continue
+		}
+		textParts = append(textParts, line)
+	}
+	flush()
+
+	if len(turns) == 0 && strings.TrimSpace(text) != "" {
+		turns = append(turns, Narrative{
+			Path:      path,
+			Text:      strings.TrimSpace(text),
+			WordCount: countWords(text),
+		})
+	}
+
+	for i := range turns {
+		if turns[i].WordCount == 0 {
+			turns[i].WordCount = 1
+		}
+	}
+
+	return turns
+}
+
+func canonicalSpeakerLabel(label string) string {
+	fields := strings.Fields(strings.TrimSpace(label))
+	if len(fields) == 0 {
+		return ""
+	}
+	if strings.EqualFold(fields[0], "speaker") && len(fields) > 1 {
+		return "Speaker " + fields[1]
+	}
+	return strings.Join(fields, " ")
 }
 
 func countWords(text string) int {
@@ -219,16 +306,26 @@ func generateVTT(narratives []Narrative, outputFile string) error {
 	sb.WriteString("WEBVTT\n\n")
 
 	for i, narrative := range narratives {
-		// VTT entry number
-		sb.WriteString(fmt.Sprintf("%d\n", i+1))
+		// VTT cue identifier. Speaker-turn cues retain their source slide
+		// number so the video assembler can group them back onto one slide.
+		if narrative.SlideIndex > 0 && narrative.TurnIndex > 0 {
+			sb.WriteString(fmt.Sprintf("%d.%d\n", narrative.SlideIndex, narrative.TurnIndex))
+		} else {
+			sb.WriteString(fmt.Sprintf("%d\n", i+1))
+		}
 
 		// Timestamp
 		sb.WriteString(fmt.Sprintf("%s --> %s\n",
 			formatTimestamp(narrative.StartTime),
 			formatTimestamp(narrative.EndTime)))
 
-		// Text content
-		sb.WriteString(narrative.Text)
+		// Text content. Use a WebVTT voice tag so captions and TTS can keep
+		// speaker identity without speaking "Speaker 1" aloud.
+		if narrative.Speaker != "" {
+			sb.WriteString(fmt.Sprintf("<v %s>%s", narrative.Speaker, narrative.Text))
+		} else {
+			sb.WriteString(narrative.Text)
+		}
 		sb.WriteString("\n\n")
 	}
 

@@ -51,6 +51,7 @@ Converts narrative markdown files into WebVTT subtitle files with proper timing.
 - Counts words to estimate speech duration (default: 150 words/minute)
 - Validates narrative count matches slide count
 - Generates properly formatted WebVTT files
+- Splits dialog into one cue per speaker turn with slide-aware cue identifiers such as `3.2`
 
 **Usage:**
 ```bash
@@ -79,6 +80,8 @@ Generates audio narration using ElevenLabs text-to-speech API.
 **Features:**
 - S3 caching with MD5 checksums (avoids regenerating unchanged audio)
 - Context-aware speech (uses previous/next text for natural flow)
+- Speaker-aware narration (`Speaker 1:` defaults to Sophia, `Speaker 2:` defaults to Greg)
+- Pronunciation normalization for course-specific terms such as ITIL
 - Automatic padding calculation
 - Speed adjustment for timing alignment
 - Collision detection and resolution
@@ -94,6 +97,8 @@ bin/voicer \
 **Environment Variables:**
 - `ELEVENLABS_API_KEY` - API key for ElevenLabs
 - `VOICER_S3_BUCKET` - S3 bucket for audio caching (optional)
+- `VOICER_SPEAKER_1_VOICE` / `VOICER_SPEAKER_2_VOICE` - override default speaker voices
+- `VOICER_SPEAKER_VOICES` - comma-separated overrides, for example `Speaker 1=Sophia,Speaker 2=Greg`
 
 ### 4. Video Assembler (`scripts/assemble_video.sh`)
 
@@ -141,13 +146,22 @@ Fast checks after generation:
 - ✓ Video file exists with correct codecs (h264/aac)
 - ✓ A/V sync is within 500ms
 
-### Level 3: Audio Quality Validation (Optional)
+### Level 3: Audio Transcript Validation (Optional)
 
-Requires Whisper for transcription:
+Requires a speech-recognition command such as Whisper:
 
-- Transcribe audio and calculate Word Error Rate (WER)
-- Check for audio clipping or excessive silence
-- Verify segment timing alignment
+- Transcribe the generated audio
+- Compare the transcript with the cleaned narration script
+- Calculate Word Error Rate (WER)
+- Fail if speaker labels such as "speaker one" or "speaker two" appear in the transcript
+
+Enable it with:
+
+```bash
+AUDIO_TRANSCRIPT_VALIDATION=true ./scripts/build_videos.sh content/part-01/overview
+```
+
+Use `AUDIO_TRANSCRIPT_COMMAND` when the ASR command is not the standard `whisper` CLI.
 
 ### Level 4: A/V Sync Validation (Future)
 

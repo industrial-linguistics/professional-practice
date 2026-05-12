@@ -61,12 +61,15 @@ output_file = sys.argv[2]
 with open(vtt_file, 'r') as f:
     content = f.read()
 
-# Parse VTT entries
-entries = []
-pattern = r'(\d+)\n(\d{2}:\d{2}:\d{2}\.\d{3}) --> (\d{2}:\d{2}:\d{2}\.\d{3})'
+# Parse VTT entries. Cue identifiers may be "2.3", meaning the third
+# speaker turn attached to slide 2. Group those turns back onto one slide
+# duration for the ffmpeg concat input.
+entries = {}
+order = []
+pattern = r'(?m)^([0-9]+(?:\.[0-9]+)?)\n(\d{2}:\d{2}:\d{2}\.\d{3}) --> (\d{2}:\d{2}:\d{2}\.\d{3})'
 
 for match in re.finditer(pattern, content):
-    index = int(match.group(1))
+    index = int(match.group(1).split('.')[0])
     start = match.group(2)
     end = match.group(3)
 
@@ -80,14 +83,18 @@ for match in re.finditer(pattern, content):
     end_sec = to_seconds(end)
     duration = end_sec - start_sec
 
-    entries.append((index, duration))
+    if index not in entries:
+        entries[index] = 0.0
+        order.append(index)
+    entries[index] += duration
 
 # Write timing information
 with open(output_file, 'w') as f:
-    for index, duration in entries:
+    for index in order:
+        duration = entries[index]
         f.write(f"{index}\t{duration:.3f}\n")
 
-print(f"Parsed {len(entries)} timing entries")
+print(f"Parsed {sum(1 for _ in re.finditer(pattern, content))} cue(s) for {len(order)} slide timing entries")
 PYTHON_SCRIPT
 
 # Step 2: Create ffmpeg concat file
