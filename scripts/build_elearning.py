@@ -6,6 +6,7 @@ from __future__ import annotations
 import html
 import hashlib
 import json
+import re
 import shutil
 from pathlib import Path
 
@@ -27,6 +28,14 @@ TEXTBOOK = ROOT / "textbook"
 PUBLISHED_TEXTBOOK_FILES = [
     ("main.pdf", "Student A4 PDF"),
 ]
+SPEAKER_DISPLAY_NAMES = {
+    "Speaker 1": "Anna",
+    "Speaker 2": "Greg",
+}
+VTT_TIMESTAMP_RE = re.compile(
+    r"(?P<start>\d{2}:\d{2}:\d{2}\.\d{3})\s+-->\s+"
+    r"(?P<end>\d{2}:\d{2}:\d{2}\.\d{3})"
+)
 
 
 def clean_output() -> None:
@@ -59,6 +68,51 @@ def copy_topic_media(topic: Topic) -> tuple[str | None, str | None]:
     return audio, subtitles
 
 
+def vtt_seconds(timestamp: str) -> float:
+    hours, minutes, seconds = timestamp.split(":")
+    return int(hours) * 3600 + int(minutes) * 60 + float(seconds)
+
+
+def slide_timings(topic: Topic) -> list[dict[str, float | int]]:
+    vtt_path = topic.source_path / "subtitles.vtt"
+    if not vtt_path.exists():
+        return []
+
+    timings: dict[int, dict[str, float | int]] = {}
+    lines = vtt_path.read_text(encoding="utf-8").splitlines()
+    for i, line in enumerate(lines):
+        match = VTT_TIMESTAMP_RE.search(line)
+        if not match:
+            continue
+        cue_id = lines[i - 1].strip() if i > 0 else ""
+        cue_match = re.match(r"^(\d+)(?:\.\d+)?$", cue_id)
+        if not cue_match:
+            continue
+        index = int(cue_match.group(1)) - 1
+        if index < 0:
+            continue
+        start = vtt_seconds(match.group("start"))
+        end = vtt_seconds(match.group("end"))
+        existing = timings.get(index)
+        if existing is None:
+            timings[index] = {"index": index, "start": start, "end": end}
+        else:
+            existing["start"] = min(float(existing["start"]), start)
+            existing["end"] = max(float(existing["end"]), end)
+
+    return [timings[i] for i in sorted(timings)]
+
+
+def display_narration(text: str) -> str:
+    for source, display in SPEAKER_DISPLAY_NAMES.items():
+        text = re.sub(
+            rf"(?m)^\s*{re.escape(source)}\s*:",
+            f"{display}:",
+            text,
+        )
+    return text
+
+
 def lesson_payload(topic: Topic, media_base: str, audio: str | None, subtitles: str | None) -> dict:
     return {
         "topicPath": f"{topic.part}/{topic.slug}",
@@ -67,13 +121,14 @@ def lesson_payload(topic: Topic, media_base: str, audio: str | None, subtitles: 
         "mediaBase": media_base,
         "audio": audio,
         "subtitles": subtitles,
+        "slideTimings": slide_timings(topic),
         "slides": [
             {
                 "n": slide.n,
                 "title": slide.title,
                 "html": slide.html,
                 "text": slide.text,
-                "narration": slide.narration,
+                "narration": display_narration(slide.narration),
             }
             for slide in topic.slides
         ],
@@ -126,7 +181,7 @@ def topic_transcript_text(topic: Topic) -> str:
         lines.append(f"Slide {slide.n}: {slide.title}")
         lines.append("")
         lines.append("Narration")
-        lines.append(slide.narration or "[No narration text available.]")
+        lines.append(display_narration(slide.narration) or "[No narration text available.]")
         lines.append("")
         lines.append("On-screen text")
         lines.append(slide.text or "[No on-screen text available.]")
@@ -144,7 +199,7 @@ def topic_transcript_html(topic: Topic) -> str:
             '<section><h3>On-screen</h3>'
             f'<div class="static-slide">{slide.html}</div></section>'
             '<section><h3>Narration</h3>'
-            f"<p>{html.escape(slide.narration or 'No narration text available.')}</p></section>"
+            f"<p>{html.escape(display_narration(slide.narration) or 'No narration text available.').replace(chr(10), '<br>')}</p></section>"
             "</div></article>"
         )
     return TRANSCRIPT_PAGE.format(
@@ -713,6 +768,187 @@ main {
   color: var(--muted);
   font: 700 14px/1.2 Avenir, "Trebuchet MS", sans-serif;
 }
+/* In-slide diagrams: pure HTML/CSS replacements for generated raster art. */
+.slide .diagram {
+  width: 100%;
+  font-family: Avenir, "Trebuchet MS", sans-serif;
+  font-size: clamp(13px, 1.5vw, 16px);
+  line-height: 1.3;
+}
+.slide .diagram-split {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: 24px;
+  align-items: center;
+}
+.slide .diagram .dg-card {
+  padding: .55em .8em;
+  background: white;
+  border: 2px solid var(--slate);
+  border-radius: 10px;
+}
+.slide .diagram .dg-title {
+  display: block;
+  font-weight: 800;
+}
+.slide .diagram .dg-note {
+  display: block;
+  color: var(--muted);
+  font-size: .88em;
+}
+.slide .diagram .dg-arrow {
+  align-self: center;
+  color: var(--slate);
+  font-weight: 800;
+  white-space: nowrap;
+}
+.slide .diagram .dg-caption {
+  margin-top: .9em;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: .92em;
+}
+.slide .diagram .dg-badge {
+  display: inline-block;
+  margin-right: .6em;
+  padding: .2em .7em;
+  color: white;
+  background: var(--slate);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: .88em;
+}
+/* Decision guide: question rows routing to outcome cards. */
+.slide .diagram-decision {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) auto minmax(0, 1fr);
+  gap: .55em .7em;
+  align-items: center;
+}
+.slide .diagram-decision .dg-question {
+  padding: .5em .8em;
+  background: var(--soft);
+  border: 2px solid var(--blue);
+  border-radius: 10px;
+  font-weight: 700;
+}
+.slide .diagram-decision .dg-no {
+  grid-column: 1;
+  justify-self: center;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: .85em;
+}
+/* Escalation staircase with lanes. */
+.slide .diagram-lanes {
+  display: grid;
+  grid-template-columns: 7.5em repeat(3, minmax(0, 1fr));
+  gap: .5em .6em;
+  align-items: center;
+}
+.slide .diagram-lanes .dg-lane {
+  font-weight: 800;
+  color: var(--slate);
+  text-align: right;
+  padding-right: .4em;
+}
+.slide .diagram-lanes .dg-arrow {
+  text-align: right;
+}
+.slide .diagram-lanes .dg-return {
+  grid-column: 2 / -1;
+  padding: .45em .8em;
+  background: var(--soft);
+  border: 2px dashed var(--green);
+  border-radius: 10px;
+  font-weight: 700;
+}
+/* Metric shift rows: current state, arrow, target state. */
+.slide .diagram-shift {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: .5em .7em;
+  align-items: center;
+}
+.slide .diagram-shift .dg-metric {
+  font-weight: 800;
+}
+.slide .diagram-shift .dg-metric .dg-note {
+  font-weight: 400;
+}
+.slide .diagram-shift .dg-current {
+  padding: .4em .8em;
+  text-align: center;
+  background: #fdeaea;
+  border: 2px solid #c0504d;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.slide .diagram-shift .dg-target {
+  padding: .4em .8em;
+  text-align: center;
+  background: #e7f4ef;
+  border: 2px solid var(--green);
+  border-radius: 999px;
+  font-weight: 700;
+}
+/* Pipeline flow: stages joined by arrows, with an optional return path. */
+.slide .diagram-flow {
+  display: flex;
+  align-items: stretch;
+  gap: .45em;
+}
+.slide .diagram-flow .dg-card {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.slide .diagram-flow + .dg-return-path,
+.slide .diagram .dg-return-path {
+  margin-top: .6em;
+  padding: .45em .8em;
+  text-align: right;
+  color: #8a3b38;
+  background: #fdf1f0;
+  border: 2px dashed #c0504d;
+  border-radius: 10px;
+  font-weight: 700;
+}
+/* Milestone timeline: dots along a track with compact labels. */
+.slide .diagram-timeline {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: .4em;
+  text-align: center;
+}
+.slide .diagram-timeline::before {
+  content: "";
+  position: absolute;
+  top: .4em;
+  left: 4%;
+  right: 4%;
+  height: 4px;
+  background: var(--line);
+  border-radius: 999px;
+}
+.slide .diagram-timeline .dg-stop {
+  display: grid;
+  gap: .3em;
+  justify-items: center;
+}
+.slide .diagram-timeline .dg-dot {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #e7f4ef;
+}
+.slide .diagram-timeline .dg-stop:nth-child(even) .dg-dot {
+  background: var(--blue);
+  box-shadow: 0 0 0 3px var(--soft);
+}
 .slide-copy {
   padding: 22px;
 }
@@ -847,10 +1083,49 @@ COURSE_JS = """
   const next = document.getElementById('next-slide');
   const subtitleToggle = document.getElementById('subtitle-toggle');
   const subtitleBox = document.getElementById('subtitle-box');
+  const audio = document.getElementById('audio-player');
   const jumps = Array.from(document.querySelectorAll('.slide-jump'));
+  const slideTimings = (lesson.slideTimings || [])
+    .filter((timing) => Number.isFinite(timing.index) && Number.isFinite(timing.start))
+    .sort((a, b) => a.index - b.index);
   let index = Math.min(Math.max(Number(localStorage.getItem(storageKey)) || 0, 0), Math.max(slides.length - 1, 0));
+  let primedAudioForStoredSlide = false;
+  let pendingAudioSeek = null;
+  let suppressAudioSyncUntil = 0;
 
-  function render() {
+  function timingForSlide(slideIndex) {
+    return slideTimings.find((timing) => timing.index === slideIndex) || null;
+  }
+
+  function slideIndexForTime(seconds) {
+    if (!slideTimings.length) return index;
+    let matched = slideTimings[0].index || 0;
+    for (const timing of slideTimings) {
+      if (seconds + 0.05 >= timing.start) matched = timing.index;
+      if (Number.isFinite(timing.end) && seconds < timing.end - 0.05) break;
+    }
+    return Math.min(Math.max(matched, 0), Math.max(slides.length - 1, 0));
+  }
+
+  function seekAudioToSlide(slideIndex) {
+    if (!audio) return;
+    const timing = timingForSlide(slideIndex);
+    if (!timing) return;
+    const targetTime = Math.max(0, timing.start + 0.01);
+    pendingAudioSeek = targetTime;
+    suppressAudioSyncUntil = Date.now() + 1000;
+    if (audio.readyState === 0) {
+      audio.load();
+    }
+    try {
+      audio.currentTime = targetTime;
+      pendingAudioSeek = null;
+    } catch (error) {
+      // Some browsers reject seeks before metadata is available.
+    }
+  }
+
+  function render(options = {}) {
     const slide = slides[index];
     if (!slide) return;
     if (frame) frame.innerHTML = slide.html || '<section class="slide"><p>Slide content pending.</p></section>';
@@ -864,20 +1139,24 @@ COURSE_JS = """
     jumps.forEach((button, i) => button.classList.toggle('active', i === index));
     if (subtitleBox && !subtitleBox.hidden) subtitleBox.textContent = slide.narration || slide.title || '';
     localStorage.setItem(storageKey, String(index));
+    if (options.seekAudio) seekAudioToSlide(index);
+  }
+
+  function goToSlide(slideIndex, options = {}) {
+    const nextIndex = Math.min(Math.max(slideIndex, 0), Math.max(slides.length - 1, 0));
+    index = nextIndex;
+    render(options);
   }
 
   prev?.addEventListener('click', () => {
-    index = Math.max(0, index - 1);
-    render();
+    goToSlide(index - 1, { seekAudio: true });
   });
   next?.addEventListener('click', () => {
-    index = Math.min(slides.length - 1, index + 1);
-    render();
+    goToSlide(index + 1, { seekAudio: true });
   });
   jumps.forEach((button) => {
     button.addEventListener('click', () => {
-      index = Number(button.dataset.slide || 0);
-      render();
+      goToSlide(Number(button.dataset.slide || 0), { seekAudio: true });
     });
   });
   document.addEventListener('keydown', (event) => {
@@ -891,6 +1170,38 @@ COURSE_JS = """
     subtitleToggle.setAttribute('aria-pressed', String(enabled));
     subtitleBox.hidden = !enabled;
     render();
+  });
+  audio?.addEventListener('play', () => {
+    if (!primedAudioForStoredSlide && audio.currentTime < 0.25 && index > 0) {
+      seekAudioToSlide(index);
+    }
+    primedAudioForStoredSlide = true;
+  });
+  audio?.addEventListener('loadedmetadata', () => {
+    if (pendingAudioSeek === null) return;
+    suppressAudioSyncUntil = Date.now() + 1000;
+    try {
+      audio.currentTime = pendingAudioSeek;
+      pendingAudioSeek = null;
+    } catch (error) {
+      // Leave the pending seek in place; the next metadata/load event can retry.
+    }
+  });
+  audio?.addEventListener('seeked', () => {
+    suppressAudioSyncUntil = 0;
+  });
+  audio?.addEventListener('timeupdate', () => {
+    if (Date.now() < suppressAudioSyncUntil) return;
+    const syncedIndex = slideIndexForTime(audio.currentTime);
+    if (syncedIndex !== index) {
+      goToSlide(syncedIndex);
+    } else if (subtitleBox && !subtitleBox.hidden) {
+      const slide = slides[index];
+      subtitleBox.textContent = slide?.narration || slide?.title || '';
+    }
+  });
+  audio?.addEventListener('ended', () => {
+    goToSlide(slides.length - 1);
   });
 
   async function maybeEnableLocalQa() {

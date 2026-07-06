@@ -46,6 +46,23 @@
 <li>Deploy progressively from dev to prod
 </li>
 </ul>
+<div class="diagram">
+<div class="diagram-flow">
+<div class="dg-card"><span class="dg-title">Commit</span><span class="dg-note">Push code and config</span></div>
+<div class="dg-arrow">&#8594;</div>
+<div class="dg-card"><span class="dg-title">Build</span><span class="dg-note">Clean, versioned artifact</span></div>
+<div class="dg-arrow">&#8594;</div>
+<div class="dg-card"><span class="dg-title">Test</span><span class="dg-note">Unit, integration, lint</span></div>
+<div class="dg-arrow">&#8594;</div>
+<div class="dg-card"><span class="dg-title">Security</span><span class="dg-note">Scans and policy gates</span></div>
+<div class="dg-arrow">&#8594;</div>
+<div class="dg-card"><span class="dg-title">Deploy</span><span class="dg-note">Stage, approve, release</span></div>
+<div class="dg-arrow">&#8594;</div>
+<div class="dg-card"><span class="dg-title">Observe</span><span class="dg-note">Metrics, logs, alerts</span></div>
+</div>
+<div class="dg-return-path">&#8617; Roll back to the previous release if production signals degrade</div>
+<div class="dg-caption"><span class="dg-badge">Fast feedback</span>Every stage either builds confidence or stops the change early. <span class="dg-badge">Build once</span>The same artifact moves through every environment.</div>
+</div>
 </section>
 
 <section class="slide" data-slide="5" data-kind="content" data-title="GitHub Actions example">

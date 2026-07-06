@@ -32,6 +32,7 @@
 
 <section class="slide" data-slide="4" data-kind="content" data-title="Why the distinction matters">
 <h2>Why the distinction matters</h2>
+<div class="diagram diagram-split">
 <ul>
 <li>Incidents drive MTTR metrics
 </li>
@@ -40,5 +41,23 @@
 <li>Clear separation keeps teams efficient
 </li>
 </ul>
-<p>---</p>
+<div class="diagram-decision">
+<div class="dg-question">Is service degraded or unavailable?</div>
+<div class="dg-arrow">yes &#8594;</div>
+<div class="dg-card"><span class="dg-title">Incident</span><span class="dg-note">Restore service fast; track MTTR</span></div>
+<div class="dg-no">no &#8595;</div><div></div><div></div>
+<div class="dg-question">Is it a standard, pre-approved ask?</div>
+<div class="dg-arrow">yes &#8594;</div>
+<div class="dg-card"><span class="dg-title">Service request</span><span class="dg-note">Catalog item; workflow + approvals</span></div>
+<div class="dg-no">no &#8595;</div><div></div><div></div>
+<div class="dg-question">Hunting for an underlying cause?</div>
+<div class="dg-arrow">yes &#8594;</div>
+<div class="dg-card"><span class="dg-title">Problem</span><span class="dg-note">Find the cause; prevent recurrence</span></div>
+<div class="dg-no">no &#8595;</div><div></div><div></div>
+<div class="dg-question">Otherwise: plan it properly</div>
+<div class="dg-arrow">&#8594;</div>
+<div class="dg-card"><span class="dg-title">Change</span><span class="dg-note">Risk review; implementation window</span></div>
+</div>
+</div>
+<div class="diagram"><div class="dg-caption">One question at a time routes new work into the right ITIL practice.</div></div>
 </section>

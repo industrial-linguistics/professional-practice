@@ -86,6 +86,9 @@ body {{
 .slide img {{
   max-height: 690px;
 }}
+.slide .diagram {{
+  font-size: 28px;
+}}
 </style>
 </head>
 <body>

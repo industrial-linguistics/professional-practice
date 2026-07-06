@@ -32,6 +32,8 @@
 
 <section class="slide" data-slide="4" data-kind="content" data-title="Using error budgets">
 <h2>Using error budgets</h2>
+<div class="diagram diagram-split">
+<div>
 <ul>
 <li>Track burn rate over time
 </li>
@@ -40,6 +42,29 @@
 <li>Foster data-driven reliability conversations
 </li>
 </ul>
+<div class="dg-caption">Green: keep shipping. Amber: slow risky changes. Red: freeze and recover.</div>
+</div>
+<svg viewBox="0 0 460 300" role="img" aria-label="Error budget burn-down chart with healthy, caution and freeze zones and two example burn lines" style="width:100%;height:auto;">
+<rect x="60" y="20" width="380" height="90" fill="#e7f4ef"/>
+<rect x="60" y="110" width="380" height="80" fill="#fdf3dd"/>
+<rect x="60" y="190" width="380" height="70" fill="#fdeaea"/>
+<line x1="60" y1="20" x2="60" y2="260" stroke="#243447" stroke-width="2"/>
+<line x1="60" y1="260" x2="440" y2="260" stroke="#243447" stroke-width="2"/>
+<text x="52" y="26" text-anchor="end" font-size="13" fill="#243447">100%</text>
+<text x="52" y="194" text-anchor="end" font-size="13" fill="#243447">25%</text>
+<text x="52" y="264" text-anchor="end" font-size="13" fill="#243447">0%</text>
+<text x="105" y="280" text-anchor="middle" font-size="13" fill="#243447">Week 2</text>
+<text x="250" y="280" text-anchor="middle" font-size="13" fill="#243447">Week 6</text>
+<text x="395" y="280" text-anchor="middle" font-size="13" fill="#243447">Week 12</text>
+<text x="430" y="40" text-anchor="end" font-size="13" fill="#0f766e" font-weight="bold">Healthy</text>
+<text x="70" y="130" font-size="13" fill="#b7791f" font-weight="bold">Caution: slow down</text>
+<text x="70" y="210" font-size="13" fill="#c0504d" font-weight="bold">Freeze and recover</text>
+<polyline points="60,30 155,55 250,85 345,120 440,150" fill="none" stroke="#2f5f98" stroke-width="4"/>
+<polyline points="60,35 130,60 175,150 220,165 280,235 350,250 440,255" fill="none" stroke="#c0504d" stroke-width="4"/>
+<text x="330" y="105" font-size="13" fill="#2f5f98" font-weight="bold">steady burn</text>
+<text x="295" y="205" font-size="13" fill="#c0504d" font-weight="bold">spiky burn</text>
+</svg>
+</div>
 </section>
 
 <section class="slide" data-slide="5" data-kind="content" data-title="Key takeaway">

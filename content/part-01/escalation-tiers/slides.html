@@ -40,5 +40,24 @@
 <li>Share solutions down the chain
 </li>
 </ul>
-<p>---</p>
+<div class="diagram">
+<div class="diagram-lanes">
+<div class="dg-lane">User</div>
+<div class="dg-card"><span class="dg-title">Issue reported</span></div>
+<div></div><div></div>
+<div class="dg-lane">Tier 1</div>
+<div class="dg-card"><span class="dg-title">Triage + known fixes</span><span class="dg-note">Resolve or escalate</span></div>
+<div></div><div></div>
+<div class="dg-lane">Tier 2</div>
+<div class="dg-arrow">escalate &#8600;</div>
+<div class="dg-card"><span class="dg-title">Deep diagnostics</span><span class="dg-note">Broader access, tougher faults</span></div>
+<div></div>
+<div class="dg-lane">Tier 3 / Vendor</div>
+<div></div>
+<div class="dg-arrow">escalate &#8600;</div>
+<div class="dg-card"><span class="dg-title">Engineering or vendor fix</span><span class="dg-note">Root cause resolved</span></div>
+<div class="dg-lane"></div>
+<div class="dg-return">&#8617; Fix documented in the knowledge base, so Tier 1 resolves it next time</div>
+</div>
+</div>
 </section>
