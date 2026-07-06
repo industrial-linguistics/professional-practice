@@ -53,13 +53,19 @@ Key Resources
 - ServiceNow "Student Path" sandbox
 - Moodle book of short OSS & Indigenous data-rights readings curated with community partners
 
-# Slide Rendering Pipeline
+# Course Rendering Pipeline
 
-The repository includes scripts that convert slide decks and narratives into finished video lessons.
-Each slide's text is sent to ElevenLabs for narration and cached in S3. Slides are exported to PNG
-using Marp, then stitched into a silent video. The cached audio segments are concatenated and merged
-with the video to create the final lesson, which can be uploaded along with quiz material and packaged
-into SCORM or e-book formats. The step-by-step checklist is maintained in [TODO.md](TODO.md).
+The repository now uses editable HTML slide source. Each topic has
+`slides.html` plus a `narratives/` directory. The HTML source builds the
+self-paced learner site in `output/elearning/` and the companion book in
+`textbook/`. The textbook build emits `textbook/main.pdf` for A4 student
+printing and `textbook/main-amazon.pdf` for 6x9 inch print-on-demand checks.
+Narratives remain separate because they drive audio generation.
+
+For video/run-sheet workflows, `scripts/render_html_slides.py` screenshots the
+HTML slides with headless Chrome, then the existing VTT, ElevenLabs and FFmpeg
+tools can produce audio/video outputs. The step-by-step checklist is maintained
+in [TODO.md](TODO.md).
 
 # Raw material
 
@@ -77,4 +83,5 @@ For a list of outstanding tasks and ideas, see [TODO.md](TODO.md).
 
 ## Development Environment
 
-Run `./envsetup.sh` to install Node.js, npm, ffmpeg, Go, `jq` and the Marp CLI.
+Run `./envsetup.sh` to install the local build tools, including Go, FFmpeg,
+`jq`, Python and Chromium/Chrome for HTML slide screenshots.

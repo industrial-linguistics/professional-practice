@@ -16,6 +16,7 @@ This document describes the layout of the repository and the purpose of each dir
 │   └── part-08/
 ├── assets/            # Shared images, audio, and other static assets
 ├── scripts/           # Helper scripts for automation or local setup
+├── textbook/          # Generated LaTeX textbook and PDFs from course source
 ├── docs/              # Design and planning documentation
 ├── internal/          # Non-exported Go packages
 ├── pkg/               # Reusable Go packages
@@ -24,7 +25,9 @@ This document describes the layout of the repository and the purpose of each dir
 └── ...                # GitHub workflows and other configuration
 ```
 
-The `content` directory will hold all learning material organised by part. Slide decks, narratives and exercises for each part live under their respective subdirectory.
+The `content` directory holds all learning material organised by part. HTML slide source, narratives and exercises for each part live under their respective subdirectory.
+
+Generated learner output is written under `output/`, which is ignored by git. The LaTeX textbook project is generated into `textbook/` so the source and PDFs can be reviewed directly from the repository.
 
 Use `assets` for images, audio files, and any other media shared across parts. Automation and utility scripts belong in `scripts`.
 

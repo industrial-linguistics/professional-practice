@@ -28,7 +28,7 @@ TEMP_DIR="$OUTPUT_DIR/temp"
 # Validate inputs
 if [ ! -d "$SLIDES_DIR" ]; then
     echo "Error: Slides directory not found: $SLIDES_DIR"
-    echo "Run 'go run cmd/render-slides' first"
+    echo "Run 'python3 scripts/render_html_slides.py $TOPIC_PATH' first"
     exit 1
 fi
 

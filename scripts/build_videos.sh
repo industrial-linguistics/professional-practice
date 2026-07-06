@@ -20,11 +20,12 @@ FORCE_REBUILD="${FORCE_REBUILD:-false}"
 SKIP_VALIDATION="${SKIP_VALIDATION:-false}"
 SKIP_AUDIO="${SKIP_AUDIO:-false}"
 AUDIO_TRANSCRIPT_VALIDATION="${AUDIO_TRANSCRIPT_VALIDATION:-false}"
+ELEVENLABS_KEY_FILE="${ELEVENLABS_KEY_FILE:-$HOME/.elevenlabs.mq.io}"
 
 # Check if ELEVENLABS_API_KEY is set
 if [ "$SKIP_AUDIO" != "true" ] && [ -z "$ELEVENLABS_API_KEY" ]; then
-    if [ -f "$HOME/.elevenlabs.io" ]; then
-        export ELEVENLABS_API_KEY=$(cat "$HOME/.elevenlabs.io")
+    if [ -f "$ELEVENLABS_KEY_FILE" ]; then
+        export ELEVENLABS_API_KEY=$(tr -d '\r\n' < "$ELEVENLABS_KEY_FILE")
     else
         echo -e "${YELLOW}Warning: ELEVENLABS_API_KEY not set. Set SKIP_AUDIO=true to skip audio generation.${NC}"
     fi
@@ -112,7 +113,6 @@ fi
 echo ""
 echo -e "${BLUE}Building Go tools...${NC}"
 go build -o bin/vtt-generator ./cmd/vtt-generator
-go build -o bin/render-slides ./cmd/render-slides
 go build -o bin/voicer ./cmd/voicer
 
 # Track results
@@ -155,8 +155,8 @@ for TOPIC_PATH in "${TOPICS[@]}"; do
 
     # Step 3: Render slides
     echo ""
-    echo -e "${YELLOW}[3/6] Rendering slides to PNG...${NC}"
-    if ! ./bin/render-slides "$TOPIC_PATH"; then
+    echo -e "${YELLOW}[3/6] Rendering HTML slides to PNG...${NC}"
+    if ! python3 scripts/render_html_slides.py "$TOPIC_PATH"; then
         echo -e "${RED}❌ Slide rendering failed${NC}"
         FAILED_TOPICS+=("$TOPIC_PATH")
         continue

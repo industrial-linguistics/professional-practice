@@ -152,6 +152,11 @@ These need to go into week 5 when talking about contract SLAs I guess. Unless 
 
 Each part is rendered separately. We should have intelligent GitHub workflows so that we can automate the whole process, but only do the minimal amount of audio re-rendering (and consequential other re-rendering) when things change.
 
+- [x] **Build a first-class e-learning surface**
+  - Follow the phased plan in `docs/e-learning-roadmap.md`.
+  - Generate `output/elearning/` from HTML slides, narratives, subtitles and videos.
+  - Publish learner-facing topic pages with progress, transcript, audio/video and resource links.
+  - Assemble deployable courseware under `output/site/`.
 - [ ] **Set up automation workflow**
   - Configure GitHub Actions to trigger the build process.
   - Ensure minimal re-rendering by checking for changes in source content before rebuilding assets.
@@ -160,8 +165,8 @@ Each part is rendered separately. We should have intelligent GitHub workflows so
   - Save the generated audio file using a checksum of `(normalized text, context, voice ID)`.
 - [ ] **Audio caching**
   - Use the checksum as an S3 path and skip rendering when the file already exists.
-- [ ] **Slide rendering**
-  - Convert slide decks to PNG images using Marp.
+- [x] **Slide rendering**
+  - Convert HTML slide sections to PNG images using headless Chrome.
 - [ ] **Timing file generation**
   - Determine audio length for each slide.
   - Produce `slides.txt` entries (e.g., `file 'slide-01.png'`, `duration 5`).
@@ -177,7 +182,10 @@ Each part is rendered separately. We should have intelligent GitHub workflows so
   - Transform quiz questions into the required format for the learning platform.
 - [ ] **E-learning package generation**
   - Package the videos and questions into SCORM or another e-learning format.
-- [ ] **Automated test suite**
-  - Build tests that transcribe the rendered audio and verify it matches the text source.
-- [ ] **E-book generation**
-  - Compile all parts into a single e-book (PDF and EPUB).
+- [x] **Automated test suite**
+  - Add `scripts/test_course.sh` plus source, generated-link and protected-auth smoke validation.
+  - Future audio-specific tests still need rendered-audio transcription checks.
+- [x] **E-book generation**
+  - Compile all parts into the generated LaTeX project under `textbook/`.
+  - Build `textbook/main.pdf` for A4 student printing and `textbook/main-amazon.pdf` for print-on-demand checks.
+  - EPUB export remains future packaging work.

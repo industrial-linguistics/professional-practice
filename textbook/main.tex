@@ -1,0 +1,71 @@
+\documentclass[11pt,openany]{book}
+\ifdefined\amazontrimsize
+  \usepackage[paperwidth=6in,paperheight=9in,margin=0.72in]{geometry}
+\else
+  \usepackage[a4paper,margin=2.6cm]{geometry}
+\fi
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{makeidx}
+\usepackage{setspace}
+\usepackage[nopatch=footnote]{microtype}
+\usepackage{fvextra}
+\usepackage{xcolor}
+\usepackage{float}
+\DefineVerbatimEnvironment{CodeBlock}{Verbatim}{breaklines=true,breakanywhere=true,fontsize=\small}
+\makeindex
+\setstretch{1.14}
+\setcounter{tocdepth}{1}
+\setlength{\emergencystretch}{3em}
+\sloppy
+\pagestyle{plain}
+\hypersetup{
+  pdftitle={IT Professional Practice},
+  pdfauthor={Greg Baker},
+  hidelinks
+}
+\title{IT Professional Practice\\\large A Practical Course Reader}
+\author{Greg Baker}
+\date{Draft edition}
+\newif\ifcoverpage
+\coverpagetrue
+\ifdefined\omitcoverpage
+  \coverpagefalse
+\fi
+
+\begin{document}
+\ifcoverpage
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{0.12\textheight}
+{\Huge\bfseries IT Professional Practice\par}
+\vspace{1.2em}
+{\Large A Practical Course Reader\par}
+\vfill
+{\large Greg Baker\par}
+{\large Draft edition\par}
+\end{titlepage}
+\fi
+
+\frontmatter
+\tableofcontents
+\mainmatter
+\include{chapters/part-01-itil-4-foundations}
+\include{chapters/part-02-itil-deep-dive}
+\include{chapters/part-03-high-velocity-delivery}
+\include{chapters/part-04-blameless-rca-continuous-improvement}
+\include{chapters/part-05-vendor-msp-crm-lifecycle}
+\include{chapters/part-06-start-ups-small-biz-it}
+\include{chapters/part-07-open-source-indigenous-digital-sovereignty}
+\include{chapters/part-08-project-studio-and-presentations}
+\backmatter
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Index}
+{\footnotesize\raggedright\printindex}
+\end{document}

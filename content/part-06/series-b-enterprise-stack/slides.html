@@ -1,0 +1,139 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: Series B Enterprise Stack -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="Series B Enterprise Stack">
+<h1>Series B Enterprise Stack</h1>
+<p><em>Integrations, controls and cost modelling at ~$20K/month</em></p>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="Why Series B changes the stack">
+<h2>Why Series B changes the stack</h2>
+<ul>
+<li>180–250 person company supporting regulated enterprise customers.
+</li>
+<li>Customers expect SOC 2 Type II evidence, 24/7 support and ironclad SLAs.
+</li>
+<li>Board pressure to forecast spend with 18-month runway discipline.
+</li>
+<li>Tooling now underpins pipeline audits, co-selling and customer onboarding.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="Reference architecture">
+<h2>Reference architecture</h2>
+<ul>
+<li><strong>Salesforce Enterprise + CPQ</strong> anchors revenue, entitlements and renewals.
+</li>
+<li><strong>ServiceNow ITSM/CSM</strong> runs incidents, change and customer support flows.
+</li>
+<li><strong>Central data lakehouse</strong> (Snowflake + dbt) feeds health scores and finance.
+</li>
+<li><strong>Contract lifecycle management (CLM)</strong> orchestrates legal, finance and sales.
+</li>
+<li><strong>SIEM + EDR</strong> stack captures audit-grade logs for security and compliance.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="Monthly spend snapshot (~$20K)">
+<h2>Monthly spend snapshot (~$20K)</h2>
+<table><thead><tr><th>Category</th><th>Tools &amp; assumptions</th><th>Monthly cost</th><th>Rationale</th></tr></thead><tbody><tr><td>Revenue platform</td><td>Salesforce Enterprise (60 seats) + CPQ, Slack + MuleSoft connectors</td><td><strong>$7,200</strong></td><td>Ties ARR, usage and renewals to one source of truth</td></tr><tr><td>Service operations</td><td>ServiceNow ITSM &amp; CSM (30 agents) incl. Virtual Agent</td><td><strong>$3,900</strong></td><td>Meets 24/7 support SLAs with audited workflows</td></tr><tr><td>Security &amp; observability</td><td>Panther SIEM + SentinelOne Complete + Cribl ingestion</td><td><strong>$2,400</strong></td><td>Consolidated threat detection and compliance-ready logs</td></tr><tr><td>Integration fabric</td><td>Workato Enterprise (8 recipes) + Segment Connections</td><td><strong>$1,200</strong></td><td>Bridges go-to-market, product and finance data</td></tr><tr><td>Contract lifecycle</td><td>Ironclad CLM (legal + sales users) + DocuSign CLM</td><td><strong>$1,600</strong></td><td>Speeds redlines, tracks obligations and renewal clauses</td></tr><tr><td>Data &amp; RevOps</td><td>Snowflake, Fivetran Growth, Hightouch Pro, Mode</td><td><strong>$1,150</strong></td><td>Gives RevOps near-real-time performance dashboards</td></tr><tr><td>Compliance &amp; risk</td><td>Drata Enterprise + Whistic vendor assessments</td><td><strong>$950</strong></td><td>Automates evidence, centralises security questionnaires</td></tr><tr><td>Buffer &amp; pilots</td><td>10% reserve for add-on SKUs and implementation partners</td><td><strong>$1,600</strong></td><td>Absorbs seat growth and specialist services</td></tr><tr><td><strong>Total</strong></td><td></td><td><strong>$20,000</strong></td><td>Within Series B operating plan</td></tr></tbody></table>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="Integration map: Salesforce ↔ ServiceNow ↔ SIEM">
+<h2>Integration map: Salesforce ↔ ServiceNow ↔ SIEM</h2>
+<ul>
+<li>Sync accounts and cases: Salesforce Account ↔ ServiceNow Customer Service.
+</li>
+<li>Auto-create incidents when uptime SLAs breached via ServiceNow + PagerDuty.
+</li>
+<li>Feed ServiceNow change approvals to Salesforce opportunities for co-terming.
+</li>
+<li>Stream ServiceNow audit logs into Panther for unified detection.
+</li>
+<li>Capture user provisioning via SCIM from Okta into both systems for least privilege.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Contract lifecycle management expansion">
+<h2>Contract lifecycle management expansion</h2>
+<ul>
+<li>Ironclad or LinkSquares hosts standard templates, playbooks and approval routes.
+</li>
+<li>Integrate with Salesforce for clause libraries driven by industry/region metadata.
+</li>
+<li>Connect to ServiceNow Vendor Risk for due diligence artefacts.
+</li>
+<li>Route signed contracts to NetSuite and Snowflake for revenue recognition triggers.
+</li>
+<li>Dashboard monitors cycle time, clause deviations and renewal auto-notifications.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Security guardrails and compliance posture">
+<h2>Security guardrails and compliance posture</h2>
+<ul>
+<li>SentinelOne telemetry shipped to Panther SIEM with retention aligned to PCI/Essential Eight.
+</li>
+<li>Drata pulls evidence from Okta, AWS, ServiceNow and Jira for continuous monitoring.
+</li>
+<li>Whistic questionnaire library reduces bespoke customer security reviews by 40%.
+</li>
+<li>Quarterly purple-team exercise results stored in Confluence + ServiceNow Knowledge.
+</li>
+<li>Budget 80 hours of partner time for SIEM tuning and playbook development.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="8" data-kind="content" data-title="Cost modelling worksheet structure">
+<h2>Cost modelling worksheet structure</h2>
+<ul>
+<li><strong>Tab 1: Inventory</strong> – list systems, contract owners, renewal dates and SKUs.
+</li>
+<li><strong>Tab 2: Seats &amp; tiers</strong> – capture current counts, expansion triggers and unit costs.
+</li>
+<li><strong>Tab 3: Projects</strong> – implementation partners, statements of work, depreciation.
+</li>
+<li><strong>Tab 4: Scenario levers</strong> – ARR growth, headcount plans, support coverage tiers.
+</li>
+<li><strong>Tab 5: Risk offsets</strong> – penalties avoided, staff savings, required compliance controls.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="9" data-kind="content" data-title="Example worksheet levers">
+<h2>Example worksheet levers</h2>
+<ul>
+<li>Headcount growth: +25 GTM seats = +$1,800/month Salesforce uplift.
+</li>
+<li>New SOC 2 customer: adds $600/month for additional SIEM storage + 2 ServiceNow agents.
+</li>
+<li>EMEA expansion: Workato adds 2 recipes; DocuSign adds eIDAS compliance pack.
+</li>
+<li>Churn risk: removing 10% low-touch customers cuts ServiceNow digital channels by $400/month.
+</li>
+<li>Automation win: retiring legacy ETL saves $700/month, funding CLM workflow bots.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="10" data-kind="content" data-title="Workshop prompt">
+<h2>Workshop prompt</h2>
+<ul>
+<li>Map your current stack against the reference architecture and highlight gaps.
+</li>
+<li>Populate the worksheet tabs with your own seat counts and integration owners.
+</li>
+<li>Stress-test spend with best/worst-case ARR scenarios and 15% contingency.
+</li>
+<li>Identify the top three integration risks and document mitigation actions.
+</li>
+<li>Present back a two-slide executive summary for board or investor readouts.
+</li>
+</ul>
+<p>---</p>
+</section>

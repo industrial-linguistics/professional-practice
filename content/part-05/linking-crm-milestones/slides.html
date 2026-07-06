@@ -1,0 +1,190 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: Linking CRM Milestones to ITIL Change and Incident Processes -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="CRM Milestones &amp; ITIL Alignment">
+<h1>CRM Milestones &amp; ITIL Alignment</h1>
+<p><em>Making revenue and service teams sync</em></p>
+<h3>Learning objectives</h3>
+<ul>
+<li>Map Salesforce milestones to ITIL change and incident events
+</li>
+<li>Identify collaboration moments between sales, service and platform teams
+</li>
+<li>Define controls that keep customer promises and operational stability in sync
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="Why this alignment matters">
+<h2>Why this alignment matters</h2>
+<p>Revenue teams promise outcomes to customers long before go-live. When those promises never reach service or platform teams, cha</p>
+<p>nge windows are missed and incident response looks uninformed. Aligning CRM stages with ITIL workflows means approvals, risk ass</p>
+<p>essments and comms happen before a contract closes—protecting customer trust and internal uptime.</p>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="Anchor points across the lifecycle">
+<h2>Anchor points across the lifecycle</h2>
+<ul>
+<li><strong>Qualified Opportunity</strong> → service catalogue fit check, draft support model
+</li>
+<li><strong>Proposal/Quote</strong> → technical validation, early change assessment
+</li>
+<li><strong>Contract Sent</strong> → provisional change record with planned implementation window
+</li>
+<li><strong>Closed Won</strong> → kick-off in ServiceNow/ITSM, confirm handover package
+</li>
+<li><strong>Renewal</strong> → review live incidents, problem backlog and SLA trend reports
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="When the alignment breaks">
+<h2>When the alignment breaks</h2>
+<ul>
+<li><strong>MegaCorp 2022</strong> – deal closed without notifying change managers; go-live clashed with a data-centre freeze and cost 12 hours of downtime
+</li>
+<li><strong>HealthcareCo</strong> – missing renewal-to-incident review meant pricing ignored chronic SLA breaches and triggered legal escalation
+</li>
+<li><strong>StartUp X</strong> – marketing promised premium support tier but CRM never updated, so incidents paged the wrong on-call crew
+</li>
+<li>Debrief every miss to update required fields, automation owners and CAB checklists
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="Triggering change records from the CRM">
+<h2>Triggering change records from the CRM</h2>
+<ul>
+<li>Create automation that opens a "pre-change" record when the stage reaches <em>Proposal</em>
+</li>
+<li>Require solution engineers to attach architecture diagrams and risk notes
+</li>
+<li>Sync target implementation dates to the CAB calendar so availability is checked early
+</li>
+<li>Use RACI fields to tag service owners, platform leads and vendor contacts
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Incident workflows informed by CRM data">
+<h2>Incident workflows informed by CRM data</h2>
+<ul>
+<li>Embed account health, SLA tier and escalation paths inside the incident form via API integration
+</li>
+<li>Surface active projects or deployments linked to the account when the incident is logged
+</li>
+<li>Flag high-value milestones (go-live, cutover, renewal) so major incidents auto-page the right leaders
+</li>
+<li>Provide account teams with post-incident summaries that feed renewal conversations
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Keeping data clean and auditable">
+<h2>Keeping data clean and auditable</h2>
+<ul>
+<li>Standardise stage definitions and required fields for change-impact questions
+</li>
+<li>Use validation rules to block stage progression if service requirements are blank
+</li>
+<li>Timestamp approvals and attach CAB decisions within the CRM for compliance
+</li>
+<li>Archive milestone-to-change links so auditors can trace commitments end-to-end
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="8" data-kind="content" data-title="Integration pitfalls to watch">
+<h2>Integration pitfalls to watch</h2>
+<ul>
+<li>API users without least-privilege scopes lead to audit findings—lock them down with dedicated roles
+</li>
+<li>Mismatched picklists cause automation to fail silently; institute nightly sync checks
+</li>
+<li>Dual ownership of incident data (CRM vs ITSM) confuses escalation paths—publish a single-source-of-truth policy
+</li>
+<li>Forgetting sandbox-to-prod deployment plans leaves integrations broken after releases; pair DevOps and admins on change reviews
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="9" data-kind="content" data-title="Collaboration rituals">
+<h2>Collaboration rituals</h2>
+<ul>
+<li>Weekly revenue-ops &amp; service management sync to review upcoming milestones
+</li>
+<li>Joint pipeline reviews focus on accounts entering change-heavy stages
+</li>
+<li>Run "reverse demos" where ITIL teams show sales how incidents are triaged
+</li>
+<li>Share an integrated dashboard: pipeline, change calendar, major incident log
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="10" data-kind="content" data-title="ROI modeling example">
+<h2>ROI modeling example</h2>
+<ul>
+<li>Input: $450k annual revenue at risk from change-related incidents, $120k integration project cost
+</li>
+<li>Alignment reduces failed changes by 40%, cutting incident hours by 600 and avoiding $300k SLA penalties
+</li>
+<li>Automation saves 8 FTE hours per deal cycle; across 40 deals equals 320 hours (~$48k) back to the teams
+</li>
+<li>Payback &lt;12 months with $228k net benefit plus compliance posture improvements
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="11" data-kind="content" data-title="Metrics and continuous improvement">
+<h2>Metrics and continuous improvement</h2>
+<ul>
+<li>Track % of closed deals with complete change packages before go-live
+</li>
+<li>Measure incident MTTR when CRM context is auto-synced versus manual lookup
+</li>
+<li>Monitor customer satisfaction at renewals tied to well-managed change rollouts
+</li>
+<li>Use retros to refine automation and handoff templates each quarter
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="12" data-kind="content" data-title="Roles and career pathways">
+<h2>Roles and career pathways</h2>
+<ul>
+<li><strong>Revenue Operations Analysts</strong> design field requirements and automation
+</li>
+<li><strong>Service Transition Managers</strong> translate change standards into CRM guidance
+</li>
+<li><strong>Platform Engineers</strong> build the integrations and monitor data quality
+</li>
+<li>Early-career CRM admins can grow into ITSM integration specialists or service portfolio managers
+</li>
+<li>Skill ladder: Salesforce Administrator → ITIL Foundation → ServiceNow System Admin → ITIL Practitioner/DevOps Institute certs
+</li>
+<li>Pair hands-on integration projects with CAB participation to accelerate promotion readiness
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="13" data-kind="content" data-title="CAB meeting simulation">
+<h2>CAB meeting simulation</h2>
+<ul>
+<li>Scenario: Opportunity at <em>Proposal</em> stage requests expedited deployment for a banking client
+</li>
+<li>CRM change checklist auto-populates risk, revenue impact and customer communication plan for the CAB agenda
+</li>
+<li>Change manager quizzes sales on blackout dates; jointly agree to pilot in sandbox with staged rollout
+</li>
+<li>Decision recorded in both CRM and ITSM, triggering follow-up tasks for documentation and customer briefing
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="14" data-kind="content" data-title="Key takeaway">
+<h2>Key takeaway</h2>
+<p>Treat CRM milestones as control points for ITIL change and incident readiness. When sales, delivery and support co-own the data,</p>
+<p>customers experience seamless transitions from promise to production stability.</p>
+<p>---</p>
+</section>

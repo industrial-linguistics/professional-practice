@@ -1,0 +1,168 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: FOSS Licensing Options and Obligations -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="FOSS Licensing Choices">
+<h1>FOSS Licensing Choices</h1>
+<p><em>Licences: the Terms &amp; Conditions developers actually need to read</em></p>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="Why licences matter">
+<h2>Why licences matter</h2>
+<ul>
+<li>Define how code can be used, shared and monetised
+</li>
+<li>Protect contributors and organisations from legal risk
+</li>
+<li>Shape community expectations and collaboration norms
+</li>
+<li>Without clarity, even a tiny JavaScript helper in your start-up could trigger a takedown notice
+</li>
+<li>Licences are like relationship agreements—agree upfront so you are not lawyering up later
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="Permissive licences (MIT, Apache 2.0)">
+<h2>Permissive licences (MIT, Apache 2.0)</h2>
+<ul>
+<li>Allow reuse with minimal obligations
+</li>
+<li>Require attribution and licence notice retention
+</li>
+<li>Favoured by start-ups, vendor platforms and integration partners
+</li>
+<li>Example: React.js ships under MIT, empowering Facebook and thousands of companies to build proprietary apps
+</li>
+<li>Apache 2.0 adds patent protection and retaliation clauses to calm enterprise risk teams
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="Copyleft licences (GPL family)">
+<h2>Copyleft licences (GPL family)</h2>
+<ul>
+<li>Derivative works must remain open-source
+</li>
+<li>Trigger "share alike" obligations on distribution of binaries
+</li>
+<li>Common in infrastructure maintained by foundations and public agencies
+</li>
+<li>Linux kernel's GPL ensures Android handset modifications were upstreamed for everyone
+</li>
+<li>Think of it as a viral clause—openness spreads to everything it touches once you distribute
+</li>
+<li>Scenario: ship a router with modified GPL firmware? You must publish matching source
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="Compatibility cheat sheet">
+<h2>Compatibility cheat sheet</h2>
+<table><thead><tr><th>You use…</th><th>Safe to combine with</th><th>Watch-outs</th></tr></thead><tbody><tr><td>MIT/BSD</td><td>Almost anything</td><td>Preserve attribution</td></tr><tr><td>Apache 2.0</td><td>MIT, Apache, GPLv3</td><td>Patent terms clash with GPLv2 only</td></tr><tr><td>GPLv3</td><td>GPLv3 code</td><td>Permissive code ok, but binaries must be GPL</td></tr><tr><td>AGPL</td><td>AGPL projects</td><td>Network use counts as distribution</td></tr></tbody></table>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Dual &amp; multi-licensing">
+<h2>Dual &amp; multi-licensing</h2>
+<ul>
+<li>Projects like MySQL or Qt offer GPL for community and commercial licences for proprietary users
+</li>
+<li>Enables sustainable funding while protecting openness goals
+</li>
+<li>Be transparent about which features fall under each licence stream
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Public domain &amp; CC0">
+<h2>Public domain &amp; CC0</h2>
+<ul>
+<li>CC0 and Unlicense place work in public domain where legally possible
+</li>
+<li>Useful for data sets, code snippets and government artefacts
+</li>
+<li>Confirm local law recognition—some jurisdictions restrict abandoning copyright
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="8" data-kind="content" data-title="International considerations">
+<h2>International considerations</h2>
+<ul>
+<li>Copyright terms, moral rights and patent scope differ across jurisdictions
+</li>
+<li>EU database rights and Australian Crown copyright can complicate reuse
+</li>
+<li>Global teams rely on OSI-approved texts to minimise surprises—document governing law in NOTICE files
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="9" data-kind="content" data-title="Contributor Licence Agreements (CLAs)">
+<h2>Contributor Licence Agreements (CLAs)</h2>
+<ul>
+<li>Clarify that maintainers can relicense, defend or dual-license contributions
+</li>
+<li>Individual vs corporate CLAs—ensure signatories have authority
+</li>
+<li>Coordinate with Developer Certificate of Origin (DCO) processes for audit trails
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="10" data-kind="content" data-title="Choosing for your context">
+<h2>Choosing for your context</h2>
+<ul>
+<li>Align licence with business model, funding and compliance needs
+</li>
+<li>Consider third-party code compatibility and patent clauses
+</li>
+<li>Involve legal counsel, community tech-leads and product managers early
+</li>
+<li>Quick flow: need maximum adoption? go permissive. Need reciprocity? pick copyleft. Need revenue + openness? explore dual licence.
+</li>
+<li>Example: a government agency picks GPL to keep taxpayer-funded improvements public
+</li>
+<li>Choosing a licence is like a roommate agreement—get it wrong and the dishes (or obligations) pile up fast
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="11" data-kind="content" data-title="Staying compliant">
+<h2>Staying compliant</h2>
+<ul>
+<li>Maintain a bill of materials (SBOM) and automate scans
+</li>
+<li>Document when you redistribute binaries, SaaS services or containers
+</li>
+<li>Licence compliance is like flossing—tedious, but it avoids painful audits later
+</li>
+<li>Tooling: GitHub’s licence picker and choosealicense.com guide first-time maintainers
+</li>
+<li>Note cautionary tales—companies have paid settlements for ignoring GPL notices
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="12" data-kind="content" data-title="Career pathways &amp; responsibilities">
+<h2>Career pathways &amp; responsibilities</h2>
+<ul>
+<li>Roles &amp; ratios: OSPO managers, developer advocates and legal counsels (typically 1–2 OSPO staff per 50–80 engineers)
+</li>
+<li>Typical seniority: mid-level engineers/lawyers stepping into governance after 5–7 years experience
+</li>
+<li>Entry pathways: community contributors, compliance interns, dual STEM-law graduates and policy analysts rotating from procurement teams
+</li>
+<li>Personality traits: detail-obsessed, diplomatic, values-driven collaborators who can translate legal nuance for technologists
+</li>
+<li>Progression: OSPO analyst → manager → director/VP stewarding ecosystem strategy across the organisation
+</li>
+<li>Case study: Signal keeps its GPL core open to ensure privacy protections stay inspectable—driving demand for specialised compliance engineers
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="13" data-kind="content" data-title="Key takeaway">
+<h2>Key takeaway</h2>
+<p>Intentional licence selection balances openness, obligations and long-term sustainability.</p>
+<p>---</p>
+</section>

@@ -1,0 +1,185 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: Day-Zero Core Services Setup -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="Day-Zero Core Services Setup">
+<h1>Day-Zero Core Services Setup</h1>
+<p><em>Launch the company without losing the first week</em></p>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="What &quot;day zero&quot; covers">
+<h2>What "day zero" covers</h2>
+<ul>
+<li>Incorporation paperwork, domains, devices and baseline tooling
+</li>
+<li>Mapping who owns which setup tasks during the first 5 business days
+</li>
+<li>Getting identity, communication and knowledge systems online together
+</li>
+<li>Capturing decisions so MSPs, investors and auditors see a coherent plan
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="Incorporation &amp; registrations">
+<h2>Incorporation &amp; registrations</h2>
+<ul>
+<li>Lodge the legal entity, appoint directors and open a business bank account
+</li>
+<li>Secure tax IDs and payroll registration before the first contractor invoice lands
+</li>
+<li>Document ownership structure and sign founder agreements to prevent later disputes
+</li>
+<li>Create a data room folder for incorporation artefacts and board resolutions
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="Domains, DNS and website plumbing">
+<h2>Domains, DNS and website plumbing</h2>
+<ul>
+<li>Register primary domains plus defensives (.com, .co, relevant country codes)
+</li>
+<li>Use registrar accounts tied to shared ops email, not a founder's personal inbox
+</li>
+<li>Set up DNS hosting with templated records for MX, SPF, DKIM and verification tokens
+</li>
+<li>Configure uptime monitoring so a silent DNS change does not break email launches
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="Productivity suite and identity backbone">
+<h2>Productivity suite and identity backbone</h2>
+<ul>
+<li>Choose Google Workspace or Microsoft 365 based on customer expectations and toolchain fit
+</li>
+<li>Example: a B2B SaaS startup picked Google Workspace because enterprise buyers expected Google SSO integration
+</li>
+<li>Compare costs early—Google Workspace Business Standard at $12/user/month vs Microsoft 365 Business Premium at $22/user/month
+</li>
+<li>Establish a primary identity provider and enforce MFA on admin roles from day one
+</li>
+<li>Create shared mailboxes (hello@, finance@) and delegated calendar access for founders
+</li>
+<li>Sync HR roster or interim spreadsheet to drive joiner/mover/leaver workflows
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Communication and knowledge hubs">
+<h2>Communication and knowledge hubs</h2>
+<ul>
+<li>Stand up chat (Slack/Teams) with channels for founders, delivery, customers and incidents
+</li>
+<li>Launch a lightweight knowledge base (Notion, Confluence, Google Sites) for policies and SOPs
+</li>
+<li>Decide where meeting notes, board decks and investor updates live to avoid scattered history
+</li>
+<li>Pre-create announcement, incident and customer escalation templates for fast reuse
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Device procurement and setup">
+<h2>Device procurement and setup</h2>
+<ul>
+<li>Order a buffer of laptops with baseline images, asset tags and shipping templates
+</li>
+<li>Plan inventory—for a two-person team, order three laptops so a backup is ready for demos or travel hiccups
+</li>
+<li>Budget $1,500–2,000 per laptop including warranty, MDM licensing and shipping
+</li>
+<li>Pre-stage admin accounts in MDM or Autopilot/Zero Touch before boxes leave the supplier
+</li>
+<li>Document loaner process plus travel kits (power adapters, privacy filters, LTE dongles)
+</li>
+<li>Track serial numbers, warranty dates and assigned owners in the asset register
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="8" data-kind="content" data-title="Security guardrails on hour one">
+<h2>Security guardrails on hour one</h2>
+<ul>
+<li>Enable password manager, phishing reporting button and security awareness bite-size modules
+</li>
+<li>Turn on default logging, backup policies and conditional access before inviting new users
+</li>
+<li>Generate break-glass accounts with hardware keys stored off-site under dual control
+</li>
+<li>Recommend starter tooling: 1Password for teams ($8/user/month), Microsoft Defender for Business or Google Workspace security center
+</li>
+<li>Add founders to incident bridge, legal counsel and cyber insurer contact lists
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="9" data-kind="content" data-title="Budgeting for day-zero services">
+<h2>Budgeting for day-zero services</h2>
+<ul>
+<li>Reserve $200–500/month for productivity suite licensing, domain registration and DNS hosting
+</li>
+<li>Allow 2–3 weeks for hardware procurement, imaging and inevitable shipping delays
+</li>
+<li>Line up $1,000–3,000 for incorporation legal fees plus trademark searches
+</li>
+<li>Pre-approve founder credit cards so vendor sign-ups are not stalled at payment screens
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="10" data-kind="content" data-title="Early compliance and data residency">
+<h2>Early compliance and data residency</h2>
+<ul>
+<li>Confirm whether early contracts mandate specific data locations or certifications
+</li>
+<li>Document which services store data in which regions (e.g. Slack US, email EU) to avoid surprises
+</li>
+<li>Draft a lightweight privacy policy before collecting any customer information
+</li>
+<li>Flag GDPR, CCPA or industry rules that influence vendor shortlists and architecture choices
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="11" data-kind="content" data-title="When day-zero planning goes wrong">
+<h2>When day-zero planning goes wrong</h2>
+<p>Real examples teach better than theoretical checklists.</p>
+<p>Let's see how a simple DNS mistake nearly derailed a promising startup.</p>
+</section>
+
+<section class="slide" data-slide="12" data-kind="content" data-title="Sarah&#x27;s DNS cautionary tale">
+<h2>Sarah's DNS cautionary tale</h2>
+<ul>
+<li>Sarah, the CEO, registered the domain under her personal email and "learned DNS" at 1 a.m.
+</li>
+<li>She deleted the wildcard record while experimenting, taking product demos offline for 6 hours
+</li>
+<li>Sales woke up to bounced customer emails and a frantic investor asking about the outage
+</li>
+<li>The fix: shared registrar access, documented records and change windows even for tiny teams
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="13" data-kind="content" data-title="First-week runbook">
+<h2>First-week runbook</h2>
+<ul>
+<li>Create a simple Kanban board with day-zero tasks, owners and completion evidence links
+</li>
+<li>Schedule daily 15-minute stand-ups to clear blockers and surface vendor delays
+</li>
+<li>Record walkthrough videos for critical systems so future hires ramp without live hand-holding
+</li>
+<li>Note dependencies on lawyers, accountants or MSPs and pre-book escalation contacts
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="14" data-kind="content" data-title="Key takeaway">
+<h2>Key takeaway</h2>
+<p>A disciplined day-zero setup makes incorporation, domains, devices and security feel intentional.</p>
+<p>Treat the checklist as a living runbook that survives founder vacations, vendor turnover and the first due-diligence call.</p>
+<p>Your assignment: craft a day-zero checklist for a hypothetical startup, noting where outside experts are required.</p>
+<p>---</p>
+</section>

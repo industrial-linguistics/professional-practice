@@ -1,9 +1,24 @@
 assets/slide-images/
 run-sheets/
 assets/fonts/
+output/
 /render-slides
 /run_sheets
 *.deb
+
+# LaTeX build byproducts
+textbook/*.aux
+textbook/*.fdb_latexmk
+textbook/*.fls
+textbook/*.idx
+textbook/*.ilg
+textbook/*.ind
+textbook/*.log
+textbook/*.out
+textbook/*.toc
+textbook/*.xdv
+textbook/missfont.log
+textbook/chapters/*.aux
 
 # Video pipeline outputs
 .build-manifest.json

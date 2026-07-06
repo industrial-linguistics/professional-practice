@@ -1,0 +1,186 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: Scaling Support Processes -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="Scaling Support Processes">
+<h1>Scaling Support Processes</h1>
+<p><em>Evolving from founder-led fixes to a scalable service desk</em></p>
+<p>&gt; "We've all been there—the company's 'IT department' is whoever sits closest to the router."</p>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="When ad-hoc support stops working">
+<h2>When ad-hoc support stops working</h2>
+<ul>
+<li>Slack pings overwhelm the one IT generalist and create invisible queues
+</li>
+<li>Context lives in heads; onboarding a new hire takes days of oral history
+</li>
+<li>Regulators and auditors ask for incident logs you can't produce
+</li>
+<li>Customer-facing teams feel the pain first—every outage escalates straight to engineering
+</li>
+<li>Remote teammates are stranded without time-zone coverage or device access policies
+</li>
+<li>Picture this: It's 3 PM Friday, the CEO can't access email, and three teammates troubleshoot in parallel because there's no ticketing system
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="Design the first help desk intentionally">
+<h2>Design the first help desk intentionally</h2>
+<ul>
+<li>Launch a single intake (portal + email) with auto-triage by request type
+</li>
+<li>Publish lightweight SLAs: critical 2h, high 4h, normal 1 business day
+</li>
+<li>Create macros for the top 20 requests; everything else routes to a backlog
+</li>
+<li>Implement daily standups and a weekly ops review to surface blockers
+</li>
+<li>Document remote/hybrid playbooks: shipping devices, break/fix couriers, regional on-call rotations
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="Knowledge base as force multiplier">
+<h2>Knowledge base as force multiplier</h2>
+<ul>
+<li>Pair every resolved ticket with an article draft before closure
+</li>
+<li>Use "seed, grow, prune" cycles: SMEs review monthly, archive stale pages quarterly
+</li>
+<li>Embed short Loom walkthroughs—startups learn visually faster than reading PDFs
+</li>
+<li>Track self-service deflection rate and article helpfulness to justify more authors
+</li>
+<li>Take password resets: one article with screenshots can deflect 80% of those 10-a-day Slack pings
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="Tooling choices: ServiceNow vs Jira Service Management">
+<h2>Tooling choices: ServiceNow vs Jira Service Management</h2>
+<ul>
+<li><strong>ServiceNow</strong>: enterprise-grade workflows, deep CMDB, strong audit trails; higher cost and implementation lift
+</li>
+<li><strong>Jira Service Management</strong>: native with Atlassian stack, faster to deploy, rich automation rules; needs add-ons for mature CMDB
+</li>
+<li>Decision guardrails framework:
+<ul>
+<li>Current team size and 18-month growth trajectory
+</li>
+<li>Existing ecosystem integrations and API/library maturity
+</li>
+<li>Compliance or audit obligations (SOC 2, SOX, HIPAA) and segregation of duties
+</li>
+<li>Available admin expertise and realistic implementation runway
+</li>
+</ul>
+</li>
+<li>Bridge gaps with integrations (e.g., Slack virtual agent, asset DB sync) before committing to a rip-and-replace
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Layer automation and integrations early">
+<h2>Layer automation and integrations early</h2>
+<ul>
+<li>Connect Slack or Teams to create tickets with structured forms and context capture
+</li>
+<li>Enforce change approvals and incident postmortems via workflow gates
+</li>
+<li>Sync asset inventory (Intune, Kandji, Jamf) to the ITSM CMDB nightly
+</li>
+<li>Automate onboarding/offboarding tasks with workflow engine + IDP events
+</li>
+<li>Include security guardrails: privileged access reviews, phishing simulations, and incident response playbooks
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Staffing for maturity">
+<h2>Staffing for maturity</h2>
+<ul>
+<li>Stage 1 (≤50 staff): one ops lead covering L1 + process design; rotate engineers for escalation duty
+</li>
+<li>Stage 2 (50–150): dedicated L1 agents, part-time knowledge manager, on-call matrix with product squads
+</li>
+<li>Stage 3 (150+): L2 specialists for infra/security/apps, service owner, tooling admin, CSAT analyst
+</li>
+<li>Invest in career ladders and certification paths to retain institutional knowledge
+</li>
+<li>"Stage 1 IT person: part technician, part therapist, part mind reader. At least give them proper escalation paths!"
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="8" data-kind="content" data-title="Process milestones to hit">
+<h2>Process milestones to hit</h2>
+<ul>
+<li>Month 1: catalog services, define categories, publish runbooks for top incidents — failure mode: no owners assigned, so runbooks rot
+</li>
+<li>Month 2: launch knowledge base, implement change calendar, start ticket QA program — failure mode: KB traffic untracked, execs lose faith
+</li>
+<li>Month 3: introduce problem management reviews, automate joiner/mover/leaver flows — failure mode: automation breaks without monitoring
+</li>
+<li>Month 4+: quarterly service reviews with finance/product, refresh tooling roadmap — failure mode: reviews drift into status theatre, not decisions
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="9" data-kind="content" data-title="Metrics that prove maturity">
+<h2>Metrics that prove maturity</h2>
+<ul>
+<li>Ticket intake mix: aim for ≥30% self-service deflection within six months
+</li>
+<li>Responsiveness: 90th percentile response under SLA, backlog &lt;1.5× weekly throughput
+</li>
+<li>Quality: CSAT ≥4.5/5 and knowledge article helpfulness ≥80%
+</li>
+<li>Business impact: downtime minutes prevented, engineering time saved, audit findings closed
+</li>
+<li>Security: mean time to revoke access after offboarding and phishing report-to-response time
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="10" data-kind="content" data-title="Budget justification toolkit">
+<h2>Budget justification toolkit</h2>
+<ul>
+<li>Build a one-page ROI summary: tickets deflected, hours saved, compliance risks reduced
+</li>
+<li>Include a lightweight CapEx/OpEx model (licenses, headcount, contractors) with 3-year outlook
+</li>
+<li>Tie asks to business OKRs and upcoming audits; include "do nothing" risk column
+</li>
+<li>Borrow customer quotes or incident anecdotes to humanize the spend
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="11" data-kind="content" data-title="Common implementation pitfalls (and how to avoid them)">
+<h2>Common implementation pitfalls (and how to avoid them)</h2>
+<ul>
+<li>Tooling-first rollouts without process design → run a pilot with clear exit criteria
+</li>
+<li>Ignoring change management → over-communicate via town halls, office hours, and exec sponsors
+</li>
+<li>Skipping data hygiene → schedule quarterly CMDB and knowledge audits with metrics owners
+</li>
+<li>Forgetting remote teammates → create follow-the-sun coverage and hardware depots in key regions
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="12" data-kind="content" data-title="Action checklist">
+<h2>Action checklist</h2>
+<ul>
+<li>[ ] Pick pilot team, map top 10 request types and pain points
+</li>
+<li>[ ] Stand up intake, SLAs and runbook templates before announcing new process
+</li>
+<li>[ ] Select tooling with a weighted scorecard and run a two-week sandbox bake-off
+</li>
+<li>[ ] Review metrics weekly; adapt staffing and knowledge strategy every quarter
+</li>
+</ul>
+</section>

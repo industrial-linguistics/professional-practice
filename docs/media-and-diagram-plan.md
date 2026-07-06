@@ -19,7 +19,7 @@ The largest immediate blocker for audio and video is not imagery. It is slide/na
 
 The Claude Code course embeds tiny QR codes in the Beamer slides through a `\slideid{...}` macro. The e-learning extractor scans the rendered PDF at high DPI, reads each QR code, and uses that stable ID to associate page images and text with audio directories. That is valuable when the PDF is the extraction source and slide order can drift.
 
-This repository has a different source of truth: Marp markdown lives next to per-topic narrative files. The renderer already knows the topic path and slide order before PDF extraction. For the core audio/video pipeline, QR codes are not needed.
+This repository has a different source of truth: HTML slide source lives next to per-topic narrative files. The renderer already knows the topic path and slide order before PDF extraction. For the core audio/video pipeline, QR codes are not needed.
 
 Recommended decision:
 
@@ -78,4 +78,4 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 - Prefer SVG or Mermaid for abstract process diagrams that need labels and revision.
 - Prefer PNG screenshots or realistic UI mockups for ServiceNow, Salesforce, GitHub Actions and dashboards.
 - Avoid using real vendor screenshots if licensing or login state is unclear; clean mockups are usually safer and easier to localise.
-- Store per-topic images under `content/part-XX/topic-name/images/` and reference them with relative Markdown links from `slides.md`.
+- Store per-topic images under `content/part-XX/topic-name/images/` and reference them with relative `<img src="images/...">` paths from `slides.html`.

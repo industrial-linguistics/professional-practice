@@ -4,12 +4,14 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'content/**/slides.md'
+      - 'content/**/slides.html'
       - 'content/**/narratives/*.md'
       - 'content/**/images/**'
       - 'cmd/vtt-generator/**'
-      - 'cmd/render-slides/**'
       - 'cmd/voicer/**'
+      - 'scripts/render_html_slides.py'
+      - 'scripts/course_content.py'
+      - 'scripts/build_elearning.py'
       - 'scripts/build_videos.sh'
       - 'scripts/assemble_video.sh'
       - 'scripts/validate_*.py'
@@ -50,10 +52,7 @@ jobs:
             npm \
             fonts-dejavu-core \
             bc
-
-      - name: Install Node dependencies
-        run: |
-          sudo npm install -g @marp-team/marp-cli
+          ./scripts/install_chrome.sh
 
       - name: Install Python dependencies
         run: |
@@ -70,7 +69,6 @@ jobs:
         run: |
           mkdir -p bin
           go build -o bin/vtt-generator ./cmd/vtt-generator
-          go build -o bin/render-slides ./cmd/render-slides
           go build -o bin/voicer ./cmd/voicer
 
       - name: Restore build manifest
@@ -95,7 +93,7 @@ jobs:
           # Set output flag
           if grep -q "nothing to build" build-check.txt; then
             echo "needs_build=false" >> $GITHUB_OUTPUT
-          else:
+          else
             echo "needs_build=true" >> $GITHUB_OUTPUT
           fi
 

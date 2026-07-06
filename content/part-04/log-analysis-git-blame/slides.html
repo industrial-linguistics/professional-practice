@@ -1,0 +1,37 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: Log Analysis &amp; Git Blame -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="Log Analysis &amp; Git Blame">
+<h1>Log Analysis &amp; Git Blame</h1>
+<p><em>Finding signals without pointing fingers</em></p>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="Why analyze logs?">
+<h2>Why analyze logs?</h2>
+<p>Logs capture the raw truth of how software behaves—"where your application goes to confess its sins." DevOps engineers, SREs and L2/L3 support rely on them daily. Each entry has a timestamp and level like DEBUG, INFO, WARN or ERROR. By lining these up you can spot patterns that metrics alone miss. Imagine debugging a checkout process that fails randomly. You might see <code>02:25 INFO user initiated payment</code>, <code>02:30 WARN database lock on orders table</code> and finally <code>02:31 ERROR payment service timeout after 30s</code>. The timeline reveals that the lock triggered the timeout. Logs validate hunches, reveal memory spikes before incidents and provide evidence for root cause analysis. Because logs may contain personal data, follow your organisation's retention and privacy rules when storing or sharing them.</p>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="Log analysis techniques">
+<h2>Log analysis techniques</h2>
+<p>Start small with <code>grep &quot;ERROR.*timeout&quot; app.log | tail -20</code> to grab the last failed requests. As your stack grows, aggregators like the Elastic Stack or Splunk correlate events across microservices. Free tools like ELK work well for hobby projects while paid options offer enterprise support. Structured JSON logs make queries reliable; unstructured text demands regex tricks. Many teams tag each entry with request IDs so they can trace a user's path through distributed services. Distributed tracing passes these IDs across services. Dashboards show spikes in WARN or ERROR levels and whether a memory surge in Service A triggered cascading failures in Services B–F. Aggregators collect logs via lightweight agents into central storage, enforce retention rules and integrate with ServiceNow or Jira for incident tickets. Keep DEBUG logs for only a short time, since excessive logging can slow applications and waste storage.</p>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="Git blame: friend or foe?">
+<h2>Git blame: friend or foe?</h2>
+<p>Think of blame as the ultimate "it wasn't me" detector. <code>git blame</code> shows who last modified each line of code. It's powerful context for understanding design choices but can feel accusatory if used carelessly. People often worry that blame will be used to point fingers instead of improving the code. The reality is that the last editor may have been fixing someone else's bug or operating under tight deadlines. Treat blame information like fingerprints at a crime scene—useful evidence but not the full story. Combine it with commit messages, issue history and a conversation with the author before drawing conclusions. And sometimes it's best not to run blame at all when emotions are high or the goal is simply to refactor.</p>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="Using Git blame constructively">
+<h2>Using Git blame constructively</h2>
+<p>When you do use blame, pair it with open dialogue. Suppose a function crashes on null inputs and you run <code>git blame src/user-service.py -L 45,55 -w</code>. Reach out to the contributor and ask what constraints they faced when writing that code. Maybe they were patching a production bug or following outdated requirements. Capture the lessons learned in commit messages or design docs so others won't repeat the mistake. Remember to respect privacy; if a blame trail uncovers systemic issues like unrealistic deadlines or missing reviews, escalate through your team's retrospective process rather than confronting individuals in public channels.</p>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Example workflow">
+<h2>Example workflow</h2>
+<p>Begin by reviewing logs to trace a symptom back to the code. Imagine a spike of <code>ERROR: database connection timeout</code> entries. After confirming that network latency wasn't the culprit, you check the commit history and see a recent change to connection pooling. Running <code>git blame</code> on that file reveals who altered the pool size. You chat with them to understand the reasoning and learn that the change fixed another outage months ago. Together you run new tests, adjust the pool size and update documentation. Finally, record the incident in your ticketing system and ensure the logs are stored according to retention policy so future teams can learn from them.</p>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Key takeaway">
+<h2>Key takeaway</h2>
+<p>Logs show what happened and when, while Git blame hints at why. Combine them to build a narrative that explains both the technical symptoms and the human decisions behind them. Use tools like Splunk or the "-C" flag in git blame responsibly: keep sensitive data private and open a dialogue before drawing conclusions. Over time these practices shorten incident response, reveal recurring issues, and demonstrate progress with metrics like MTTR. Most importantly, they encourage a culture where admitting mistakes leads to stronger systems rather than shame. Treat these tools as instruments for learning and growth, not as weapons for calling people out.</p>
+</section>

@@ -1,0 +1,197 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: Cloud vs On-Premise Decisions -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="Cloud vs On-Premise Decisions">
+<h1>Cloud vs On-Premise Decisions</h1>
+<p><em>Finding the right fit from day zero to scale</em></p>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="What this decision really covers">
+<h2>What this decision really covers</h2>
+<ul>
+<li>Application hosting, data storage, networking and identity services—each can live in SaaS, managed cloud or your own racks.
+</li>
+<li>Early-stage teams juggle credit offers, compliance expectations and the talent they can actually hire to run the stack.
+</li>
+<li>The "on-prem" option today often means co-lo racks or edge appliances managed by vendors, not a server closet you wire yourself.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="Glossary: terms you&#x27;ll hear">
+<h2>Glossary: terms you'll hear</h2>
+<ul>
+<li><strong>SaaS / PaaS / IaaS:</strong> Software, Platform and Infrastructure as a Service—progressively more control, but also more responsibility.
+</li>
+<li><strong>SRE (Site Reliability Engineering):</strong> The discipline focused on keeping services available and reliable through automation and operations rigor.
+</li>
+<li><strong>Colocation vs on-premise:</strong> Colocation rents space and power in a professional data centre; on-premise means hardware lives in your own facility.
+</li>
+<li><strong>Reserved instances vs pay-as-you-go:</strong> Commit to long-term usage for discounts, or pay on-demand for flexibility.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="Startup runway vs operational overhead">
+<h2>Startup runway vs operational overhead</h2>
+<ul>
+<li><strong>Months 0–12:</strong> Prioritise velocity, keep the team shipping features and leverage managed services with generous free tiers.
+</li>
+<li><strong>Year 2:</strong> As usage grows, weigh predictable reserved cloud spend against the fixed costs of leased hardware and support staff.
+</li>
+<li><strong>Year 3+:</strong> Hybrid patterns emerge—latency-sensitive workloads or data residency demands may justify colocated gear, while the rest stays cloud-native.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="Serverless first: when it shines">
+<h2>Serverless first: when it shines</h2>
+<ul>
+<li>No infrastructure patching, and scaling is automatic—perfect for small teams without SRE coverage.
+</li>
+<li>Pay-per-use keeps experimentation cheap while you iterate on product-market fit; a food delivery beta with ~100 users might run $50/month.
+</li>
+<li>Lock-in risk is mitigated by designing around open APIs, exporting data regularly and scripting data replays into alternative services.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Managed cloud services: middle ground">
+<h2>Managed cloud services: middle ground</h2>
+<ul>
+<li>That serverless approach we just discussed? Managed services are the nearby cousin when you outgrow simple functions but still want rapid delivery.
+</li>
+<li>Managed Kubernetes, database services and VDI stacks offload maintenance but still offer configuration control when paired with infrastructure as code.
+</li>
+<li>Factor in support plans and runbooks; the first pager still belongs to your team even if the provider handles hardware, network and backups.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Decision helper">
+<h2>Decision helper</h2>
+<pre><code>Start here → Need usable prototype in &lt;5 minutes?
+        │               ├─ Yes → Stay serverless / SaaS
+        │               └─ No
+        ↓
+Team smaller than 3 engineers?
+        │               ├─ Yes → Lean on managed services
+        │               └─ No
+        ↓
+Strict compliance / data residency?
+        │               ├─ Yes → Plan hybrid / colocation footprint
+        │               └─ No → Keep optimising cloud setup</code></pre>
+</section>
+
+<section class="slide" data-slide="8" data-kind="content" data-title="Containers: deceptively complex">
+<h2>Containers: deceptively complex</h2>
+<ul>
+<li>Containers demand observability, image pipelines, security scanning and registry hygiene—skills many pre-Series A teams lack.
+</li>
+<li>Treat the platform as a product: budget time for cluster upgrades, policy automation and chaos testing.
+</li>
+<li>It's like deciding to brew your own coffee when you haven't figured out how to work the office coffee machine yet.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="9" data-kind="content" data-title="Self-managed infrastructure: read the fine print">
+<h2>Self-managed infrastructure: read the fine print</h2>
+<ul>
+<li>Self-hosting can cut per-unit costs once workloads stabilise, but only if utilisation stays high and change frequency slows.
+</li>
+<li>Budget for redundant hardware, spares, remote hands at the data centre and compliance audits before declaring savings.
+</li>
+<li>Document shared responsibility: your team now owns patching, access reviews, backups and capacity upgrades end-to-end.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="10" data-kind="content" data-title="Free tiers and startup credits">
+<h2>Free tiers and startup credits</h2>
+<ul>
+<li>AWS Activate, Azure for Startups and Google Cloud credits can cover six figures of spend—plan workloads to maximise the runway.
+</li>
+<li>Track expiry dates and graduation thresholds; AWS Activate credits, for example, expire after two years or when you raise a Series A—whichever comes first.
+</li>
+<li>Mix in SaaS with generous free tiers (Cloudflare's free CDN, Auth0's 7,000-user tier, Notion's unlimited personal plan) to avoid burning credits on commodity services.
+</li>
+<li>Sudden bills post-credit are a common failure mode—also known as the "Oh no, we forgot we're not still in free tier" moment that ruins a founder's Tuesday.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="11" data-kind="content" data-title="Questions before jumping to containers">
+<h2>Questions before jumping to containers</h2>
+<ul>
+<li>Do we have repeatable CI/CD with automated tests and security scanning in place?
+</li>
+<li>Can we monitor, patch and respond to incidents 24/7 without burning out a three-person engineering team?
+</li>
+<li>Are there regulatory or customer requirements that truly block managed services?
+</li>
+<li>Spoiler alert: if your "on-call rotation" is just Sarah checking her phone during dinner, the answer is no.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="12" data-kind="content" data-title="Risk management across models">
+<h2>Risk management across models</h2>
+<ul>
+<li>Define backup cadences: serverless databases still need export jobs, managed services benefit from cross-region replicas, and co-lo gear needs off-site copies.
+</li>
+<li>Plan vendor exit ramps beyond raw data dumps—capture infrastructure as code, schema migrations and replacement service benchmarks.
+</li>
+<li>Clarify shared responsibility matrices so you know who owns identity, patching, incident response and security testing in each model.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="13" data-kind="content" data-title="Decision checkpoints">
+<h2>Decision checkpoints</h2>
+<ul>
+<li>Reassess architecture at each funding milestone—seed, Series A, Series B—to confirm the stack matches burn rate and talent.
+</li>
+<li>Run total cost of ownership models that include people, tooling, vendor support and opportunity cost of slower delivery.
+</li>
+<li>Prototype exit ramps: document how to move a workload between serverless, managed and self-hosted so switching is a deliberate move, not a panic.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="14" data-kind="content" data-title="Common mistakes to avoid">
+<h2>Common mistakes to avoid</h2>
+<ul>
+<li>Over-engineering early architecture with bespoke Kubernetes before validating demand.
+</li>
+<li>Ignoring data transfer and egress costs between regions or providers when forecasting spend.
+</li>
+<li>Assuming "cloud = infinite scale" without designing guardrails, budgets and auto-scaling limits.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="15" data-kind="content" data-title="Case study snapshot">
+<h2>Case study snapshot</h2>
+<ul>
+<li>"Company X" launched on serverless functions with a 3-person team, reaching 1M users before adopting managed Kubernetes for steady workloads.
+</li>
+<li>By year four and 10M users, they added edge servers in two colocated facilities to meet latency SLAs while keeping the rest in cloud services.
+</li>
+<li>Headcount grew from 3 to 15 engineers, and tooling spend shifted from credits to negotiated enterprise contracts.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="16" data-kind="content" data-title="Practical next steps">
+<h2>Practical next steps</h2>
+<ul>
+<li>Experiment with AWS, Azure and GCP pricing calculators to model 12–24 month costs under different growth assumptions.
+</li>
+<li>Set up billing alerts and anomaly detection on day one so credits and budgets are visible to engineering and finance.
+</li>
+<li>Document current architecture assumptions, RACI charts and exit criteria before you scale into the next operating model.
+</li>
+</ul>
+<p>---</p>
+</section>

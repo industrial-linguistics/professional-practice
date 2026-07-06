@@ -29,7 +29,7 @@ This follows the usual `merah`/`raksasa` split: keep static/public output on `me
 
 ### Secrets and environment
 
-- The ElevenLabs key has been installed as `/home/professionalpractice/.elevenlabs.io`.
+- The ElevenLabs key has been installed as `/home/professionalpractice/.elevenlabs.mq.io`.
 - AWS credentials have been installed under `/home/professionalpractice/.aws/` from the local `audio-fragements` profile.
 - `/home/professionalpractice/.config/professional-practice.env` sets:
   - `VOICER_S3_BUCKET=audio-fragments`

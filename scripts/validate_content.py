@@ -48,57 +48,45 @@ def validate_markdown_syntax(file_path: Path) -> ValidationResult:
     except Exception as e:
         return ValidationResult(False, f"Failed to read {file_path}: {e}")
 
-def count_marp_slides(slides_file: Path) -> int:
-    """Count slides in Marp markdown file"""
+def count_html_slides(slides_file: Path) -> int:
+    """Count slides in HTML slide source"""
     with open(slides_file, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    lines = content.split('\n')
-    slide_count = 0
-    front_matter_count = 0
-    in_front_matter = False
-
-    for line in lines:
-        trimmed = line.strip()
-
-        if trimmed == '---':
-            if front_matter_count < 2:
-                front_matter_count += 1
-                if front_matter_count == 1:
-                    in_front_matter = True
-                elif front_matter_count == 2:
-                    in_front_matter = False
-            elif not in_front_matter:
-                slide_count += 1
-
-    # Add 1 for the first slide
-    if slide_count > 0 or len(content) > 0:
-        slide_count += 1
-
-    return slide_count
+    return len(
+        re.findall(
+            r"<section\b(?=[^>]*\bclass=[\"'][^\"']*\bslide\b)",
+            content,
+            flags=re.IGNORECASE,
+        )
+    )
 
 def validate_content_structure(topic_path: Path) -> ValidationResult:
     """Validate content structure and file existence"""
 
     # Check for required files
-    slides_md = topic_path / "slides.md"
+    slides_html = topic_path / "slides.html"
     narratives_dir = topic_path / "narratives"
 
-    if not slides_md.exists():
-        return ValidationResult(False, f"slides.md not found in {topic_path}")
+    if not slides_html.exists():
+        return ValidationResult(False, f"slides.html not found in {topic_path}")
 
     if not narratives_dir.exists():
         return ValidationResult(False, f"narratives directory not found in {topic_path}")
 
     # Find all narrative files
-    narrative_files = sorted(narratives_dir.glob("*.md"))
+    narrative_files = sorted(
+        p
+        for p in narratives_dir.glob("*.md")
+        if p.name.lower() not in {"outline.md", "readme.md"}
+    )
 
     if len(narrative_files) == 0:
         return ValidationResult(False, f"No narrative files found in {narratives_dir}")
 
     # Count slides
     try:
-        slide_count = count_marp_slides(slides_md)
+        slide_count = count_html_slides(slides_html)
     except Exception as e:
         return ValidationResult(False, f"Failed to count slides: {e}")
 
@@ -110,11 +98,7 @@ def validate_content_structure(topic_path: Path) -> ValidationResult:
         )
 
     # Validate markdown syntax
-    md_result = validate_markdown_syntax(slides_md)
-    if not md_result:
-        return md_result
-
-    warnings = md_result.warnings
+    warnings = []
 
     # Validate each narrative
     for narrative_file in narrative_files:

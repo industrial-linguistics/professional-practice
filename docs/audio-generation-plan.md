@@ -34,7 +34,7 @@ The existing narratives total about 53,000 words. Depending on punctuation, spea
 
 Do not bulk-generate audio until these gates pass:
 
-1. Every topic selected for audio has the same number of Marp slides and narrative files.
+1. Every topic selected for audio has the same number of HTML slide sections and narrative files.
 2. `scripts/validate_content.py` passes for the topic.
 3. `bin/vtt-generator` produces a valid `subtitles.vtt`.
 4. `bin/voicer --dry-run` succeeds.

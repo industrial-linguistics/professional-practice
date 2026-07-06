@@ -33,9 +33,10 @@ Key items that need to be completed:
 
 ## Technology Stack (Planned)
 
-The rendering pipeline will use:
+The rendering pipeline uses:
+- **HTML slide source**: Editable `slides.html` sections for e-learning, textbook and screenshots
 - **ElevenLabs**: Text-to-speech for narration
-- **Marp**: Markdown-to-slide conversion
+- **Headless Chrome**: HTML-to-PNG slide screenshots for video/run-sheet tooling
 - **FFmpeg**: Video processing and assembly
 - **AWS S3**: Content storage and caching
 - **GitHub Actions**: CI/CD automation
@@ -67,7 +68,8 @@ When asked to "do the next item on the todo list":
 
 ### Slides and Narratives Structure
 - Content lives in `content/part-XX/topic-name/`
-- Each topic has a `slides.md` file and `narratives/` directory
+- Each topic has a `slides.html` file and `narratives/` directory
+- Slide source is HTML: one `<section class="slide">` per learner-visible slide
 - Narratives are numbered `01-intro.md`, `02-topic.md`, etc.
 - Follow the two-speaker conversational format established in existing content
 - Aim for ~100 words per narrative (1 minute of speech)

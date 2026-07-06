@@ -4,8 +4,10 @@ on:
     branches: ["main"]
     paths:
       - 'content/**'
-      - 'cmd/render-slides/**'
       - 'cmd/run_sheets/**'
+      - 'scripts/render_html_slides.py'
+      - 'scripts/course_content.py'
+      - 'scripts/build_elearning.py'
       - 'scripts/generate_run_sheets.sh'
       - 'scripts/generate_run_sheets_html.sh'
       - 'scripts/generate_website_index.sh'
@@ -27,7 +29,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y nodejs npm ffmpeg jq fonts-dejavu-core poppler-utils rsync
-          sudo npm install -g @marp-team/marp-cli
           ./scripts/install_chrome.sh
           go mod download
       - name: Verify fonts
@@ -37,7 +38,6 @@ jobs:
       - name: Build
         run: |
           go vet ./...
-          go build ./cmd/render-slides
           go build ./cmd/run_sheets
       - name: Generate run sheets
         run: |

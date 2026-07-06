@@ -8,7 +8,7 @@ The pipeline consists of six stages:
 
 1. **Pre-generation Validation** - Verify content structure and quality
 2. **VTT Generation** - Convert narratives to WebVTT subtitles with timing
-3. **Slide Rendering** - Convert Marp markdown to PNG images
+3. **Slide Rendering** - Screenshot HTML slide sections to PNG images
 4. **Audio Generation** - Generate narration using ElevenLabs TTS
 5. **Video Assembly** - Combine slides and audio into final video
 6. **Post-generation Validation** - Verify outputs are correct
@@ -22,7 +22,7 @@ The pipeline consists of six stages:
 ./envsetup.sh
 
 # Configure ElevenLabs API key (required for audio)
-echo "your_api_key_here" > ~/.elevenlabs.io
+echo "your_api_key_here" > ~/.elevenlabs.mq.io
 ```
 
 ### Build Videos
@@ -61,16 +61,17 @@ bin/vtt-generator content/part-01/overview
 **Input:** `content/part-01/overview/narratives/*.md`
 **Output:** `content/part-01/overview/subtitles.vtt`
 
-### 2. Slide Renderer (`cmd/render-slides`)
+### 2. Slide Renderer (`scripts/render_html_slides.py`)
 
-Renders Marp markdown slides to PNG images.
+Renders `slides.html` sections to PNG images using headless Chrome.
 
 **Usage:**
 ```bash
-bin/render-slides
+python3 scripts/render_html_slides.py --all
+python3 scripts/render_html_slides.py content/part-01/overview
 ```
 
-**Input:** `content/**/slides.md`
+**Input:** `content/**/slides.html`
 **Output:** `assets/slide-images/part-XX/topic-name/slide.001.png`, etc.
 
 ### 3. Audio Generator (`cmd/voicer`)
@@ -130,9 +131,9 @@ Combines slide images and audio into final MP4 video.
 
 Fast checks before any generation:
 
-- ✓ Required files exist (slides.md, narratives/)
+- ✓ Required files exist (`slides.html`, `narratives/`)
 - ✓ Slide count matches narrative count
-- ✓ Markdown syntax is valid
+- ✓ HTML slide sections are present
 - ✓ Word counts are reasonable (50-250 words)
 - ✓ No broken links or unclosed code blocks
 
@@ -192,7 +193,7 @@ python3 scripts/build_manifest.py reset
 **Manifest Location:** `.build-manifest.json`
 
 **What triggers rebuild:**
-- Source file changed (slides.md, narratives/*.md, images/*)
+- Source file changed (`slides.html`, narratives/*.md, images/*)
 - Output file missing (subtitles.vtt, audio.wav, final.mp4)
 - Never built before
 
@@ -248,7 +249,7 @@ The build manifest system ensures we only rebuild topics where content changed.
 
 ### "Validation failed: X slides but Y narratives"
 
-The number of slides in `slides.md` doesn't match narrative files.
+The number of slide sections in `slides.html` doesn't match narrative files.
 
 **Fix:** Ensure each slide has a corresponding narrative file, or vice versa.
 
@@ -270,7 +271,7 @@ API key is required for audio generation.
 
 **Fix:**
 ```bash
-echo "your_api_key_here" > ~/.elevenlabs.io
+echo "your_api_key_here" > ~/.elevenlabs.mq.io
 ```
 
 Or use `--skip-audio` to skip audio generation (for testing).

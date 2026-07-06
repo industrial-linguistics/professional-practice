@@ -5,7 +5,7 @@ This note captures how to render narration audio with the `voicer` CLI from the 
 ## Environment preparation
 
 1. Confirm that the Revoicer tools are installed (the package provides `/usr/bin/voicer`).
-2. Ensure the ElevenLabs API key is available at `~/.elevenlabs.io` or pass `--key-file` with an explicit path.
+2. Ensure the ElevenLabs API key is available at `~/.elevenlabs.mq.io` or pass `--key-file` with an explicit path.
 3. Point the cache at Amazon S3 so we reuse synthesized segments between runs: set `VOICER_S3_BUCKET=audio-fragments` in the shell or supply `--s3-bucket audio-fragments` on the command line. The current Go tool expects the raw bucket name, not an `s3://` URI.
 
 ## Rendering workflow

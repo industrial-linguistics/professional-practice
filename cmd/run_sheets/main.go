@@ -173,7 +173,7 @@ func main() {
 				if !t.IsDir() {
 					continue
 				}
-				slides := filepath.Join(partPath, t.Name(), "slides.md")
+				slides := filepath.Join(partPath, t.Name(), "slides.html")
 				if _, err := os.Stat(slides); err != nil {
 					if !os.IsNotExist(err) {
 						fmt.Fprintln(os.Stderr, err)

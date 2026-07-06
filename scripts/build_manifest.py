@@ -56,9 +56,9 @@ class BuildManifest:
         hashes = {}
 
         # Slides
-        slides_file = topic_path / "slides.md"
+        slides_file = topic_path / "slides.html"
         if slides_file.exists():
-            hashes['slides.md'] = self.get_file_hash(slides_file)
+            hashes['slides.html'] = self.get_file_hash(slides_file)
 
         # Narratives
         narratives_dir = topic_path / "narratives"
@@ -155,7 +155,7 @@ class BuildManifest:
         """
         topics_to_build = []
 
-        # Find all topic directories (directories with slides.md)
+        # Find all topic directories (directories with slides.html)
         for part_dir in sorted(content_dir.glob("part-*")):
             if not part_dir.is_dir():
                 continue
@@ -164,7 +164,7 @@ class BuildManifest:
                 if not topic_dir.is_dir():
                     continue
 
-                slides_file = topic_dir / "slides.md"
+                slides_file = topic_dir / "slides.html"
                 if not slides_file.exists():
                     continue
 
@@ -247,6 +247,16 @@ def main():
         topic_path = Path(sys.argv[2])
         manifest.update_build_info(topic_path)
         print(f"✅ Updated manifest for {topic_path}")
+
+    elif command == "mark-failed":
+        if len(sys.argv) < 4:
+            print("Error: topic-path and error message required")
+            sys.exit(1)
+
+        topic_path = Path(sys.argv[2])
+        error = " ".join(sys.argv[3:])
+        manifest.mark_build_failed(topic_path, error)
+        print(f"❌ Marked failed: {topic_path}")
 
     elif command == "status":
         status = manifest.get_build_status()

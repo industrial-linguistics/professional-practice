@@ -576,7 +576,7 @@ func main() {
 
 	// Define flags
 	homeDir, _ := os.UserHomeDir()
-	defaultAPIKeyFile := filepath.Join(homeDir, ".elevenlabs.io")
+	defaultAPIKeyFile := filepath.Join(homeDir, ".elevenlabs.mq.io")
 	defaultTempDir := filepath.Join(os.TempDir(), "voicer-audio")
 
 	rootCmd.Flags().StringVarP(&config.VTTFile, "vtt", "v", "", "VTT file to process (required)")

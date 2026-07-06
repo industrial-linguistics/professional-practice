@@ -1,0 +1,66 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: CI/CD Pipeline Design Principles -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="CI/CD Pipeline Design">
+<h1>CI/CD Pipeline Design</h1>
+<p><em>Automating delivery from commit to production</em></p>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="Why CI/CD?">
+<h2>Why CI/CD?</h2>
+<ul>
+<li>Manual deployments are slow and error-prone
+</li>
+<li>Automation ensures repeatable releases
+</li>
+<li>Quick feedback helps teams of any size
+</li>
+<li>Lets engineers focus on features, not shipping chores
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="Core principles">
+<h2>Core principles</h2>
+<ul>
+<li>Automate build, test and deploy steps
+</li>
+<li>Build once, deploy many times
+</li>
+<li>Provide fast feedback on changes
+</li>
+<li>Include security and quality gates
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="Implementation flow">
+<h2>Implementation flow</h2>
+<ul>
+<li>Trigger on source control events
+</li>
+<li>Build artifacts in a clean environment
+</li>
+<li>Run tests to validate changes
+</li>
+<li>Deploy progressively from dev to prod
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="GitHub Actions example">
+<h2>GitHub Actions example</h2>
+<ul>
+<li>YAML workflow triggered on push
+</li>
+<li>Separate jobs for build, test and deploy
+</li>
+<li>Reusable actions and encrypted secrets
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Key takeaway">
+<h2>Key takeaway</h2>
+<p>A well‑designed pipeline lets teams deliver code quickly and safely through automation and continuous feedback.</p>
+</section>

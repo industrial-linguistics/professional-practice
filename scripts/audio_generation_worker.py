@@ -80,7 +80,7 @@ def topic_dirs(content_dir: Path) -> list[Path]:
         if not part_dir.is_dir():
             continue
         for topic_dir in sorted(part_dir.iterdir()):
-            if (topic_dir / "slides.md").exists():
+            if (topic_dir / "slides.html").exists():
                 topics.append(topic_dir)
     return topics
 
@@ -97,7 +97,7 @@ def read_api_key() -> tuple[str, str]:
     env_key = os.environ.get("ELEVENLABS_API_KEY", "").strip()
     if env_key:
         return env_key, "ELEVENLABS_API_KEY"
-    key_file = Path.home() / ".elevenlabs.io"
+    key_file = Path.home() / ".elevenlabs.mq.io"
     if key_file.exists():
         key = key_file.read_text().strip()
         if key:

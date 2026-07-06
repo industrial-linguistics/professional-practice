@@ -16,10 +16,8 @@ sudo apt-get install -y \
     python3 \
     python3-pip \
     bc \
-    fonts-dejavu-core
-
-# Install Marp CLI for slide rendering
-sudo npm install -g @marp-team/marp-cli
+    fonts-dejavu-core \
+    chromium
 
 # Install Python dependencies (optional - for audio quality testing)
 # Uncomment to enable Whisper-based audio validation
@@ -29,7 +27,6 @@ sudo npm install -g @marp-team/marp-cli
 echo "Building Go tools..."
 mkdir -p bin
 go build -o bin/vtt-generator ./cmd/vtt-generator
-go build -o bin/render-slides ./cmd/render-slides
 go build -o bin/voicer ./cmd/voicer
 go build -o bin/run_sheets ./cmd/run_sheets
 
@@ -38,12 +35,12 @@ echo "Environment setup complete!"
 echo ""
 echo "Available commands:"
 echo "  bin/vtt-generator   - Generate VTT subtitles from narratives"
-echo "  bin/render-slides   - Render Marp slides to PNG"
 echo "  bin/voicer          - Generate audio using ElevenLabs"
 echo "  bin/run_sheets      - Generate instructor PDF run sheets"
 echo ""
 echo "Scripts:"
 echo "  scripts/build_videos.sh       - Build videos (full pipeline)"
+echo "  scripts/render_html_slides.py - Render HTML slides to PNG"
 echo "  scripts/assemble_video.sh     - Assemble single video from components"
 echo "  scripts/validate_content.py   - Validate content before building"
 echo "  scripts/validate_outputs.py   - Validate generated outputs"

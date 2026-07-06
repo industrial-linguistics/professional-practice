@@ -74,6 +74,15 @@ func run(config Config) error {
 	}
 
 	sort.Strings(files)
+	filteredFiles := make([]string, 0, len(files))
+	for _, file := range files {
+		base := strings.ToLower(filepath.Base(file))
+		if base == "outline.md" || base == "readme.md" {
+			continue
+		}
+		filteredFiles = append(filteredFiles, file)
+	}
+	files = filteredFiles
 
 	// Parse narratives
 	narratives := make([]Narrative, 0, len(files))
@@ -124,9 +133,9 @@ func run(config Config) error {
 
 	// Validate if requested
 	if config.Validate {
-		slidesFile := filepath.Join(config.ContentDir, "slides.md")
+		slidesFile := filepath.Join(config.ContentDir, "slides.html")
 		if _, err := os.Stat(slidesFile); err == nil {
-			slideCount, err := countMarpSlides(slidesFile)
+			slideCount, err := countHTMLSlides(slidesFile)
 			if err != nil {
 				return fmt.Errorf("failed to count slides: %v", err)
 			}
@@ -249,46 +258,14 @@ func countWords(text string) int {
 	return len(fields)
 }
 
-func countMarpSlides(slidesFile string) (int, error) {
+func countHTMLSlides(slidesFile string) (int, error) {
 	content, err := os.ReadFile(slidesFile)
 	if err != nil {
 		return 0, err
 	}
 
-	text := string(content)
-
-	// Count slide separators (---) but exclude YAML front matter
-	lines := strings.Split(text, "\n")
-	slideCount := 0
-	inFrontMatter := false
-	frontMatterCount := 0
-
-	for _, line := range lines {
-		trimmed := strings.TrimSpace(line)
-
-		if trimmed == "---" {
-			if frontMatterCount < 2 {
-				// This is part of YAML front matter
-				frontMatterCount++
-				if frontMatterCount == 1 {
-					inFrontMatter = true
-				} else if frontMatterCount == 2 {
-					inFrontMatter = false
-				}
-			} else if !inFrontMatter {
-				// This is a slide separator
-				slideCount++
-			}
-		}
-	}
-
-	// Add 1 because if there are N separators, there are N+1 slides
-	// But only if we actually found the file had content
-	if slideCount > 0 || len(text) > 0 {
-		slideCount++
-	}
-
-	return slideCount, nil
+	re := regexp.MustCompile(`(?is)<section[^>]*class=["'][^"']*\bslide\b[^"']*["'][^>]*>`)
+	return len(re.FindAll(content, -1)), nil
 }
 
 func formatTimestamp(d time.Duration) string {

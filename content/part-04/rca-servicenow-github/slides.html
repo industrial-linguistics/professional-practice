@@ -1,0 +1,111 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: Integrating RCA Records with ServiceNow and GitHub -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="RCA Records in ServiceNow &amp; GitHub">
+<h1>RCA Records in ServiceNow &amp; GitHub</h1>
+<p><em>Because "we'll remember to fix that" are famous last words</em></p>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="Why link RCA to problem tickets?">
+<h2>Why link RCA to problem tickets?</h2>
+<ul>
+<li>Turns scattered post‑mortem notes into an actionable backlog
+</li>
+<li>Tracks the root cause alongside related incidents and changes
+</li>
+<li>Keeps an audit trail for compliance reviews
+</li>
+<li>Helps prioritize improvements during planning sessions
+</li>
+<li>Ensures lessons learned drive measurable fixes rather than fading away
+</li>
+<li>Questions to ask: Where do we store past RCAs? Who checks them?
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="ServiceNow problem records">
+<h2>ServiceNow problem records</h2>
+<ul>
+<li>ServiceNow is a ticketing system widely used in IT operations
+</li>
+<li>A problem record summarizes the investigation after an incident
+</li>
+<li>Include a timeline, contributing factors and workarounds
+</li>
+<li>Link any relevant incident tickets, change requests and knowledge articles
+</li>
+<li>Assign an owner and set a target resolution date
+</li>
+<li>Example: "Checkout failure during Black Friday—DB connection pool exhausted; manual phone orders used as workaround"
+</li>
+<li>Good descriptions help managers see impact and approve resources
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="GitHub issue references">
+<h2>GitHub issue references</h2>
+<ul>
+<li>GitHub issues track code work that addresses the problem
+</li>
+<li>Title should mention the ServiceNow number for easy searching
+</li>
+<li>Example: "Increase DB connection pool size - PRB0001234"
+</li>
+<li>Describe the fix in business terms so non-developers understand
+</li>
+<li>Link commits and pull requests back to the issue
+</li>
+<li>Close the issue only after the fix is in production and verified
+</li>
+<li>Questions to ask: Does this change need a code review? Who signs off?
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="Putting it all together">
+<h2>Putting it all together</h2>
+<ul>
+<li>Start with a shared post‑mortem document capturing logs and timelines
+</li>
+<li>Within 24 hours, create a ServiceNow problem ticket summarizing the findings
+</li>
+<li>Open a GitHub issue for each improvement item and link it back
+</li>
+<li>Review progress weekly during improvement meetings
+</li>
+<li>Update the ServiceNow ticket when the GitHub issue closes
+</li>
+<li>Example timeline: incident 2:15 PM, outage 2:45 PM, resolved 4:30 PM; action item implemented two days later
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Common pitfalls">
+<h2>Common pitfalls</h2>
+<ul>
+<li>Forgetting to link ServiceNow and GitHub so records drift apart
+</li>
+<li>Vague problem statements that hide the real business impact
+</li>
+<li>Issues left open for months with no clear owner
+</li>
+<li>Urgent hotfixes applied outside the process and never documented
+</li>
+<li>Reviewing status only once, so lessons fade quickly
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Key takeaway">
+<h2>Key takeaway</h2>
+<ul>
+<li>Integrated records keep teams aligned and accountable
+</li>
+<li>ServiceNow captures the process while GitHub tracks the code
+</li>
+<li>Clear links turn each incident into documented learning rather than another "we should totally fix that someday" conversation
+</li>
+</ul>
+</section>

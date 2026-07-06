@@ -50,17 +50,16 @@ staging.mkdir(parents=True, exist_ok=True)
 
 
 def title_for(topic_dir: Path) -> str:
-    slides = topic_dir / "slides.md"
+    slides = topic_dir / "slides.html"
     if not slides.exists():
         return topic_dir.name.replace("-", " ").title()
-    for line in slides.read_text(errors="replace").splitlines():
-        stripped = line.strip()
-        if stripped.startswith("title:"):
-            return stripped.split(":", 1)[1].strip().strip('"')
-    for line in slides.read_text(errors="replace").splitlines():
-        stripped = line.strip()
-        if stripped.startswith("# "):
-            return stripped[2:].strip()
+    text = slides.read_text(errors="replace")
+    meta = re.search(r"<!--\s*title:\s*(.*?)\s*-->", text)
+    if meta:
+        return html.unescape(meta.group(1)).strip()
+    title = re.search(r'data-title="([^"]+)"', text)
+    if title:
+        return html.unescape(title.group(1)).strip()
     return topic_dir.name.replace("-", " ").title()
 
 

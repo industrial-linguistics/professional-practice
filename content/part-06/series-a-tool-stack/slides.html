@@ -1,0 +1,218 @@
+<!-- Generated from legacy slide Markdown by scripts/convert_slides_to_html.py. -->
+<!-- title: Series A Tool Stack Example -->
+
+<section class="slide" data-slide="1" data-kind="title" data-title="Series A Tool Stack Example">
+<h1>Series A Tool Stack Example</h1>
+<p><em>Scaling discipline without enterprise bloat</em></p>
+</section>
+
+<section class="slide" data-slide="2" data-kind="content" data-title="Series A reality check">
+<h2>Series A reality check</h2>
+<ul>
+<li>40–60 person team, first enterprise deals on the horizon.
+</li>
+<li>Board asks for proof of internal controls before approving new spend.
+</li>
+<li>Customers now require SOC 2 reports, SSO and incident response evidence.
+</li>
+<li>Guardrail: keep the SaaS core near <strong>$2K/month</strong> while funding product growth.
+</li>
+<li>Example: TechCorp just landed their first hospital client who requires documented incident response within 4 hours, SSO for 200+ users, and quarterly security attestations before approving the next $2M round.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="3" data-kind="content" data-title="Budget snapshot (~$2.1K/month)">
+<h2>Budget snapshot (~$2.1K/month)</h2>
+<table><thead><tr><th>Category</th><th>Tools &amp; assumptions</th><th>Monthly cost</th><th>Investor proof point</th></tr></thead><tbody><tr><td>Identity &amp; access</td><td>Okta Workforce Identity for 45 seats @ $12</td><td><strong>$540</strong></td><td>SSO + central audit logs</td></tr><tr><td>Collaboration &amp; meetings</td><td>Slack Business+ (30 seats) + Zoom Business (18 hosts)</td><td><strong>$735</strong></td><td>Secure global coordination</td></tr><tr><td>Product delivery &amp; on-call</td><td>Atlassian Cloud (Jira, Confluence, Opsgenie) for 40 seats</td><td><strong>$320</strong></td><td>Traceable change history</td></tr><tr><td>Trust &amp; compliance</td><td>Vanta Growth plan (discounted with startup credits)</td><td><strong>$250</strong></td><td>Automated SOC 2 evidence</td></tr><tr><td>Data &amp; RevOps</td><td>Snowflake starter + Fivetran Lite + dbt Cloud Team</td><td><strong>$250</strong></td><td>Revenue metrics on tap</td></tr><tr><td><strong>Total</strong></td><td></td><td><strong>$2,095</strong></td><td>Within Series A burn model</td></tr></tbody></table>
+</section>
+
+<section class="slide" data-slide="4" data-kind="content" data-title="Identity &amp; access: Okta as the spine">
+<h2>Identity &amp; access: Okta as the spine</h2>
+<ul>
+<li>Deploy Okta Workforce Identity or Auth0 Workforce for workforce SSO.
+</li>
+<li>Enforce SAML for Slack, Zoom, Atlassian and HRIS in one dashboard.
+</li>
+<li>Automate joiner/mover/leaver with HR triggers (Rippling, Deel, HiBob).
+</li>
+<li>Capture MFA posture reports for diligence rooms.
+</li>
+<li>Budget buffer: +$120/month for adaptive policies or Advanced Server Access if engineers need SSH brokering.
+</li>
+<li>Remember: if someone leaves and can still access Slack three days later, you're not building a security culture—you're building a revenge thriller.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="5" data-kind="content" data-title="Communication &amp; meeting layer">
+<h2>Communication &amp; meeting layer</h2>
+<ul>
+<li><strong>Slack Business+</strong> unlocks SSO, retention policies and eDiscovery exports.
+</li>
+<li><strong>Zoom Business</strong> covers 18 global hosts plus 2 executive webinar add-ons.
+</li>
+<li>Provision guest accounts for agencies via Okta to keep audit trails clean.
+</li>
+<li>Record renewal dates and owners in a finance ledger so nothing auto-renews unnoticed.
+</li>
+<li>Shared etiquette: move post-mortems and decision logs into Confluence within 24 hours to keep Slack from becoming your memory.
+</li>
+<li>Pro tip: "surprise auto-renew" Slack messages have ended more Series A rounds than failed product demos.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="6" data-kind="content" data-title="Product delivery &amp; incident response">
+<h2>Product delivery &amp; incident response</h2>
+<ul>
+<li><strong>Jira Software</strong> for backlog + sprint rituals; restrict admin rights to engineering leadership.
+</li>
+<li><strong>Confluence</strong> houses runbooks, architecture ADRs and policy packs linked from Jira epics.
+</li>
+<li><strong>Opsgenie</strong> standard plan wires alerts to on-call, with post-incident templates exported for compliance.
+</li>
+<li>Integrate Jira tickets with GitHub or GitLab so release notes and change approvals are auditable.
+</li>
+<li>Expect cost to rise ~15% once you cross 50 technical seats—document the trigger in your forecast.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Security incident workflow drill">
+<h2>Security incident workflow drill</h2>
+<ul>
+<li>Map Level 1, 2 and executive responders with 4-hour response expectations for regulated clients.
+</li>
+<li>Run quarterly tabletop exercises with customer-specific playbooks and document evidence in Confluence.
+</li>
+<li>Capture who declares incidents, who briefs customers and who closes the loop with investors.
+</li>
+<li>Template: one-page flowchart + 90-day review log to share with the board and that first hospital customer.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="8" data-kind="content" data-title="Trust, risk &amp; compliance automation">
+<h2>Trust, risk &amp; compliance automation</h2>
+<ul>
+<li><strong>Vanta Growth</strong> (or Drata equivalent) pulls evidence from Okta, Jira, AWS and GitHub automatically.
+</li>
+<li>Map controls to SOC 2, ISO 27001 and Essential Eight requirements for Australian clients.
+</li>
+<li>Use policy packs to train teams quarterly; store attestations in Confluence.
+</li>
+<li>Pair with <strong>Tugboat Logic questionnaires</strong> or <strong>Thoropass</strong> if customer security reviews ramp up.
+</li>
+<li>Justify the spend: single security hire would cost &gt;$12K/month—this tool simulates the headcount.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="9" data-kind="content" data-title="Data, finance &amp; RevOps instrumentation">
+<h2>Data, finance &amp; RevOps instrumentation</h2>
+<ul>
+<li><strong>Fivetran Lite</strong> syncs SaaS sources (Stripe, HubSpot) into Snowflake nightly.
+</li>
+<li><strong>Snowflake</strong> on-demand compute stays &lt;$50/month if you suspend warehouses off-hours.
+</li>
+<li><strong>dbt Cloud Team</strong> lets analytics and RevOps co-own models with approvals tied to Jira.
+</li>
+<li>Layer <strong>Census</strong> or <strong>Hightouch</strong> later for reverse ETL once CS teams need 360° health scores.
+</li>
+<li>Cost hygiene: monitor daily credit burn in Snowflake and set a $80/month alert with automatic warehouse suspension.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="10" data-kind="content" data-title="Serverless vs container run costs (monthly)">
+<h2>Serverless vs container run costs (monthly)</h2>
+<table><thead><tr><th>Item</th><th>Serverless baseline</th><th>Container baseline</th></tr></thead><tbody><tr><td>Compute</td><td>AWS Lambda &amp; API Gateway (~60M requests) = $220</td><td>EKS w/ 3 × m5.large nodes = $340</td></tr><tr><td>Data</td><td>DynamoDB on-demand &amp; S3 = $90</td><td>RDS Postgres + EFS backups = $160</td></tr><tr><td>Operations</td><td>Observability (CloudWatch + Lumigo) = $70</td><td>Observability (Datadog APM + Logs) = $180</td></tr><tr><td>Staffing</td><td>0.5 platform engineer (shared)</td><td>1 FTE platform/SRE for cluster upkeep</td></tr><tr><td><strong>Total</strong></td><td><strong>$380 + shared headcount</strong></td><td><strong>$680 + dedicated headcount</strong></td></tr></tbody></table>
+<ul>
+<li>Example scenario: fintech API handling 80M monthly transactions with market-hour spikes—serverless absorbs bursts, while containers force you to pay for 23 hours of idle capacity.
+</li>
+<li>Serverless stays cheaper until workloads exceed 100M requests/month or need long-running compute.
+</li>
+<li>Containers make sense when you require custom networking, GPU jobs or predictable workloads.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="11" data-kind="content" data-title="Decision triggers for architecture shifts">
+<h2>Decision triggers for architecture shifts</h2>
+<ul>
+<li>Switch to containers when cold starts hurt SLAs or per-request cost exceeds $0.60 per 1K invocations.
+</li>
+<li>Budget for Terraform/Terragrunt and cluster hardening audits before migrating.
+</li>
+<li>Pilot with managed Fargate/ECS to avoid Kubernetes overhead unless you already have deep ops talent.
+</li>
+<li>Document the total cost of ownership—tools, observability, people—in the board pack.
+</li>
+<li>Real case: GrowthCo hit $0.62 per 1K Lambda invocations and 150ms cold starts; six-week Fargate migration cut costs 40% but required hiring a $160K/year platform engineer.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="12" data-kind="content" data-title="Vendor evaluation checklist">
+<h2>Vendor evaluation checklist</h2>
+<ul>
+<li>Score vendors on security posture (SSO, SCIM, audit trails) before features or UI polish.
+</li>
+<li>Compare downgrade paths, integration APIs and roadmap transparency in a two-page matrix for leadership.
+</li>
+<li>Ask for customer references facing your exact regulator before signing multi-year deals.
+</li>
+<li>Track exit clauses and data export guarantees in a shared deal room to avoid compliance surprises.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="13" data-kind="content" data-title="Framing spend for skeptical investors">
+<h2>Framing spend for skeptical investors</h2>
+<ul>
+<li>Tie each tool to a risk removed: SSO stops account sprawl, Vanta prevents $200K SOC 2 consulting.
+</li>
+<li>Show savings vs headcount: one security hire + in-house ETL exceeds $25K/month fully loaded.
+</li>
+<li>Present a time-to-value chart: Okta deployed in 3 weeks, Vanta audit ready in 90 days, Atlassian reporting in 1 sprint.
+</li>
+<li>Highlight scalability: all contracts scale to 100 seats without renegotiation.
+</li>
+<li>Build an exit plan slide noting downgrade paths if growth slows.
+</li>
+<li>When investors ask "why not build it ourselves?", show them the fantasy salary for a security engineer who also runs RevOps, incident response and data pipelines. Spoiler: that person doesn't exist.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="14" data-kind="content" data-title="Failure stories: skipping the basics">
+<h2>Failure stories: skipping the basics</h2>
+<ul>
+<li>Startup A delayed SSO: ex-marketer downloaded 400 contacts post-departure, triggering a 60-day remediation slog.
+</li>
+<li>Startup B ignored incident tabletop drills and learned during a live outage that legal had zero scripts.
+</li>
+<li>Startup C never built a vendor scorecard; a hidden auto-renew locked them into $90K of unused analytics credits.
+</li>
+<li>Tie every anecdote back to the category budget so the cautionary tales translate into action items.
+</li>
+</ul>
+</section>
+
+<section class="slide" data-slide="15" data-kind="content" data-title="Workshop prompt for learners">
+<h2>Workshop prompt for learners</h2>
+<ul>
+<li>15 min: Map your current stack against the five categories and highlight gaps.
+</li>
+<li>20 min: Draft a $2K/month budget with assumptions, credits and identified downgrade triggers.
+</li>
+<li>15 min: Identify the metric or risk that justifies each line item for the board memo—capture sample outputs.
+</li>
+<li>20 min: Debate architecture choice with a cost table; assign a peer reviewer to challenge your numbers.
+</li>
+<li>10 min: Present the action plan to another team, gather feedback and document owners plus review dates in Confluence.
+</li>
+</ul>
+<p>---</p>
+</section>
