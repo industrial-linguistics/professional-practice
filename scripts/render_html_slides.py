@@ -127,7 +127,18 @@ def render_topic(topic_dir: Path, chrome: str) -> int:
             f"--screenshot={out}",
             page.resolve().as_uri(),
         ]
-        subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if os.environ.get("PUPPETEER_DANGEROUS_NO_SANDBOX", "").lower() in {"1", "true", "yes"}:
+            cmd.insert(1, "--no-sandbox")
+            cmd.insert(2, "--disable-setuid-sandbox")
+        if sys.platform.startswith("linux"):
+            cmd.insert(3, "--disable-dev-shm-usage")
+        try:
+            subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+        except subprocess.CalledProcessError as error:
+            detail = (error.stderr or "").strip()
+            if detail:
+                raise RuntimeError(f"Chrome failed while rendering {page}: {detail}") from error
+            raise
     print(f"Rendered {len(topic.slides)} slide image(s) to {out_dir.relative_to(ROOT)}")
     return len(topic.slides)
 

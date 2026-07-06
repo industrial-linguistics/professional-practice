@@ -48,7 +48,11 @@ jobs:
       - name: Update website index
         run: |
           ./scripts/generate_website_index.sh
+      - name: Build e-learning site
+        run: |
+          python3 scripts/build_elearning.py
       - name: Prepare SSH key
+        if: ${{ vars.ENABLE_GITHUB_SITE_DEPLOY == '1' }}
         env:
           DEPLOYMENT_SSH_KEY: ${{ secrets.DEPLOYMENT_SSH_KEY }}
         run: |
@@ -56,6 +60,7 @@ jobs:
           chmod 600 /tmp/deploy_key
           echo "DEPLOYMENT_SSH_KEY=/tmp/deploy_key" >> $GITHUB_ENV
       - name: Deploy website
+        if: ${{ vars.ENABLE_GITHUB_SITE_DEPLOY == '1' }}
         run: |
           ./scripts/deploy_website.sh
           rm -f /tmp/deploy_key

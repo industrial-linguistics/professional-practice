@@ -156,9 +156,7 @@ def validate_generated_artifacts() -> list[Issue]:
         ROOT / "textbook" / "main.pdf",
         ROOT / "textbook" / "main-amazon.pdf",
         ROOT / "output" / "site" / "textbook" / "main.pdf",
-        ROOT / "output" / "site" / "textbook" / "main-amazon.pdf",
         ROOT / "output" / "elearning" / "textbook" / "main.pdf",
-        ROOT / "output" / "elearning" / "textbook" / "main-amazon.pdf",
     ]
     for artifact in artifacts:
         if not artifact.exists():

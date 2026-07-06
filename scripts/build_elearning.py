@@ -23,9 +23,8 @@ OUTPUT = ROOT / "output"
 ELEARNING = OUTPUT / "elearning"
 SITE = OUTPUT / "site"
 TEXTBOOK = ROOT / "textbook"
-TEXTBOOK_FILES = [
+PUBLISHED_TEXTBOOK_FILES = [
     ("main.pdf", "Student A4 PDF"),
-    ("main-amazon.pdf", "Amazon print-on-demand PDF"),
 ]
 
 
@@ -235,7 +234,7 @@ def build_course_corpus(parts: list[Part]) -> None:
 
 def copy_textbook_assets(dest: Path) -> None:
     dest.mkdir(parents=True, exist_ok=True)
-    for filename, _label in TEXTBOOK_FILES:
+    for filename, _label in PUBLISHED_TEXTBOOK_FILES:
         source = TEXTBOOK / filename
         if source.exists():
             shutil.copy2(source, dest / filename)
@@ -278,7 +277,6 @@ INDEX_PAGE = """<!doctype html>
   <nav>
     <a href="course-corpus.json">Course corpus</a>
     <a href="textbook/main.pdf">Textbook A4 PDF</a>
-    <a href="textbook/main-amazon.pdf">Amazon PDF</a>
   </nav>
   <p>IT Professional Practice</p>
   <h1>Self-paced courseware for practical IT work</h1>
@@ -306,11 +304,10 @@ SITE_INDEX = """<!doctype html>
   <nav>
     <a href="elearning/">Interactive course</a>
     <a href="textbook/main.pdf">Textbook A4 PDF</a>
-    <a href="textbook/main-amazon.pdf">Amazon PDF</a>
   </nav>
   <p>IT Professional Practice</p>
   <h1>Interactive courseware and printable textbook</h1>
-  <span>Use the browser lessons for self-paced study, or download the LaTeX-generated textbook for printing and print-on-demand production.</span>
+  <span>Use the browser lessons for self-paced study, or download the LaTeX-generated textbook for student printing.</span>
 </header>
 <main>
   <section class="part-band">
@@ -328,11 +325,6 @@ SITE_INDEX = """<!doctype html>
       <a class="topic-card" href="textbook/main.pdf">
         <strong>A4 textbook PDF</strong>
         <span>Student-printable LaTeX textbook generated from the same course source.</span>
-        <small>Download PDF</small>
-      </a>
-      <a class="topic-card" href="textbook/main-amazon.pdf">
-        <strong>Amazon print PDF</strong>
-        <span>6x9 inch print-on-demand PDF for KDP-style production checks.</span>
         <small>Download PDF</small>
       </a>
     </div>
@@ -376,18 +368,6 @@ TOPIC_PAGE = """<!doctype html>
     <div class="progress-track"><span id="progress-fill"></span></div>
     <div class="lesson-stage">
       <div class="slide-frame" id="slide-html" aria-live="polite"></div>
-      <div class="slide-copy">
-        <p id="slide-counter"></p>
-        <h2 id="slide-title"></h2>
-        <details open>
-          <summary>Narration transcript</summary>
-          <p id="slide-narration"></p>
-        </details>
-        <details>
-          <summary>On-screen text</summary>
-          <p id="slide-onscreen"></p>
-        </details>
-      </div>
     </div>
     <div class="lesson-controls">
       <button id="prev-slide" type="button">Previous</button>
@@ -639,8 +619,7 @@ main {
 }
 .lesson-stage {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
 }
 .slide-frame,
 .slide-copy,
@@ -653,15 +632,15 @@ main {
   box-shadow: 0 18px 42px rgba(36, 52, 71, .1);
 }
 .slide-frame {
-  min-height: 560px;
+  min-height: clamp(560px, calc(100vh - 220px), 760px);
   display: grid;
   place-items: center;
   padding: clamp(18px, 3vw, 44px);
   overflow: auto;
 }
 .slide {
-  width: min(100%, 920px);
-  min-height: 500px;
+  width: min(100%, 1040px);
+  min-height: 560px;
   display: grid;
   align-content: center;
   gap: 24px;
@@ -885,16 +864,16 @@ COURSE_JS = """
   function render() {
     const slide = slides[index];
     if (!slide) return;
-    frame.innerHTML = slide.html || '<section class="slide"><p>Slide content pending.</p></section>';
-    counter.textContent = `Slide ${index + 1} of ${slides.length}`;
-    title.textContent = slide.title || `Slide ${index + 1}`;
-    narration.textContent = slide.narration || 'No narration text available.';
-    onscreen.textContent = slide.text || 'No on-screen text available.';
-    progress.style.width = `${((index + 1) / slides.length) * 100}%`;
-    prev.disabled = index === 0;
-    next.disabled = index === slides.length - 1;
+    if (frame) frame.innerHTML = slide.html || '<section class="slide"><p>Slide content pending.</p></section>';
+    if (counter) counter.textContent = `Slide ${index + 1} of ${slides.length}`;
+    if (title) title.textContent = slide.title || `Slide ${index + 1}`;
+    if (narration) narration.textContent = slide.narration || 'No narration text available.';
+    if (onscreen) onscreen.textContent = slide.text || 'No on-screen text available.';
+    if (progress) progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+    if (prev) prev.disabled = index === 0;
+    if (next) next.disabled = index === slides.length - 1;
     jumps.forEach((button, i) => button.classList.toggle('active', i === index));
-    if (!subtitleBox.hidden) subtitleBox.textContent = slide.narration || slide.title || '';
+    if (subtitleBox && !subtitleBox.hidden) subtitleBox.textContent = slide.narration || slide.title || '';
     localStorage.setItem(storageKey, String(index));
   }
 
@@ -918,6 +897,7 @@ COURSE_JS = """
     if (event.key === 'ArrowRight') next?.click();
   });
   subtitleToggle?.addEventListener('click', () => {
+    if (!subtitleBox) return;
     const enabled = subtitleToggle.getAttribute('aria-pressed') !== 'true';
     subtitleToggle.setAttribute('aria-pressed', String(enabled));
     subtitleBox.hidden = !enabled;
