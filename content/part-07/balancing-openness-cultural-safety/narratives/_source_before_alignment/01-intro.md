@@ -1,0 +1,3 @@
+Speaker 1: When we say "open" in tech circles, people assume GitHub repos and creative commons everything. But for Indigenous communities, openness is negotiated, relational and grounded in tikanga. Our goal here is to show how you can invite collaboration without handing over guardianship of taonga.
+
+Speaker 2: Right, and it’s not just an ethical stance—it’s a strategic one. Communities want to drive impact from language archives, climate data or health studies, yet they’ve seen extractive research hollow trust. Balancing openness with cultural safety means designing processes that answer "who benefits?" and "who decides?" before a single CSV is shared.

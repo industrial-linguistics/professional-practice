@@ -1,0 +1,7 @@
+Speaker 1: Pause here—does this $2K map mirror your actual workflows or just vendor demos?
+Speaker 2: It becomes our rubric: identity, communications, delivery, trust, data; any tool outside those lanes needs evidence first.
+
+Speaker 1: [analytic] Here’s the $2.1K snapshot—identity, collaboration, delivery, compliance and RevOps.
+Speaker 2: Note the assumptions: 45 Okta seats, 30 Slack Business+ seats, 18 Zoom hosts.
+Speaker 1: Investors want to see the maths, so we show the per-seat logic and credits applied to Vanta.
+Speaker 2: Plus a path to stay inside burn modelling even when Snowflake usage spikes.

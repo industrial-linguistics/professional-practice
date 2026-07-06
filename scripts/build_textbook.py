@@ -51,6 +51,10 @@ def tex_escape(value: str) -> str:
         "❌": r"[Fail]",
         "➜": r"$\rightarrow$",
         "↔": r"$\leftrightarrow$",
+        "│": "|",
+        "├": "|",
+        "└": "`",
+        "─": "-",
     }
     return "".join(replacements.get(ch, ch) for ch in value)
 
@@ -152,6 +156,66 @@ def tex_text_block(text: str) -> str:
     return "\n".join(out).strip()
 
 
+def is_title_slide(slide: Slide) -> bool:
+    start = slide.html.split(">", 1)[0].lower()
+    return 'data-kind="title"' in start or "data-kind='title'" in start or slide.n == 1
+
+
+def narrative_to_book_prose(text: str) -> str:
+    text = re.sub(r"(?im)^\s*Speaker\s+\d+:\s*", "", text)
+    text = re.sub(r"\[[^\]]+\]\s*", "", text)
+    text = re.sub(r"\bWelcome to\b", "This section begins with", text, flags=re.IGNORECASE)
+    text = re.sub(r"\btoday\b", "this section", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s+", " ", text).strip()
+    if not text:
+        return ""
+
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    paragraphs: list[str] = []
+    current: list[str] = []
+    for sentence in sentences:
+        if not sentence:
+            continue
+        current.append(sentence)
+        if len(" ".join(current)) >= 360:
+            paragraphs.append(" ".join(current))
+            current = []
+    if current:
+        paragraphs.append(" ".join(current))
+    return "\n\n".join(paragraphs)
+
+
+def slide_key_points(slide: Slide) -> list[str]:
+    points: list[str] = []
+    seen: set[str] = set()
+    title = re.sub(r"\s+", " ", slide.title).strip().lower()
+    for raw in slide.text.splitlines():
+        line = re.sub(r"\s+", " ", raw).strip(" -\t")
+        if not line:
+            continue
+        if line.lower() == title:
+            continue
+        if line.startswith("Image:"):
+            continue
+        if len(line) > 170:
+            continue
+        key = line.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        points.append(line)
+    return points[:6]
+
+
+def tex_itemize(items: list[str]) -> str:
+    if not items:
+        return ""
+    lines = [r"\begin{itemize}[leftmargin=*]"]
+    lines.extend(rf"\item {tex_escape(item)}" for item in items)
+    lines.append(r"\end{itemize}")
+    return "\n".join(lines)
+
+
 def pre_blocks(slide: Slide) -> list[str]:
     blocks = []
     for match in re.finditer(
@@ -163,16 +227,21 @@ def pre_blocks(slide: Slide) -> list[str]:
     return blocks
 
 
-def render_slide(topic: Topic, slide: Slide) -> str:
+def render_slide(topic: Topic, slide: Slide, *, include_heading: bool = True) -> str:
     parts: list[str] = []
-    parts.append(rf"\subsection*{{Slide {slide.n}: {tex_heading(slide.title)}}}")
-    parts.append(rf"\index{{{tex_escape(slide.title)}}}")
+    if include_heading:
+        parts.append(rf"\subsection{{{tex_heading(slide.title)}}}")
+        parts.append(rf"\index{{{tex_escape(slide.title)}}}")
 
     if slide.narration:
-        parts.append(r"\paragraph{Narration.}")
-        parts.append(tex_text_block(slide.narration))
+        prose = narrative_to_book_prose(slide.narration)
+        if prose:
+            parts.append(tex_text_block(prose))
     else:
-        parts.append(r"\paragraph{Narration.} \emph{No narration text is currently available for this slide.}")
+        points = slide_key_points(slide)
+        if points:
+            parts.append(tex_text_block("This section should be expanded from the following practice points."))
+            parts.append(tex_itemize(points))
 
     for src in slide.image_paths:
         if re.match(r"^[a-z]+:", src) or src.startswith("/"):
@@ -196,22 +265,16 @@ def render_slide(topic: Topic, slide: Slide) -> str:
 
     code_blocks = pre_blocks(slide)
     if code_blocks:
-        parts.append(r"\paragraph{On-screen diagram or code.}")
+        parts.append(r"\paragraph{Example artifact.}")
         for code in code_blocks:
             parts.append(r"\begin{CodeBlock}")
             parts.append(normalise_code(code))
             parts.append(r"\end{CodeBlock}")
-    elif slide.text:
-        screen_text = slide.text
-        for src in slide.image_paths:
-            alt = image_alt(slide, src)
-            screen_text = screen_text.replace(f"Image: {alt}", "")
-        screen_text = screen_text.strip()
-        if screen_text:
-            parts.append(r"\paragraph{On-screen material.}")
-            parts.append(r"\begin{quote}\small\raggedright")
-            parts.append(tex_text_block(screen_text))
-            parts.append(r"\end{quote}")
+    else:
+        points = slide_key_points(slide)
+        if points and not is_title_slide(slide):
+            parts.append(r"\paragraph{Practice checkpoints.}")
+            parts.append(tex_itemize(points))
 
     return "\n\n".join(part for part in parts if part.strip())
 
@@ -222,9 +285,16 @@ def render_topic(topic: Topic) -> str:
         rf"\section{{{tex_heading(topic.title)}}}",
         rf"\index{{{tex_escape(topic.title)}}}",
     ]
-    if topic.summary:
+    slides = topic.slides
+    if slides and is_title_slide(slides[0]):
+        opener = render_slide(topic, slides[0], include_heading=False)
+        if opener:
+            lines.extend([opener, ""])
+        slides = slides[1:]
+    elif topic.summary:
         lines.extend([tex_text_block(topic.summary), ""])
-    for slide in topic.slides:
+
+    for slide in slides:
         lines.append(render_slide(topic, slide))
         lines.append("")
     return "\n".join(lines)
@@ -276,7 +346,7 @@ def write_audit(parts: list[Part]) -> None:
         f"- Generated from {len(parts)} parts, {topics} topics and {slides} slides.\n"
         f"- {len(mismatches)} topics currently have slide/narrative count mismatches; "
         "see `docs/narrative-mismatch-audit.md`.\n"
-        "- This is a structural LaTeX conversion, not a full prose rewrite pass.\n",
+        "- The generator now renders narrative material as textbook prose and keeps slide text as practice checkpoints; later editorial passes should still improve examples and continuity by hand.\n",
         encoding="utf-8",
     )
     (AUDIT / "style-notes.md").write_text(

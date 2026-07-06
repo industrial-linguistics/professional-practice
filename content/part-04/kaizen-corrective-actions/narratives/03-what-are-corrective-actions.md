@@ -1,0 +1,2 @@
+Speaker 1: What are Corrective Actions? focuses attention on a concrete part of the work. Specific fixes after an incident, Address non-conformities or failures, and Often mandated by policy or audit.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Address non-conformities or failures; Often mandated by policy or audit; Tracked to closure.

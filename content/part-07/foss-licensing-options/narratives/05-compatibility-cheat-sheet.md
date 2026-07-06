@@ -1,0 +1,2 @@
+Speaker 1: Compatibility cheat sheet focuses attention on a concrete part of the work. You use…Safe to combine withWatch-outs, MIT/BSDAlmost anythingPreserve attribution, and Apache 2.0MIT, Apache, GPLv3Patent terms clash with GPLv2 only.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: MIT/BSDAlmost anythingPreserve attribution; Apache 2.0MIT, Apache, GPLv3Patent terms clash with GPLv2 only; GPLv3GPLv3 codePermissive code ok, but binaries must be GPL.

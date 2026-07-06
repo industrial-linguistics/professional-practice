@@ -1,0 +1,2 @@
+Speaker 1: Example scenario focuses attention on a concrete part of the work. Checkout system fails across all regions, Users can't complete purchases, and Mobilize database, network and app teams.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Users can't complete purchases; Mobilize database, network and app teams.

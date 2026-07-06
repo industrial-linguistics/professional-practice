@@ -1,0 +1,2 @@
+Speaker 1: Why CI/CD? focuses attention on a concrete part of the work. Manual deployments are slow and error-prone, Automation ensures repeatable releases, and Quick feedback helps teams of any size.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Automation ensures repeatable releases; Quick feedback helps teams of any size; Lets engineers focus on features, not shipping chores.

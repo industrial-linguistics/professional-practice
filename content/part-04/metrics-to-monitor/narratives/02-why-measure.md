@@ -1,0 +1,2 @@
+Speaker 1: Why measure? focuses attention on a concrete part of the work. Show whether improvements work, Spot repeat issues early, and Prioritise resources based on data.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Spot repeat issues early; Prioritise resources based on data; Keep leadership informed.

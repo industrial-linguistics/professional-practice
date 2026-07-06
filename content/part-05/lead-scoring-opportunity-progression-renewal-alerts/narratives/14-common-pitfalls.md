@@ -1,0 +1,2 @@
+Speaker 1: Common pitfalls focuses attention on a concrete part of the work. Over-engineering scoring models that sales teams do not trust, Setting renewal alerts too late for meaningful intervention, and Tracking metrics that fail to drive clear action plans.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Setting renewal alerts too late for meaningful intervention; Tracking metrics that fail to drive clear action plans.

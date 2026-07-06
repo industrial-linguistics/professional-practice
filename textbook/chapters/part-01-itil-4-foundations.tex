@@ -8,827 +8,385 @@ This part introduces the basic concepts of service management and the terminolog
 
 \section{Escalation Paths and Support Tiers}
 \index{Escalation Paths and Support Tiers}
-Let's map out how a tricky issue moves through support teams. The goal is to fix things fast without clogging the pipeline. Each tier focuses on what it does best. Knowing where your...
+Let's map out how a tricky issue moves through support teams. The goal is to fix things fast without clogging the pipeline. Each tier focuses on what it does best. Knowing where your ticket belongs saves everyone time.
 
-\subsection*{Slide 1: Escalation Paths and Support Tiers}
-
-\index{Escalation Paths and Support Tiers}
-
-\paragraph{Narration.}
-
-Speaker 1: Let's map out how a tricky issue moves through support teams. The goal is to fix things fast without clogging the pipeline. Speaker 2: Each tier focuses on what it does best. Knowing where your ticket belongs saves everyone time.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Escalation Paths and Support Tiers
-
-Finding the right level of help
-
-\end{quote}
-
-\subsection*{Slide 2: Tier 1 – front line}
+\subsection{Tier 1 – front line}
 
 \index{Tier 1 – front line}
 
-\paragraph{Narration.}
+Tier 1 is the front desk. They reset passwords, guide users through quick checks and follow scripts. If the script doesn't solve it, they escalate so the queue keeps moving.
 
-Speaker 2: Tier 1 is the front desk. They reset passwords, guide users through quick checks and follow scripts. Speaker 1: If the script doesn't solve it, they escalate so the queue keeps moving.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Tier 1 – front line
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item First contact for users
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Handles common issues with scripts
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Escalates when fixes exceed standard steps
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Tier 2 – specialists}
+\subsection{Tier 2 – specialists}
 
 \index{Tier 2 – specialists}
 
-\paragraph{Narration.}
+Tier 2 technicians dig deeper. They have access to system logs and configuration tools to unravel stubborn faults. When they spot a code bug or design flaw, it's time to bring in Tier 3 specialists.
 
-Speaker 1: Tier 2 technicians dig deeper. They have access to system logs and configuration tools to unravel stubborn faults. Speaker 2: When they spot a code bug or design flaw, it's time to bring in Tier 3 specialists.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Tier 2 – specialists
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Troubleshoot complex problems
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Broader system access for diagnostics
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Decide if L3 expertise is needed
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Tier 3 – deep expertise}
+\subsection{Tier 3 – deep expertise}
 
 \index{Tier 3 – deep expertise}
 
-\paragraph{Narration.}
+Tier 3 is often the product developers or vendor engineers. They tackle root causes and push permanent fixes. Once resolved, details flow back down so Tier 1 can handle similar issues faster next time.
 
-Speaker 2: Tier 3 is often the product developers or vendor engineers. They tackle root causes and push permanent fixes. Speaker 1: Once resolved, details flow back down so Tier 1 can handle similar issues faster next time.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Tier 3 – deep expertise
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Developers or vendor engineers
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Provide root cause fixes and updates
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Share solutions down the chain
 \end{itemize}
-
----
-
-\end{quote}
 
 
 \section{Incident vs Request Fulfilment}
 \index{Incident vs Request Fulfilment}
-Let's untangle two concepts that often trip up new support staff: incidents and service requests. They sound similar but lead to very different workflows. Picture a computer that suddenly...
+Let's untangle two concepts that often trip up new support staff: incidents and service requests. They sound similar but lead to very different workflows. Picture a computer that suddenly refuses to boot. That's an incident. Now imagine a user politely asking for a new mouse—that's a request. Different problems, different playbooks.
 
-\subsection*{Slide 1: Incident vs Request Fulfilment}
-
-\index{Incident vs Request Fulfilment}
-
-\paragraph{Narration.}
-
-Speaker 1: Let's untangle two concepts that often trip up new support staff: incidents and service requests. They sound similar but lead to very different workflows. Speaker 2: Picture a computer that suddenly refuses to boot. That's an incident. Now imagine a user politely asking for a new mouse—that's a request. Different problems, different playbooks.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Incident vs Request Fulfilment
-
-How to tell a break/fix from a routine ask
-
-\end{quote}
-
-\subsection*{Slide 2: When is it an incident?}
+\subsection{When is it an incident?}
 
 \index{When is it an incident?}
 
-\paragraph{Narration.}
+An incident is any unplanned disruption or reduction in the quality of a service. When the payroll system crashes, we drop everything and focus on restoring normal operations. The aim is speed and stability. We log the ticket, assign urgency and escalate if needed so employees can get back to work quickly.
 
-Speaker 2: An incident is any unplanned disruption or reduction in the quality of a service. When the payroll system crashes, we drop everything and focus on restoring normal operations. Speaker 1: The aim is speed and stability. We log the ticket, assign urgency and escalate if needed so employees can get back to work quickly.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-When is it an incident?
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Service is down or degraded
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Unplanned interruption
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Needs rapid restoration
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: What is a service request?}
+\subsection{What is a service request?}
 
 \index{What is a service request?}
 
-\paragraph{Narration.}
+A service request is different. It's a predefined, low-risk action like provisioning an account or ordering approved hardware. No firefighting here—just following a standard procedure. Because requests repeat often, we can automate many steps or let junior staff handle them. That frees up senior engineers to tackle actual incidents.
 
-Speaker 1: A service request is different. It's a predefined, low-risk action like provisioning an account or ordering approved hardware. No firefighting here—just following a standard procedure. Speaker 2: Because requests repeat often, we can automate many steps or let junior staff handle them. That frees up senior engineers to tackle actual incidents.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-What is a service request?
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Pre-approved standard action
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Examples: new account or equipment
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Follows a defined workflow
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Why the distinction matters}
+\subsection{Why the distinction matters}
 
 \index{Why the distinction matters}
 
-\paragraph{Narration.}
+Keeping incidents and requests separate means we measure the right things. Incident metrics show how fast we recover from outages, while request stats reveal how well we serve everyday needs. So the next time something goes wrong, check whether you're fixing a broken service or just helping with a routine task. Getting it right keeps support queues manageable and customers happy.
 
-Speaker 2: Keeping incidents and requests separate means we measure the right things. Incident metrics show how fast we recover from outages, while request stats reveal how well we serve everyday needs. Speaker 1: So the next time something goes wrong, check whether you're fixing a broken service or just helping with a routine task. Getting it right keeps support queues manageable and customers happy.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Why the distinction matters
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Incidents drive MTTR metrics
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Requests track user satisfaction
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Clear separation keeps teams efficient
 \end{itemize}
-
----
-
-\end{quote}
 
 
 \section{Job Roles Across the Service Lifecycle}
 \index{Job Roles Across the Service Lifecycle}
-Before a service goes live, someone has to own the concept. That's the service owner, supported by analysts who gather requirements and a change manager who plans the rollout. Good...
+This section sets up Job Roles Across the Service Lifecycle. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides. The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
 
-\subsection*{Slide 1: Job Roles Across the Service Lifecycle}
-
-\index{Job Roles Across the Service Lifecycle}
-
-\paragraph{Narration.}
-
-Speaker 1: Before a service goes live, someone has to own the concept. That's the service owner, supported by analysts who gather requirements and a change manager who plans the rollout. Speaker 2: Good planning at this stage means smoother transitions and fewer surprises once people start using the service.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Job Roles Across the Service Lifecycle
-
-Who does what from request to retirement
-
-\end{quote}
-
-\subsection*{Slide 2: Design and transition}
+\subsection{Design and transition}
 
 \index{Design and transition}
 
-\paragraph{Narration.}
+Before a service goes live, someone has to own the concept. That's the service owner, supported by analysts who gather requirements and a change manager who plans the rollout. Good planning at this stage means smoother transitions and fewer surprises once people start using the service.
 
-Speaker 1: Day to day issues land with the service desk. They triage requests and keep users informed. Speaker 2: When problems get tricky, application or infrastructure teams jump in, and if needed, vendors or engineers provide deep fixes.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Design and transition
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Service owner defines requirements
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Change manager coordinates releases
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Business analysts capture user needs
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Operation and support}
+\subsection{Operation and support}
 
 \index{Operation and support}
 
-\paragraph{Narration.}
+Day to day issues land with the service desk. They triage requests and keep users informed. When problems get tricky, application or infrastructure teams jump in, and if needed, vendors or engineers provide deep fixes.
 
-Speaker 1: Once a service is running, the work isn't done. Problem managers look for recurring issues while improvement specialists suggest changes. Speaker 2: Operations leaders review performance reports so they can steer resources and keep customers happy.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Operation and support
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Service desk handles day-to-day issues
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Application and infrastructure teams troubleshoot
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Vendors or engineers assist for complex fixes
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Continual improvement}
+\subsection{Continual improvement}
 
 \index{Continual improvement}
 
-\paragraph{Narration.}
+Once a service is running, the work isn't done. Problem managers look for recurring issues while improvement specialists suggest changes. Operations leaders review performance reports so they can steer resources and keep customers happy.
 
-Speaker 1: Many IT careers start on the service desk. From there, you might move into a specialist role like change manager or rise through management ranks. Speaker 2: With experience, you could end up owning a service portfolio or leading operations for an entire organisation.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Continual improvement
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Problem manager analyses trends
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Service improvement manager drives changes
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Ops leadership reviews performance
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 5: Career pathways}
+\subsection{Career pathways}
 
 \index{Career pathways}
 
-\paragraph{Narration.} \emph{No narration text is currently available for this slide.}
+Many IT careers start on the service desk. From there, you might move into a specialist role like change manager or rise through management ranks. With experience, you could end up owning a service portfolio or leading operations for an entire organisation.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Career pathways
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Start at the service desk to learn the ropes
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Move into specialist or management roles
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Aim for service owner or operations lead
 \end{itemize}
-
----
-
-\end{quote}
 
 
 \section{Major Incident Management Drill}
 \index{Major Incident Management Drill}
-Welcome to our major incident drill. Think of it as a fire drill for IT—everyone needs to know their part before the real emergency hits. We'll walk through a simulated outage so you can...
+This section begins with our major incident drill. Think of it as a fire drill for IT—everyone needs to know their part before the real emergency hits. We'll walk through a simulated outage so you can practice the motions without the adrenaline spike. The goal is to stay calm and restore service swiftly.
 
-\subsection*{Slide 1: Major Incident Management Drill}
-
-\index{Major Incident Management Drill}
-
-\paragraph{Narration.}
-
-Speaker 1: Welcome to our major incident drill. Think of it as a fire drill for IT—everyone needs to know their part before the real emergency hits. Speaker 2: We'll walk through a simulated outage so you can practice the motions without the adrenaline spike. The goal is to stay calm and restore service swiftly.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Major Incident Management Drill
-
-Staying calm when systems fail
-
-\end{quote}
-
-\subsection*{Slide 2: When is it a major incident?}
+\subsection{When is it a major incident?}
 
 \index{When is it a major incident?}
 
-\paragraph{Narration.}
+A major incident is more than a glitch. It affects core services and usually drags multiple teams into the fight. Picture the checkout system rejecting every payment during a sale—that's major. When you see widespread impact or a breached SLA on the horizon, escalate it and rally the right experts immediately.
 
-Speaker 2: A major incident is more than a glitch. It affects core services and usually drags multiple teams into the fight. Picture the checkout system rejecting every payment during a sale—that's major. Speaker 1: When you see widespread impact or a breached SLA on the horizon, escalate it and rally the right experts immediately.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-When is it a major incident?
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Impacts critical business services
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Requires cross-team coordination
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Needs immediate communication
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Example scenario}
+\subsection{Example scenario}
 
 \index{Example scenario}
 
-\paragraph{Narration.}
+Example scenario focuses attention on a concrete part of the work. Checkout system fails across all regions, Users can't complete purchases, and Mobilize database, network and app teams. In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Users can't complete purchases; Mobilize database, network and app teams.
 
-Speaker 1: Let's map the checkout flow so everyone knows where problems can start. The web front end hits an API gateway, which then fans out to microservices for payments, inventory, and orders. Those services talk to a clustered database and ping the payment provider over the internet. Monitoring agents watch each step.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Example scenario
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Checkout system fails across all regions
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Users can't complete purchases
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Mobilize database, network and app teams
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Checkout architecture}
+\subsection{Checkout architecture}
 
 \index{Checkout architecture}
 
-\paragraph{Narration.}
+Let's map the checkout flow so everyone knows where problems can start. The web front end hits an API gateway, which then fans out to microservices for payments, inventory, and orders. Those services talk to a clustered database and ping the payment provider over the internet. Monitoring agents watch each step.
 
-Speaker 2: A failure anywhere in that chain kicks off a big response. The incident commander coordinates efforts and sets priorities. A communications lead keeps executives and customers in the loop. Front-end and backend engineers dig into code issues. Database admins check queries and replication. Network ops verify connectivity and DNS. A liaison talks to the payment provider. Finally, the service desk fields user reports and keeps them updated.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Checkout architecture
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Web front end served from CDN
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item API gateway routing to microservices
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Payment gateway integration
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Inventory and order databases
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Monitoring at each layer
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 5: Who is involved?}
+\subsection{Who is involved?}
 
 \index{Who is involved?}
 
-\paragraph{Narration.}
+A failure anywhere in that chain kicks off a big response. The incident commander coordinates efforts and sets priorities. A communications lead keeps executives and customers in the loop. Front-end and backend engineers dig into code issues. Database admins check queries and replication. Network ops verify connectivity and DNS. A liaison talks to the payment provider.
 
-Speaker 1: During the drill, assign each role quickly and follow the runbook. The incident commander leads, comms handles updates, and a scribe logs every step. Speaker 2: Treat it as the real thing—no shortcuts. The more accurately you rehearse, the smoother an actual outage will play out.
+Finally, the service desk fields user reports and keeps them updated.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Who is involved?
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Incident commander coordinates the response
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Communications lead keeps stakeholders informed
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Front-end and backend engineering teams
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Database administrators
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Network operations
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Payment provider liaison
 \end{itemize}
 
-\begin{itemize}[leftmargin=*]
-\item Service desk and customer support
-\end{itemize}
-
-\end{quote}
-
-\subsection*{Slide 6: Running the drill}
+\subsection{Running the drill}
 
 \index{Running the drill}
 
-\paragraph{Narration.}
+During the drill, assign each role quickly and follow the runbook. The incident commander leads, comms handles updates, and a scribe logs every step. Treat it as the real thing—no shortcuts. The more accurately you rehearse, the smoother an actual outage will play out.
 
-Speaker 2: Once the dust settles, gather the team to review what happened. Share successes, missteps, and any surprises. Speaker 1: Update the playbook based on those lessons and book another drill. Practice turns panic into muscle memory.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Running the drill
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Assign clear roles fast
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Follow the runbook step by step
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Capture decisions and timelines
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 7: After-action review}
+\subsection{After-action review}
 
 \index{After-action review}
 
-\paragraph{Narration.} \emph{No narration text is currently available for this slide.}
+Once the dust settles, gather the team to review what happened. Share successes, missteps, and any surprises. Update the playbook based on those lessons and book another drill. Practice turns panic into muscle memory.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-After-action review
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Share what went well and what didn't
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Update the playbook accordingly
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Schedule the next practice
 \end{itemize}
-
----
-
-\end{quote}
 
 
 \section{Overview of ITIL 4}
 \index{Overview of ITIL 4}
-Welcome to our quick tour of ITIL 4. Think of this first slide as the stage curtain rising. Behind it lies a set of practices that guide how large organisations deliver tech support. If...
+This section begins with our quick tour of ITIL 4. Think of this first slide as the stage curtain rising. Behind it lies a set of practices that guide how large organisations deliver tech support. If you're new to the scene, picture ITIL like a city's traffic system—lanes, signs and intersections that keep everything flowing. Without it, we'd have gridlock every time an incident pops up.
 
-\subsection*{Slide 1: Overview of ITIL 4}
+We'll stick to the essentials, sprinkling in some humour so you won't nod off. By the end of this course you'll see why ITIL lingo is your ticket to a smoother IT career.
 
-\index{Overview of ITIL 4}
-
-\paragraph{Narration.}
-
-Speaker 1: Welcome to our quick tour of ITIL 4. Think of this first slide as the stage curtain rising. Behind it lies a set of practices that guide how large organisations deliver tech support. Speaker 2: If you're new to the scene, picture ITIL like a city's traffic system—lanes, signs and intersections that keep everything flowing. Without it, we'd have gridlock every time an incident pops up. Speaker 1: We'll stick to the essentials, sprinkling in some humour so you won't nod off. By the end of this course you'll see why ITIL lingo is your ticket to a smoother IT career.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Overview of ITIL 4
-
-How modern service management underpins IT operations
-
-\end{quote}
-
-\subsection*{Slide 2: What is ITIL 4?}
+\subsection{What is ITIL 4?}
 
 \index{What is ITIL 4?}
 
-\paragraph{Narration.}
+ITIL once stood for the Information Technology Infrastructure Library, but these days it's simply ITIL 4—a flexible set of practices focused on value. Imagine a cookbook for service management, packed with recipes like incident resolution and change enablement. Each ingredient is designed to balance stability and innovation. When you follow the book, you avoid the "too many cooks" problem and keep services tasty.
 
-Speaker 2: ITIL once stood for the Information Technology Infrastructure Library, but these days it's simply ITIL 4—a flexible set of practices focused on value. Imagine a cookbook for service management, packed with recipes like incident resolution and change enablement. Speaker 1: Each ingredient is designed to balance stability and innovation. When you follow the book, you avoid the "too many cooks" problem and keep services tasty. Speaker 2: So next time someone says "ITIL," picture a restaurant kitchen. Everyone has a station, the meals come out on time, and customers leave happy.
+So next time someone says "ITIL," picture a restaurant kitchen. Everyone has a station, the meals come out on time, and customers leave happy.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-What is ITIL 4?
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Latest evolution of the IT Infrastructure Library
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Focus on value co-creation through service management
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Aligns IT with broader business objectives
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Why it matters for your career}
+\subsection{Why it matters for your career}
 
 \index{Why it matters for your career}
 
-\paragraph{Narration.}
+You're probably wondering how this applies to landing a job. Recruiters love candidates who speak the language of ITIL because it means less hand-holding on day one. Think of it like joining a sports team mid-season. If you already know the playbook, you can jump right into the action. You'll deal with incidents, requests and changes in any support role, so learning the plays now saves you from awkward fumbles later.
 
-Speaker 1: You're probably wondering how this applies to landing a job. Recruiters love candidates who speak the language of ITIL because it means less hand-holding on day one. Speaker 2: Think of it like joining a sports team mid-season. If you already know the playbook, you can jump right into the action. You'll deal with incidents, requests and changes in any support role, so learning the plays now saves you from awkward fumbles later. Speaker 1: Plus, tossing around a few ITIL terms at interviews might just make you sound like the pro you are becoming.
+Plus, tossing around a few ITIL terms at interviews might just make you sound like the pro you are becoming.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Why it matters for your career
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Common language in enterprise IT environments
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Demonstrates understanding of structured processes
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Builds foundation for incident, change and problem management
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Key takeaway}
+\subsection{Key takeaway}
 
 \index{Key takeaway}
 
-\paragraph{Narration.}
+The real takeaway is that ITIL 4 gives you a sturdy framework for managing technology services. It's like having a trusty toolkit when something breaks—you don't have to guess which wrench fits. As you explore the rest of this course, keep that toolkit analogy in mind. You won't memorise every tool on day one, but knowing they exist means you're ready for whatever problems pop up.
 
-Speaker 2: The real takeaway is that ITIL 4 gives you a sturdy framework for managing technology services. It's like having a trusty toolkit when something breaks—you don't have to guess which wrench fits. Speaker 1: As you explore the rest of this course, keep that toolkit analogy in mind. You won't memorise every tool on day one, but knowing they exist means you're ready for whatever problems pop up. Speaker 2: So buckle up and enjoy the ride. The better you understand ITIL now, the easier every other topic will become.
+So buckle up and enjoy the ride. The better you understand ITIL now, the easier every other topic will become.
 
-\paragraph{On-screen material.}
+\paragraph{Practice checkpoints.}
 
-\begin{quote}\small\raggedright
-
-Key takeaway
-
-Grasping ITIL 4 concepts helps new professionals navigate
-
-real-world service teams and collaborate effectively.
-
-\end{quote}
+\begin{itemize}[leftmargin=*]
+\item Grasping ITIL 4 concepts helps new professionals navigate
+\item real-world service teams and collaborate effectively.
+\end{itemize}
 
 
 \section{ServiceNow as an ITIL Visual Guide}
 \index{ServiceNow as an ITIL Visual Guide}
-Welcome to ServiceNow. Think of it as a living map of ITIL in action. Every form and button matches a step in the framework, so you can see where work flows next. We'll take a short tour...
+This section begins with ServiceNow. Think of it as a living map of ITIL in action. Every form and button matches a step in the framework, so you can see where work flows next. We'll take a short tour and point out the key bits. If you've never opened ServiceNow before, don't worry. It's just a website with a very organised menu. The goal here is not to master the tool, but to recognise how incidents and requests move through their lifecycle.
 
-\subsection*{Slide 1: ServiceNow as an ITIL Visual Guide}
+Let's dive in.
 
-\index{ServiceNow as an ITIL Visual Guide}
-
-\paragraph{Narration.}
-
-Speaker 1: Welcome to ServiceNow. Think of it as a living map of ITIL in action. Every form and button matches a step in the framework, so you can see where work flows next. We'll take a short tour and point out the key bits. Speaker 2: If you've never opened ServiceNow before, don't worry. It's just a website with a very organised menu. The goal here is not to master the tool, but to recognise how incidents and requests move through their lifecycle. Let's dive in.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-ServiceNow as an ITIL Visual Guide
-
-Seeing workflows come to life
-
-\end{quote}
-
-\subsection*{Slide 2: Navigating the interface}
+\subsection{Navigating the interface}
 
 \index{Navigating the interface}
 
-\paragraph{Narration.}
+Start on the homepage. You'll see tiles for the Service Catalog and Incident lists. Most new analysts live here. Click into the catalog and you'll find request forms for common services. Each field is an ITIL data point—category, priority, and short description. The incident form looks similar. Raising a ticket captures details like impact and urgency, which combine into priority.
 
-Speaker 1: Start on the homepage. You'll see tiles for the Service Catalog and Incident lists. Most new analysts live here. Click into the catalog and you'll find request forms for common services. Each field is an ITIL data point—category, priority, and short description. Speaker 2: The incident form looks similar. Raising a ticket captures details like impact and urgency, which combine into priority. The form also shows assignment groups. As we fill it out, notice how required fields enforce consistency. This is ITIL governance without you having to memorise a textbook.
+The form also shows assignment groups. As we fill it out, notice how required fields enforce consistency. This is ITIL governance without you having to memorise a textbook.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Navigating the interface
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Homepage hubs: Service Catalog and Incident
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Quick search to find tickets fast
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Forms mirror ITIL artefacts
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Workflow states in action}
+\subsection{Workflow states in action}
 
 \index{Workflow states in action}
 
-\paragraph{Narration.}
+Once an incident is logged, watch the state field. It starts as New, then moves to In Progress when someone picks it up. If we need more information, we set it to Awaiting Info, which pings the requester automatically. When the issue is fixed, change the state to Resolved. After the user confirms, we mark it Closed. Every update is tracked in the Activity log, forming a complete audit trail.
 
-Speaker 1: Once an incident is logged, watch the state field. It starts as New, then moves to In Progress when someone picks it up. If we need more information, we set it to Awaiting Info, which pings the requester automatically. Speaker 2: When the issue is fixed, change the state to Resolved. After the user confirms, we mark it Closed. Every update is tracked in the Activity log, forming a complete audit trail. This visual flow mirrors the textbook ITIL lifecycle, so you can see each handoff and decision point.
+This visual flow mirrors the textbook ITIL lifecycle, so you can see each handoff and decision point.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Workflow states in action
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item New, In Progress, Awaiting Info
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Resolved and Closed handoff
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Audit trail for every change
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Dashboards and metrics}
+\subsection{Dashboards and metrics}
 
 \index{Dashboards and metrics}
 
-\paragraph{Narration.}
+Now check out the dashboards. These are customisable charts that show how many incidents sit in each state and which teams are handling them. It's a quick pulse check on service health. You can also view request queues and SLA countdowns. Managers love these graphs because they highlight bottlenecks at a glance. By reviewing the charts each day, teams spot trends early and keep priorities aligned with customer impact.
 
-Speaker 1: Now check out the dashboards. These are customisable charts that show how many incidents sit in each state and which teams are handling them. It's a quick pulse check on service health. Speaker 2: You can also view request queues and SLA countdowns. Managers love these graphs because they highlight bottlenecks at a glance. By reviewing the charts each day, teams spot trends early and keep priorities aligned with customer impact.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Dashboards and metrics
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Track open incidents by priority
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item See request queues at a glance
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Gauge service health over time
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 5: Key takeaway}
+\subsection{Key takeaway}
 
 \index{Key takeaway}
 
-\paragraph{Narration.}
+The real value of this quick tour is seeing ITIL concepts play out in a real tool. When you log in to ServiceNow, each click represents a step in the process: raising an incident, updating status, or linking related tasks. Remember, the interface is simply a guide. The principles—clear communication, proper escalation and thorough documentation—apply no matter which platform you use.
 
-Speaker 1: The real value of this quick tour is seeing ITIL concepts play out in a real tool. When you log in to ServiceNow, each click represents a step in the process: raising an incident, updating status, or linking related tasks. Speaker 2: Remember, the interface is simply a guide. The principles—clear communication, proper escalation and thorough documentation—apply no matter which platform you use. ServiceNow just makes them visible. Use this visual map to reinforce your understanding of ITIL and you'll navigate complex service desks with confidence.
+ServiceNow just makes them visible. Use this visual map to reinforce your understanding of ITIL and you'll navigate complex service desks with confidence.
 
-\paragraph{On-screen material.}
+\paragraph{Practice checkpoints.}
 
-\begin{quote}\small\raggedright
-
-Key takeaway
-
-ServiceNow's interface makes abstract ITIL processes tangible and easy to follow.
-
----
-
-\end{quote}
+\begin{itemize}[leftmargin=*]
+\item ServiceNow's interface makes abstract ITIL processes tangible and easy to follow.
+\end{itemize}
 
 
 \section{Service Value Chain}
 \index{Service Value Chain}
-Imagine the service value chain as a relay race. Each runner hands the baton to the next, from planning to improving, so customers receive consistent results. ITIL lays out six...
+Imagine the service value chain as a relay race. Each runner hands the baton to the next, from planning to improving, so customers receive consistent results. ITIL lays out six activities—plan, improve, engage, design and transition, obtain and build, and deliver and support. They aren't a strict sequence but rather a set of interlocking moves that keep services humming.
 
-\subsection*{Slide 1: Service Value Chain}
-
-\index{Service Value Chain}
-
-\paragraph{Narration.}
-
-Speaker 1: Imagine the service value chain as a relay race. Each runner hands the baton to the next, from planning to improving, so customers receive consistent results. Speaker 2: ITIL lays out six activities—plan, improve, engage, design and transition, obtain and build, and deliver and support. They aren't a strict sequence but rather a set of interlocking moves that keep services humming.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Service Value Chain
-
-How ITIL links activities to deliver value
-
-\end{quote}
-
-\subsection*{Slide 2: The Service Value Chain}
+\subsection{The Service Value Chain}
 
 \index{The Service Value Chain}
 
-\paragraph{Narration.}
-
-Speaker 2: Continual improvement is the glue holding those activities together. After each handoff, teams look back on what worked, gather metrics and brainstorm tweaks. Speaker 1: It's like tuning a recipe. You keep tasting and adjusting the flavours so the next batch turns out even better. Without that feedback loop, the chain would stall.
+The Service Value Chain focuses attention on a concrete part of the work. Service Value Chain with Continual Improvement. In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.
 
 \begin{figure}[htbp]
 \centering
@@ -836,84 +394,48 @@ Speaker 2: Continual improvement is the glue holding those activities together. 
 \caption{Service Value Chain with Continual Improvement}
 \end{figure}
 
-\paragraph{On-screen material.}
+\paragraph{Practice checkpoints.}
 
-\begin{quote}\small\raggedright
+\begin{itemize}[leftmargin=*]
+\item Service Value Chain with Continual Improvement
+\end{itemize}
 
-The Service Value Chain
-
-Service Value Chain with Continual Improvement
-
-\end{quote}
-
-\subsection*{Slide 3: Why continual improvement matters}
+\subsection{Why continual improvement matters}
 
 \index{Why continual improvement matters}
 
-\paragraph{Narration.}
+Continual improvement is the glue holding those activities together. After each handoff, teams look back on what worked, gather metrics and brainstorm tweaks. It's like tuning a recipe. You keep tasting and adjusting the flavours so the next batch turns out even better. Without that feedback loop, the chain would stall.
 
-Speaker 1: In many organisations, teams visualise the value chain on a Kanban board. They track where work items sit in the flow and highlight delays. Speaker 2: When a step lags, it's a signal to review the process. Maybe a handover checklist is missing or a tool doesn't integrate well. Adjustments keep the chain responsive.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Why continual improvement matters
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Builds quality into every step
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Encourages feedback loops
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Keeps services aligned with business goals
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Putting it into practice}
+\subsection{Putting it into practice}
 
 \index{Putting it into practice}
 
-\paragraph{Narration.}
+In many organisations, teams visualise the value chain on a Kanban board. They track where work items sit in the flow and highlight delays. When a step lags, it's a signal to review the process. Maybe a handover checklist is missing or a tool doesn't integrate well. Adjustments keep the chain responsive.
 
-Speaker 2: The value chain only shines when everyone embraces small, steady improvements. It's a mindset as much as a method. Speaker 1: Keep asking "how can we do this better?" and you'll help your team deliver reliable services that evolve with customer needs.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Putting it into practice
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Map each activity from plan to improve
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Measure outcomes and refine the approach
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Share lessons learned across teams
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 5: Key takeaway}
+\subsection{Key takeaway}
 
 \index{Key takeaway}
 
-\paragraph{Narration.} \emph{No narration text is currently available for this slide.}
+The value chain only shines when everyone embraces small, steady improvements. It's a mindset as much as a method. Keep asking "how can we do this better?" and you'll help your team deliver reliable services that evolve with customer needs.
 
-\paragraph{On-screen material.}
+\paragraph{Practice checkpoints.}
 
-\begin{quote}\small\raggedright
-
-Key takeaway
-
-Continuous improvement makes the value chain resilient and responsive.
-
-\end{quote}
+\begin{itemize}[leftmargin=*]
+\item Continuous improvement makes the value chain resilient and responsive.
+\end{itemize}

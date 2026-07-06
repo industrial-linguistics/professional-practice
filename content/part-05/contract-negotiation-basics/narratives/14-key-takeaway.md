@@ -1,0 +1,2 @@
+Speaker 1: The key takeaway is this: Speaker A: Negotiating a contract is about more than price, Speaker B: A well-crafted agreement covers uptime, pricing, exit strategies, and how the service will grow with you, and Speaker A: Use structured risk assessments and thorough checklists to evaluate vendors.
+Speaker 2: Use that takeaway to name the owner, evidence, and next action that should be visible after the work is done.

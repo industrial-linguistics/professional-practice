@@ -1,0 +1,2 @@
+Speaker 1: Integration challenges focuses attention on a concrete part of the work. Scoring shines when marketing automation, product usage and support systems sync cleanly. Expect mismatched fields, duplicate records or differing unique IDs. Use middleware or iPaaS tools, enforce naming conventions and schedule data-quality audits so automation fires on reliable signals instead of stale or conflicting data.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.

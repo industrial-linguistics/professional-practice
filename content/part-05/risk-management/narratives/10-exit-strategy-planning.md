@@ -1,0 +1,2 @@
+Speaker 1: Exit strategy planning focuses attention on a concrete part of the work. Negotiate clear termination clauses and notice periods, Document data migration steps and associated costs, and Keep alternative vendors in mind in case you need to switch.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Document data migration steps and associated costs; Keep alternative vendors in mind in case you need to switch.

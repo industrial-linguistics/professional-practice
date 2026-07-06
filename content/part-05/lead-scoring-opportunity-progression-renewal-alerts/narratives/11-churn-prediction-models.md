@@ -1,0 +1,2 @@
+Speaker 1: Churn prediction models focuses attention on a concrete part of the work. Move beyond binary alerts by combining product usage, support sentiment and contract value into predictive models. Use machine learning or rules-based health scores to forecast churn probability, then route high-risk accounts for executive reviews or value-add campaigns. Always balance prediction accuracy with interpretability so teams know which levers to pull.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.

@@ -1,0 +1,2 @@
+Speaker 1: What is displacement? focuses attention on a concrete part of the work. Replacing an incumbent vendor with your solution, Requires solving pain points the competitor misses, and Common where markets are saturated and contracts lock clients in.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Requires solving pain points the competitor misses; Common where markets are saturated and contracts lock clients in.

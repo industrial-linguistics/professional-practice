@@ -1,0 +1,2 @@
+Speaker 1: When day-zero planning goes wrong focuses attention on a concrete part of the work. Real examples teach better than theoretical checklists, and Let's see how a simple DNS mistake nearly derailed a promising startup.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Let's see how a simple DNS mistake nearly derailed a promising startup.

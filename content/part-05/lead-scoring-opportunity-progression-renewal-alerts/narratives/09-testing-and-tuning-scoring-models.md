@@ -1,0 +1,2 @@
+Speaker 1: Testing and tuning scoring models focuses attention on a concrete part of the work. Pilot new scoring formulas with a subset of leads, comparing conversion, velocity and rep feedback. Alternate threshold values or point weights in structured experiments so marketing and sales can prove which model accelerates pipeline without overwhelming teams. Document findings and iterate like any other growth experiment.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.

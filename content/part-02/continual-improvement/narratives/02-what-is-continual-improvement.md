@@ -1,0 +1,2 @@
+Speaker 1: What is continual improvement? focuses attention on a concrete part of the work. Systematic approach to enhancing services, Focus on value creation and customer satisfaction, and Builds on lessons learned from incidents and changes.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Focus on value creation and customer satisfaction; Builds on lessons learned from incidents and changes; Cultural shift from reactive to proactive mindset.

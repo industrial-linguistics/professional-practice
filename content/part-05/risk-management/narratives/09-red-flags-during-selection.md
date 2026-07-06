@@ -1,0 +1,2 @@
+Speaker 1: Red flags during selection focuses attention on a concrete part of the work. Evasive answers about pricing or compliance, No references or vague case studies, and Unrealistic implementation timelines.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: No references or vague case studies; Unrealistic implementation timelines.

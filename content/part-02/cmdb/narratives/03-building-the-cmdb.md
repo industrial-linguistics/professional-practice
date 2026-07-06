@@ -1,0 +1,2 @@
+Speaker 1: Building the CMDB focuses attention on a concrete part of the work. Identify key configuration items, Populate attributes from trusted sources, and Map relationships between CIs.
+Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Populate attributes from trusted sources; Map relationships between CIs.

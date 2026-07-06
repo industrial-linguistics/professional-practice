@@ -8,817 +8,391 @@ This part introduces modern DevOps practices and SRE principles that enable orga
 
 \section{CI/CD Pipeline Design}
 \index{CI/CD Pipeline Design}
-Picture manually copying files to dozens of servers after every tiny fix. It's slow, error-prone, and frankly a bit soul-crushing. Exactly. Continuous integration and continuous...
+Picture manually copying files to dozens of servers after every tiny fix. It's slow, error-prone, and frankly a bit soul-crushing. Exactly. Continuous integration and continuous delivery—CI/CD for short—evolved to end that pain. They let us package code changes automatically and push them to testing or production with a single command. Even non-technical teams appreciate the reliability.
 
-\subsection*{Slide 1: CI/CD Pipeline Design}
+Instead of wondering if the latest version actually made it to the customer site, everyone can see the pipeline status in real time. Think of it like an assembly line in a factory. Once the pieces start moving, the machinery takes care of the rest, freeing people to focus on improving the product rather than shipping logistics.
 
-\index{CI/CD Pipeline Design}
-
-\paragraph{Narration.}
-
-Speaker 1: Picture manually copying files to dozens of servers after every tiny fix. It's slow, error-prone, and frankly a bit soul-crushing. Speaker 2: Exactly. Continuous integration and continuous delivery—CI/CD for short—evolved to end that pain. They let us package code changes automatically and push them to testing or production with a single command. Speaker 1: Even non-technical teams appreciate the reliability. Instead of wondering if the latest version actually made it to the customer site, everyone can see the pipeline status in real time. Speaker 2: Think of it like an assembly line in a factory. Once the pieces start moving, the machinery takes care of the rest, freeing people to focus on improving the product rather than shipping logistics.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-CI/CD Pipeline Design
-
-Automating delivery from commit to production
-
-\end{quote}
-
-\subsection*{Slide 2: Why CI/CD?}
+\subsection{Why CI/CD?}
 
 \index{Why CI/CD?}
 
-\paragraph{Narration.}
+Why CI/CD? focuses attention on a concrete part of the work. Manual deployments are slow and error-prone, Automation ensures repeatable releases, and Quick feedback helps teams of any size. In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Automation ensures repeatable releases; Quick feedback helps teams of any size; Lets engineers focus on features, not shipping chores.
 
-Speaker 1: At its core, a CI/CD pipeline takes every change and runs it through the same checklist—build the code, test it thoroughly, then deploy it in a predictable way. Speaker 2: Automating these steps removes guesswork and inconsistency. The trick is to build the application once, store that exact artifact, and promote it through test, staging, and production environments. Speaker 1: Quick feedback loops are essential. If a test fails minutes after a commit, you can fix the issue before it grows. Speaker 2: Security scans and quality gates slot neatly into this process as well, so new features never skip the basic health checks. The pipeline should become the trusted guardian that approves everything that ships.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Why CI/CD?
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Manual deployments are slow and error-prone
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Automation ensures repeatable releases
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Quick feedback helps teams of any size
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Lets engineers focus on features, not shipping chores
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Core principles}
+\subsection{Core principles}
 
 \index{Core principles}
 
-\paragraph{Narration.}
+At its core, a CI/CD pipeline takes every change and runs it through the same checklist—build the code, test it thoroughly, then deploy it in a predictable way. Automating these steps removes guesswork and inconsistency. The trick is to build the application once, store that exact artifact, and promote it through test, staging, and production environments. Quick feedback loops are essential.
 
-Speaker 1: Once a developer commits code, the pipeline springs into action. A clean environment spins up so any leftover files from previous builds can't cause trouble. Speaker 2: The code is compiled or packaged, then a suite of automated tests checks that nothing obvious broke. If those tests pass, the same package moves on to a staging area where more realistic checks occur. Speaker 1: Staging mirrors the production environment closely. It's where you might run smoke tests or manual reviews if needed. Speaker 2: Only when everything looks good does the pipeline promote the very same build to production. That consistent flow—from commit to build to test to deploy—means you always know exactly what you're releasing.
+If a test fails minutes after a commit, you can fix the issue before it grows. Security scans and quality gates slot neatly into this process as well, so new features never skip the basic health checks. The pipeline should become the trusted guardian that approves everything that ships.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Core principles
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Automate build, test and deploy steps
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Build once, deploy many times
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Provide fast feedback on changes
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Include security and quality gates
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Implementation flow}
+\subsection{Implementation flow}
 
 \index{Implementation flow}
 
-\paragraph{Narration.}
+Once a developer commits code, the pipeline springs into action. A clean environment spins up so any leftover files from previous builds can't cause trouble. The code is compiled or packaged, then a suite of automated tests checks that nothing obvious broke. If those tests pass, the same package moves on to a staging area where more realistic checks occur. Staging mirrors the production environment closely.
 
-Speaker 1: One popular way to run a pipeline is through GitHub Actions. It's basically a set of instructions written in a simple YAML file that tells GitHub what to do whenever new code arrives. Speaker 2: You can define separate jobs for building, testing, and deploying. That separation keeps things tidy and makes it easy to see where a failure happens. Speaker 1: The workflow can also reuse community-created actions for common tasks like setting up a programming language or uploading artifacts. Speaker 2: And because sensitive information is stored in encrypted secrets, you don't have to hard-code passwords or access keys. It's like giving the pipeline a safe to keep its credentials locked away while it works.
+It's where you might run smoke tests or manual reviews if needed. Only when everything looks good does the pipeline promote the very same build to production. That consistent flow—from commit to build to test to deploy—means you always know exactly what you're releasing.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Implementation flow
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Trigger on source control events
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Build artifacts in a clean environment
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Run tests to validate changes
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Deploy progressively from dev to prod
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 5: GitHub Actions example}
+\subsection{GitHub Actions example}
 
 \index{GitHub Actions example}
 
-\paragraph{Narration.}
+One popular way to run a pipeline is through GitHub Actions. It's basically a set of instructions written in a simple YAML file that tells GitHub what to do whenever new code arrives. You can define separate jobs for building, testing, and deploying. That separation keeps things tidy and makes it easy to see where a failure happens. The workflow can also reuse community-created actions for common tasks like setting up a programming language or uploading artifacts.
 
-Speaker 1: In the end, a solid pipeline is less about fancy tooling and more about building trust. Every time code flows smoothly from a developer's laptop to production, confidence grows across the team. Speaker 2: Automating the repetitive steps frees everyone to focus on quality and new ideas. Mistakes still happen, but the pipeline catches many of them before customers ever notice. Speaker 1: Think of it as a safety net and a speed booster rolled into one. Once you've experienced reliable CI/CD, it's hard to imagine going back to manual releases. Speaker 2: So the real takeaway is simple: invest in your pipeline early. It pays off with faster feedback, fewer surprises, and calmer midnight releases—or better yet, no midnight releases at all.
+And because sensitive information is stored in encrypted secrets, you don't have to hard-code passwords or access keys. It's like giving the pipeline a safe to keep its credentials locked away while it works.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-GitHub Actions example
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item YAML workflow triggered on push
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Separate jobs for build, test and deploy
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Reusable actions and encrypted secrets
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 6: Key takeaway}
+\subsection{Key takeaway}
 
 \index{Key takeaway}
 
-\paragraph{Narration.} \emph{No narration text is currently available for this slide.}
+In the end, a solid pipeline is less about fancy tooling and more about building trust. Every time code flows smoothly from a developer's laptop to production, confidence grows across the team. Automating the repetitive steps frees everyone to focus on quality and new ideas. Mistakes still happen, but the pipeline catches many of them before customers ever notice.
 
-\paragraph{On-screen material.}
+Think of it as a safety net and a speed booster rolled into one. Once you've experienced reliable CI/CD, it's hard to imagine going back to manual releases. So the real takeaway is simple: invest in your pipeline early. It pays off with faster feedback, fewer surprises, and calmer midnight releases—or better yet, no midnight releases at all.
 
-\begin{quote}\small\raggedright
+\paragraph{Practice checkpoints.}
 
-Key takeaway
-
-A well-designed pipeline lets teams deliver code quickly and safely through automation and continuous feedback.
-
-\end{quote}
+\begin{itemize}[leftmargin=*]
+\item A well-designed pipeline lets teams deliver code quickly and safely through automation and continuous feedback.
+\end{itemize}
 
 
 \section{DevOps, SRE \& Platform Careers}
 \index{DevOps, SRE \& Platform Careers}
-DevOps, SRE and platform engineering roles all grew from the need to ship software quickly without breaking things. Ten years ago you would rarely see these titles outside of tech giants....
+DevOps, SRE and platform engineering roles all grew from the need to ship software quickly without breaking things. Ten years ago you would rarely see these titles outside of tech giants. If you told someone you were a DevOps engineer, they might have asked if you fixed printers. Companies like Netflix and Google proved that automation and tight feedback loops were essential at scale, spawning whole teams devoted to keeping services healthy.
 
-\subsection*{Slide 1: DevOps, SRE \& Platform Careers}
+The roles overlap, yet each leans in a different direction. DevOps engineers build the pipelines and smooth collaboration between development and operations. SREs stand guard over reliability by codifying incidents and measuring service levels. Platform engineers design the internal tools and "paved roads" that keep everyone productive. Many of these professionals contribute to open source projects like Kubernetes or Terraform, and remote-first cultures allow them to work across time zones.
 
-\index{DevOps, SRE \& Platform Careers}
+All three paths pay well once you've mastered the tooling, though diversity challenges remain an industry topic.
 
-\paragraph{Narration.}
-
-Speaker 1: DevOps, SRE and platform engineering roles all grew from the need to ship software quickly without breaking things. Ten years ago you would rarely see these titles outside of tech giants. If you told someone you were a DevOps engineer, they might have asked if you fixed printers. Companies like Netflix and Google proved that automation and tight feedback loops were essential at scale, spawning whole teams devoted to keeping services healthy. Speaker 2: The roles overlap, yet each leans in a different direction. DevOps engineers build the pipelines and smooth collaboration between development and operations. SREs stand guard over reliability by codifying incidents and measuring service levels. Platform engineers design the internal tools and "paved roads" that keep everyone productive. Many of these professionals contribute to open source projects like Kubernetes or Terraform, and remote-first cultures allow them to work across time zones. All three paths pay well once you've mastered the tooling, though diversity challenges remain an industry topic.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-DevOps, SRE \& Platform Careers
-
-Where ops and engineering intersect
-
-\end{quote}
-
-\subsection*{Slide 2: DevOps engineers}
+\subsection{DevOps engineers}
 
 \index{DevOps engineers}
 
-\paragraph{Narration.}
+DevOps engineers craft the pipelines that move code from commit to production. A normal day might involve wiring up GitHub Actions or Jenkins jobs, containerising apps with Docker and debugging a failed deployment at 3 AM. Their motto: "It works on my machine" is not an acceptable release strategy. Most start as system administrators or developers who discover a knack for automation.
 
-Speaker 1: DevOps engineers craft the pipelines that move code from commit to production. A normal day might involve wiring up GitHub Actions or Jenkins jobs, containerising apps with Docker and debugging a failed deployment at 3 AM. Their motto: "It works on my machine" is not an acceptable release strategy. Speaker 2: Most start as system administrators or developers who discover a knack for automation. They thrive on curiosity, clear communication and comfort with ambiguity. Certifications like AWS DevOps Professional or the Kubernetes CKAD help them progress. Junior salaries hover around \$70k but can climb past \$120k in senior roles, often with remote work and on-call rotations. Small startups may have one DevOps generalist, while large enterprises build teams of five or more. Over time you can grow into architect or engineering manager positions and contribute to open source tooling along the way.
+They thrive on curiosity, clear communication and comfort with ambiguity. Certifications like AWS DevOps Professional or the Kubernetes CKAD help them progress. Junior salaries hover around \$70k but can climb past \$120k in senior roles, often with remote work and on-call rotations. Small startups may have one DevOps generalist, while large enterprises build teams of five or more.
 
-\paragraph{On-screen material.}
+Over time you can grow into architect or engineering manager positions and contribute to open source tooling along the way.
 
-\begin{quote}\small\raggedright
-
-DevOps engineers
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Automate build and deployment pipelines
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Bridge gaps between dev and ops teams
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Certifications: AWS DevOps Pro or CKAD
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Love problem solving and communication
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Often remote with on-call rotation
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Site reliability engineers}
+\subsection{Site reliability engineers}
 
 \index{Site reliability engineers}
 
-\paragraph{Narration.}
+Site reliability engineers take system stability to heart. The discipline grew out of Google's need to manage massive scale, so it's all about automation and repeatable operations. An SRE might spend mornings writing Kubernetes operators and afternoons running chaos experiments or tuning Prometheus alerts. When Netflix battled early outages, their SREs pioneered chaos engineering to strengthen resilience.
 
-Speaker 1: Site reliability engineers take system stability to heart. The discipline grew out of Google's need to manage massive scale, so it's all about automation and repeatable operations. An SRE might spend mornings writing Kubernetes operators and afternoons running chaos experiments or tuning Prometheus alerts. When Netflix battled early outages, their SREs pioneered chaos engineering to strengthen resilience. Speaker 2: Most SREs come from software or DevOps backgrounds and are comfortable coding and troubleshooting production issues. They remain calm when a 3 AM page arrives and excel at communicating what went wrong. Certifications such as Google's Professional Cloud DevOps Engineer bolster credibility. Entry salaries start near \$80k, but staff and principal SREs can exceed \$140k. On-call rotations and incident retrospectives are part of the culture, though many teams are remote friendly. Large companies maintain dedicated SRE squads, while smaller firms rely on a handful of specialists who obsess over metrics to keep services healthy.
+Most SREs come from software or DevOps backgrounds and are comfortable coding and troubleshooting production issues. They remain calm when a 3 AM page arrives and excel at communicating what went wrong. Certifications such as Google's Professional Cloud DevOps Engineer bolster credibility. Entry salaries start near \$80k, but staff and principal SREs can exceed \$140k.
 
-\paragraph{On-screen material.}
+On-call rotations and incident retrospectives are part of the culture, though many teams are remote friendly. Large companies maintain dedicated SRE squads, while smaller firms rely on a handful of specialists who obsess over metrics to keep services healthy.
 
-\begin{quote}\small\raggedright
-
-Site reliability engineers
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Uphold service level objectives
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Monitor systems \& run incident drills
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Tools: Kubernetes, Prometheus, chaos tests
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Calm under pressure and metrics-driven
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Senior specialists often earn \$140k+
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Platform engineers}
+\subsection{Platform engineers}
 
 \index{Platform engineers}
 
-\paragraph{Narration.}
+Platform engineers provide the reusable tooling that keeps teams productive. Think of them as the people building the roads and traffic lights so everyone else can drive smoothly. A platform engineer might design Kubernetes templates, manage golden AMIs or maintain an internal developer portal. Spotify's Backstage project is a great example of tooling that began inside one company and became open source for all.
 
-Speaker 1: Platform engineers provide the reusable tooling that keeps teams productive. Think of them as the people building the roads and traffic lights so everyone else can drive smoothly. A platform engineer might design Kubernetes templates, manage golden AMIs or maintain an internal developer portal. Spotify's Backstage project is a great example of tooling that began inside one company and became open source for all. Speaker 2: Many platform engineers come from DevOps or SRE backgrounds and discover they love building shared services more than maintaining single applications. Empathy for developers, an eye for system design and a dash of product thinking all help. Salaries often start around \$90k and can reach \$150k for senior architects, especially if you hold cloud certifications. Larger enterprises may have teams of twenty or more, while small start-ups rely on a single expert. Over time you can grow into a platform architect or product manager role. Remember, nobody notices the road builders until there's a pothole!
+Many platform engineers come from DevOps or SRE backgrounds and discover they love building shared services more than maintaining single applications. Empathy for developers, an eye for system design and a dash of product thinking all help. Salaries often start around \$90k and can reach \$150k for senior architects, especially if you hold cloud certifications.
 
-\paragraph{On-screen material.}
+Larger enterprises may have teams of twenty or more, while small start-ups rely on a single expert. Over time you can grow into a platform architect or product manager role. Remember, nobody notices the road builders until there's a pothole!
 
-\begin{quote}\small\raggedright
-
-Platform engineers
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Build internal tooling and paved roads
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Provide reusable infrastructure modules
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Contribute to open source like Backstage
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Enable self-service environments
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Path toward architect or product roles
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 5: Key takeaway}
+\subsection{Key takeaway}
 
 \index{Key takeaway}
 
-\paragraph{Narration.}
+Each path offers room to grow from hands-on engineer to strategic leader. Small start-ups might only have one or two DevOps generalists, while mid-sized companies carve out dedicated SRE and platform teams. Large enterprises can support whole divisions focused on reliability or internal tooling. Certifications in AWS, GCP or Kubernetes help you stand out, and remote-friendly cultures mean geography is less of a barrier.
 
-Speaker 1: Each path offers room to grow from hands-on engineer to strategic leader. Small start-ups might only have one or two DevOps generalists, while mid-sized companies carve out dedicated SRE and platform teams. Large enterprises can support whole divisions focused on reliability or internal tooling. Speaker 2: Certifications in AWS, GCP or Kubernetes help you stand out, and remote-friendly cultures mean geography is less of a barrier. Expect the occasional on-call rotation, but flexible hours are common. Junior roles start around \$70k–\$90k and can rise above \$150k as you progress to staff or principal levels. These careers reward people who enjoy problem solving, clear communication and continuous learning. Diversity and inclusion efforts are improving, yet more participation from underrepresented groups is still needed. Whether you specialise or blend all three paths, the demand for automation and reliability skills keeps climbing.
+Expect the occasional on-call rotation, but flexible hours are common. Junior roles start around \$70k–\$90k and can rise above \$150k as you progress to staff or principal levels. These careers reward people who enjoy problem solving, clear communication and continuous learning. Diversity and inclusion efforts are improving, yet more participation from underrepresented groups is still needed.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Key takeaway
-
-DevOps bridges teams, SRE guards reliability and platform engineers craft the tools. All thrive on automation and offer remote-friendly paths from hands-on engineer to strategic leader.
-
-\end{quote}
+Whether you specialise or blend all three paths, the demand for automation and reliability skills keeps climbing.
 
 
 \section{DORA Metrics}
 \index{DORA Metrics}
-Software teams often argue about speed versus stability. The DORA study cut through that noise by identifying four metrics that predict success. Think of them as a health check for your...
+Software teams often argue about speed versus stability. The DORA study cut through that noise by identifying four metrics that predict success. Think of them as a health check for your delivery pipeline. When these numbers improve, you know your process is maturing without sacrificing reliability.
 
-\subsection*{Slide 1: DORA Metrics}
-
-\index{DORA Metrics}
-
-\paragraph{Narration.}
-
-Speaker 1: Software teams often argue about speed versus stability. The DORA study cut through that noise by identifying four metrics that predict success. Speaker 2: Think of them as a health check for your delivery pipeline. When these numbers improve, you know your process is maturing without sacrificing reliability.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-DORA Metrics
-
-Measuring DevOps outcomes
-
-\end{quote}
-
-\subsection*{Slide 2: The four key metrics}
+\subsection{The four key metrics}
 
 \index{The four key metrics}
 
-\paragraph{Narration.}
+Deployment frequency tracks how often you successfully release code. Lead time measures the journey from commit to production. Together they show how smoothly work flows. Change failure rate looks at what proportion of releases cause problems. Mean time to recovery tells you how quickly you can fix things when they break. High performers excel on all four.
 
-Speaker 1: Deployment frequency tracks how often you successfully release code. Lead time measures the journey from commit to production. Together they show how smoothly work flows. Speaker 2: Change failure rate looks at what proportion of releases cause problems. Mean time to recovery tells you how quickly you can fix things when they break. High performers excel on all four.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-The four key metrics
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Deployment frequency
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Lead time for changes
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Change failure rate
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Mean time to recovery
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Using metrics effectively}
+\subsection{Using metrics effectively}
 
 \index{Using metrics effectively}
 
-\paragraph{Narration.}
+Numbers alone don't guarantee improvement. Track these metrics over time and relate them to customer experience and business goals. If deployment frequency goes up but failure rate follows, you may need to slow down and reinforce testing. Balanced metrics drive sustainable velocity.
 
-Speaker 1: Numbers alone don't guarantee improvement. Track these metrics over time and relate them to customer experience and business goals. Speaker 2: If deployment frequency goes up but failure rate follows, you may need to slow down and reinforce testing. Balanced metrics drive sustainable velocity.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Using metrics effectively
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Track trends over time
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Correlate with business outcomes
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Balance speed with stability
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Key takeaway}
+\subsection{Key takeaway}
 
 \index{Key takeaway}
 
-\paragraph{Narration.}
+The takeaway is simple: measure what matters and act on it. DORA metrics provide a clear lens on delivery performance. Use them to spark meaningful conversations about reliability and speed. Continual tracking turns raw data into real improvement.
 
-Speaker 1: The takeaway is simple: measure what matters and act on it. DORA metrics provide a clear lens on delivery performance. Speaker 2: Use them to spark meaningful conversations about reliability and speed. Continual tracking turns raw data into real improvement.
+\paragraph{Practice checkpoints.}
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Key takeaway
-
-DORA metrics reveal how well teams deliver reliable software at pace.
-
-\end{quote}
+\begin{itemize}[leftmargin=*]
+\item DORA metrics reveal how well teams deliver reliable software at pace.
+\end{itemize}
 
 
 \section{GitHub Actions Workflows}
 \index{GitHub Actions Workflows}
-Remember the bad old days of copying files to a server by hand? One forgotten step and everything broke. GitHub Actions saves us from that drama by automatically running the same steps...
+This section sets up GitHub Actions Workflows. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides. The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
 
-\subsection*{Slide 1: GitHub Actions Workflows}
-
-\index{GitHub Actions Workflows}
-
-\paragraph{Narration.}
-
-Speaker 1: Remember the bad old days of copying files to a server by hand? One forgotten step and everything broke. GitHub Actions saves us from that drama by automatically running the same steps every time code changes. Speaker 2: Think of it like a recipe that bakes itself whenever someone adds a new ingredient. Each change triggers a series of pre-defined tasks so that nothing is missed and everyone can see exactly what happened. Automation isn't just a nice-to-have; it's the safety net that keeps our future updates smooth and repeatable. Speaker 1: Once you taste that reliability, you never want to go back to manual deployments.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-GitHub Actions Workflows
-
-Automate tasks right in your repository
-
-\end{quote}
-
-\subsection*{Slide 2: Why automation matters}
+\subsection{Why automation matters}
 
 \index{Why automation matters}
 
-\paragraph{Narration.}
+Remember the bad old days of copying files to a server by hand? One forgotten step and everything broke. GitHub Actions saves us from that drama by automatically running the same steps every time code changes. Think of it like a recipe that bakes itself whenever someone adds a new ingredient. Each change triggers a series of pre-defined tasks so that nothing is missed and everyone can see exactly what happened.
 
-Speaker 1: A GitHub Actions workflow is defined in a YAML file. YAML is just a human-readable list of instructions, like a shopping list written in plain text. Speaker 2: Each workflow starts with a trigger—maybe someone pushed code, opened a pull request, or a timer fired. That trigger launches one or more jobs which run on "runners," the virtual machines GitHub provides or your own servers. Speaker 1: Inside a job you define individual steps. Those steps can call reusable actions from the community or simply run shell commands. Because the workflow lives next to the code, it goes through the same pull request review process, making automation changes visible and safe.
+Automation isn't just a nice-to-have; it's the safety net that keeps our future updates smooth and repeatable. Once you taste that reliability, you never want to go back to manual deployments.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Why automation matters
-
-Manual deployments are a recipe for disaster. Forget one command and you might spend hours cleaning up. GitHub Actions takes those fragile steps and turns them into a reliable checklist that runs exactly the same way every time. Teams can ship new features more quickly because they spend less time repeating boring tasks. Operations staff see fewer "it works on my machine" incidents since every change passes through the same automated gates. Each workflow run leaves a record so you always know who deployed what and when. Automation transforms uncertainty into confidence. In short, automation is the difference between hoping things will work and knowing they will.
-
-\end{quote}
-
-\subsection*{Slide 3: Workflow basics}
+\subsection{Workflow basics}
 
 \index{Workflow basics}
 
-\paragraph{Narration.}
+A GitHub Actions workflow is defined in a YAML file. YAML is just a human-readable list of instructions, like a shopping list written in plain text. Each workflow starts with a trigger—maybe someone pushed code, opened a pull request, or a timer fired. That trigger launches one or more jobs which run on "runners," the virtual machines GitHub provides or your own servers.
 
-Speaker 1: Picture updating a website by hand—copying files, running tests, and hoping nothing breaks. With GitHub Actions, those chores become a push-button affair. Speaker 2: A workflow might run unit tests on Windows, Linux, and Mac all at once using a matrix job. If everything passes, another job bundles the code and deploys it to your web host automatically. Speaker 1: You can even have Actions send a Slack message when a build fails, like a smoke detector for your code. These real-world examples save hours of manual effort and catch mistakes before customers see them. Speaker 2: And because the steps are version controlled, you can rewind or tweak them just like regular code.
+Inside a job you define individual steps. Those steps can call reusable actions from the community or simply run shell commands. Because the workflow lives next to the code, it goes through the same pull request review process, making automation changes visible and safe.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Workflow basics
-
-A GitHub Actions workflow lives in a YAML file within your repository. YAML is just a simple way to list instructions using indentation. A workflow starts when an event occurs—perhaps someone pushes code or a scheduled timer fires. Each workflow is made of jobs that run on temporary "runners" provided by GitHub. Inside those jobs you create steps that call prebuilt actions or run commands directly. Because the workflow file lives alongside your code, you can review it in pull requests just like any other change. This keeps your automation clear, versioned and easy to improve. Anyone familiar with editing text files can understand it, so you don’t need to be a programmer to tweak a workflow.
-
-\end{quote}
-
-\subsection*{Slide 4: Real-world automation}
+\subsection{Real-world automation}
 
 \index{Real-world automation}
 
-\paragraph{Narration.}
+Picture updating a website by hand—copying files, running tests, and hoping nothing breaks. With GitHub Actions, those chores become a push-button affair. A workflow might run unit tests on Windows, Linux, and Mac all at once using a matrix job. If everything passes, another job bundles the code and deploys it to your web host automatically. You can even have Actions send a Slack message when a build fails, like a smoke detector for your code.
 
-Speaker 1: When code is ready, another workflow job can deploy it. You can require approvals before the deployment step runs, a bit like needing a manager sign-off before shipping a product. Speaker 2: GitHub calls these gated stages "environments." You can limit who can run them and track every deployment's history. For cloud infrastructure, official actions from providers like AWS or Azure handle most of the heavy lifting. Speaker 1: Notifications are part of the story too. A simple step can send a chat message or email so the team knows exactly when something went live—or if it failed.
+These real-world examples save hours of manual effort and catch mistakes before customers see them. And because the steps are version controlled, you can rewind or tweak them just like regular code.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Real-world automation
-
-Once you understand workflows, the real fun begins. Imagine pushing code and having tests run automatically on Windows, macOS, and Linux without lifting a finger. If they all pass, the next job can package the application, upload the build artifacts, and deploy to a test environment. Should a step fail, GitHub Actions sends a Slack message so the team can fix things before customers notice. Because everything happens the same way each time, new team members can contribute without worrying about hidden steps. Automation turns a complex release process into a smooth assembly line. It’s like having a tireless robot intern who never forgets a step and never sleeps.
-
-\end{quote}
-
-\subsection*{Slide 5: Deployment and notifications}
+\subsection{Deployment and notifications}
 
 \index{Deployment and notifications}
 
-\paragraph{Narration.}
+When code is ready, another workflow job can deploy it. You can require approvals before the deployment step runs, a bit like needing a manager sign-off before shipping a product. GitHub calls these gated stages "environments." You can limit who can run them and track every deployment's history. For cloud infrastructure, official actions from providers like AWS or Azure handle most of the heavy lifting.
 
-Speaker 2: You might be wondering how all this applies to your day job. For help desk staff, automated tests mean fewer broken releases landing on your queue. Speaker 1: If you’re in quality assurance, GitHub Actions can spin up fresh test environments on demand so you spend your time testing features, not setting up servers. Speaker 2: Project managers get clear visibility because each workflow run records when and how a release happened. And for small businesses, automation slashes the manual labour that used to require extra headcount. Speaker 1: Wherever you land in IT, having a trusty robot assistant frees you to focus on the interesting problems.
+Notifications are part of the story too. A simple step can send a chat message or email so the team knows exactly when something went live—or if it failed.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Deployment and notifications
-
-Deploying with GitHub Actions is straightforward. You can set up an environment that requires one last approval before anything touches production. When the gate opens, official actions for AWS, Azure, or other providers take care of provisioning and releasing code. Each deployment produces a detailed log and appears in your repository's history, so audits become easy. You can also post a message to Slack or update a ticket automatically, keeping the whole team in the loop. With clear controls and notifications, deployments turn from high-stress events into routine tasks. You’ll wonder how you ever managed releases by hand. Once automated, releasing becomes almost boring—and that’s a good thing.
-
-\end{quote}
-
-\subsection*{Slide 6: Automation in your future IT role}
+\subsection{Automation in your future IT role}
 
 \index{Automation in your future IT role}
 
-\paragraph{Narration.}
+You might be wondering how all this applies to your day job. For help desk staff, automated tests mean fewer broken releases landing on your queue. If you’re in quality assurance, GitHub Actions can spin up fresh test environments on demand so you spend your time testing features, not setting up servers. Project managers get clear visibility because each workflow run records when and how a release happened.
 
-Speaker 1: Keep each workflow job focused on a single task so failures are easy to trace. Short jobs also finish faster, giving developers quick feedback. Speaker 2: Limit permissions wherever possible and rotate secrets regularly. GitHub lets you grant only the access a job truly needs, which reduces risk if credentials leak. Speaker 1: Track how long jobs take and watch for any slowdowns. If a five-minute build suddenly takes twenty, that’s a sign something needs attention. Speaker 2: Finally, reuse actions from the community or your own library to avoid reinventing the wheel and keep your automation maintainable.
+And for small businesses, automation slashes the manual labour that used to require extra headcount. Wherever you land in IT, having a trusty robot assistant frees you to focus on the interesting problems.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Automation in your future IT role
-
-Automation isn’t just for developers. If you work on a help desk, automated tests and deployments mean fewer late-night calls about broken releases. Quality assurance teams can spin up disposable test environments on demand, leaving more time to hunt for tricky bugs. Project managers gain a real-time view of every release without chasing for status updates. Small businesses save hours by letting GitHub Actions perform tasks that would otherwise require another pair of hands. No matter where you fit in the IT world, automated workflows give you space to focus on bigger challenges. Ultimately, automation lets you spend less time on routine chores and more time on creative problem solving.
-
-\end{quote}
-
-\subsection*{Slide 7: Best practices}
+\subsection{Best practices}
 
 \index{Best practices}
 
-\paragraph{Narration.}
+Keep each workflow job focused on a single task so failures are easy to trace. Short jobs also finish faster, giving developers quick feedback. Limit permissions wherever possible and rotate secrets regularly. GitHub lets you grant only the access a job truly needs, which reduces risk if credentials leak. Track how long jobs take and watch for any slowdowns.
 
-Speaker 2: When teams treat workflows like code, automation evolves right alongside the project. Each improvement is recorded in version control so you always know why something changed. Speaker 1: GitHub Actions brings that automation directly into the repository. Build steps, tests, deployments and notifications all happen in a single, auditable place. You get faster releases, fewer mistakes and clear visibility for everyone involved. Speaker 2: Whether you’re supporting a small website or a complex enterprise system, the key takeaway is simple: start small, keep iterating and let the platform handle the repetition so you can focus on delivering value.
+If a five-minute build suddenly takes twenty, that’s a sign something needs attention. Finally, reuse actions from the community or your own library to avoid reinventing the wheel and keep your automation maintainable.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Best practices
-
-To get the most from GitHub Actions, start simple and refine as you go. Break complex workflows into smaller jobs so you can pinpoint failures quickly. Use the principle of least privilege: give each job only the access it needs and rotate secrets often. Keep an eye on run times; slow steps can creep in as the code base grows. Whenever possible, use well-maintained community actions or your own reusable modules so you’re not duplicating effort. Good habits early on keep automation helpful rather than a tangled mess. Review your workflows periodically and prune any steps that no longer add value.
-
-\end{quote}
-
-\subsection*{Slide 8: Key takeaway}
+\subsection{Key takeaway}
 
 \index{Key takeaway}
 
-\paragraph{Narration.} \emph{No narration text is currently available for this slide.}
+When teams treat workflows like code, automation evolves right alongside the project. Each improvement is recorded in version control so you always know why something changed. GitHub Actions brings that automation directly into the repository. Build steps, tests, deployments and notifications all happen in a single, auditable place. You get faster releases, fewer mistakes and clear visibility for everyone involved.
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Key takeaway
-
-GitHub Actions puts reliable automation within reach of any team. By storing your workflow in code you can improve it piece by piece and always know what changed. Start with small tasks like running tests, then expand to deployments and notifications as you gain confidence. The more you automate, the more time you free up for creative problem solving. Let GitHub handle the boring parts so you can focus on delivering value to users. Ultimately, good automation is like having a reliable co-worker who never forgets the details. Give it clear instructions and it will happily repeat them for you, day or night.
-
-\end{quote}
+Whether you’re supporting a small website or a complex enterprise system, the key takeaway is simple: start small, keep iterating and let the platform handle the repetition so you can focus on delivering value.
 
 
 \section{Error Budgets \& SLOs}
 \index{Error Budgets \& SLOs}
-Imagine you promised your app would be available 99.9\% of the time. That still allows roughly nine hours of downtime a year. Site Reliability Engineering, or SRE, turns those promises into...
+Imagine you promised your app would be available 99.9\% of the time. That still allows roughly nine hours of downtime a year. Site Reliability Engineering, or SRE, turns those promises into math we can track. The key tools are service level objectives, or SLOs, and the error budgets tied to them. By defining how reliable a service must be, we can decide when it's safe to launch new features and when it's time to pause and fix instability.
 
-\subsection*{Slide 1: Error Budgets \& SLOs}
-
-\index{Error Budgets \& SLOs}
-
-\paragraph{Narration.}
-
-Speaker 1: Imagine you promised your app would be available 99.9\% of the time. That still allows roughly nine hours of downtime a year. Speaker 2: Site Reliability Engineering, or SRE, turns those promises into math we can track. The key tools are service level objectives, or SLOs, and the error budgets tied to them. Speaker 1: By defining how reliable a service must be, we can decide when it's safe to launch new features and when it's time to pause and fix instability.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Error Budgets \& SLOs
-
-Balancing reliability and feature velocity
-
-\end{quote}
-
-\subsection*{Slide 2: Service level objectives}
+\subsection{Service level objectives}
 
 \index{Service level objectives}
 
-\paragraph{Narration.}
+A service level objective is basically a reliability target, like "respond to user requests within two seconds 99\% of the time." It sets clear expectations. For non-technical folks, think of an SLO as a promise to customers. If we hit that goal, users stay happy. If we miss it, they notice glitches or slow pages. We monitor these objectives continuously so we know if the service is drifting away from the acceptable range before customers complain.
 
-Speaker 1: A service level objective is basically a reliability target, like "respond to user requests within two seconds 99\% of the time." It sets clear expectations. Speaker 2: For non-technical folks, think of an SLO as a promise to customers. If we hit that goal, users stay happy. If we miss it, they notice glitches or slow pages. Speaker 1: We monitor these objectives continuously so we know if the service is drifting away from the acceptable range before customers complain.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Service level objectives
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Define target reliability percentages
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Measure user-facing performance
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Clarify what "good enough" looks like
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Error budgets}
+\subsection{Error budgets}
 
 \index{Error budgets}
 
-\paragraph{Narration.}
+An error budget is the small slice of allowable failure built into an SLO. If our target is 99.9\% uptime, that gives us about forty minutes of downtime each month. As outages or performance issues occur, we "spend" that budget. When it's gone, engineering focuses on reliability work instead of shipping new features. This approach keeps everyone aligned. Product managers see how instability eats into development time, while engineers know exactly when to slow their release pace.
 
-Speaker 1: An error budget is the small slice of allowable failure built into an SLO. If our target is 99.9\% uptime, that gives us about forty minutes of downtime each month. Speaker 2: As outages or performance issues occur, we "spend" that budget. When it's gone, engineering focuses on reliability work instead of shipping new features. Speaker 1: This approach keeps everyone aligned. Product managers see how instability eats into development time, while engineers know exactly when to slow their release pace.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Error budgets
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Difference between perfect reliability and the SLO
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Consumed as incidents and downtime occur
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Helps prioritize fixes vs new features
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Using error budgets}
+\subsection{Using error budgets}
 
 \index{Using error budgets}
 
-\paragraph{Narration.}
+Error budgets aren't just for ops teams. They spark conversations about risk across the organization. When the budget burns down faster than expected, it's a sign our releases might be too risky or our SLO is unrealistic. Teams can agree to slow deployments, add more testing, or even adjust the SLO if customer impact warrants it. The data helps remove emotion from those decisions.
 
-Speaker 1: Error budgets aren't just for ops teams. They spark conversations about risk across the organization. Speaker 2: When the budget burns down faster than expected, it's a sign our releases might be too risky or our SLO is unrealistic. Speaker 1: Teams can agree to slow deployments, add more testing, or even adjust the SLO if customer impact warrants it. The data helps remove emotion from those decisions.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Using error budgets
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Track burn rate over time
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Slow releases when the budget runs low
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Foster data-driven reliability conversations
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 5: Key takeaway}
+\subsection{Key takeaway}
 
 \index{Key takeaway}
 
-\paragraph{Narration.}
+The real win is shared language. SLOs and error budgets help teams quantify acceptable risk instead of arguing about perfection. They also create breathing room. When you're under budget, you can innovate quickly. When it's nearly spent, stability becomes the priority. By treating reliability like any other feature, SRE practices keep users happy and developers focused on the right work at the right time.
 
-Speaker 1: The real win is shared language. SLOs and error budgets help teams quantify acceptable risk instead of arguing about perfection. Speaker 2: They also create breathing room. When you're under budget, you can innovate quickly. When it's nearly spent, stability becomes the priority. Speaker 1: By treating reliability like any other feature, SRE practices keep users happy and developers focused on the right work at the right time.
+\paragraph{Practice checkpoints.}
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Key takeaway
-
-Error budgets turn SLOs into actionable limits on risk, guiding when to push forward or stabilize.
-
-\end{quote}
+\begin{itemize}[leftmargin=*]
+\item Error budgets turn SLOs into actionable limits on risk, guiding when to push forward or stabilize.
+\end{itemize}
 
 
 \section{Trunk-Based Development vs Feature Branching}
 \index{Trunk-Based Development vs Feature Branching}
 Modern teams debate whether to work directly on the main branch or use long-lived feature branches. Each method shapes how quickly changes integrate and how much merge pain you face later.
 
-\subsection*{Slide 1: Trunk-Based Development vs Feature Branching}
-
-\index{Trunk-Based Development vs Feature Branching}
-
-\paragraph{Narration.}
-
-Speaker 1: Modern teams debate whether to work directly on the main branch or use long-lived feature branches. Speaker 2: Each method shapes how quickly changes integrate and how much merge pain you face later.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Trunk-Based Development vs Feature Branching
-
-Balancing integration and isolation
-
-\end{quote}
-
-\subsection*{Slide 2: Trunk-based development}
+\subsection{Trunk-based development}
 
 \index{Trunk-based development}
 
-\paragraph{Narration.}
+Trunk-based development keeps everyone committing to the same main line. Small, incremental changes integrate quickly, and feature flags hide work in progress.
 
-Speaker 1: Trunk-based development keeps everyone committing to the same main line. Speaker 2: Small, incremental changes integrate quickly, and feature flags hide work in progress.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Trunk-based development
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Single shared main line
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Small, frequent commits
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Feature toggles for unfinished work
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Encourages continuous integration
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 3: Feature branching}
+\subsection{Feature branching}
 
 \index{Feature branching}
 
-\paragraph{Narration.}
+Feature branching isolates each piece of work so teams can experiment safely. The downside is merges grow complex the longer a branch lives away from trunk.
 
-Speaker 1: Feature branching isolates each piece of work so teams can experiment safely. Speaker 2: The downside is merges grow complex the longer a branch lives away from trunk.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Feature branching
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Isolated branches for each feature
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Merge via pull requests
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Allows longer-lived work
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Risk of merge conflicts and drift
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 4: Choosing an approach}
+\subsection{Choosing an approach}
 
 \index{Choosing an approach}
 
-\paragraph{Narration.}
+Teams often blend approaches, keeping branches short and integrating daily. The goal is fast feedback with just enough isolation for code review and testing.
 
-Speaker 1: Teams often blend approaches, keeping branches short and integrating daily. Speaker 2: The goal is fast feedback with just enough isolation for code review and testing.
-
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Choosing an approach
+\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
 \item Trunk-based boosts flow and feedback
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Feature branches aid code review
-\end{itemize}
-
-\begin{itemize}[leftmargin=*]
 \item Many teams blend both techniques
 \end{itemize}
 
-\end{quote}
-
-\subsection*{Slide 5: Key takeaway}
+\subsection{Key takeaway}
 
 \index{Key takeaway}
 
-\paragraph{Narration.}
+Whether you prefer trunk-based or feature branches, keep merges small and frequent. Continuous integration works best when nothing stays out of the main line for long.
 
-Speaker 1: Whether you prefer trunk-based or feature branches, keep merges small and frequent. Speaker 2: Continuous integration works best when nothing stays out of the main line for long.
+\paragraph{Practice checkpoints.}
 
-\paragraph{On-screen material.}
-
-\begin{quote}\small\raggedright
-
-Key takeaway
-
-Continuous integration thrives on a healthy balance between shared trunk work and short-lived feature branches.
-
-\end{quote}
+\begin{itemize}[leftmargin=*]
+\item Continuous integration thrives on a healthy balance between shared trunk work and short-lived feature branches.
+\end{itemize}
