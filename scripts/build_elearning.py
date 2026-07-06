@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import html
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -40,6 +41,10 @@ def clean_output() -> None:
 
 def json_for_script(value: object) -> str:
     return json.dumps(value, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+
+
+def asset_version() -> str:
+    return hashlib.sha256((COURSE_CSS + COURSE_JS).encode("utf-8")).hexdigest()[:12]
 
 
 def write_assets() -> None:
@@ -120,6 +125,7 @@ def render_topic(topic: Topic) -> None:
         audio_block=audio_block,
         subtitles_link=subtitles_link,
         lesson_data=json_for_script(data),
+        asset_version=asset_version(),
     )
     (out_dir / "index.html").write_text(html_text, encoding="utf-8")
     (out_dir / "transcript.txt").write_text(topic_transcript_text(topic), encoding="utf-8")
@@ -157,6 +163,7 @@ def topic_transcript_html(topic: Topic) -> str:
         title=html.escape(f"{topic.title} transcript"),
         heading=html.escape(topic.title),
         sections="\n".join(sections),
+        asset_version=asset_version(),
     )
 
 
@@ -191,7 +198,7 @@ def render_index(parts: list[Part]) -> None:
             f'<div class="topic-grid">{"".join(topic_cards)}</div>'
             "</section>"
         )
-    index = INDEX_PAGE.format(parts="\n".join(part_cards))
+    index = INDEX_PAGE.format(parts="\n".join(part_cards), asset_version=asset_version())
     (ELEARNING / "index.html").write_text(index, encoding="utf-8")
 
 
@@ -243,7 +250,7 @@ def copy_textbook_assets(dest: Path) -> None:
 def assemble_site() -> None:
     shutil.copytree(ELEARNING, SITE / "elearning")
     copy_textbook_assets(SITE / "textbook")
-    (SITE / "index.html").write_text(SITE_INDEX, encoding="utf-8")
+    (SITE / "index.html").write_text(SITE_INDEX.format(asset_version=asset_version()), encoding="utf-8")
 
 
 def build() -> None:
@@ -270,7 +277,7 @@ INDEX_PAGE = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IT Professional Practice</title>
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="assets/course.css">
+<link rel="stylesheet" href="assets/course.css?v={asset_version}">
 </head>
 <body class="course-index">
 <header class="site-hero">
@@ -297,7 +304,7 @@ SITE_INDEX = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IT Professional Practice</title>
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="elearning/assets/course.css">
+<link rel="stylesheet" href="elearning/assets/course.css?v={asset_version}">
 </head>
 <body class="course-index">
 <header class="site-hero">
@@ -342,7 +349,7 @@ TOPIC_PAGE = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="../../assets/course.css">
+<link rel="stylesheet" href="../../assets/course.css?v={asset_version}">
 </head>
 <body class="lesson-page">
 <header class="lesson-topbar">
@@ -389,7 +396,7 @@ TOPIC_PAGE = """<!doctype html>
   </section>
 </main>
 <script id="lesson-data" type="application/json">{lesson_data}</script>
-<script src="../../assets/course.js"></script>
+<script src="../../assets/course.js?v={asset_version}"></script>
 </body>
 </html>
 """
@@ -402,7 +409,7 @@ TRANSCRIPT_PAGE = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="../../assets/course.css">
+<link rel="stylesheet" href="../../assets/course.css?v={asset_version}">
 </head>
 <body class="transcript-page">
 <main>
