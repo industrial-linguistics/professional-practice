@@ -129,6 +129,15 @@ def image_paths(fragment: str) -> list[str]:
     return parser.paths
 
 
+def clean_slide_fragment(fragment: str) -> str:
+    return re.sub(
+        r"\s*<p\b[^>]*>\s*---\s*</p>\s*",
+        "\n",
+        fragment,
+        flags=re.IGNORECASE,
+    ).strip()
+
+
 def summarize(text: str, limit: int = 190) -> str:
     text = re.sub(r"\bSpeaker\s+\d+:\s*", "", text)
     text = re.sub(r"\[[^\]]+\]\s*", "", text)
@@ -224,6 +233,7 @@ def load_topic(part_slug: str, topic_dir: Path) -> Topic:
 
     slides: list[Slide] = []
     for i, fragment in enumerate(fragments):
+        fragment = clean_slide_fragment(fragment)
         title = slide_title(fragment, f"Slide {i + 1}")
         slides.append(
             Slide(
