@@ -10,10 +10,13 @@ import (
 	"os"
 	"strings"
 
-	_ "modernc.org/sqlite"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 const defaultDBPath = "/vhosts/professional-practice.industrial-linguistics.com/db/image-review.sqlite"
+const defaultLogPath = "/vhosts/professional-practice.industrial-linguistics.com/db/image-review-cgi.log"
+
+var logFile *os.File
 
 type app struct {
 	db *sql.DB
@@ -42,6 +45,8 @@ type candidate struct {
 }
 
 func main() {
+	configureLogging()
+
 	dbPath := strings.TrimSpace(os.Getenv("IMAGE_REVIEW_DB"))
 	if dbPath == "" {
 		dbPath = defaultDBPath
@@ -54,7 +59,7 @@ func main() {
 	defer db.Close()
 
 	handler := &app{db: db}
-	if os.Getenv("GATEWAY_INTERFACE") != "" {
+	if isCGIRequest() {
 		if err := cgi.Serve(handler); err != nil {
 			log.Fatalf("serve cgi: %v", err)
 		}
@@ -66,8 +71,29 @@ func main() {
 	log.Fatal(http.ListenAndServe(addr, handler))
 }
 
+func configureLogging() {
+	path := strings.TrimSpace(os.Getenv("IMAGE_REVIEW_LOG"))
+	if path == "" {
+		path = defaultLogPath
+	}
+	f, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0640)
+	if err != nil {
+		return
+	}
+	logFile = f
+	log.SetOutput(logFile)
+}
+
+func isCGIRequest() bool {
+	if os.Getenv("GATEWAY_INTERFACE") != "" || os.Getenv("FCGI_ROLE") != "" {
+		return true
+	}
+	return os.Getenv("REQUEST_METHOD") != "" &&
+		(os.Getenv("SERVER_PROTOCOL") != "" || os.Getenv("SCRIPT_NAME") != "" || os.Getenv("REQUEST_URI") != "")
+}
+
 func openDB(path string) (*sql.DB, error) {
-	db, err := sql.Open("sqlite", path)
+	db, err := sql.Open("sqlite3", path)
 	if err != nil {
 		return nil, err
 	}
