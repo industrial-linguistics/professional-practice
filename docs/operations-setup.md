@@ -1,6 +1,6 @@
 # Operations Setup
 
-Last checked: 2026-04-25.
+Last checked: 2026-07-06.
 
 ## Host roles
 
@@ -54,7 +54,17 @@ ssh professionalpractice@raksasa 'ssh -T github.com'
 ssh professionalpractice@raksasa 'cd ~/devel/professional-practice && git ls-remote --heads origin main'
 ```
 
-S3 cache access was also checked from `professionalpractice@raksasa` using the Go AWS SDK against the `audio-fragments` bucket.
+S3 cache access is checked from `professionalpractice@raksasa` with:
+
+```bash
+ssh professionalpractice@raksasa 'cd ~/devel/professional-practice && scripts/check_audio_s3_cache.sh'
+```
+
+The `audio-fragments` IAM policy must grant object access on
+`arn:aws:s3:::audio-fragments/*` and bucket discovery on
+`arn:aws:s3:::audio-fragments`. A previous policy version used
+`arn:aws:s3:::audiofragments/*` without the hyphen, which allowed `HeadBucket`
+but caused `s3:PutObject` to fail for real cache keys.
 
 ## Remaining decisions
 
