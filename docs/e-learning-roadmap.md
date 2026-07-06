@@ -56,8 +56,8 @@ copy or be retired once the new output tree is stable.
 | Per-slide courseware | `claude-code-course/e-learning/generate_web_version.py` | Produce one topic landing page plus per-slide pages for long topics if needed. |
 | Exercises and commands | Claude Code course `commands.yaml` panels | Add optional per-topic `resources.yaml` for commands, links, worksheets and activity instructions. |
 | SCORM packaging | both sibling repos | Package each part and selected topic bundles from `output/elearning/`. |
-| MP4 export | `decision-grade/build/render_video.py` plus current `build_videos.sh` | Keep current topic video path, but publish it beside transcript and HTML courseware. |
-| Validation | Decision Grade node/python tests and Claude transcript checks | Add smoke tests for generated transcript links, audio/video presence, SCORM manifest and malformed HTML. |
+| MP4 export | `decision-grade/build/render_video.py` plus current `build_videos.sh` | Keep as an optional manual output; do not make MP4s part of the default learner-facing course surface. |
+| Validation | Decision Grade node/python tests and Claude transcript checks | Add smoke tests for generated transcript links, audio presence, SCORM manifest and malformed HTML. |
 
 ## Phased Work
 
@@ -65,7 +65,7 @@ copy or be retired once the new output tree is stable.
 
 - Create `scripts/build_elearning.py`.
 - Generate `output/elearning/index.html` with part cards, topic cards, status
-  markers and links to videos, transcripts and run sheets.
+  markers and links to audio, transcripts and run sheets.
 - Generate one learner page per topic using HTML slide source and narratives.
 - Add a shared `output/elearning/assets/course.css` and `course.js`.
 - Replace the current plain `website/index.html` generation with an
@@ -80,14 +80,14 @@ without requiring new narration spend.
   `narratives/` and `subtitles.vtt`.
 - Add transcript-as-subtitle controls to topic pages.
 - Add a durable progress marker using local storage.
-- Publish existing `final.mp4`, `audio.wav` and `subtitles.vtt` when present.
+- Publish existing `audio.wav` and `subtitles.vtt` when present.
 
 ### Phase 3: LMS packaging
 
 - Add `scripts/build_scorm.py` using the e-learning tree as the source.
 - Package each part as a SCORM 1.2 module.
 - Include `imsmanifest.xml`, topic HTML, shared assets, transcripts, subtitles,
-  videos and quizzes.
+  audio, subtitles and quizzes.
 - Add local package validation that checks manifest entries exist in the zip.
 
 ### Phase 4: Practice surfaces

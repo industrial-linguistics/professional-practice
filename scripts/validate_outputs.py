@@ -4,6 +4,7 @@ Post-generation output validation
 Level 2: Fast validation that outputs were created correctly
 """
 
+import argparse
 import sys
 import os
 import subprocess
@@ -117,7 +118,12 @@ def get_codec_info(file_path: Path) -> Tuple[str, str]:
     except Exception:
         return "unknown", "unknown"
 
-def validate_topic_outputs(topic_path: Path) -> ValidationResult:
+def validate_topic_outputs(
+    topic_path: Path,
+    *,
+    require_slides: bool = True,
+    require_video: bool = True,
+) -> ValidationResult:
     """Validate all outputs for a topic"""
     errors = []
     warnings = []
@@ -139,25 +145,26 @@ def validate_topic_outputs(topic_path: Path) -> ValidationResult:
         else:
             details['vtt'] = result.message
 
-    # Check slide images
-    slides_dir = Path("assets/slide-images") / part_name / topic_name
-    if not slides_dir.exists():
-        errors.append(f"Slide images directory not found: {slides_dir}")
-    else:
-        image_files = sorted(slides_dir.glob("slide.*.png"))
-        if len(image_files) == 0:
-            errors.append(f"No slide images found in {slides_dir}")
+    if require_slides:
+        # Check slide images
+        slides_dir = Path("assets/slide-images") / part_name / topic_name
+        if not slides_dir.exists():
+            errors.append(f"Slide images directory not found: {slides_dir}")
         else:
-            # Validate first image
-            valid, width, height = validate_image(image_files[0])
-            if not valid:
-                errors.append(f"Invalid image: {image_files[0]}")
+            image_files = sorted(slides_dir.glob("slide.*.png"))
+            if len(image_files) == 0:
+                errors.append(f"No slide images found in {slides_dir}")
             else:
-                details['slides'] = f"✓ {len(image_files)} slides ({width}x{height})"
+                # Validate first image
+                valid, width, height = validate_image(image_files[0])
+                if not valid:
+                    errors.append(f"Invalid image: {image_files[0]}")
+                else:
+                    details['slides'] = f"✓ {len(image_files)} slides ({width}x{height})"
 
-                # Check resolution
-                if (width, height) not in [(1920, 1080), (1280, 720)]:
-                    warnings.append(f"Unusual resolution: {width}x{height}")
+                    # Check resolution
+                    if (width, height) not in [(1920, 1080), (1280, 720)]:
+                        warnings.append(f"Unusual resolution: {width}x{height}")
 
     # Check audio file
     audio_file = topic_path / "audio.wav"
@@ -173,26 +180,27 @@ def validate_topic_outputs(topic_path: Path) -> ValidationResult:
         else:
             details['audio'] = f"✓ Audio file ({duration:.1f}s)"
 
-    # Check video file
-    video_file = topic_path / "final.mp4"
-    result = check_file_exists(video_file, "Video file")
-    if not result:
-        errors.append(result.message)
-    else:
-        duration = get_media_duration(video_file)
-        if duration < 0:
-            errors.append("Failed to get video duration")
-        elif duration == 0:
-            errors.append("Video file has zero duration")
+    if require_video:
+        # Check video file
+        video_file = topic_path / "final.mp4"
+        result = check_file_exists(video_file, "Video file")
+        if not result:
+            errors.append(result.message)
         else:
-            video_codec, audio_codec = get_codec_info(video_file)
-            details['video'] = f"✓ Video file ({duration:.1f}s, {video_codec}/{audio_codec})"
+            duration = get_media_duration(video_file)
+            if duration < 0:
+                errors.append("Failed to get video duration")
+            elif duration == 0:
+                errors.append("Video file has zero duration")
+            else:
+                video_codec, audio_codec = get_codec_info(video_file)
+                details['video'] = f"✓ Video file ({duration:.1f}s, {video_codec}/{audio_codec})"
 
-            # Validate codecs
-            if video_codec != "h264":
-                warnings.append(f"Unexpected video codec: {video_codec} (expected h264)")
-            if audio_codec not in ["aac", "mp3"]:
-                warnings.append(f"Unexpected audio codec: {audio_codec}")
+                # Validate codecs
+                if video_codec != "h264":
+                    warnings.append(f"Unexpected video codec: {video_codec} (expected h264)")
+                if audio_codec not in ["aac", "mp3"]:
+                    warnings.append(f"Unexpected audio codec: {audio_codec}")
 
     # Check A/V sync if both exist
     if 'audio' in details and 'video' in details:
@@ -217,12 +225,15 @@ def validate_topic_outputs(topic_path: Path) -> ValidationResult:
     return ValidationResult(True, message, {**details, 'warnings': warnings})
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: validate_outputs.py <topic-path> [<topic-path> ...]")
-        print("Example: validate_outputs.py content/part-01/overview")
-        sys.exit(1)
-
-    topic_paths = [Path(p) for p in sys.argv[1:]]
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--audio-only",
+        action="store_true",
+        help="Validate subtitles and audio without requiring slide PNGs or final.mp4.",
+    )
+    parser.add_argument("topic_paths", nargs="+", type=Path)
+    args = parser.parse_args()
+    topic_paths = args.topic_paths
 
     # Print results
     print("\n" + "=" * 70)
@@ -239,7 +250,11 @@ def main():
             all_passed = False
             continue
 
-        result = validate_topic_outputs(topic_path)
+        result = validate_topic_outputs(
+            topic_path,
+            require_slides=not args.audio_only,
+            require_video=not args.audio_only,
+        )
         status = "✅ PASS" if result.passed else "❌ FAIL"
 
         print(f"\n{status} {topic_path}")

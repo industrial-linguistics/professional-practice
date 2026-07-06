@@ -1,22 +1,6 @@
-name: Video Pipeline
+name: Manual Video Pipeline
 
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - 'content/**/slides.html'
-      - 'content/**/narratives/*.md'
-      - 'content/**/images/**'
-      - 'cmd/vtt-generator/**'
-      - 'cmd/voicer/**'
-      - 'scripts/render_html_slides.py'
-      - 'scripts/course_content.py'
-      - 'scripts/build_elearning.py'
-      - 'scripts/build_videos.sh'
-      - 'scripts/assemble_video.sh'
-      - 'scripts/validate_*.py'
-      - 'scripts/build_manifest.py'
-      - '.github/workflows/video-pipeline.yml'
   workflow_dispatch:
     inputs:
       force_rebuild:

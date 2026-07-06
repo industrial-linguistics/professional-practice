@@ -122,8 +122,9 @@ class BuildManifest:
             if file_path not in current_sources:
                 return True, f"Source file deleted: {file_path}"
 
-        # Check if outputs exist
-        expected_outputs = ['subtitles.vtt', 'audio.wav', 'final.mp4']
+        # Check if audio-course outputs exist. MP4 generation is optional and
+        # should not keep the e-learning surface in a rebuild/pending state.
+        expected_outputs = ['subtitles.vtt', 'audio.wav']
         for output_file in expected_outputs:
             file_path = topic_path / output_file
             if not file_path.exists():

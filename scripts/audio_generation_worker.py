@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded audio/video generation worker for the raksasa cron job."""
+"""Bounded audio generation worker for the raksasa cron job."""
 
 from __future__ import annotations
 
@@ -254,7 +254,7 @@ def run_topic(topic_path: Path, log_dir: Path) -> tuple[bool, Path]:
     log_path = log_dir / f"{timestamp}-{safe_topic}.log"
     log_path.parent.mkdir(parents=True, exist_ok=True)
 
-    cmd = ["bash", "scripts/build_videos.sh", str(topic_path)]
+    cmd = ["bash", "scripts/build_audio.sh", str(topic_path)]
     with log_path.open("w") as log:
         log.write(f"$ {' '.join(cmd)}\n")
         log.flush()
@@ -423,7 +423,7 @@ def main() -> int:
 
     if not selected:
         print(
-            f"No valid topics need audio/video generation "
+            f"No valid topics need audio generation "
             f"({blocked_count} content-blocked topic(s), "
             f"{budget_wait_count} budget-wait topic(s))."
         )
@@ -467,7 +467,7 @@ def main() -> int:
                     "event_time": event_time,
                     "project_name": "professional-practice",
                     "topic": topic_key,
-                    "operation": "audio-video-build",
+                    "operation": "audio-build",
                     "estimated_chars": estimated_chars,
                     "evidence": {"log": str(log_path)},
                 }

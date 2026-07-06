@@ -7,7 +7,7 @@ Last checked: 2026-04-25.
 - Slide decks found: 81.
 - Slide count across decks: 773.
 - Narrative files found: 614.
-- Current generated audio/video: only `content/part-01/overview` has checked-in `audio.wav` and `final.mp4`.
+- Current generated media: topic-level `audio.wav` files are generated outside source control; MP4s are optional manual outputs and are not part of the default learner-facing course surface.
 - Source images currently committed:
   - `content/part-01/value-chain/images/service-value-chain-continual-improvement.png`
   - `content/part-02/change-vs-release/images/itil-minor-change.png`
@@ -19,7 +19,7 @@ The largest immediate blocker for audio and video is not imagery. It is slide/na
 
 The Claude Code course embeds tiny QR codes in the Beamer slides through a `\slideid{...}` macro. The e-learning extractor scans the rendered PDF at high DPI, reads each QR code, and uses that stable ID to associate page images and text with audio directories. That is valuable when the PDF is the extraction source and slide order can drift.
 
-This repository has a different source of truth: HTML slide source lives next to per-topic narrative files. The renderer already knows the topic path and slide order before PDF extraction. For the core audio/video pipeline, QR codes are not needed.
+This repository has a different source of truth: HTML slide source lives next to per-topic narrative files. The renderer already knows the topic path and slide order before PDF extraction. For the core audio pipeline, QR codes are not needed.
 
 Recommended decision:
 

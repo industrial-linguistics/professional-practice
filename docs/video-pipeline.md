@@ -2,6 +2,8 @@
 
 This document describes the automated video rendering pipeline that converts course content (slides and narratives) into finished video lessons.
 
+This is now an optional manual pipeline. The learner-facing e-learning site uses topic HTML plus `audio.wav` and `subtitles.vtt`; normal cron automation runs `scripts/build_audio.sh` and does not build or publish `final.mp4`.
+
 ## Overview
 
 The pipeline consists of six stages:

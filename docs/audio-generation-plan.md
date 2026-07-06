@@ -17,7 +17,7 @@ The course has enough draft material to make a substantial audio job, but it is 
 | Part 7 | 5 | 55 | 35 | 24.9 | 0 |
 | Total | 81 | 773 | 614 | 353.1 | 17 |
 
-Generated outputs are kept out of source control. As of 2026-05-10 on `raksasa`, `audio.wav` and `final.mp4` have been produced for eight valid topics:
+Generated outputs are kept out of source control. As of 2026-05-10 on `raksasa`, `audio.wav` had been produced for eight valid topics:
 
 - `content/part-01/overview`
 - `content/part-03/devops-sre-platform-careers`
@@ -105,14 +105,14 @@ The worker should:
 4. Mark S3 cache hits without using ElevenLabs.
 5. Render queued segments until the daily character budget is exhausted.
 6. Assemble topic audio only when all its segments are present.
-7. Assemble video only when audio and slide images are present.
+7. Leave MP4 assembly for an explicit manual video-build run; normal audio automation should not build video.
 
 ## Implementation notes
 
 - The current `voicer` supports `--limit`, `--dry-run`, `--autopad`, `--autospeed`, local temp cache and S3 cache.
-- The current `scripts/build_videos.sh` is topic-oriented, not budget-oriented. Add a separate slow worker rather than overloading this script.
+- The current `scripts/build_audio.sh` is topic-oriented, while `scripts/audio_generation_worker.py` adds budget-aware scheduling around it.
 - `cmd/voicer` currently checks S3 only during real generation. A dedicated `--cache-status-json` mode would make the slow worker cleaner and avoid synthesizing just to learn cache state.
-- Keep generated `audio.wav`, `final.mp4`, slide PNGs and manifest output out of source control unless the distribution policy changes.
+- Keep generated `audio.wav`, optional `final.mp4`, slide PNGs and manifest output out of source control unless the distribution policy changes.
 - `../inventory` records shared ElevenLabs account usage and documents the project reporting contract. The worker currently enforces a local Professional Practice budget plus a live ElevenLabs subscription cap; a later inventory integration can import `state/audio-worker-state.json` usage events or replace the live subscription check with a central budget service.
 
 ## First render order

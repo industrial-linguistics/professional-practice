@@ -52,21 +52,19 @@ def write_assets() -> None:
     (ELEARNING / "assets" / "course.js").write_text(COURSE_JS, encoding="utf-8")
 
 
-def copy_topic_media(topic: Topic) -> tuple[str | None, str | None, str | None]:
+def copy_topic_media(topic: Topic) -> tuple[str | None, str | None]:
     media_dir = ELEARNING / "media" / topic.part / topic.slug
-    video = copy_if_exists(topic.source_path / "final.mp4", media_dir)
     audio = copy_if_exists(topic.source_path / "audio.wav", media_dir)
     subtitles = copy_if_exists(topic.source_path / "subtitles.vtt", media_dir)
-    return video, audio, subtitles
+    return audio, subtitles
 
 
-def lesson_payload(topic: Topic, media_base: str, video: str | None, audio: str | None, subtitles: str | None) -> dict:
+def lesson_payload(topic: Topic, media_base: str, audio: str | None, subtitles: str | None) -> dict:
     return {
         "topicPath": f"{topic.part}/{topic.slug}",
         "title": topic.title,
         "summary": topic.summary,
         "mediaBase": media_base,
-        "video": video,
         "audio": audio,
         "subtitles": subtitles,
         "slides": [
@@ -87,22 +85,13 @@ def render_topic(topic: Topic) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     copy_topic_images(topic, out_dir)
     rel_media = f"../../media/{topic.part}/{topic.slug}"
-    video, audio, subtitles = copy_topic_media(topic)
-    data = lesson_payload(topic, rel_media, video, audio, subtitles)
+    audio, subtitles = copy_topic_media(topic)
+    data = lesson_payload(topic, rel_media, audio, subtitles)
     slide_buttons = "\n".join(
         f'<button type="button" class="slide-jump" data-slide="{slide.n - 1}">'
         f'<span>{slide.n:02d}</span>{html.escape(slide.title)}</button>'
         for slide in topic.slides
     )
-    video_block = ""
-    if video:
-        video_block = (
-            '<section class="media-card">'
-            "<h2>Video lesson</h2>"
-            f'<video class="lesson-video" controls preload="metadata">'
-            f'<source src="{rel_media}/{video}" type="video/mp4"></video>'
-            "</section>"
-        )
     audio_block = (
         '<audio id="audio-player" controls preload="metadata">'
         f'<source src="{rel_media}/{audio}" type="audio/wav">'
@@ -121,7 +110,6 @@ def render_topic(topic: Topic) -> None:
         part=html.escape(titleize(topic.part)),
         home="../../index.html",
         slide_buttons=slide_buttons,
-        video_block=video_block,
         audio_block=audio_block,
         subtitles_link=subtitles_link,
         lesson_data=json_for_script(data),
@@ -174,7 +162,6 @@ def render_index(parts: list[Part]) -> None:
         for topic in part.topics:
             status = []
             status.append(f"{len(topic.slides)} slides")
-            status.append("video" if topic.video else "video pending")
             status.append("audio" if topic.audio else "audio pending")
             topic_cards.append(
                 '<a class="topic-card" href="{href}">'
@@ -287,7 +274,7 @@ INDEX_PAGE = """<!doctype html>
   </nav>
   <p>IT Professional Practice</p>
   <h1>Self-paced courseware for practical IT work</h1>
-  <span>Browse modules, open interactive topic lessons, read transcripts, and use available audio/video without needing an LMS.</span>
+  <span>Browse modules, open interactive topic lessons, read transcripts, and use available audio without needing an LMS.</span>
 </header>
 <main>
 {parts}
@@ -392,7 +379,6 @@ TOPIC_PAGE = """<!doctype html>
       </form>
       <pre id="qa-answer"></pre>
     </section>
-    {video_block}
   </section>
 </main>
 <script id="lesson-data" type="application/json">{lesson_data}</script>
@@ -785,10 +771,6 @@ summary {
   border-radius: 14px;
   box-shadow: 0 18px 40px rgba(24,33,47,.28);
   font: 18px/1.45 Avenir, "Trebuchet MS", sans-serif;
-}
-.lesson-video {
-  width: 100%;
-  border-radius: 12px;
 }
 .media-card,
 .qa-card {
