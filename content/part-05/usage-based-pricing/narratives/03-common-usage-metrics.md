@@ -1,5 +1,5 @@
 Speaker 1: Measuring consumption isn't one size fits all, and real prices vary wildly.
-Speaker 2: Take Twilio—around $0.0075 per SMS. Stripe might skim 2.9% plus 30¢ per charge.
+Speaker 2: Take messaging, card payments, or API platforms: the current rates vary, but the pricing unit is the point.
 Speaker 1: AWS S3 charges roughly $0.023 per gigabyte stored, while Lambda bills for compute milliseconds.
 Speaker 2: Actually, some teams still count active users because finance loves predictable headcounts.
 Speaker 1: Sure, but if you're running an API, billing per million calls—say $1 per 10k—mirrors cost.

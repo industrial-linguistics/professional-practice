@@ -16,6 +16,7 @@ TEXTBOOK = ROOT / "textbook"
 CHAPTERS = TEXTBOOK / "chapters"
 FIGURES = TEXTBOOK / "figures"
 AUDIT = TEXTBOOK / "audit"
+PREFACE = ROOT / "content" / "textbook-preface.md"
 
 
 INDEX_TERMS: tuple[tuple[str, tuple[str, ...]], ...] = (
@@ -513,6 +514,31 @@ MD_ORDERED_RE = re.compile(r"^(\s*)\d+[.)]\s+(.*)$")
 MD_BULLET_RE = re.compile(r"^(\s*)[-*]\s+(.*)$")
 
 
+def course_map_diagram() -> str:
+    return r"""
+\begin{figure}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth}X@{}}
+\toprule
+\textbf{Course movement} & \textbf{Professional question} \\
+\midrule
+Promise & What are we promising users, and what does good service look like? \\
+Operating model & Who receives work, escalates it, changes it, measures it, and improves it? \\
+Delivery pipeline & How do we change the service repeatedly without turning every release into a crisis? \\
+Incident learning & What did the incident teach us about the system, and who owns the fix? \\
+Vendor lifecycle & What commercial promise has operations inherited, and what evidence keeps the relationship honest? \\
+Small org constraints & Which controls matter first when money, time, and specialist staff are scarce? \\
+Data authority & Who has authority to share, reuse, maintain, and benefit from the artefact or dataset? \\
+Capstone defence & Can the whole service design survive questions from operations, commercial, technical, and community perspectives? \\
+\bottomrule
+\end{tabularx}
+\caption{The course arc: from service promise to defended service design.}
+\end{figure}
+""".strip()
+
+
 def md_figure(alt: str, src: str, topic: Topic | None) -> str:
     if topic is None:
         return ""
@@ -622,6 +648,14 @@ def markdown_to_tex(
             flush_paragraph()
             flush_quote()
             close_lists()
+            continue
+
+        if stripped == "{{course-map}}":
+            flush_paragraph()
+            flush_quote()
+            close_lists()
+            out.append(course_map_diagram())
+            out.append("")
             continue
 
         heading = re.match(r"^(#{1,4})\s+(.*)$", stripped)
@@ -799,14 +833,53 @@ def render_part(part: Part) -> str:
         body.append(tex_text_block(part.summary))
     for topic in part.topics:
         body.append(render_topic(topic))
+    practice = render_practice_artifact(part)
+    if practice:
+        body.append(practice)
     return "\n\n".join(body).strip() + "\n"
+
+
+def render_practice_artifact(part: Part) -> str:
+    source = ROOT / "content" / part.slug / "practice-artifact.md"
+    if not source.exists():
+        return ""
+    body = markdown_to_tex(source.read_text(encoding="utf-8"), seen_index_terms=set())
+    if not body.strip():
+        return ""
+    return "\n\n".join(
+        [
+            r"\section{Practice Artefact}",
+            body,
+        ]
+    )
+
+
+def render_preface() -> str:
+    if not PREFACE.exists():
+        return ""
+    body = markdown_to_tex(PREFACE.read_text(encoding="utf-8"), seen_index_terms=set())
+    if not body.strip():
+        return ""
+    return "\n".join(
+        [
+            r"\chapter*{About This Course Reader}",
+            r"\addcontentsline{toc}{chapter}{About This Course Reader}",
+            r"\setcounter{secnumdepth}{-1}",
+            body,
+            r"\setcounter{secnumdepth}{2}",
+            "",
+        ]
+    )
 
 
 def write_main(parts: list[Part]) -> None:
     includes = "\n".join(
         rf"\include{{chapters/{part.slug}-{slug(part.title)}}}" for part in parts
     )
-    (TEXTBOOK / "main.tex").write_text(MAIN_TEX.replace("@@INCLUDES@@", includes), encoding="utf-8")
+    main_tex = MAIN_TEX.replace("@@PREFACE@@", render_preface()).replace(
+        "@@INCLUDES@@", includes
+    )
+    (TEXTBOOK / "main.tex").write_text(main_tex, encoding="utf-8")
     (TEXTBOOK / "main-amazon.tex").write_text(
         "\\def\\amazontrimsize{}\n\\def\\omitcoverpage{}\n\\input{main.tex}\n",
         encoding="utf-8",
@@ -842,6 +915,8 @@ def write_audit(parts: list[Part]) -> None:
         f"- {authored} of {topics} topics have authored `textbook.md` prose; the rest fall back to narration-derived text with practice checkpoints.\n"
         f"- {len(mismatches)} topics currently have slide/narrative count mismatches; "
         "see `docs/narrative-mismatch-audit.md`.\n"
+        f"- Front matter is sourced from `{PREFACE.relative_to(ROOT)}` when that file exists.\n"
+        "- Optional part-level practice artefacts are sourced from `content/part-XX/practice-artifact.md`.\n"
         "- Authoring guidelines live in `docs/textbook-authoring-guidelines.md`.\n",
         encoding="utf-8",
     )
@@ -856,7 +931,10 @@ def write_audit(parts: list[Part]) -> None:
         "- Avoid generic motivational bridge prose when expanding the slide-derived chapters.\n"
         "- Watch for service-marketing adjectives such as \"seamless\", \"holistic\" and \"transformative\"; replace them with the actual handoff, control or workflow.\n"
         "- Avoid \"journey\" unless it names a specific artefact such as a journey map; prefer request path, workflow, handoff or lifecycle.\n"
-        "- Meta-openers like \"this chapter explores\" or \"it is important to note\" should become a concrete workplace problem or decision.\n",
+        "- Meta-openers like \"this chapter explores\" or \"it is important to note\" should become a concrete workplace problem or decision.\n"
+        "- Keep aphorisms and punchlines rare; if a memorable line does not add evidence, an artefact, or a decision, cut it or replace it with a concrete example.\n"
+        "- Do not let current-market claims masquerade as stable textbook facts; dated numbers belong in companion-site notes unless they are sourced and intentionally preserved.\n"
+        "- In Indigenous data-sovereignty material, avoid treating one framework or community context as universal.\n",
         encoding="utf-8",
     )
     (AUDIT / "index-notes.md").write_text(
@@ -864,6 +942,13 @@ def write_audit(parts: list[Part]) -> None:
         f"- The generated index uses {len(INDEX_TERMS)} curated lookup terms and aliases.\n"
         "- Chapter, topic and subsection headings are not indexed automatically; headings are indexed only when they contain a curated lookup term.\n"
         "- The term list prioritises beginner lookup needs: acronyms, ITIL/DevOps/CRM practices, tools, roles, compliance frameworks, and culturally specific vocabulary.\n",
+        encoding="utf-8",
+    )
+    (AUDIT / "evidence-discipline.md").write_text(
+        "# Evidence Discipline\n\n"
+        "- Keep salary bands, vendor pricing, certification details, legal thresholds and current platform behaviour dated or move them to the companion site as updateable notes.\n"
+        "- The stable book should teach the judgement pattern; volatile examples should be treated as illustrations rather than promises.\n"
+        "- Indigenous data sovereignty material should cite Indigenous-led frameworks and be reviewed with relevant community authority before publication use.\n",
         encoding="utf-8",
     )
 
@@ -939,6 +1024,7 @@ MAIN_TEX = r"""\documentclass[11pt,openany]{book}
 \fi
 
 \frontmatter
+@@PREFACE@@
 \tableofcontents
 \mainmatter
 @@INCLUDES@@

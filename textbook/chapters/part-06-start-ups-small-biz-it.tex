@@ -9,7 +9,7 @@ Sarah just closed her seed round. She has six weeks to hire fifteen people, and 
 \index{backups}
 \index{cloud credits}
 \index{fractional CTO}
-This chapter is about judgement under resource constraints. Tiny companies need enterprise-grade outcomes — working email, recoverable backups, provable security, contracts that don't leak money — on budgets that start at \$200 a month and only reach \$20,000 a month after two more funding rounds. Every decision therefore arrives with a dollar figure, an owner and a trade-off attached: cloud credits versus lock-in, a fractional CTO versus a full-time hire, a \$15 ticketing tool versus the enterprise platform the board keeps mentioning. Getting these calls right is less about knowing the perfect tool and more about knowing which corner is safe to cut this quarter and which one quietly becomes a lawsuit.
+This chapter is about judgement under resource constraints. In the course map, it tests the same service-management, delivery, vendor, security, and data-governance ideas in organisations that cannot buy their way out of ambiguity. Tiny companies need enterprise-grade outcomes — working email, recoverable backups, provable security, contracts that don't leak money — on budgets that start at \$200 a month and only reach \$20,000 a month after two more funding rounds. Every decision therefore arrives with a dollar figure, an owner and a trade-off attached: cloud credits versus lock-in, a fractional CTO versus a full-time hire, a \$15 ticketing tool versus the enterprise platform the board keeps mentioning. Getting these calls right is less about knowing the perfect tool and more about knowing which corner is safe to cut this quarter and which one quietly becomes a lawsuit.
 
 
 \index{MSP}
@@ -326,7 +326,7 @@ Before going further, four bits of vocabulary you will hear constantly. \textbf{
 
 
 \index{service level agreement}
-The honest driver of this decision at a startup is not technology preference but runway. In months zero to twelve, velocity beats everything: use managed services with generous free tiers, keep the team shipping features, and do not hire for infrastructure you don't have. A senior SRE costs \$180K-plus in salary alone before tooling and on-call loading — at seed stage you cannot afford one, so choose architectures that don't need one. By year two, finance wants predictability, and the comparison between reserved cloud spend and the fixed costs of leased hardware becomes worth doing properly, informed by real utilisation curves. From year three onward, hybrid patterns emerge legitimately: latency SLAs or data-residency demands may justify colocated gear for specific workloads while everything else stays cloud-native.
+The honest driver of this decision at a startup is not technology preference but runway. In months zero to twelve, velocity beats everything: use managed services with generous free tiers, keep the team shipping features, and do not hire for infrastructure you don't have. A senior reliability specialist can cost more than an early startup's entire infrastructure budget before tooling and on-call loading, so choose architectures that do not need one yet. By year two, finance wants predictability, and the comparison between reserved cloud spend and the fixed costs of leased hardware becomes worth doing properly, informed by real utilisation curves. From year three onward, hybrid patterns emerge legitimately: latency SLAs or data-residency demands may justify colocated gear for specific workloads while everything else stays cloud-native.
 
 
 
@@ -694,7 +694,7 @@ That story is the whole topic in miniature. Startups need senior judgement befor
 \subsection{Why fractional leadership exists, and what it costs}
 
 
-The economics are straightforward. Hiring a permanent CTO takes months and equity you may not want to spend; a fractional leader can start next week for a blended fee — day rates for discovery, a retainer for ongoing leadership time. When cash is especially tight, some leaders accept equity: 0.5–1\% of advisor equity can substitute for a \$150K salary the company can't cover, though any equity swap (smaller grants of 0.25–0.5\% options are also common) should be modelled for dilution before agreeing, not after. Typical engagements run six to eighteen months — long enough to stabilise, short enough to preserve urgency — ending when a permanent leader is hired or internal capability matures.
+The economics are straightforward. Hiring a permanent CTO takes months and equity you may not want to spend; a fractional leader can start next week for a blended fee — day rates for discovery, a retainer for ongoing leadership time. When cash is especially tight, some leaders accept equity, but the current market range belongs in a dated note, not in the core text. Any equity swap should be modelled for dilution before agreeing, not after. Typical engagements run long enough to stabilise the organisation, ending when a permanent leader is hired or internal capability matures.
 
 
 \index{Series B}
@@ -834,7 +834,7 @@ There's a career dimension hiding in this, too. The practitioners you approach t
 \section{Preparing for Investor Due Diligence}
 \index{change management}
 \index{Series A}
-Sarah's seed deck promised investors ``enterprise-ready''. Eighteen months later, the Series A questions are landing in her inbox daily, and the phrase has to become receipts rather than artisanal buzzword salad. This is the moment every funded startup hits: the investors who took the vision on faith at seed now want proof that security, finance and compliance are scaling with revenue. The useful mental model is one you already know from operations — due diligence preparation is production change management. Clear owners, change logs, rollback plans. The calm comes from having the evidence ready before anything breaks in front of the board.
+Sarah's seed deck promised investors ``enterprise-ready''. Eighteen months later, the Series A questions are landing in her inbox daily, and the phrase has to become evidence. This is the moment every funded startup hits: the investors who took the vision on faith at seed now want proof that security, finance and compliance are scaling with revenue. The useful mental model is one you already know from operations — due diligence preparation is production change management. Clear owners, change logs, rollback plans. The calm comes from having the evidence ready before anything breaks in front of the board.
 
 
 
@@ -924,7 +924,7 @@ The red flags hall of fame, with fixes: a ``security lead'' who is a contractor 
 \subsection{Who does this work}
 
 
-Diligence prep is a genuine career surface, not just founder pain. The program manager or chief of staff orchestrates the data room and keeps stakeholders aligned — in US startup terms, roughly \$140k–\$190k plus equity at Series A/B. The security or compliance lead translates questionnaires into an actionable backlog, around \$160k–\$210k, often with bonuses tied to audit milestones. Finance and RevOps partners validate the metrics and customer contract obligations, with senior managers at \$130k–\$170k and upside at close. The people who thrive share diplomacy, obsessive attention to detail and an appetite for structured storytelling, and the progression is visible: own your first diligence cycle, lead the certification renewals, start joining board meetings. From there the paths run to VP Operations, Head of Trust and Safety, or portfolio-operations roles inside venture firms — the other side of the table.
+Diligence prep is a genuine career surface, not just founder pain. The program manager or chief of staff orchestrates the data room and keeps stakeholders aligned. The security or compliance lead translates questionnaires into an actionable backlog, often with incentives tied to audit milestones. Finance and RevOps partners validate the metrics and customer contract obligations. Current compensation bands depend heavily on market, stage and equity terms, so they belong in the companion site's market notes. The people who thrive share diplomacy, obsessive attention to detail and an appetite for structured storytelling, and the progression is visible: own your first diligence cycle, lead the certification renewals, start joining board meetings. From there the paths run to VP Operations, Head of Trust and Safety, or portfolio-operations roles inside venture firms — the other side of the table.
 
 
 \index{KPI}
@@ -2346,7 +2346,16 @@ Two cases anchor the trade-off. \textbf{Stripe versus building payments:} Stripe
 
 \index{CRM}
 \index{runbook}
-Centralise agendas, scorecards and action logs in one shared workspace, with versioned notes and decisions so institutional memory survives turnover on either side. Automate reminders through your ticketing system or CRM so overdue actions chase themselves, and store vendor runbooks alongside incident response and onboarding guides. Future you will thank present you for taking notes; future you is notably less patient with mystery decisions.
+Centralise agendas, scorecards and action logs in one shared workspace, with versioned notes and decisions so institutional memory survives turnover on either side. Automate reminders through your ticketing system or CRM so overdue actions chase themselves, and store vendor runbooks alongside incident response and onboarding guides. The test is whether a new service owner can reconstruct the last three decisions without calling everyone who used to attend the meeting.
 
 
 For founders, the whole topic compresses into four moves: ritualise the touchpoints so vendors feel like part of the operating rhythm; keep the scorecard visible, so green gets celebrated and red gets swift support rather than quiet resentment; treat make-versus-buy as a living decision, not a slide from the seed deck; and document relentlessly, because your successor will need the receipts.
+
+\section{Practice Artefact}
+
+\index{backups}
+\index{SaaS}
+Produce a day-zero IT assessment for a small organisation. Cover identity, devices, backups, core SaaS, support ownership, vendor risk, basic security controls, data location, and the monthly cost of the current stack.
+
+
+Finish with a 30/60/90-day remediation plan. Each item needs an owner, a rough cost, and a reason it matters now rather than later.

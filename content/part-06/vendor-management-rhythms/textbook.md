@@ -55,6 +55,6 @@ Two cases anchor the trade-off. **Stripe versus building payments:** Stripe's SD
 
 ## Write it down
 
-Centralise agendas, scorecards and action logs in one shared workspace, with versioned notes and decisions so institutional memory survives turnover on either side. Automate reminders through your ticketing system or CRM so overdue actions chase themselves, and store vendor runbooks alongside incident response and onboarding guides. Future you will thank present you for taking notes; future you is notably less patient with mystery decisions.
+Centralise agendas, scorecards and action logs in one shared workspace, with versioned notes and decisions so institutional memory survives turnover on either side. Automate reminders through your ticketing system or CRM so overdue actions chase themselves, and store vendor runbooks alongside incident response and onboarding guides. The test is whether a new service owner can reconstruct the last three decisions without calling everyone who used to attend the meeting.
 
 For founders, the whole topic compresses into four moves: ritualise the touchpoints so vendors feel like part of the operating rhythm; keep the scorecard visible, so green gets celebrated and red gets swift support rather than quiet resentment; treat make-versus-buy as a living decision, not a slide from the seed deck; and document relentlessly, because your successor will need the receipts.

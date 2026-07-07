@@ -12,7 +12,7 @@ That changed when the DORA research program — summarised in \emph{Accelerate} 
 \index{CI/CD}
 \index{error budget}
 \index{GitHub Actions}
-This part of the course is about those habits. You'll learn the four DORA metrics and what they predict, how a CI/CD pipeline moves a commit safely to production, how to build one yourself in GitHub Actions, why branch lifetime matters more than branch strategy, and how error budgets let engineers and product managers argue about risk with numbers instead of volume.
+This part of the course is about those habits. In the course map, this is where the service starts changing safely and repeatedly rather than depending on heroic manual releases. You'll learn the four DORA metrics and what they predict, how a CI/CD pipeline moves a commit safely to production, how to build one yourself in GitHub Actions, why branch lifetime matters more than branch strategy, and how error budgets let engineers and product managers argue about risk with numbers instead of volume.
 
 
 \index{DevOps}
@@ -22,7 +22,7 @@ This part of the course is about those habits. You'll learn the four DORA metric
 Day to day, DevOps and SRE work feels less glamorous than the job ads suggest: editing YAML, watching a pipeline go red, reading logs, keeping merges small, occasionally being woken by a pager. But it's also where a junior engineer can have outsized impact, because every hour of toil you automate away is returned to the whole team, every week. The part closes with a look at the DevOps, SRE and platform engineering career paths — some of the best-paid, most remote-friendly roles in the industry.
 
 
-In the hands-on component you'll build a small pipeline, deliberately break it, and measure your own lead time and recovery time. By the end, ``elite performer'' should feel less like a buzzword and something more like a checklist.
+In the hands-on component you'll build a small pipeline, deliberately break it, and measure your own lead time and recovery time. By the end, high delivery performance should feel less like a slogan and more like a set of visible habits.
 
 \section{CI/CD Pipeline Design}
 \index{CI/CD}
@@ -111,7 +111,7 @@ The practical advice is to invest early. A pipeline built in week one of a proje
 Open Seek on any weekday and search for ``Kubernetes''. Among the results you'll find three job titles that look, on first read, like the same job wearing different hats: DevOps engineer, site reliability engineer, platform engineer. All three ads mention pipelines, cloud, automation and an on-call roster. All three pay well. And all three barely existed fifteen years ago — tell someone in 2010 that you were a DevOps engineer and there was a fair chance they'd ask if you fixed printers. The titles condensed out of the same pressure: companies like Google and Netflix demonstrated that at serious scale you cannot ship quickly \emph{and} stay reliable without automation and tight feedback loops, and whole professions formed around that discovery.
 
 
-The roles overlap heavily — same tools, adjacent desks, often the same incident channel — but each leans in a distinct direction, and working out which lean suits you is worth more than any certificate. A note on the salary figures below: they're indicative survey numbers, and currencies and cities move them around. Treat them as proportions rather than promises; the Australian market tracks the same shape, with the same premium for seniority and specialisation.
+The roles overlap heavily — same tools, adjacent desks, often the same incident channel — but each leans in a distinct direction. Working out which lean suits you matters more than memorising a title. Salary bands for these roles move with country, city, remote policy and cloud specialisation, so the companion site is the right place for current numbers. The pattern is steadier: reliability, automation and platform ownership attract a premium because outages and developer waiting time are expensive.
 
 
 
@@ -144,7 +144,7 @@ Site reliability engineering is a Google invention, born from the problem of run
 The day-to-day mixes engineering and vigilance. An SRE might spend the morning writing a Kubernetes operator, the afternoon tuning Prometheus alert thresholds, and the week after that running a chaos experiment — deliberately killing components to prove the system survives, a practice Netflix pioneered after its own early outages. When an incident does land, the SRE is often the calm voice running the response, and afterwards the person leading the retrospective. Two temperamental traits matter more than any qualification: staying level when the 3 am page arrives, and genuinely liking metrics. SRE is the most numbers-driven role in this trio; if the phrase ``our error budget is 43\% consumed'' excites rather than bores you, that's a signal.
 
 
-Most SREs come from software development or DevOps backgrounds and are comfortable both writing code and debugging production under pressure. Google's Professional Cloud DevOps Engineer certification is a common credibility marker. Entry salaries start near \$80k, and staff or principal SREs can clear \$140k — reliability specialists are expensive because outages are more expensive. On-call rotations and incident retrospectives are simply part of the culture, though many teams are remote-friendly. Large companies maintain dedicated SRE squads; smaller firms rely on one or two specialists who watch the dashboards the way other people watch sport.
+Most SREs come from software development or DevOps backgrounds and are comfortable both writing code and debugging production under pressure. Cloud and reliability certifications can help as credibility markers, but current employer preferences change quickly. Reliability specialists are expensive because outages are more expensive. On-call rotations and incident retrospectives are simply part of the culture, though many teams are remote-friendly. Large companies maintain dedicated SRE squads; smaller firms rely on one or two specialists who watch the dashboards closely because the business depends on them.
 
 
 
@@ -154,7 +154,7 @@ Most SREs come from software development or DevOps backgrounds and are comfortab
 If DevOps engineers build the pipeline for a team and SREs keep the service standing, platform engineers build the roads everyone drives on. Their customers are internal: the other developers in the company. The output is ``paved roads'' — reusable infrastructure modules, standard Kubernetes templates, golden machine images, self-service environments a developer can spin up without filing a ticket, and internal developer portals. Spotify's Backstage is the canonical example: an internal portal that worked so well it was open sourced and is now used across the industry.
 
 
-Platform engineers usually arrive from DevOps or SRE roles, having noticed they enjoy building shared services more than nursing a single application. The extra ingredients are empathy and product thinking — a platform nobody wants to use is just infrastructure with better marketing, so good platform engineers interview their internal users, watch where developers get stuck, and prioritise like product managers. Salaries often start around \$90k and reach \$150k for senior architects, with cloud certifications helping along the way. Large enterprises may run platform teams of twenty or more; a startup might have one person quietly keeping every team productive. The career path bends towards platform architect or product management roles, which makes this the trio's most natural bridge out of pure engineering.
+Platform engineers usually arrive from DevOps or SRE roles, having noticed they enjoy building shared services more than nursing a single application. The extra ingredients are empathy and product thinking — a platform nobody wants to use is just infrastructure with better marketing, so good platform engineers interview their internal users, watch where developers get stuck, and prioritise like product managers. Large enterprises may run platform teams of twenty or more; a startup might have one person quietly keeping every team productive. The career path bends towards platform architect or product management roles, which makes this the trio's most natural bridge out of pure engineering.
 
 
 It is also the least visible job of the three when done well — nobody notices the road builders until there's a pothole. If you need regular public credit for your work, that's worth knowing about yourself before you take the role.
@@ -508,3 +508,16 @@ It's the mirror image of the DORA logic from earlier in this part: many small de
 
 
 Don't get religious about the label; get disciplined about the interval. Whether your team calls its process trunk-based or feature branching matters far less than how long changes stay isolated from the main line. Keep merges small and frequent, keep branches measured in hours or days rather than weeks, use toggles to separate integration from release, and reserve long-lived branches for the rare cases that truly need them. When you join a team, you can read its health in its repository: dozens of stale branches and dreaded ``merge parties'' mean deferred integration debt; a busy trunk fed by short-lived branches means the debt is being paid daily, in small instalments, while it's still cheap.
+
+\section{Practice Artefact}
+
+\index{change failure rate}
+\index{CI/CD}
+\index{DORA metrics!change failure rate}
+\index{DORA metrics!deployment frequency}
+\index{DORA metrics!lead time for changes}
+Produce a pipeline evidence sheet. Build or sketch a three-step CI/CD pipeline, record deployment frequency, lead time for changes, change failure rate, and time to restore for one deliberate failure, then write the one-paragraph improvement you would try next.
+
+
+\index{workflow}
+The artefact should include the workflow file or pseudocode, the failed run, the recovery step, and a short explanation of why the change was safe enough to automate.

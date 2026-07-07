@@ -407,8 +407,13 @@ INDEX_PAGE = """<!doctype html>
     <a href="textbook/main.pdf">Textbook A4 PDF</a>
   </nav>
   <p>IT Professional Practice</p>
-  <h1>Self-paced courseware for practical IT work</h1>
-  <span>Browse modules, open interactive topic lessons, read transcripts, and use available audio without needing an LMS.</span>
+  <h1>The missing professional-practice course for technical graduates</h1>
+  <span class="hero-summary">A course reader and self-paced site for students and early-career IT, data and software people learning how real digital services are operated, improved, bought, sold and stewarded.</span>
+  <div class="hero-briefs" aria-label="Course positioning">
+    <span><strong>For</strong> graduates, support analysts, junior developers, data workers, platform beginners and technical staff moving into customer or vendor-facing roles.</span>
+    <span><strong>About</strong> the work between frameworks: ITIL service practice, delivery pipelines, incident learning, CRM handoffs, vendor risk, startup constraints and data authority.</span>
+    <span><strong>Use</strong> the book for stable concepts and the site for transcripts, examples, working artefacts and current course material.</span>
+  </div>
 </header>
 <main>
 {parts}
@@ -434,15 +439,20 @@ SITE_INDEX = """<!doctype html>
     <a href="textbook/main.pdf">Textbook A4 PDF</a>
   </nav>
   <p>IT Professional Practice</p>
-  <h1>Interactive courseware and printable textbook</h1>
-  <span>Use the browser lessons for self-paced study, or download the LaTeX-generated textbook for student printing.</span>
+  <h1>The missing professional-practice course for technical graduates</h1>
+  <span class="hero-summary">For students and early-career IT, data and software people who need to understand how services survive contact with users, vendors, incidents, budgets and community obligations.</span>
+  <div class="hero-briefs" aria-label="Course positioning">
+    <span><strong>Book</strong> stable concepts, cases, vocabulary, decision patterns and practice artefacts.</span>
+    <span><strong>Site</strong> interactive lessons, transcripts, media, examples, worksheets and current notes as they are added.</span>
+    <span><strong>Capstone</strong> one service design defended across operations, delivery, commercial reality and data authority.</span>
+  </div>
 </header>
 <main>
   <section class="part-band">
     <div class="part-copy">
-      <p>Course</p>
-      <h2>Start learning</h2>
-      <span>Open the interactive course surface with slide navigation, transcripts, and available media.</span>
+      <p>Course Surfaces</p>
+      <h2>Start with the reader or the lessons</h2>
+      <span>The textbook carries the durable argument. The browser lessons carry the operational half of the course: topic navigation, transcripts, media and working materials as the site grows.</span>
     </div>
     <div class="topic-grid">
       <a class="topic-card" href="elearning/">
@@ -609,6 +619,34 @@ button, textarea {
   display: block;
   max-width: 760px;
   font: 22px/1.45 Avenir, "Trebuchet MS", sans-serif;
+}
+.site-hero .hero-summary {
+  max-width: 890px;
+}
+.hero-briefs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1080px;
+  margin-top: 30px;
+}
+.hero-briefs span {
+  max-width: none;
+  min-height: 128px;
+  padding: 16px;
+  color: rgba(255,255,255,.92);
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 8px;
+  font: 15px/1.45 Avenir, "Trebuchet MS", sans-serif;
+}
+.hero-briefs strong {
+  display: block;
+  margin-bottom: 8px;
+  color: white;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
 }
 main {
   width: min(1180px, calc(100vw - 40px));
@@ -1138,6 +1176,12 @@ summary {
   padding: 48px 0;
 }
 @media (max-width: 980px) {
+  .hero-briefs {
+    grid-template-columns: 1fr;
+  }
+  .hero-briefs span {
+    min-height: 0;
+  }
   .part-band,
   .lesson-shell,
   .lesson-stage,

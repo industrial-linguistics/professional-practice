@@ -4,7 +4,7 @@ That story is the whole topic in miniature. Startups need senior judgement befor
 
 ## Why fractional leadership exists, and what it costs
 
-The economics are straightforward. Hiring a permanent CTO takes months and equity you may not want to spend; a fractional leader can start next week for a blended fee — day rates for discovery, a retainer for ongoing leadership time. When cash is especially tight, some leaders accept equity: 0.5–1% of advisor equity can substitute for a $150K salary the company can't cover, though any equity swap (smaller grants of 0.25–0.5% options are also common) should be modelled for dilution before agreeing, not after. Typical engagements run six to eighteen months — long enough to stabilise, short enough to preserve urgency — ending when a permanent leader is hired or internal capability matures.
+The economics are straightforward. Hiring a permanent CTO takes months and equity you may not want to spend; a fractional leader can start next week for a blended fee — day rates for discovery, a retainer for ongoing leadership time. When cash is especially tight, some leaders accept equity, but the current market range belongs in a dated note, not in the core text. Any equity swap should be modelled for dilution before agreeing, not after. Typical engagements run long enough to stabilise the organisation, ending when a permanent leader is hired or internal capability matures.
 
 The needs shift by stage: pre-seed firms mostly borrow architecture patterns; Series A companies need someone to scale toward multi-region uptime; Series B demands compliance rigour and portfolio-level planning. Indicative pricing:
 

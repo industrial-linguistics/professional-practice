@@ -26,7 +26,7 @@ Search Australian job boards for "service desk", "IT support" or "systems admini
 
 It also compounds. Incident management, change enablement and problem management are the foundations for nearly everything else in enterprise operations — the DevOps and reliability engineering material later in this course assumes them constantly. Learn the vocabulary now and every subsequent topic gets easier; skip it and you'll be reverse-engineering it from context for years.
 
-There is a formal credential if you want one. The ITIL 4 Foundation certification is a one-hour, forty-question multiple-choice exam, and it's a common line on early-career CVs in Australia — not because it proves deep skill, but because it proves you won't need the framework explained to you in your first week. This course covers most of what the exam tests, so if you decide to sit it, the marginal effort is small.
+There is a formal credential if you want one. The current ITIL Foundation exam format and registration rules belong on the companion site, because PeopleCert can change them. The professional point is steadier: the credential is a common line on early-career CVs in Australia not because it proves deep skill, but because it proves you won't need the framework explained to you in your first week. This course covers the working vocabulary and judgement the exam is trying to signal.
 
 > A rule of thumb for your first month anywhere: every time you hear a term you don't know — P1, CAB, MTTR, SLA — write it down and ask about it at the end of the meeting. Asking early is cheap. Asking in month six is embarrassing. Guessing is how outages happen.
 

@@ -2,9 +2,12 @@
 
 Last checked: 2026-07-06.
 
-The current Professional Practice output is not yet an e-learning course. It is
-mostly a content repository plus a simple public run-script index. The sibling
-repos show two mature patterns worth importing:
+The current Professional Practice output is becoming the operational half of the
+course reader. The textbook should carry stable concepts and cases; the site
+should carry the artefacts that need interaction or regular updates: transcripts,
+ticket examples, post-mortem templates, SLA/KPI worksheets, DORA exercises,
+vendor rubrics, CRM practice, startup IT checklists, data-sovereignty prompts and
+current market notes. The sibling repos show two mature patterns worth importing:
 
 - `../decision-grade` has a separate self-paced delivery tree, transcript
   controls, course-wide Q&A context, SCORM packaging, MP4 export and production
@@ -24,7 +27,8 @@ repos show two mature patterns worth importing:
   print-on-demand checks.
 - The video pipeline can render HTML slides to PNG, VTT subtitles, narration
   audio and topic MP4s.
-- `website/index.html` is a plain list of run-script links.
+- `website/index.html` is a compatibility landing page for the older run-script
+  surface.
 - `scripts/generate_run_sheets_html.sh` converts PDFs to basic HTML.
 - `output/elearning/` includes transcript pages, transcript overlay controls,
   progress controls and a course-wide `course-corpus.json`.
@@ -98,6 +102,11 @@ without requiring new narration spend.
   - DORA metric interpretation
   - post-incident action tracking
   - vendor/CRM lifecycle mapping
+- Add updateable current-note pages for facts that age quickly:
+  - salary and role-market examples
+  - certification and exam-format details
+  - current platform behaviour and public pricing
+  - legal thresholds and regulatory links
 - Store scenarios as data files so the exercises are editable course content,
   not one-off pages.
 

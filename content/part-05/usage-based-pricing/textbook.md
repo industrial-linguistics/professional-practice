@@ -12,7 +12,7 @@ The consumption model lowers the barrier to entry dramatically. A student's side
 
 Measuring consumption isn't one-size-fits-all, and the real-world prices vary wildly:
 
-- **API calls or transactions** — Twilio charges around $0.0075 per SMS; Stripe takes 2.9% plus 30 cents per charge; API platforms commonly bill something like a dollar per ten thousand calls.
+- **API calls or transactions** — common models include per-message fees, percentage-plus-fixed transaction fees, or a price per block of API calls. The exact public rates change often, so treat live vendor prices as companion-site material rather than textbook facts.
 - **Data stored or transferred** — AWS S3 runs at roughly $0.023 per gigabyte stored.
 - **Compute time** — AWS Lambda bills by the millisecond.
 - **Seats activated per month** — a hybrid of the old and new worlds, still popular because finance teams love predictable headcounts.
@@ -23,7 +23,7 @@ In practice, few vendors run on pure consumption. **Hybrid models** — a base f
 
 ## The machinery: metering, billing and bill shock
 
-The benefits of the model span the whole organisation, which is rare enough to note. Sales loves it because pilots don't require haggling over six-figure licences — startups flock to free tiers like Firebase's and graduate to paid quotas on their own. Finance appreciates the built-in expansion: as customers consume more, revenue follows without upsell theatrics. Operations benefits because pass-through pricing keeps margins legible — if your cloud provider bills per gigabyte and so do you, your unit economics are visible — and internally, usage pricing nudges teams to right-size resources instead of hoarding servers. Product gets granular usage data revealing which features actually drive value. A pricing model that makes four departments happy at once is a rare cross-department peace treaty.
+The benefits of the model span the whole organisation. Sales can run pilots without a long licence negotiation. Finance gets expansion that follows actual consumption. Operations can see unit economics when provider cost and customer billing use the same driver. Product gets usage data that shows which features are actually doing work. The model is not automatically fair or simple, but when it is designed well, each department can point to the same usage signal and make a better decision from it.
 
 Now the costs. Revenue becomes genuinely harder to forecast when customers binge one month and ghost the next, and delayed or inaccurate metering data can quietly wreck a quarter's cash flow projections. High-volume customers negotiate discounts precisely when traffic spikes, shrinking margins at the moment of apparent success. And above all, the model runs on **telemetry**: every billable action must be instrumented, logged, and piped into a metering and billing system with audit trails good enough to survive both a customer dispute and a compliance review — those logs double as evidence when auditors come knocking.
 

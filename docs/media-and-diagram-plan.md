@@ -11,6 +11,8 @@ Last checked: 2026-04-25.
 - Source images currently committed:
   - `content/part-01/value-chain/images/service-value-chain-continual-improvement.png`
   - `content/part-02/change-vs-release/images/itil-minor-change.png`
+  - `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png`
+  - `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png`
 - Topics with matching slide and narrative counts: 17.
 
 The largest immediate blocker for audio and video is not imagery. It is slide/narrative alignment: most topics have more slides than narrative files, and two Part 5 topics have no narratives at all.

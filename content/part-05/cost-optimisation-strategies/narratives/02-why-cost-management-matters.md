@@ -1,4 +1,4 @@
-Speaker 1: Like gym memberships, software licences are easy to sign up for and surprisingly hard to cancel.
+Speaker 1: Software licences are easy to add and hard to remove once nobody owns the review.
 Speaker 2: Surveys suggest ten to twenty percent of IT budgets pay for tools no one uses—what finance calls shelfware.
 Speaker 1: Over‑provisioning is another culprit: paying for more capacity than you need just in case.
 Speaker 2: Even a ten-person startup can uncover savings with a simple spreadsheet sweep.
