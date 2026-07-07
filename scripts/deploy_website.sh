@@ -7,6 +7,9 @@ REMOTE_DIR="${DEPLOYMENT_REMOTE_DIR:-/var/www/vhosts/professional-practice.indus
 SOURCE_DIR="${DEPLOYMENT_SOURCE_DIR:-output/site}"
 MIN_AUDIO_TOPICS="${DEPLOY_MIN_AUDIO_TOPICS:-5}"
 SSH_KEY="${DEPLOYMENT_SSH_KEY:-}"
+if [ -z "$SSH_KEY" ] && [ -f "$HOME/.ssh/id_ed25519_merah" ]; then
+  SSH_KEY="$HOME/.ssh/id_ed25519_merah"
+fi
 
 if [ ! -d "$SOURCE_DIR" ]; then
   echo "source directory not found: $SOURCE_DIR" >&2
