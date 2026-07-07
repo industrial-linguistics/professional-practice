@@ -404,7 +404,6 @@ INDEX_PAGE = """<!doctype html>
 <body class="course-index">
 <header class="site-hero">
   <nav>
-    <a href="course-corpus.json">Course corpus</a>
     <a href="textbook/main.pdf">Textbook A4 PDF</a>
   </nav>
   <p>IT Professional Practice</p>
