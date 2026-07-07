@@ -15,9 +15,9 @@ if [ ! -d "$SOURCE_DIR" ]; then
 fi
 
 if [ "$MIN_AUDIO_TOPICS" -gt 0 ]; then
-  audio_count="$(find "$SOURCE_DIR/elearning/media" -path '*/audio.wav' -type f 2>/dev/null | wc -l | tr -d ' ')"
+  audio_count="$(find "$SOURCE_DIR/elearning/media" -path '*/audio.mp3' -type f 2>/dev/null | wc -l | tr -d ' ')"
   if [ "$audio_count" -lt "$MIN_AUDIO_TOPICS" ]; then
-    echo "refusing to deploy: only $audio_count topic audio file(s) in $SOURCE_DIR; expected at least $MIN_AUDIO_TOPICS" >&2
+    echo "refusing to deploy: only $audio_count topic MP3 audio file(s) in $SOURCE_DIR; expected at least $MIN_AUDIO_TOPICS" >&2
     echo "sync generated media from raksasa or set DEPLOY_MIN_AUDIO_TOPICS=0 to override intentionally" >&2
     exit 1
   fi

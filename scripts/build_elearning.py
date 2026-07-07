@@ -6,8 +6,10 @@ from __future__ import annotations
 import html
 import hashlib
 import json
+import os
 import re
 import shutil
+import subprocess
 from pathlib import Path
 
 from course_content import (
@@ -28,6 +30,7 @@ TEXTBOOK = ROOT / "textbook"
 PUBLISHED_TEXTBOOK_FILES = [
     ("main.pdf", "Student A4 PDF"),
 ]
+AUDIO_MP3_BITRATE = os.environ.get("AUDIO_MP3_BITRATE", "96k")
 SPEAKER_DISPLAY_NAMES = {
     "Speaker 1": "Anna",
     "Speaker 2": "Greg",
@@ -61,9 +64,54 @@ def write_assets() -> None:
     (ELEARNING / "assets" / "course.js").write_text(COURSE_JS, encoding="utf-8")
 
 
+def transcode_wav_to_mp3(src: Path, dest: Path) -> str:
+    ffmpeg = shutil.which("ffmpeg")
+    if ffmpeg is None:
+        raise RuntimeError(
+            f"ffmpeg is required to publish compressed audio for {src.relative_to(ROOT)}"
+        )
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    subprocess.run(
+        [
+            ffmpeg,
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            str(src),
+            "-codec:a",
+            "libmp3lame",
+            "-b:a",
+            AUDIO_MP3_BITRATE,
+            str(dest),
+        ],
+        check=True,
+    )
+    return dest.name
+
+
+def publish_audio(src_dir: Path, media_dir: Path) -> str | None:
+    source_mp3 = src_dir / "audio.mp3"
+    if source_mp3.exists():
+        return copy_if_exists(source_mp3, media_dir)
+
+    source_wav = src_dir / "audio.wav"
+    if source_wav.exists():
+        return transcode_wav_to_mp3(source_wav, media_dir / "audio.mp3")
+
+    return None
+
+
+def audio_mime(filename: str) -> str:
+    if filename.lower().endswith(".mp3"):
+        return "audio/mpeg"
+    return "audio/wav"
+
+
 def copy_topic_media(topic: Topic) -> tuple[str | None, str | None]:
     media_dir = ELEARNING / "media" / topic.part / topic.slug
-    audio = copy_if_exists(topic.source_path / "audio.wav", media_dir)
+    audio = publish_audio(topic.source_path, media_dir)
     subtitles = copy_if_exists(topic.source_path / "subtitles.vtt", media_dir)
     return audio, subtitles
 
@@ -149,7 +197,7 @@ def render_topic(topic: Topic) -> None:
     )
     audio_block = (
         '<audio id="audio-player" controls preload="metadata">'
-        f'<source src="{rel_media}/{audio}" type="audio/wav">'
+        f'<source src="{rel_media}/{audio}" type="{audio_mime(audio)}">'
         "</audio>"
         if audio
         else '<span class="pending">Audio pending</span>'

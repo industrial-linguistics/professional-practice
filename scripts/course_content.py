@@ -192,6 +192,14 @@ def copy_if_exists(src: Path, dest_dir: Path) -> str | None:
     return dest.name
 
 
+def topic_audio_filename(topic_dir: Path) -> str | None:
+    if (topic_dir / "audio.mp3").exists():
+        return "audio.mp3"
+    if (topic_dir / "audio.wav").exists():
+        return "audio.wav"
+    return None
+
+
 def section_fragments(slides_html: str) -> list[str]:
     pattern = re.compile(
         r"(<section\b(?=[^>]*\bclass=[\"'][^\"']*\bslide\b)[^>]*>.*?</section>)",
@@ -261,7 +269,7 @@ def load_topic(part_slug: str, topic_dir: Path) -> Topic:
         source_path=topic_dir,
         slides=slides,
         video="final.mp4" if (topic_dir / "final.mp4").exists() else None,
-        audio="audio.wav" if (topic_dir / "audio.wav").exists() else None,
+        audio=topic_audio_filename(topic_dir),
         subtitles="subtitles.vtt" if (topic_dir / "subtitles.vtt").exists() else None,
     )
 

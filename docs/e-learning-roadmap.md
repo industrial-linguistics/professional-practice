@@ -80,7 +80,7 @@ without requiring new narration spend.
   `narratives/` and `subtitles.vtt`.
 - Add transcript-as-subtitle controls to topic pages.
 - Add a durable progress marker using local storage.
-- Publish existing `audio.wav` and `subtitles.vtt` when present.
+- Publish compressed `audio.mp3` delivery files, transcoded from existing `audio.wav` masters when present, plus `subtitles.vtt`.
 
 ### Phase 3: LMS packaging
 

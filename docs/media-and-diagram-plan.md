@@ -7,7 +7,7 @@ Last checked: 2026-04-25.
 - Slide decks found: 81.
 - Slide count across decks: 773.
 - Narrative files found: 614.
-- Current generated media: topic-level `audio.wav` files are generated outside source control; MP4s are optional manual outputs and are not part of the default learner-facing course surface.
+- Current generated media: topic-level `audio.wav` files are generated outside source control as audio masters; the e-learning build transcodes those masters to `audio.mp3` for browser delivery. MP4s are optional manual outputs and are not part of the default learner-facing course surface.
 - Source images currently committed:
   - `content/part-01/value-chain/images/service-value-chain-continual-improvement.png`
   - `content/part-02/change-vs-release/images/itil-minor-change.png`
