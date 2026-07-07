@@ -31,4 +31,4 @@ fi
 
 rsync -avz -e "${RSYNC_SSH[*]}" "$SOURCE_DIR"/ "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR/"
 "${RSYNC_SSH[@]}" "$REMOTE_USER@$REMOTE_HOST" \
-  "rm -f '$REMOTE_DIR/textbook/main-amazon.pdf' '$REMOTE_DIR/elearning/textbook/main-amazon.pdf'"
+  "find '$REMOTE_DIR/elearning/media' -name audio.wav -type f -exec rm -f {} \\; 2>/dev/null || true; rm -f '$REMOTE_DIR/textbook/main-amazon.pdf' '$REMOTE_DIR/elearning/textbook/main-amazon.pdf'"
