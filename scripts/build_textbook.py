@@ -216,6 +216,181 @@ def tex_itemize(items: list[str]) -> str:
     return "\n".join(lines)
 
 
+def md_inline(text: str) -> str:
+    """Convert inline markdown markers on already-TeX-escaped text."""
+    text = re.sub(r"\*\*(.+?)\*\*", r"\\textbf{\1}", text)
+    text = re.sub(r"(?<!\*)\*([^*\n]+)\*(?!\*)", r"\\emph{\1}", text)
+    text = re.sub(r"`([^`\n]+)`", r"\\texttt{\1}", text)
+    return text
+
+
+def md_line(text: str) -> str:
+    return md_inline(tex_escape(text))
+
+
+MD_IMAGE_RE = re.compile(r"^!\[([^\]]*)\]\(([^)\s]+)\)\s*$")
+MD_ORDERED_RE = re.compile(r"^(\s*)\d+[.)]\s+(.*)$")
+MD_BULLET_RE = re.compile(r"^(\s*)[-*]\s+(.*)$")
+
+
+def md_figure(alt: str, src: str, topic: Topic | None) -> str:
+    if topic is None:
+        return ""
+    source = topic.source_path / src
+    if re.match(r"^[a-z]+:", src) or src.startswith("/") or not source.exists():
+        return ""
+    rel = Path("figures") / topic.part / topic.slug / src
+    return "\n".join(
+        [
+            r"\begin{figure}[htbp]",
+            r"\centering",
+            rf"\includegraphics[width=0.86\linewidth]{{{rel.as_posix()}}}",
+            rf"\caption{{{tex_escape(alt or topic.title)}}}",
+            r"\end{figure}",
+        ]
+    )
+
+
+def markdown_to_tex(md: str, topic: Topic | None = None) -> str:
+    """Convert the authored-textbook markdown subset to LaTeX.
+
+    Supported: ##/### headings, paragraphs, - and 1. lists (one nesting
+    level), > asides, fenced code blocks, images, **bold**, *italic*,
+    `code`. Anything fancier belongs in the generator, not the sources.
+    """
+    out: list[str] = []
+    paragraph: list[str] = []
+    quote: list[str] = []
+    code: list[str] = []
+    in_code = False
+    # Each stack entry is (indent, environment name).
+    list_stack: list[tuple[int, str]] = []
+
+    def flush_paragraph() -> None:
+        if paragraph:
+            out.append(md_line(" ".join(paragraph)))
+            out.append("")
+            paragraph.clear()
+
+    def flush_quote() -> None:
+        if quote:
+            out.append(r"\begin{quote}\small")
+            out.append(md_line(" ".join(quote)))
+            out.append(r"\end{quote}")
+            out.append("")
+            quote.clear()
+
+    def close_lists(indent: int = -1) -> None:
+        while list_stack and list_stack[-1][0] >= indent >= 0 or (indent < 0 and list_stack):
+            _, env = list_stack.pop()
+            out.append(rf"\end{{{env}}}")
+        if not list_stack:
+            out.append("")
+
+    def open_list(indent: int, env: str) -> None:
+        options = "[leftmargin=*]" if not list_stack else ""
+        out.append(rf"\begin{{{env}}}{options}")
+        list_stack.append((indent, env))
+
+    def handle_item(indent: int, env: str, item: str) -> None:
+        flush_paragraph()
+        flush_quote()
+        while list_stack and list_stack[-1][0] > indent:
+            _, closed = list_stack.pop()
+            out.append(rf"\end{{{closed}}}")
+        if list_stack and list_stack[-1][0] == indent and list_stack[-1][1] != env:
+            _, closed = list_stack.pop()
+            out.append(rf"\end{{{closed}}}")
+        if not list_stack or list_stack[-1][0] < indent:
+            open_list(indent, env)
+        out.append(rf"\item {md_line(item)}")
+
+    for raw in md.splitlines():
+        line = raw.rstrip()
+        stripped = line.strip()
+
+        if in_code:
+            if stripped.startswith("```"):
+                in_code = False
+                out.append(r"\begin{CodeBlock}")
+                out.append(normalise_code("\n".join(code)))
+                out.append(r"\end{CodeBlock}")
+                out.append("")
+                code.clear()
+            else:
+                code.append(raw)
+            continue
+
+        if stripped.startswith("```"):
+            flush_paragraph()
+            flush_quote()
+            close_lists()
+            in_code = True
+            continue
+
+        if not stripped:
+            flush_paragraph()
+            flush_quote()
+            close_lists()
+            continue
+
+        heading = re.match(r"^(#{1,4})\s+(.*)$", stripped)
+        if heading:
+            flush_paragraph()
+            flush_quote()
+            close_lists()
+            level = len(heading.group(1))
+            title = tex_heading(heading.group(2))
+            command = "subsection" if level <= 2 else "subsubsection"
+            out.append(rf"\{command}{{{title}}}")
+            out.append(rf"\index{{{title}}}")
+            out.append("")
+            continue
+
+        image = MD_IMAGE_RE.match(stripped)
+        if image:
+            flush_paragraph()
+            flush_quote()
+            close_lists()
+            figure = md_figure(image.group(1), image.group(2), topic)
+            if figure:
+                out.append(figure)
+                out.append("")
+            continue
+
+        if stripped.startswith(">"):
+            flush_paragraph()
+            close_lists()
+            quote.append(stripped.lstrip("> ").strip())
+            continue
+
+        bullet = MD_BULLET_RE.match(line)
+        if bullet:
+            handle_item(len(bullet.group(1)), "itemize", bullet.group(2))
+            continue
+        ordered = MD_ORDERED_RE.match(line)
+        if ordered:
+            handle_item(len(ordered.group(1)), "enumerate", ordered.group(2))
+            continue
+
+        if list_stack:
+            # Continuation line inside a list item.
+            out.append(md_line(stripped))
+            continue
+
+        flush_quote()
+        paragraph.append(stripped)
+
+    flush_paragraph()
+    flush_quote()
+    close_lists()
+    if in_code and code:
+        out.append(r"\begin{CodeBlock}")
+        out.append(normalise_code("\n".join(code)))
+        out.append(r"\end{CodeBlock}")
+    return "\n".join(out).strip()
+
+
 def pre_blocks(slide: Slide) -> list[str]:
     blocks = []
     for match in re.finditer(
@@ -285,6 +460,10 @@ def render_topic(topic: Topic) -> str:
         rf"\section{{{tex_heading(topic.title)}}}",
         rf"\index{{{tex_escape(topic.title)}}}",
     ]
+    authored = topic.source_path / "textbook.md"
+    if authored.exists():
+        lines.append(markdown_to_tex(authored.read_text(encoding="utf-8"), topic))
+        return "\n".join(lines)
     slides = topic.slides
     if slides and is_title_slide(slides[0]):
         opener = render_slide(topic, slides[0], include_heading=False)
@@ -306,7 +485,10 @@ def render_part(part: Part) -> str:
         rf"\chapter{{{tex_heading(part.title)}}}",
         rf"\index{{{tex_escape(part.title)}}}",
     ]
-    if part.summary:
+    intro = ROOT / "content" / part.slug / "textbook-intro.md"
+    if intro.exists():
+        body.append(markdown_to_tex(intro.read_text(encoding="utf-8")))
+    elif part.summary:
         body.append(tex_text_block(part.summary))
     for topic in part.topics:
         body.append(render_topic(topic))
@@ -335,6 +517,12 @@ def write_chapters(parts: list[Part]) -> None:
 def write_audit(parts: list[Part]) -> None:
     topics = sum(len(part.topics) for part in parts)
     slides = sum(len(topic.slides) for part in parts for topic in part.topics)
+    authored = sum(
+        1
+        for part in parts
+        for topic in part.topics
+        if (topic.source_path / "textbook.md").exists()
+    )
     mismatches = []
     for part in parts:
         for topic in part.topics:
@@ -344,9 +532,10 @@ def write_audit(parts: list[Part]) -> None:
     (AUDIT / "open-issues.md").write_text(
         "# Textbook Open Issues\n\n"
         f"- Generated from {len(parts)} parts, {topics} topics and {slides} slides.\n"
+        f"- {authored} of {topics} topics have authored `textbook.md` prose; the rest fall back to narration-derived text with practice checkpoints.\n"
         f"- {len(mismatches)} topics currently have slide/narrative count mismatches; "
         "see `docs/narrative-mismatch-audit.md`.\n"
-        "- The generator now renders narrative material as textbook prose and keeps slide text as practice checkpoints; later editorial passes should still improve examples and continuity by hand.\n",
+        "- Authoring guidelines live in `docs/textbook-authoring-guidelines.md`.\n",
         encoding="utf-8",
     )
     (AUDIT / "style-notes.md").write_text(
@@ -483,8 +672,12 @@ clean:
 README = """# IT Professional Practice Textbook
 
 This directory contains the generated LaTeX textbook project for the course.
-It is generated from `content/part-*/topic/slides.html` and `narratives/` by
-`scripts/build_textbook.py`.
+It is generated by `scripts/build_textbook.py`. The preferred source for each
+topic is an authored `content/part-*/topic/textbook.md` (see
+`docs/textbook-authoring-guidelines.md`); topics without one fall back to
+narration-derived prose from `slides.html` and `narratives/`. Part openers
+come from `content/part-*/textbook-intro.md` when present. Do not edit the
+`.tex` files here directly — they are regenerated on every build.
 
 Build both student-print and Amazon print-on-demand PDFs with:
 

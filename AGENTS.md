@@ -75,6 +75,13 @@ When asked to "do the next item on the todo list":
 - Aim for ~100 words per narrative (1 minute of speech)
 - Reference `docs/narrative-guidelines.md` for style requirements
 
+### Textbook Prose
+- Each topic's book section is authored in `content/part-XX/topic-name/textbook.md`; part openers in `content/part-XX/textbook-intro.md`
+- Follow `docs/textbook-authoring-guidelines.md` (voice, length, allowed markdown subset)
+- `scripts/build_textbook.py` renders these to LaTeX; topics without textbook.md fall back to narration-derived prose
+- Never hand-edit `textbook/chapters/*.tex` — they are regenerated on every build
+- Check sources with `scripts/validate_textbook_sources.py`
+
 ### Git Workflow Preferences
 - Commit Codex-generated content with proper attribution to Codex
 - Use descriptive commit messages that explain what was added/changed

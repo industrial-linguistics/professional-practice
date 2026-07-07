@@ -1,0 +1,37 @@
+Everything in this course has been building to a single, slightly uncomfortable moment: you and four teammates in a room, pitching an IT service you designed to a panel of practitioners who do this for a living, and then taking their questions. This final part is not a new body of knowledge. It is a studio — protected time, structured feedback, and a deadline — in which you assemble everything from Parts 1 through 7 into one coherent piece of work and then defend it.
+
+## What the capstone actually asks
+
+The brief sounds simple: design an IT service for a real community organisation — an Indigenous or social-impact organisation by preference — and justify it end to end. The report lands in week twelve; the viva, a ten-minute board-style pitch followed by open questioning, happens in week thirteen. It is worth half your grade because it exercises every learning outcome at once.
+
+"Design an IT service" is doing a lot of work in that sentence. A service is not an app. It is the whole arrangement that delivers ongoing value: the technology, yes, but also who supports it, how incidents get handled, what promises are made about availability and response, how changes are introduced without breaking trust, what it costs to run in year three when the grant money is gone, and who owns the data. If your proposal reads like a software pitch with a support paragraph bolted on, the panel will find the gap within two questions.
+
+A strong proposal shows its working. Why ITIL-shaped support processes for an organisation with one part-time technician — or why deliberately not? Why that hosting choice, that vendor, that licence? What does the error budget conversation look like when the "SRE team" is a volunteer? Which parts of the DORA mindset survive contact with a four-person charity, and which are cargo cult at that scale? The frameworks you met in this course are lenses, not liturgy; the capstone rewards teams that know when each lens earns its keep.
+
+## The panel, and why it looks like that
+
+Your viva panel is deliberately mixed: a site reliability engineer, a ServiceNow architect, a Salesforce account executive, and an Indigenous digital-inclusion advocate. That composition is a map of the course — operations, service management, the commercial relationship, and community ownership — and each panellist will probe the seam you are weakest on.
+
+Expect the SRE to ask what happens at 2 a.m. when it breaks, and who notices. Expect the architect to ask how a request becomes work, how work becomes change, and where the single source of truth lives. Expect the account executive to ask who is paying, what the renewal conversation looks like, and what happens when the vendor you chose raises prices forty percent. And expect the advocate to ask the questions that are easiest to fail: who owns this data? Who decided that? What happens to the community's information if your service winds down, gets acquired, or simply gets neglected? If your team treated Part 7 as a box to tick, this is where it shows.
+
+The panel is not trying to catch you out; they are modelling the real gauntlet any service proposal runs inside an organisation. Practising for a mixed audience is itself the lesson. The pitch that delights an engineer bores a board; the pitch that soothes a board terrifies an engineer. You have ten minutes to be credible to both.
+
+## Running the studio weeks well
+
+Teams of four or five fail in predictable ways, and the studio format exists to catch them early. The first failure mode is the divisible-labour illusion: five people write five sections, someone staples them together the night before, and the seams are visible from across the room — the costings don't match the architecture, the support model contradicts the staffing assumptions. Integration is a task; schedule it. Read the whole document aloud together at least once. The person who wrote the security section should be able to defend the pricing, because in the viva, questions do not respect chapter boundaries.
+
+The second failure mode is polishing the deck while the thinking underneath is still soft. A useful discipline: for every claim on a slide, know the evidence behind it and the strongest objection to it. If you cannot name the objection, you have not finished thinking. Run at least one full mock viva with another team playing a hostile panel; trade the favour. The teams that get questioned hard in rehearsal get questioned comfortably on the day.
+
+The third is ignoring the organisation itself. The brief says a *real* community organisation, and the best capstones are unmistakably grounded in one: its actual volunteer roster, its actual funding cycle, its actual tolerance for complexity. Talk to real people if you can. One authentic constraint — "the treasurer refuses to store member data offshore" — is worth more to your design, and to your marks, than any amount of generic best practice.
+
+## Defending under questioning
+
+The question period rewards a specific temperament: candid, concrete, and unhurried. Some habits worth rehearsing until they are reflexes. When you don't know, say so, then say how you would find out — panels forgive gaps; they do not forgive bluffing. When a panellist attacks an assumption, resist defending it reflexively; the best answer is often "we considered that — here's the trade-off we weighed, and here's what would change our mind." That sentence demonstrates more professional maturity than a flawless slide ever could. And keep answers short. A ninety-second answer to a ten-second question reads as evasion.
+
+> A viva is not a test of whether your design is perfect. It is a test of whether you understand your own design — including its weaknesses — better than anyone else in the room. That standard is achievable by any team that did the work.
+
+## What this part is really for
+
+Employers rarely ask graduates to recite the ITIL value chain. They do ask them to sit in a meeting where operations, sales, management and community stakeholders all want different things, and to hold a sensible position. The capstone is a rehearsal for that room. The habits it drills — justify your framework choices, cost the whole lifecycle, name the failure modes, respect data ownership, communicate to mixed audiences, take questions without flinching — are the professional practice this course is named for.
+
+Finish it properly. Teams that treat week thirteen as the finish line coast; teams that treat it as a dress rehearsal for their first job interview tend to discover, mid-viva, that they can hold the room. That discovery is the point of the whole course.
