@@ -161,7 +161,28 @@ def display_narration(text: str) -> str:
     return text
 
 
-def lesson_payload(topic: Topic, media_base: str, audio: str | None, subtitles: str | None) -> dict:
+def next_topic_payload(topic: Topic, next_topic: Topic | None) -> dict | None:
+    if next_topic is None:
+        return None
+    current_dir = ELEARNING / topic.part / topic.slug
+    next_dir = ELEARNING / next_topic.part / next_topic.slug
+    href = os.path.relpath(next_dir, current_dir).replace(os.sep, "/")
+    if not href.endswith("/"):
+        href += "/"
+    return {
+        "title": next_topic.title,
+        "href": href,
+        "part": titleize(next_topic.part),
+    }
+
+
+def lesson_payload(
+    topic: Topic,
+    media_base: str,
+    audio: str | None,
+    subtitles: str | None,
+    next_topic: Topic | None,
+) -> dict:
     return {
         "topicPath": f"{topic.part}/{topic.slug}",
         "title": topic.title,
@@ -169,6 +190,7 @@ def lesson_payload(topic: Topic, media_base: str, audio: str | None, subtitles: 
         "mediaBase": media_base,
         "audio": audio,
         "subtitles": subtitles,
+        "nextTopic": next_topic_payload(topic, next_topic),
         "slideTimings": slide_timings(topic),
         "slides": [
             {
@@ -183,13 +205,13 @@ def lesson_payload(topic: Topic, media_base: str, audio: str | None, subtitles: 
     }
 
 
-def render_topic(topic: Topic) -> None:
+def render_topic(topic: Topic, next_topic: Topic | None = None) -> None:
     out_dir = ELEARNING / topic.part / topic.slug
     out_dir.mkdir(parents=True, exist_ok=True)
     copy_topic_images(topic, out_dir)
     rel_media = f"../../media/{topic.part}/{topic.slug}"
     audio, subtitles = copy_topic_media(topic)
-    data = lesson_payload(topic, rel_media, audio, subtitles)
+    data = lesson_payload(topic, rel_media, audio, subtitles, next_topic)
     slide_buttons = "\n".join(
         f'<button type="button" class="slide-jump" data-slide="{slide.n - 1}">'
         f'<span>{slide.n:02d}</span>{html.escape(slide.title)}</button>'
@@ -207,6 +229,14 @@ def render_topic(topic: Topic) -> None:
         if subtitles
         else '<span class="pending">Subtitles pending</span>'
     )
+    next_topic = data.get("nextTopic")
+    next_topic_button = (
+        '<a id="next-topic" class="next-topic-button" '
+        f'href="{html.escape(str(next_topic["href"]), quote=True)}" hidden>'
+        f'Next topic: <span>{html.escape(str(next_topic["title"]))}</span></a>'
+        if next_topic
+        else ""
+    )
     html_text = TOPIC_PAGE.format(
         title=html.escape(topic.title),
         summary=html.escape(topic.summary),
@@ -215,6 +245,7 @@ def render_topic(topic: Topic) -> None:
         slide_buttons=slide_buttons,
         audio_block=audio_block,
         subtitles_link=subtitles_link,
+        next_topic_button=next_topic_button,
         lesson_data=json_for_script(data),
         asset_version=asset_version(),
     )
@@ -347,9 +378,10 @@ def build() -> None:
     clean_output()
     write_assets()
     parts = load_course()
-    for part in parts:
-        for topic in part.topics:
-            render_topic(topic)
+    topics = [topic for part in parts for topic in part.topics]
+    for i, topic in enumerate(topics):
+        next_topic = topics[i + 1] if i + 1 < len(topics) else None
+        render_topic(topic, next_topic)
     render_index(parts)
     build_course_corpus(parts)
     copy_textbook_assets(ELEARNING / "textbook")
@@ -470,6 +502,7 @@ TOPIC_PAGE = """<!doctype html>
       <button id="prev-slide" type="button">Previous</button>
       <button id="subtitle-toggle" type="button" aria-pressed="false">Transcript overlay</button>
       <button id="next-slide" type="button">Next</button>
+      {next_topic_button}
     </div>
     <div id="subtitle-box" hidden></div>
     <section id="local-qa" class="qa-card" hidden>
@@ -1023,11 +1056,13 @@ summary {
 }
 .lesson-controls {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   justify-content: space-between;
   margin: 16px 0;
 }
 .lesson-controls button,
+.lesson-controls .next-topic-button,
 .qa-card button {
   border: 0;
   border-radius: 999px;
@@ -1035,6 +1070,17 @@ summary {
   color: white;
   background: var(--slate);
   cursor: pointer;
+}
+.lesson-controls .next-topic-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  background: var(--green);
+  text-decoration: none;
+}
+.lesson-controls .next-topic-button[hidden] {
+  display: none;
 }
 .lesson-controls button:disabled {
   cursor: not-allowed;
@@ -1129,6 +1175,7 @@ COURSE_JS = """
   const progress = document.getElementById('progress-fill');
   const prev = document.getElementById('prev-slide');
   const next = document.getElementById('next-slide');
+  const nextTopic = document.getElementById('next-topic');
   const subtitleToggle = document.getElementById('subtitle-toggle');
   const subtitleBox = document.getElementById('subtitle-box');
   const audio = document.getElementById('audio-player');
@@ -1184,6 +1231,7 @@ COURSE_JS = """
     if (progress) progress.style.width = `${((index + 1) / slides.length) * 100}%`;
     if (prev) prev.disabled = index === 0;
     if (next) next.disabled = index === slides.length - 1;
+    if (nextTopic) nextTopic.hidden = index !== slides.length - 1;
     jumps.forEach((button, i) => button.classList.toggle('active', i === index));
     if (subtitleBox && !subtitleBox.hidden) subtitleBox.textContent = slide.narration || slide.title || '';
     localStorage.setItem(storageKey, String(index));
