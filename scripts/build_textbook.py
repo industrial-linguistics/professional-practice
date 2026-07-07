@@ -18,6 +18,231 @@ FIGURES = TEXTBOOK / "figures"
 AUDIT = TEXTBOOK / "audit"
 
 
+INDEX_TERMS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("access control", ("access control", "attribute-based access control", "ABAC")),
+    ("account executive", ("account executive",)),
+    ("action items", ("action item", "action items")),
+    ("AGPL", ("AGPL", "Affero GPL")),
+    ("alert correlation", ("alert correlation", "correlate alerts", "correlated alerts")),
+    ("Apache License", ("Apache 2.0", "Apache licence", "Apache license")),
+    ("API", ("API", "APIs")),
+    ("ARR", ("ARR", "annual recurring revenue")),
+    ("asset inventory", ("asset inventory", "asset register")),
+    ("audit trail", ("audit trail", "audit trails")),
+    ("AWS", ("AWS", "Amazon Web Services")),
+    ("AWS Lambda", ("AWS Lambda", "Lambda")),
+    ("back-out plan", ("back-out plan", "backout plan", "rollback procedure")),
+    ("backups", ("backup", "backups")),
+    ("BANT", ("BANT",)),
+    ("BDFL", ("BDFL", "benevolent dictator")),
+    ("blameless post-mortems", ("blameless", "blameless post-mortem", "blameless post-mortems")),
+    ("blue team", ("blue team", "blue-team")),
+    ("BSD License", ("BSD", "BSD licence", "BSD license")),
+    ("burn rate", ("burn rate",)),
+    ("business continuity", ("business continuity",)),
+    ("buying committee", ("buying committee", "buying committees")),
+    ("BYOD", ("BYOD", "bring your own device")),
+    ("CAB", ("CAB", "change advisory board")),
+    ("CAC", ("CAC", "customer acquisition cost")),
+    ("capstone", ("capstone",)),
+    ("CARE principles", ("CARE", "CARE principles")),
+    ("CASB", ("CASB", "cloud access security broker")),
+    ("CDN", ("CDN", "content delivery network")),
+    ("change enablement", ("change enablement",)),
+    ("change failure rate", ("change failure rate",)),
+    ("change management", ("change management", "change manager")),
+    ("change record", ("change record", "change records")),
+    ("change window", ("change window", "change windows")),
+    ("churn", ("churn",)),
+    ("CI/CD", ("CI/CD", "continuous integration", "continuous delivery")),
+    ("CIO", ("CIO", "chief information officer")),
+    ("CISO", ("CISO", "chief information security officer")),
+    ("CLA", ("CLA", "contributor licence agreement", "contributor license agreement")),
+    ("cloud credits", ("cloud credits", "credits cliff")),
+    ("CMDB", ("CMDB", "configuration management database")),
+    ("community governance", ("community governance", "governance model", "governance structures")),
+    ("community manager", ("community manager", "community managers")),
+    ("community tech lead", ("community tech-lead", "community tech lead", "tech-lead")),
+    ("configuration item", ("configuration item", "configuration items")),
+    ("consent", ("consent", "consent capture")),
+    ("containers", ("container", "containers")),
+    ("continual improvement", ("continual improvement", "continuous improvement")),
+    ("copyleft", ("copyleft",)),
+    ("corrective actions", ("corrective action", "corrective actions")),
+    ("CRM", ("CRM", "customer relationship management")),
+    ("CRM!account", ("account record", "account records")),
+    ("CRM!contact", ("contact record", "contact records")),
+    ("CRM!lead", ("lead record", "lead records", "qualified lead", "sales lead")),
+    ("CRM!milestones", ("CRM milestone", "CRM milestones")),
+    ("CRM!opportunity", ("opportunity record", "opportunity records", "opportunity stage", "opportunity stages", "opportunity progression")),
+    ("CSAT", ("CSAT", "customer satisfaction")),
+    ("CSM", ("CSM", "customer success manager")),
+    ("cultural safety", ("cultural safety",)),
+    ("customer success", ("customer success",)),
+    ("data minimisation", ("data minimisation", "data minimization")),
+    ("data protection impact assessment", ("DPIA", "data protection impact assessment")),
+    ("data room", ("data room", "data rooms")),
+    ("data sovereignty", ("data sovereignty", "Indigenous data sovereignty")),
+    ("data steward", ("data steward", "data stewards")),
+    ("DCO", ("DCO", "developer certificate of origin")),
+    ("de-escalation", ("de-escalation", "de-escalate", "de-escalating")),
+    ("DevOps", ("DevOps",)),
+    ("DevOps engineer", ("DevOps engineer", "DevOps engineers")),
+    ("disaster recovery", ("disaster recovery",)),
+    ("discovery call", ("discovery call", "discovery calls")),
+    ("distributed tracing", ("distributed tracing", "tracing")),
+    ("DKIM", ("DKIM",)),
+    ("DNS", ("DNS", "domain name system")),
+    ("DORA metrics", ("DORA", "DORA metrics")),
+    ("DORA metrics!change failure rate", ("change failure rate",)),
+    ("DORA metrics!deployment frequency", ("deployment frequency",)),
+    ("DORA metrics!lead time for changes", ("lead time for changes",)),
+    ("DORA metrics!MTTR", ("mean time to restore", "MTTR")),
+    ("EDR", ("EDR", "endpoint detection and response")),
+    ("Elastic Stack", ("Elastic Stack", "Elasticsearch")),
+    ("error budget", ("error budget", "error budgets")),
+    ("escalation path", ("escalation path", "escalation paths")),
+    ("FAIR principles", ("FAIR", "FAIR principles")),
+    ("feature branching", ("feature branch", "feature branches", "feature branching")),
+    ("feature flags", ("feature flag", "feature flags")),
+    ("FinOps", ("FinOps",)),
+    ("fishbone diagram", ("fishbone", "fishbone diagram", "fishbone diagrams")),
+    ("five whys", ("five whys", "5 whys")),
+    ("FOSS", ("FOSS", "free and open source")),
+    ("fractional CTO", ("fractional CTO", "fractional CTOs")),
+    ("GDPR", ("GDPR", "General Data Protection Regulation")),
+    ("GitHub Actions", ("GitHub Actions",)),
+    ("GitHub issues", ("GitHub issue", "GitHub issues")),
+    ("git blame", ("git blame",)),
+    ("Google Workspace", ("Google Workspace",)),
+    ("GPL", ("GPL", "GNU GPL")),
+    ("grep", ("grep",)),
+    ("health score", ("health score", "health scores")),
+    ("HIPAA", ("HIPAA",)),
+    ("HubSpot", ("HubSpot",)),
+    ("identity provider", ("identity provider", "identity providers")),
+    ("incident commander", ("incident commander", "IC")),
+    ("incident management", ("incident management",)),
+    ("incident metrics", ("incident metrics",)),
+    ("Indigenous data sovereignty", ("Indigenous data sovereignty", "data sovereignty")),
+    ("ISO 27001", ("ISO 27001",)),
+    ("ITIL", ("ITIL", "ITIL 4")),
+    ("ITIL!change enablement", ("change enablement",)),
+    ("ITIL!continual improvement", ("continual improvement",)),
+    ("ITIL!incident management", ("incident management",)),
+    ("ITIL!problem management", ("problem management",)),
+    ("ITIL!service value chain", ("service value chain",)),
+    ("ITSM", ("ITSM", "IT service management")),
+    ("iwi", ("iwi",)),
+    ("Jira Service Management", ("Jira Service Management", "JSM")),
+    ("JSON logs", ("JSON logs", "JSON logging")),
+    ("Kaizen", ("Kaizen",)),
+    ("kaitiakitanga", ("kaitiakitanga",)),
+    ("kaupapa Maori", ("kaupapa Maori", "kaupapa Māori")),
+    ("KPI", ("KPI", "KPIs", "key performance indicator", "key performance indicators")),
+    ("Kubernetes", ("Kubernetes",)),
+    ("lead scoring", ("lead scoring",)),
+    ("LGPL", ("LGPL",)),
+    ("licence", ("licence", "licences", "license", "licenses")),
+    ("localisation", ("localisation", "localization")),
+    ("log aggregation", ("log aggregation", "log aggregator", "log aggregators")),
+    ("low-code", ("low-code", "low code")),
+    ("LTV", ("LTV", "lifetime value")),
+    ("maintainer", ("maintainer", "maintainers")),
+    ("major incident", ("major incident", "major incidents")),
+    ("mana motuhake", ("mana motuhake",)),
+    ("Maori", ("Maori", "Māori")),
+    ("MDM", ("MDM", "mobile device management")),
+    ("MEDDIC", ("MEDDIC",)),
+    ("MFA", ("MFA", "multi-factor authentication")),
+    ("Microsoft 365", ("Microsoft 365", "Microsoft 365 Business")),
+    ("MIT License", ("MIT", "MIT licence", "MIT license")),
+    ("MRR", ("MRR", "monthly recurring revenue")),
+    ("MSP", ("MSP", "MSPs", "managed service provider", "managed service providers")),
+    ("MTTR", ("MTTR", "mean time to restore", "mean time to recovery")),
+    ("Net Promoter Score", ("NPS", "Net Promoter Score", "Net Promoter Scores")),
+    ("no-code", ("no-code", "no code")),
+    ("NRR", ("NRR", "net revenue retention")),
+    ("OCAP", ("OCAP", "OCAP principles")),
+    ("Okta", ("Okta",)),
+    ("OLA", ("OLA", "OLAs", "operational level agreement", "operational level agreements")),
+    ("open source", ("open source", "open-source")),
+    ("Open Source Program Office", ("OSPO", "Open Source Program Office")),
+    ("PCI DSS", ("PCI DSS",)),
+    ("PDCA", ("PDCA", "Plan-Do-Check-Act")),
+    ("permissive licence", ("permissive licence", "permissive licences", "permissive license", "permissive licenses")),
+    ("PII", ("PII", "personally identifiable information")),
+    ("Pipedrive", ("Pipedrive",)),
+    ("platform engineering", ("platform engineering", "platform engineer", "platform engineers")),
+    ("POC", ("POC", "proof of concept", "proof-of-concept")),
+    ("post-mortem", ("post-mortem", "post-mortems", "postmortem", "postmortems")),
+    ("Privacy Act", ("Privacy Act", "Australian Privacy Act")),
+    ("problem management", ("problem management", "problem record", "problem records")),
+    ("psychological safety", ("psychological safety",)),
+    ("RACI", ("RACI",)),
+    ("RCA", ("RCA", "root cause analysis")),
+    ("RDS", ("RDS", "Relational Database Service")),
+    ("red team", ("red team", "red-team")),
+    ("release management", ("release management",)),
+    ("remediation roadmap", ("remediation roadmap", "remediation backlog")),
+    ("renewal", ("renewal", "renewals")),
+    ("request ID", ("request ID", "request IDs", "correlation ID", "correlation IDs")),
+    ("request fulfilment", ("request fulfilment", "service request", "service requests")),
+    ("retention", ("retention",)),
+    ("RFC", ("RFC", "request for change")),
+    ("RFC process", ("RFC process", "RFCs")),
+    ("RFP", ("RFP", "request for proposal")),
+    ("risk register", ("risk register", "risk registers")),
+    ("ROI", ("ROI", "return on investment")),
+    ("RPO", ("RPO", "recovery point objective")),
+    ("RTO", ("RTO", "recovery time objective")),
+    ("runbook", ("runbook", "runbooks")),
+    ("runway", ("runway",)),
+    ("SaaS", ("SaaS", "software as a service")),
+    ("Salesforce", ("Salesforce",)),
+    ("sales engineer", ("sales engineer", "sales engineering")),
+    ("SBOM", ("SBOM", "software bill of materials")),
+    ("security baseline", ("security baseline", "security baselines")),
+    ("Series A", ("Series A",)),
+    ("Series B", ("Series B",)),
+    ("serverless", ("serverless",)),
+    ("service catalogue", ("service catalogue", "service catalog")),
+    ("service credit", ("service credit", "service credits")),
+    ("service desk", ("service desk",)),
+    ("service level agreement", ("SLA", "SLAs", "service level agreement", "service level agreements")),
+    ("ServiceNow", ("ServiceNow",)),
+    ("shadow IT", ("shadow IT",)),
+    ("SIEM", ("SIEM", "security information and event management")),
+    ("SLO", ("SLO", "SLOs", "service level objective", "service level objectives")),
+    ("solution engineer", ("solution engineer", "solution engineering")),
+    ("SOCI Act", ("SOCI Act", "SOCI")),
+    ("SOC 2", ("SOC 2", "SOC 2 Type II", "SOC Type II")),
+    ("SPF", ("SPF",)),
+    ("Splunk", ("Splunk",)),
+    ("SRE", ("SRE", "site reliability engineering")),
+    ("SRE engineer", ("SRE engineer", "site reliability engineer", "site reliability engineers")),
+    ("SSO", ("SSO", "single sign-on", "single sign on")),
+    ("support tiers", ("support tier", "support tiers", "L1", "L2", "L3")),
+    ("taonga", ("taonga",)),
+    ("te reo Maori", ("te reo Maori", "te reo Māori")),
+    ("Te Hiku Media", ("Te Hiku", "Te Hiku Media")),
+    ("technical success manager", ("technical success manager", "technical success managers")),
+    ("tikanga", ("tikanga",)),
+    ("Traditional Knowledge", ("Traditional Knowledge",)),
+    ("trunk-based development", ("trunk-based development", "trunk based development")),
+    ("UNDRIP", ("UNDRIP",)),
+    ("usage-based pricing", ("usage-based pricing", "usage based pricing")),
+    ("vendor evaluation", ("vendor evaluation", "vendor assessment", "vendor assessments")),
+    ("vendor management", ("vendor management",)),
+    ("virtual CIO", ("virtual CIO", "vCIO")),
+    ("VPN", ("VPN",)),
+    ("watermarking", ("watermarking",)),
+    ("whakapapa", ("whakapapa",)),
+    ("workflow", ("workflow", "workflows")),
+    ("YAML", ("YAML",)),
+)
+
+
 def slug(value: str) -> str:
     text = value.lower()
     text = re.sub(r"[^a-z0-9]+", "-", text).strip("-")
@@ -59,6 +284,52 @@ def tex_escape(value: str) -> str:
     return "".join(replacements.get(ch, ch) for ch in value)
 
 
+def smarten_double_quotes(value: str) -> str:
+    """Convert prose double quotes to TeX opening/closing quote marks."""
+    out: list[str] = []
+    opening = True
+    for ch in value:
+        if ch == '"':
+            out.append("``" if opening else "''")
+            opening = not opening
+        elif ch == "“":
+            out.append("``")
+            opening = False
+        elif ch == "”":
+            out.append("''")
+            opening = True
+        else:
+            out.append(ch)
+    return "".join(out)
+
+
+def index_alias_pattern(alias: str) -> re.Pattern[str]:
+    escaped = re.escape(alias)
+    letters = [ch for ch in alias if ch.isalpha()]
+    flags = 0 if letters and all(ch.isupper() for ch in letters) else re.IGNORECASE
+    return re.compile(rf"(?<![\w/-]){escaped}(?![\w/-])", flags)
+
+
+INDEX_PATTERNS = tuple(
+    (entry, tuple(index_alias_pattern(alias) for alias in aliases))
+    for entry, aliases in INDEX_TERMS
+)
+
+
+def index_entries_for_text(text: str, seen: set[str]) -> list[str]:
+    plain = re.sub(r"`([^`\n]+)`", r"\1", text)
+    plain = re.sub(r"\*\*([^*\n]+)\*\*", r"\1", plain)
+    plain = re.sub(r"(?<!\*)\*([^*\n]+)\*(?!\*)", r"\1", plain)
+    entries: list[str] = []
+    for entry, patterns in INDEX_PATTERNS:
+        if entry in seen:
+            continue
+        if any(pattern.search(plain) for pattern in patterns):
+            seen.add(entry)
+            entries.append(rf"\index{{{tex_escape(entry)}}}")
+    return entries
+
+
 def normalise_code(value: str) -> str:
     replacements = {
         "\u2502": "|",
@@ -79,7 +350,7 @@ def normalise_code(value: str) -> str:
 
 
 def tex_heading(value: str) -> str:
-    return tex_escape(re.sub(r"\s+", " ", value).strip())
+    return tex_escape(smarten_double_quotes(re.sub(r"\s+", " ", value).strip()))
 
 
 def clean_generated() -> None:
@@ -128,14 +399,14 @@ def tex_text_block(text: str) -> str:
 
     def flush_paragraph() -> None:
         if paragraph:
-            out.append(tex_escape(" ".join(paragraph)))
+            out.append(md_line(" ".join(paragraph)))
             out.append("")
             paragraph.clear()
 
     def flush_bullets() -> None:
         if bullets:
             out.append(r"\begin{itemize}[leftmargin=*]")
-            out.extend(rf"\item {tex_escape(item)}" for item in bullets)
+            out.extend(rf"\item {md_line(item)}" for item in bullets)
             out.append(r"\end{itemize}")
             out.append("")
             bullets.clear()
@@ -211,7 +482,7 @@ def tex_itemize(items: list[str]) -> str:
     if not items:
         return ""
     lines = [r"\begin{itemize}[leftmargin=*]"]
-    lines.extend(rf"\item {tex_escape(item)}" for item in items)
+    lines.extend(rf"\item {md_line(item)}" for item in items)
     lines.append(r"\end{itemize}")
     return "\n".join(lines)
 
@@ -220,12 +491,21 @@ def md_inline(text: str) -> str:
     """Convert inline markdown markers on already-TeX-escaped text."""
     text = re.sub(r"\*\*(.+?)\*\*", r"\\textbf{\1}", text)
     text = re.sub(r"(?<!\*)\*([^*\n]+)\*(?!\*)", r"\\emph{\1}", text)
-    text = re.sub(r"`([^`\n]+)`", r"\\texttt{\1}", text)
     return text
 
 
 def md_line(text: str) -> str:
-    return md_inline(tex_escape(text))
+    code_spans: list[str] = []
+
+    def protect_code(match: re.Match[str]) -> str:
+        code_spans.append(rf"\texttt{{{tex_escape(match.group(1))}}}")
+        return f"@@CODESPAN{len(code_spans) - 1}@@"
+
+    protected = re.sub(r"`([^`\n]+)`", protect_code, text)
+    rendered = md_inline(tex_escape(smarten_double_quotes(protected)))
+    for i, code in enumerate(code_spans):
+        rendered = rendered.replace(f"@@CODESPAN{i}@@", code)
+    return rendered
 
 
 MD_IMAGE_RE = re.compile(r"^!\[([^\]]*)\]\(([^)\s]+)\)\s*$")
@@ -245,13 +525,17 @@ def md_figure(alt: str, src: str, topic: Topic | None) -> str:
             r"\begin{figure}[htbp]",
             r"\centering",
             rf"\includegraphics[width=0.86\linewidth]{{{rel.as_posix()}}}",
-            rf"\caption{{{tex_escape(alt or topic.title)}}}",
+            rf"\caption{{{tex_heading(alt or topic.title)}}}",
             r"\end{figure}",
         ]
     )
 
 
-def markdown_to_tex(md: str, topic: Topic | None = None) -> str:
+def markdown_to_tex(
+    md: str,
+    topic: Topic | None = None,
+    seen_index_terms: set[str] | None = None,
+) -> str:
     """Convert the authored-textbook markdown subset to LaTeX.
 
     Supported: ##/### headings, paragraphs, - and 1. lists (one nesting
@@ -265,17 +549,22 @@ def markdown_to_tex(md: str, topic: Topic | None = None) -> str:
     in_code = False
     # Each stack entry is (indent, environment name).
     list_stack: list[tuple[int, str]] = []
+    seen = seen_index_terms if seen_index_terms is not None else set()
 
     def flush_paragraph() -> None:
         if paragraph:
-            out.append(md_line(" ".join(paragraph)))
+            text = " ".join(paragraph)
+            out.extend(index_entries_for_text(text, seen))
+            out.append(md_line(text))
             out.append("")
             paragraph.clear()
 
     def flush_quote() -> None:
         if quote:
+            text = " ".join(quote)
+            out.extend(index_entries_for_text(text, seen))
             out.append(r"\begin{quote}\small")
-            out.append(md_line(" ".join(quote)))
+            out.append(md_line(text))
             out.append(r"\end{quote}")
             out.append("")
             quote.clear()
@@ -303,6 +592,7 @@ def markdown_to_tex(md: str, topic: Topic | None = None) -> str:
             out.append(rf"\end{{{closed}}}")
         if not list_stack or list_stack[-1][0] < indent:
             open_list(indent, env)
+        out.extend(index_entries_for_text(item, seen))
         out.append(rf"\item {md_line(item)}")
 
     for raw in md.splitlines():
@@ -343,7 +633,7 @@ def markdown_to_tex(md: str, topic: Topic | None = None) -> str:
             title = tex_heading(heading.group(2))
             command = "subsection" if level <= 2 else "subsubsection"
             out.append(rf"\{command}{{{title}}}")
-            out.append(rf"\index{{{title}}}")
+            out.extend(index_entries_for_text(heading.group(2), seen))
             out.append("")
             continue
 
@@ -375,6 +665,7 @@ def markdown_to_tex(md: str, topic: Topic | None = None) -> str:
 
         if list_stack:
             # Continuation line inside a list item.
+            out.extend(index_entries_for_text(stripped, seen))
             out.append(md_line(stripped))
             continue
 
@@ -402,20 +693,30 @@ def pre_blocks(slide: Slide) -> list[str]:
     return blocks
 
 
-def render_slide(topic: Topic, slide: Slide, *, include_heading: bool = True) -> str:
+def render_slide(
+    topic: Topic,
+    slide: Slide,
+    *,
+    include_heading: bool = True,
+    seen_index_terms: set[str] | None = None,
+) -> str:
     parts: list[str] = []
+    seen = seen_index_terms if seen_index_terms is not None else set()
     if include_heading:
         parts.append(rf"\subsection{{{tex_heading(slide.title)}}}")
-        parts.append(rf"\index{{{tex_escape(slide.title)}}}")
+        parts.extend(index_entries_for_text(slide.title, seen))
 
     if slide.narration:
         prose = narrative_to_book_prose(slide.narration)
         if prose:
+            parts.extend(index_entries_for_text(prose, seen))
             parts.append(tex_text_block(prose))
     else:
         points = slide_key_points(slide)
         if points:
             parts.append(tex_text_block("This section should be expanded from the following practice points."))
+            for point in points:
+                parts.extend(index_entries_for_text(point, seen))
             parts.append(tex_itemize(points))
 
     for src in slide.image_paths:
@@ -432,7 +733,7 @@ def render_slide(topic: Topic, slide: Slide, *, include_heading: bool = True) ->
                     r"\begin{figure}[htbp]",
                     r"\centering",
                     rf"\includegraphics[width=0.86\linewidth]{{{rel.as_posix()}}}",
-                    rf"\caption{{{tex_escape(caption)}}}",
+                    rf"\caption{{{tex_heading(caption)}}}",
                     r"\end{figure}",
                 ]
             )
@@ -449,6 +750,8 @@ def render_slide(topic: Topic, slide: Slide, *, include_heading: bool = True) ->
         points = slide_key_points(slide)
         if points and not is_title_slide(slide):
             parts.append(r"\paragraph{Practice checkpoints.}")
+            for point in points:
+                parts.extend(index_entries_for_text(point, seen))
             parts.append(tex_itemize(points))
 
     return "\n\n".join(part for part in parts if part.strip())
@@ -456,39 +759,43 @@ def render_slide(topic: Topic, slide: Slide, *, include_heading: bool = True) ->
 
 def render_topic(topic: Topic) -> str:
     copy_topic_images(topic)
+    seen: set[str] = set()
     lines = [
         rf"\section{{{tex_heading(topic.title)}}}",
-        rf"\index{{{tex_escape(topic.title)}}}",
     ]
+    lines.extend(index_entries_for_text(topic.title, seen))
     authored = topic.source_path / "textbook.md"
     if authored.exists():
-        lines.append(markdown_to_tex(authored.read_text(encoding="utf-8"), topic))
+        lines.append(markdown_to_tex(authored.read_text(encoding="utf-8"), topic, seen))
         return "\n".join(lines)
     slides = topic.slides
     if slides and is_title_slide(slides[0]):
-        opener = render_slide(topic, slides[0], include_heading=False)
+        opener = render_slide(topic, slides[0], include_heading=False, seen_index_terms=seen)
         if opener:
             lines.extend([opener, ""])
         slides = slides[1:]
     elif topic.summary:
+        lines.extend(index_entries_for_text(topic.summary, seen))
         lines.extend([tex_text_block(topic.summary), ""])
 
     for slide in slides:
-        lines.append(render_slide(topic, slide))
+        lines.append(render_slide(topic, slide, seen_index_terms=seen))
         lines.append("")
     return "\n".join(lines)
 
 
 def render_part(part: Part) -> str:
+    seen: set[str] = set()
     body = [
         "% Generated by scripts/build_textbook.py; edit content/ and rebuild.",
         rf"\chapter{{{tex_heading(part.title)}}}",
-        rf"\index{{{tex_escape(part.title)}}}",
     ]
+    body.extend(index_entries_for_text(part.title, seen))
     intro = ROOT / "content" / part.slug / "textbook-intro.md"
     if intro.exists():
-        body.append(markdown_to_tex(intro.read_text(encoding="utf-8")))
+        body.append(markdown_to_tex(intro.read_text(encoding="utf-8"), seen_index_terms=seen))
     elif part.summary:
+        body.extend(index_entries_for_text(part.summary, seen))
         body.append(tex_text_block(part.summary))
     for topic in part.topics:
         body.append(render_topic(topic))
@@ -550,6 +857,13 @@ def write_audit(parts: list[Part]) -> None:
         "- Watch for service-marketing adjectives such as \"seamless\", \"holistic\" and \"transformative\"; replace them with the actual handoff, control or workflow.\n"
         "- Avoid \"journey\" unless it names a specific artefact such as a journey map; prefer request path, workflow, handoff or lifecycle.\n"
         "- Meta-openers like \"this chapter explores\" or \"it is important to note\" should become a concrete workplace problem or decision.\n",
+        encoding="utf-8",
+    )
+    (AUDIT / "index-notes.md").write_text(
+        "# Index Notes\n\n"
+        f"- The generated index uses {len(INDEX_TERMS)} curated lookup terms and aliases.\n"
+        "- Chapter, topic and subsection headings are not indexed automatically; headings are indexed only when they contain a curated lookup term.\n"
+        "- The term list prioritises beginner lookup needs: acronyms, ITIL/DevOps/CRM practices, tools, roles, compliance frameworks, and culturally specific vocabulary.\n",
         encoding="utf-8",
     )
 

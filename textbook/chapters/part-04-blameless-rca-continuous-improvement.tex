@@ -2,22 +2,36 @@
 
 \chapter{Blameless RCA \& Continuous Improvement}
 
-\index{Blameless RCA \& Continuous Improvement}
+\index{blameless post-mortems}
 
-Every IT organisation has incidents. The difference between a good one and a mediocre one is not how rarely things break — complex systems break, reliably — but what happens in the fortnight afterwards. Mediocre teams find someone to hold responsible, write "human error" in a ticket, and have the same outage again in three months. Good teams treat the incident as the most expensive training exercise they will ever run, and make sure they collect on it.
+\index{continual improvement}
+
+\index{RCA}
+
+Every IT organisation has incidents. The difference between a good one and a mediocre one is not how rarely things break — complex systems break, reliably — but what happens in the fortnight afterwards. Mediocre teams find someone to hold responsible, write ``human error'' in a ticket, and have the same outage again in three months. Good teams treat the incident as the most expensive training exercise they will ever run, and make sure they collect on it.
 
 
+\index{fishbone diagram}
+\index{five whys}
+\index{git blame}
+\index{post-mortem}
 That collection process has more moving parts than people expect, and this part of the course walks through all of them. It starts with culture, because nothing else works without it: a post-mortem where people are afraid to speak produces fiction, and you cannot fix a system based on fiction. From there it gets practical. You'll learn how to run a post-mortem meeting that finishes in half an hour with owners and due dates, how to dig past symptoms to root causes using the five whys and fishbone diagrams, and how to reconstruct what actually happened from alert storms, log files and commit history — including how to use a tool literally named \texttt{git blame} without blaming anyone.
 
 
+\index{corrective actions}
+\index{DORA metrics!MTTR}
+\index{GitHub issues}
+\index{Kaizen}
+\index{MTTR}
+\index{ServiceNow}
 The second half is about making improvement stick. Findings get recorded in ServiceNow problem tickets and linked to GitHub issues so they survive contact with the next busy sprint. Small everyday fixes (Kaizen) and formal corrective actions each get their place. Metrics — MTTR, recurrence rates, action-item completion — tell you whether any of it worked, and clear communication tells everyone else. Finally, because incidents involve tired, stressed humans from different cultures, you'll learn to manage the emotional side of the room.
 
 
 None of this is glamorous. All of it is career-making. The person who can turn a bad Tuesday into a better system is the person who gets trusted with bigger things.
 
 \section{Alert Correlation \& Timelines}
-\index{Alert Correlation \& Timelines}
-At 2:47 on a Tuesday afternoon, the monitoring dashboard at a mid-sized online retailer turns red. Not one alert — forty-three of them in six minutes. Payment service timeouts. Web server 500s. Queue depth warnings. A disk latency page. Three separate "service unhealthy" checks. The on-call engineer's phone is buzzing like an angry wasp, and every tool in the stack is competing for her attention with equal urgency. Which of these forty-three alerts is the problem, and which are just the problem's echoes?
+\index{alert correlation}
+At 2:47 on a Tuesday afternoon, the monitoring dashboard at a mid-sized online retailer turns red. Not one alert — forty-three of them in six minutes. Payment service timeouts. Web server 500s. Queue depth warnings. A disk latency page. Three separate ``service unhealthy'' checks. The on-call engineer's phone is buzzing like an angry wasp, and every tool in the stack is competing for her attention with equal urgency. Which of these forty-three alerts is the problem, and which are just the problem's echoes?
 
 
 That question is what alert correlation answers. Correlation is the practice of grouping related alerts so that a storm of notifications collapses into a small number of actual events — ideally one. In the retailer's case, all forty-three alerts trace back to a single database slowdown: the payment service timed out waiting for it, the web tier threw errors waiting for payments, the queues backed up behind the web tier, and every health check downstream duly reported the misery. Read individually, the alerts point in forty-three directions. Read together, they tell one story, and the story points straight at the database.
@@ -28,7 +42,6 @@ The payoff is concrete. Correlation cuts duplicate pages, so on-call engineers s
 
 
 \subsection{Patterns worth naming}
-\index{Patterns worth naming}
 
 
 Most outages follow a small set of familiar shapes, and naming them speeds up triage enormously.
@@ -37,6 +50,7 @@ Most outages follow a small set of familiar shapes, and naming them speeds up tr
 \begin{itemize}[leftmargin=*]
 \item \textbf{Parent–child}: one root cause spawns a cascade of secondary errors. An overloaded cache leads to timeouts across dozens of services; the cache alert is the parent, everything else is children.
 \item \textbf{Cascading failure}: like parent–child but wider and nastier — one system topples, and everything that depends on it topples in sequence, sometimes across team boundaries. The originating alert can be several layers removed from the loudest ones.
+\index{containers}
 \item \textbf{Noisy neighbours}: several virtual machines or containers competing for the same disk, network pipe or hypervisor. Each tenant's alerts look independent; the shared resource is the actual story.
 \end{itemize}
 
@@ -45,37 +59,42 @@ Picture an e-commerce sale where one locked database row spawns dozens of web ti
 
 
 \subsection{Reconstructing the timeline}
-\index{Reconstructing the timeline}
 
 
 Correlation during the incident gets you to the fix. Correlation \emph{after} the incident gets you the truth, and the truth arrives in the form of a timeline. Once the storm settles, pull together everything with a timestamp: the alerts themselves, application logs, ticket comments, chat transcripts, deployment records. Then line them up into a single sequence — what fired first, who acknowledged it, what actions responders took, what got better or worse after each action.
 
 
-The first practical obstacle is embarrassingly mundane: clocks. Normalise every timestamp to a single time zone before you conclude anything, because a team spread across Sydney, Bangalore and Denver will otherwise "discover" effects that precede their causes. Servers with drifting clocks or logs written in local time are classic sources of nonsense timelines. If two events seem impossibly ordered, check the clocks before you check your theory of causation.
+The first practical obstacle is embarrassingly mundane: clocks. Normalise every timestamp to a single time zone before you conclude anything, because a team spread across Sydney, Bangalore and Denver will otherwise ``discover'' effects that precede their causes. Servers with drifting clocks or logs written in local time are classic sources of nonsense timelines. If two events seem impossibly ordered, check the clocks before you check your theory of causation.
 
 
+\index{post-mortem}
+\index{RCA}
+\index{runbook}
 The timeline settles questions that memory can't. Did the database crash first, or did a network blip snowball into everything else? Was the 3:10 restart what fixed it, or did the load simply fall away at 3:12? And the gaps in the timeline are findings in their own right: a fifteen-minute stretch where nothing was logged means monitoring was blind there; a ten-minute lag between alert and acknowledgement means the paging path needs work. Each gap is an improvement target with a number already attached. The finished play-by-play becomes the backbone of the post-mortem's root cause analysis and, later, the raw material for better runbooks.
 
 
 
 \subsection{Tools, and the humans behind them}
-\index{Tools, and the humans behind them}
 
 
+\index{SIEM}
+\index{Splunk}
 At small scale you can correlate by hand. Beyond that, SIEM platforms (security information and event management) like Splunk, Elastic or IBM QRadar will link alerts automatically by source host, IP address, user ID or time window, saving hours of manual sorting. You write correlation rules — flag repeated login failures across servers, group errors that share a request path, watch for cascading failures within a short window — and the platform assembles candidate groupings, often highlighting the parent–child relationships so you can see which alert kicked off the chain.
 
 
+\index{GitHub issues}
+\index{ServiceNow}
 But the machine data is only half the record. The human trail matters just as much: chat exports from Slack or Teams show who ran which command and when; ServiceNow tickets and GitHub issues capture what changes were in flight; even a quick screenshot of a dashboard at the worst moment preserves context that will have scrolled away by morning. The strongest incident timelines interleave both — automated correlation for completeness, human notes for meaning. A post-mortem armed with that combined record argues about what to fix, not about what happened.
 
 
 
 \subsection{Where correlation goes wrong}
-\index{Where correlation goes wrong}
 
 
 Correlation has failure modes of its own, and it pays to know them. Over-zealous rules link unrelated events, sending analysts off to chase phantom problems that are really two coincidences in a trench coat. Tools miss real connections when time zones drift or different servers report timestamps in local format — the clock problem again, now sabotaging the automation too. So treat automated output the way you'd treat a keen intern's summary: useful, fast, and in need of a sanity check against your own notes.
 
 
+\index{retention}
 Retention policy bites in both directions. Drop logs too quickly and the context you need for next month's post-mortem has evaporated; hoard everything forever and searches slow to a crawl right when you need them fast. Context matters as much as data: during a Black Friday sale, a CPU spike is probably customers, not attackers — trust the alert, but verify against what the business is doing. And remember that the timeline was partly assembled by people under stress, who may have skipped or mislabelled alerts in the heat of the moment. Circle back a day or two after the incident and confirm the sequence still makes sense with fresh eyes.
 
 
@@ -88,7 +107,7 @@ A good timeline is like having a friend recap a chaotic party: you get the full 
 You'll know the correlation effort is paying off because the numbers say so. Mean time to resolution drops, because responders find root causes instead of touring the symptoms. False-alarm and mislabelling rates fall. On-call engineers get paged once per incident instead of five times, which shows up in alert-fatigue surveys and, eventually, in whether people are willing to be on call at all. Those metrics feed directly into the measurement practices later in this part — and they're the difference between a monitoring strategy that informs you and one that merely shouts at you.
 
 \section{Communicating Outcomes}
-\index{Communicating Outcomes}
+\index{post-mortem}
 The post-mortem meeting is not the end of an incident. It is the point where the organisation decides whether the incident will become institutional memory or just another bad afternoon. If the findings stay in a document nobody reads, the same weakness can sit quietly until the next outage. If the outcomes are communicated well, other teams can learn, leaders can make informed trade-offs, and action owners know that the work is visible.
 
 
@@ -97,9 +116,9 @@ Communicating outcomes is a professional skill, not an administrative afterthoug
 
 
 \subsection{Why share outcomes?}
-\index{Why share outcomes?}
 
 
+\index{service desk}
 After a serious incident, people want different things. The database team wants accurate technical detail. The service desk wants to know what to tell users if the issue returns. Leaders want business impact, customer risk and confidence that someone owns the fixes. Customers may need a short, careful explanation that avoids internal speculation but gives them enough reassurance to trust the service.
 
 
@@ -109,14 +128,15 @@ Sharing outcomes builds trust because it shows that the incident was handled sys
 Good communication also prevents repeats across teams. If one service failed because a library version was out of support, other teams should not discover the same problem during their own outage three months later. A post-mortem outcome is a cheap warning signal if it is written clearly and sent to the right people.
 
 
+\index{ISO 27001}
 Compliance may also require follow-up evidence. Frameworks such as ISO 27001 are less interested in heroic recovery stories than in whether the organisation identified causes, assigned actions and checked completion. A clean outcome trail helps during audits because it shows the organisation can learn from operational failure.
 
 
 
 \subsection{Timing and audience}
-\index{Timing and audience}
 
 
+\index{major incident}
 The first outcome message after a major incident should be prompt, short and clear. Within 24 hours, leadership and directly affected teams should know the basic shape: what service was affected, when it started, when it was restored, who was impacted, what is known about the cause, and when the next update will arrive. Do not wait for a perfect root-cause analysis before acknowledging reality.
 
 
@@ -129,6 +149,7 @@ Different audiences need different emphasis:
 \begin{itemize}[leftmargin=*]
 \item \textbf{Leadership} needs business impact, residual risk, investment decisions and due dates for high-priority actions.
 \item \textbf{Technical teams} need the causal chain, failed controls, remediation details and owner names.
+\index{escalation path}
 \item \textbf{Service desk and customer support} need plain-language explanations, known symptoms and escalation paths.
 \item \textbf{Customers} need reassurance, practical next steps and a timeline for further updates.
 \end{itemize}
@@ -138,16 +159,20 @@ Keep updates in a predictable place. A single Slack or Teams thread can work for
 
 
 \subsection{Tracking every action item}
-\index{Tracking every action item}
+\index{action items}
 
 
-Every post-mortem action needs one owner, one due date and one place where status is visible. Shared responsibility sounds collegial, but it often means nobody is accountable. "Platform team to improve monitoring" is weak. \texttt{[OUT-123] Add synthetic login check for warehouse portal - Owner: Lee - Due: 2025-08-01} is better because the work can be assigned, reviewed and closed.
+Every post-mortem action needs one owner, one due date and one place where status is visible. Shared responsibility sounds collegial, but it often means nobody is accountable. ``Platform team to improve monitoring'' is weak. \texttt{[OUT-123] Add synthetic login check for warehouse portal - Owner: Lee - Due: 2025-08-01} is better because the work can be assigned, reviewed and closed.
 
 
+\index{GitHub issues}
+\index{ServiceNow}
 Use the tools the team already trusts. ServiceNow problem tasks make sense for ITIL-heavy environments. GitHub issues work well when remediation is code or infrastructure-as-code. Jira may be the natural home for product teams. The tool matters less than the discipline: clear description, owner, due date, linked incident, acceptance evidence and current status.
 
 
-Write action descriptions so someone outside the meeting can understand them. "Fix monitoring" is not an action. "Alert when payment error rate exceeds 2 percent for five minutes" is. "Improve docs" is vague. "Add rollback procedure for database patching to the production runbook" gives the owner and reviewer something testable.
+\index{back-out plan}
+\index{runbook}
+Write action descriptions so someone outside the meeting can understand them. ``Fix monitoring'' is not an action. ``Alert when payment error rate exceeds 2 percent for five minutes'' is. ``Improve docs'' is vague. ``Add rollback procedure for database patching to the production runbook'' gives the owner and reviewer something testable.
 
 
 Review action items in normal team rhythms. A high-priority remediation task should appear in stand-ups and weekly operations reviews until closed. If it stalls for a week, escalate early. Escalation does not have to mean blame; it can mean clearing a dependency, changing the owner or admitting that the due date was unrealistic.
@@ -155,7 +180,6 @@ Review action items in normal team rhythms. A high-priority remediation task sho
 
 
 \subsection{Templates that reduce friction}
-\index{Templates that reduce friction}
 
 
 Templates help because incidents already consume attention. A tired incident manager should not have to invent the structure of every update. A simple email might read:
@@ -184,10 +208,9 @@ Consistency matters more than elegance. If every team reports outcomes in a diff
 
 
 \subsection{Closing the loop}
-\index{Closing the loop}
 
 
-Closing the loop means telling people when the promised work is done and checking whether it achieved the intended result. Post updates in the original ticket or thread so there is one visible history. A useful completion note is concrete: "Patch deployed to production at 22:00 UTC. Synthetic login checks have passed for 24 hours. Error rate remains below threshold."
+Closing the loop means telling people when the promised work is done and checking whether it achieved the intended result. Post updates in the original ticket or thread so there is one visible history. A useful completion note is concrete: ``Patch deployed to production at 22:00 UTC. Synthetic login checks have passed for 24 hours. Error rate remains below threshold.''
 
 
 Do not quietly drop delayed actions. If a remediation item misses its due date, say why and name the next decision. Perhaps the fix depends on vendor support, perhaps the scope was too large, or perhaps the organisation chose to accept the risk temporarily. Silence damages trust more than an honest delay.
@@ -199,10 +222,15 @@ Metrics help prove whether the communication and follow-up worked. Track the com
 The practical takeaway is simple: every incident outcome should leave a visible trail from finding to owner to action to evidence. That trail is what turns a post-mortem from a meeting into improvement.
 
 \section{Kaizen vs Corrective Actions}
-\index{Kaizen vs Corrective Actions}
-"Continuous improvement" is a phrase that gets said in IT meetings with great conviction, usually about ten minutes after something has broken for the third time that month. To see what it actually means — and what it doesn't — compare two improvements from teams you've already met in this course.
+\index{corrective actions}
+\index{Kaizen}
+\index{continual improvement}
+``Continuous improvement'' is a phrase that gets said in IT meetings with great conviction, usually about ten minutes after something has broken for the third time that month. To see what it actually means — and what it doesn't — compare two improvements from teams you've already met in this course.
 
 
+\index{backups}
+\index{renewal}
+\index{ServiceNow}
 At Sarah's startup, one of the engineers used to spend ten minutes every morning manually checking that the overnight backups had run. Eventually she wrote a two-line script that emailed the status to the team each morning. Ten minutes a day became zero; call it an hour a week returned to the team, forever. Nobody approved this. Nobody needed to. Meanwhile, at a company with a more painful week, the email server crashed at 3 am because a TLS certificate had silently expired. The fix that followed was nothing like Sarah's: a formal investigation into how an expiring certificate went unnoticed, a documented plan, an assigned owner, a deadline, certificate monitoring plus a thirty-day renewal reminder, verification that the monitoring actually alerted, and the evidence filed in ServiceNow for the auditors.
 
 
@@ -211,10 +239,9 @@ Both are improvements. They run on entirely different machinery, and knowing whi
 
 
 \subsection{Kaizen: improvement as a habit}
-\index{Kaizen: improvement as a habit}
 
 
-The first machine is \emph{Kaizen}, a Japanese word meaning roughly "change for the better", carried into business vocabulary by post-war Japanese manufacturing — most famously the Toyota Production System — and from there into software. The idea transplants cleanly: instead of saving improvement for big initiatives, make tiny fixes continuously, as part of ordinary work, so problems never get the chance to accumulate.
+The first machine is \emph{Kaizen}, a Japanese word meaning roughly ``change for the better'', carried into business vocabulary by post-war Japanese manufacturing — most famously the Toyota Production System — and from there into software. The idea transplants cleanly: instead of saving improvement for big initiatives, make tiny fixes continuously, as part of ordinary work, so problems never get the chance to accumulate.
 
 
 Kaizen has four defining traits. The improvements are \emph{small} — minutes or hours of effort, not projects. They are \emph{employee-driven}: the person closest to the annoyance proposes and usually implements the fix, because they're the one who can see it. They are \emph{embedded in daily work} rather than scheduled as separate initiatives. And practised consistently, they build a culture where noticing problems is everyone's job — which turns out to be the real product.
@@ -225,23 +252,24 @@ What does it look like day to day? Adding a common support question to the FAQ i
 
 
 \subsection{Corrective actions: improvement as an obligation}
-\index{Corrective actions: improvement as an obligation}
 
 
 The second machine engages when something serious has already happened: a major outage, a safety issue, an auditor flagging a missing approval, a breach of a compliance obligation or a customer contract. A corrective action is a specific, tracked fix for an identified failure, and unlike Kaizen it is often \emph{mandatory} — required by policy, by ISO-style quality frameworks, or by the contract you signed.
 
 
+\index{fishbone diagram}
+\index{five whys}
 The sequence is formal by design. First, investigate to find the root cause, using the five whys or fishbone methods from earlier in this part — a corrective action aimed at a symptom is a scheduled repeat of the incident. Then plan the fix, assign a single owner, and set a deadline. Implement it. Then the step everyone is tempted to skip: \emph{verify} that the fix works — trigger the new certificate alert in a test, don't just install it — and record the evidence in a system like ServiceNow. Management sign-off and documentation wrap the whole thing, so that nothing depends on anyone's memory.
 
 
-Yes, this is slower and heavier than Kaizen. It's meant to be. The weight is what guarantees that serious failures produce durable fixes rather than good intentions, and the paper trail is what proves it to an auditor two years later. The classic failure modes are exactly the two shortcuts the process forbids: treating the symptom (renew this certificate, ignore the question of why nothing warned you) and skipping verification (the fix "obviously" worked, until it didn't).
+Yes, this is slower and heavier than Kaizen. It's meant to be. The weight is what guarantees that serious failures produce durable fixes rather than good intentions, and the paper trail is what proves it to an auditor two years later. The classic failure modes are exactly the two shortcuts the process forbids: treating the symptom (renew this certificate, ignore the question of why nothing warned you) and skipping verification (the fix ``obviously'' worked, until it didn't).
 
 
 
 \subsection{Choosing the right machine}
-\index{Choosing the right machine}
 
 
+\index{RCA}
 The decision rule is mostly about stakes and origin. Reach for Kaizen when routine processes need gradual tuning, when the change is low-risk and cheap to reverse, and when the goal is steady efficiency gains — the situations where process overhead would cost more than the improvement is worth. Reach for corrective actions when a serious outage or safety issue has occurred, when compliance or contractual obligations have been breached, or when a root cause analysis has identified something specific that must demonstrably never happen again.
 
 
@@ -250,12 +278,14 @@ The analogy from this topic's original discussion is worth keeping: Kaizen is ea
 
 
 \subsection{Running both, and letting them feed each other}
-\index{Running both, and letting them feed each other}
 
 
-Healthy teams run both machines at once, with different bookkeeping. Kaizen ideas live on a lightweight improvement list reviewed at weekly stand-ups; corrective actions get proper tickets with owners, deadlines and verification steps, tracked to closure. One team in this course's orbit posts its "Kaizen wins" on a dashboard — they average about a dozen small improvements a month, and over six months their incident ticket volume fell by forty percent. That number is the connection between the two systems made visible: enough vegetables, and you need less medicine.
+Healthy teams run both machines at once, with different bookkeeping. Kaizen ideas live on a lightweight improvement list reviewed at weekly stand-ups; corrective actions get proper tickets with owners, deadlines and verification steps, tracked to closure. One team in this course's orbit posts its ``Kaizen wins'' on a dashboard — they average about a dozen small improvements a month, and over six months their incident ticket volume fell by forty percent. That number is the connection between the two systems made visible: enough vegetables, and you need less medicine.
 
 
+\index{DevOps}
+\index{ITIL}
+\index{ITIL!continual improvement}
 The feedback loop runs both directions. When a corrective action's root cause analysis exposes a wider process gap — the certificate incident might reveal that \emph{nothing} with an expiry date is monitored — spin the extra findings off as Kaizen tasks rather than inflating the corrective action into a monster project. And a team fluent in small improvements executes its corrective actions faster, because changing-things-safely is already a habit rather than an event. If the vocabulary sounds familiar, it should: this is ITIL's continual improvement practice and the DevOps pipeline mindset from Part 3 wearing each other's clothes — small batches, fast feedback, verified change.
 
 
@@ -271,7 +301,7 @@ If your team's only improvement mechanism is the corrective action, you have dec
 The takeaway: continuous improvement and corrective actions are complements, not competitors. Kaizen builds momentum through small, everyday fixes that keep emergencies rare; corrective actions catch the serious failures that get through and make sure they stay fixed. Teams that invest a little time each week in the first, and real discipline in the second, spend steadily less of their lives explaining why the same thing broke again — which, over a career, is a remarkable amount of life to get back.
 
 \section{Log Analysis \& Git Blame}
-\index{Log Analysis \& Git Blame}
+\index{git blame}
 A team once chased an intermittent checkout failure for the better part of a week. Payments would randomly fail for a handful of customers, then behave perfectly through every test anyone ran. Theories multiplied — the network, the payment provider, a bad deploy, cosmic rays — and each theory had a passionate advocate. The argument ended the moment someone lined up three log entries on a single timeline:
 
 
@@ -288,21 +318,23 @@ A lock on the orders table was starving the payment service until it timed out. 
 
 
 \subsection{Logs are where software confesses}
-\index{Logs are where software confesses}
 
 
 A log is the running commentary an application writes about itself: each entry carries a timestamp and a severity level — DEBUG for developer chatter, INFO for normal events, WARN for things that look off, ERROR for things that definitely are. One engineer in this course's running cast describes logs as the place your application goes to confess its sins, and the confession metaphor is apt: the entries are honest, unflattering, and only useful if someone listens.
 
 
-DevOps engineers, SREs and level-2/3 support staff live in logs daily, and for the same reason detectives like security footage: logs capture sequences that summary metrics miss. A dashboard tells you memory usage was high at 02:00; the log tells you it had been creeping up for six hours before the crash, which is the difference between "the service died" and "we have a leak, and here's roughly where". During a root cause analysis, log evidence is what turns the five-whys chain from speculation into fact — and, just as valuably, what stops the finger-pointing, because nobody argues with a timestamp.
+\index{DevOps}
+\index{DevOps engineer}
+\index{RCA}
+DevOps engineers, SREs and level-2/3 support staff live in logs daily, and for the same reason detectives like security footage: logs capture sequences that summary metrics miss. A dashboard tells you memory usage was high at 02:00; the log tells you it had been creeping up for six hours before the crash, which is the difference between ``the service died'' and ``we have a leak, and here's roughly where''. During a root cause analysis, log evidence is what turns the five-whys chain from speculation into fact — and, just as valuably, what stops the finger-pointing, because nobody argues with a timestamp.
 
 
+\index{retention}
 One professional obligation before we go further: logs frequently contain personal data — user IDs, email addresses, sometimes worse. Your organisation will have retention and privacy rules about how long logs are kept and who may see them. Follow them. Pasting a raw production log into a public Slack channel can be a privacy breach, not just bad manners.
 
 
 
 \subsection{Techniques that scale with the system}
-\index{Techniques that scale with the system}
 
 
 For a small application, the command line is enough. Something like:
@@ -314,9 +346,15 @@ grep "ERROR.*timeout" app.log | tail -20
 \end{CodeBlock}
 
 
+\index{Elastic Stack}
+\index{log aggregation}
+\index{ServiceNow}
+\index{Splunk}
 fetches the last twenty timeout errors, and for a single service on a single server that may be all the tooling you ever need. But the approach stops scaling quickly — nobody greps a 10 GB file across twelve microservices with any joy — and that's where log aggregators come in. The Elastic Stack (free, beloved of hobby projects and plenty of production ones) and Splunk (paid, with enterprise support) collect logs from every service via lightweight agents into central, searchable storage, enforce retention rules automatically, and integrate with ServiceNow or Jira so an alarming pattern can become a ticket without anyone retyping it.
 
 
+\index{distributed tracing}
+\index{request ID}
 Two practices make aggregated logs dramatically more useful. The first is structure: logs written as JSON with named fields can be queried reliably, while free-text logs demand increasingly desperate regular expressions. The second is request IDs — a unique tag attached to each incoming request and passed along to every downstream service it touches. With request IDs (and their grown-up sibling, distributed tracing), you can follow one user's request from the front end through each downstream service and see exactly where it went wrong. Dashboards complete the picture: a rising count of WARN entries often flags memory pressure or resource exhaustion before anything actually breaks, and a well-built graph will show whether a surge in Service A cascaded into failures across Services B through F.
 
 
@@ -325,10 +363,9 @@ A word of restraint: logging isn't free. DEBUG-level logging in production slows
 
 
 \subsection{git blame: the worst-named tool in the industry}
-\index{git blame: the worst-named tool in the industry}
 
 
-Once the logs have traced a symptom to a region of code, a different question arises: how did the code get that way? Git answers with \texttt{git blame}, which annotates every line of a file with the commit, author and date that last changed it. It's the ultimate "it wasn't me" detector, and its name is a standing invitation to use it badly.
+Once the logs have traced a symptom to a region of code, a different question arises: how did the code get that way? Git answers with \texttt{git blame}, which annotates every line of a file with the commit, author and date that last changed it. It's the ultimate ``it wasn't me'' detector, and its name is a standing invitation to use it badly.
 
 
 Here is the trap. The last person to touch a line is very often not its author in any meaningful sense — they may have been fixing someone else's bug, reformatting the file, or patching production at 11 pm under a deadline against requirements that changed the following month. Treat blame output like fingerprints at a crime scene: genuinely useful evidence, nowhere near the full story. Before drawing any conclusion, combine it with the commit message, the linked issue history, and — this is the step that separates professionals from prosecutors — a conversation with the person.
@@ -342,25 +379,26 @@ And know when not to run it at all. If tempers are hot in the middle of an incid
 
 
 \begin{quote}\small
-A war story worth keeping: a team once spent three hours blaming the database for an outage before anyone noticed a typo in a config file. The log line pointing at the config had been there the whole time; nobody had actually read it, because everyone already "knew" what was wrong. Rule of thumb: gather the evidence before you form the theory, because the theory will happily bend the evidence to fit.
+A war story worth keeping: a team once spent three hours blaming the database for an outage before anyone noticed a typo in a config file. The log line pointing at the config had been there the whole time; nobody had actually read it, because everyone already ``knew'' what was wrong. Rule of thumb: gather the evidence before you form the theory, because the theory will happily bend the evidence to fit.
 \end{quote}
 
 
 
 \subsection{A worked investigation}
-\index{A worked investigation}
 
 
 Here's how the pieces fit together in practice. A spike of \texttt{ERROR: database connection timeout} entries appears. First, logs: the network metrics look normal, so latency is ruled out and attention turns to the application side. Second, history: the commit log shows a recent change to connection pooling. Third, blame: run on that file, it identifies who altered the pool size. Fourth — and this is the step that defines the culture — a conversation, not an accusation. It turns out the change fixed a different outage months earlier; the pool was shrunk to stop the database being overwhelmed, and today's traffic has outgrown the compromise. That reframes everything: this isn't a blunder to correct but a trade-off to renegotiate. Together, you and the original author test new settings, adjust the pool, update the documentation, and record the whole thread in the incident ticket. The logs get stored according to retention policy, so when a future team meets the next incarnation of this problem, the history is waiting for them.
 
 
+\index{MTTR}
+\index{post-mortem}
 Notice what each tool contributed: the logs established \emph{what happened and when}; blame hinted at \emph{why the code was the way it was}; the conversation supplied the context neither tool could. That combined narrative — technical symptoms plus human decisions — is exactly what a good post-mortem needs, and assembling it quickly is what shortens your mean time to recovery.
 
 
 The takeaway is a professional stance as much as a technique. Logs and \texttt{git blame} are instruments for learning: used with curiosity, they shorten incidents, expose recurring weaknesses, and build the kind of team where admitting a mistake is safe because everyone has watched mistakes lead to better systems instead of public shamings. Used as weapons, they produce silence, and silence is how the same outage happens twice. You now know how to read the confession; make sure your team never regrets making one.
 
 \section{Managing Emotions \& Cultural Barriers}
-\index{Managing Emotions \& Cultural Barriers}
+\index{post-mortem}
 The hardest moment in a post-mortem is often not technical. It is the first question after the timeline appears on screen and everyone realises the outage passed through their team's hands. People are tired. Someone missed dinner. Someone else approved the change. A manager is worried about customers. A junior engineer is wondering whether a mistake will follow them into their next performance review.
 
 
@@ -369,30 +407,31 @@ If the facilitator ignores that emotional load, the meeting can become theatre. 
 
 
 \subsection{Why emotions matter}
-\index{Why emotions matter}
 
 
 Imagine the payment gateway fails on the largest shopping day of the year. Revenue is dropping by the minute, support queues are full, and executives are asking for updates. By the time the post-mortem starts, the people in the room may be carrying fear, embarrassment, anger or plain exhaustion. Those feelings shape what they are willing to say.
 
 
+\index{service desk}
 Fear is especially damaging. If an engineer believes that admitting a shortcut will lead to punishment, the root-cause analysis will be incomplete. If a service desk analyst thinks the database team will mock a question, the team may miss an early signal from users. If a manager enters the meeting looking for someone to hold responsible, people will protect themselves instead of explaining the system.
 
 
-This is why blameless post-mortems are not soft. They are practical. The organisation needs accurate information more than it needs a satisfying target. Calling out the emotional context early can help: "Everyone is tired, and this incident hurt. The purpose of this meeting is to understand the system and agree on fixes, not to prosecute individuals." That sentence will not solve everything, but it sets a standard the facilitator can enforce.
+\index{blameless post-mortems}
+This is why blameless post-mortems are not soft. They are practical. The organisation needs accurate information more than it needs a satisfying target. Calling out the emotional context early can help: ``Everyone is tired, and this incident hurt. The purpose of this meeting is to understand the system and agree on fixes, not to prosecute individuals.'' That sentence will not solve everything, but it sets a standard the facilitator can enforce.
 
 
 
 \subsection{Diffusing tension}
-\index{Diffusing tension}
 
 
-Tension usually rises when people feel unheard or accused. Neutral language helps. "The rollback script did not complete" is easier to discuss than "you failed to roll back". "The approval step was skipped" invites investigation; "change management let this through" invites defence.
+\index{change management}
+Tension usually rises when people feel unheard or accused. Neutral language helps. ``The rollback script did not complete'' is easier to discuss than ``you failed to roll back''. ``The approval step was skipped'' invites investigation; ``change management let this through'' invites defence.
 
 
-Reflective listening is a useful tool when the room starts to heat up. If Dana says, "We never get enough warning before these releases", the facilitator can respond, "You are saying the database team did not have enough time to assess risk before deployment. Is that right?" This slows the conversation and turns an accusation into a testable claim.
+Reflective listening is a useful tool when the room starts to heat up. If Dana says, ``We never get enough warning before these releases'', the facilitator can respond, ``You are saying the database team did not have enough time to assess risk before deployment. Is that right?'' This slows the conversation and turns an accusation into a testable claim.
 
 
-Encourage people to speak from their own experience. "I felt rushed when the deployment window moved" is more useful than "Marcus rushed us". The first sentence gives the group something to investigate: why the window moved, who knew, what process failed. The second sentence narrows the room around personal blame.
+Encourage people to speak from their own experience. ``I felt rushed when the deployment window moved'' is more useful than ``Marcus rushed us''. The first sentence gives the group something to investigate: why the window moved, who knew, what process failed. The second sentence narrows the room around personal blame.
 
 
 Breaks are not a sign of failure. In a remote call, a five-minute pause can stop a chat thread from turning hostile. In a room, a stretch break can let people reset before discussing a sensitive decision. The facilitator's job is not to keep everyone talking at all costs. It is to keep the conversation productive.
@@ -400,7 +439,6 @@ Breaks are not a sign of failure. In a remote call, a five-minute pause can stop
 
 
 \subsection{Cultural barriers and participation}
-\index{Cultural barriers and participation}
 
 
 Culture affects how people handle disagreement, silence, hierarchy and public correction. Some teams treat direct critique as normal professional behaviour. Others hear the same words as disrespect. Some people are comfortable challenging a senior engineer in a group meeting. Others will only raise concerns in a one-on-one conversation, at least until trust is built.
@@ -425,7 +463,7 @@ Useful ground rules include:
 
 
 \subsection{A practical de-escalation pattern}
-\index{A practical de-escalation pattern}
+\index{de-escalation}
 
 
 The NAME framework gives facilitators a simple way to intervene when emotion starts driving the meeting.
@@ -434,10 +472,10 @@ The NAME framework gives facilitators a simple way to intervene when emotion sta
 \textbf{Notice} what is happening. The cue might be raised voices, repeated interruptions, sarcasm in chat, silence from a key person or a sudden shift into defensive explanations.
 
 
-\textbf{Acknowledge} the emotion without making it the whole meeting. "I can see this is frustrating" or "This part is clearly sensitive" is enough. Pretending the tension is not there usually makes it worse.
+\textbf{Acknowledge} the emotion without making it the whole meeting. ``I can see this is frustrating'' or ``This part is clearly sensitive'' is enough. Pretending the tension is not there usually makes it worse.
 
 
-\textbf{Move forward} to the facts and the next useful question. "Let's separate two things: what happened during approval, and what control should catch this next time." This keeps the group from circling the same accusation.
+\textbf{Move forward} to the facts and the next useful question. ``Let's separate two things: what happened during approval, and what control should catch this next time.'' This keeps the group from circling the same accusation.
 
 
 \textbf{Engage} the whole room in solutions. Ask the service desk what users reported first. Ask the database team what signal would have helped. Ask the change manager what decision point needs clearer evidence. The aim is shared ownership of improvement, not shared guilt.
@@ -445,26 +483,28 @@ The NAME framework gives facilitators a simple way to intervene when emotion sta
 
 
 \subsection{The facilitator's toolkit}
-\index{The facilitator's toolkit}
 
 
 A good facilitator prepares the emotional conditions for the meeting before the difficult part begins. Start with the purpose: learning and remediation. State what is out of scope: punishment, performance management and personal attacks. Confirm the expected outputs: timeline, contributing factors, actions, owners and follow-up.
 
 
-An emotional check-in can be brief. "Green, yellow or red?" gives people a way to signal how they are arriving without turning the meeting into group therapy. If several people are red, the facilitator may need to slow the agenda, take more breaks or postpone non-urgent debate.
+An emotional check-in can be brief. ``Green, yellow or red?'' gives people a way to signal how they are arriving without turning the meeting into group therapy. If several people are red, the facilitator may need to slow the agenda, take more breaks or postpone non-urgent debate.
 
 
-Record emotional cues alongside technical facts when they explain the system. "On-call engineer felt pressure to restore service before checking secondary alerts" is relevant because it points to staffing, escalation and runbook design. "Engineer was angry" is not useful by itself. The record should help the team improve the operating model, not label people.
+\index{runbook}
+Record emotional cues alongside technical facts when they explain the system. ``On-call engineer felt pressure to restore service before checking secondary alerts'' is relevant because it points to staffing, escalation and runbook design. ``Engineer was angry'' is not useful by itself. The record should help the team improve the operating model, not label people.
 
 
 Offer follow-up conversations when needed. Some participants will not challenge a senior colleague in the meeting but will explain the missing context afterwards. That does not make the main meeting worthless; it means the facilitator needs to collect evidence through more than one channel.
 
 
+\index{service level agreement}
 These skills matter beyond post-mortems. Senior IT roles involve difficult conversations: missed SLAs, failed changes, customer escalations, vendor disputes and team conflict. The person who can keep a tense room factual, fair and moving toward action is showing leadership before their job title catches up.
 
 \section{Metrics to Monitor}
-\index{Metrics to Monitor}
-Six months after Meridian Insurance adopted blameless post-mortems, the head of operations asked a fair question in a budget meeting: "These reviews cost us about forty staff-hours a month. How do I know they're working?" The room offered adjectives — things felt calmer, the last big incident seemed to go more smoothly — and adjectives were not what she asked for. Improvement you can't measure is an opinion, and opinions lose budget meetings.
+\index{blameless post-mortems}
+\index{post-mortem}
+Six months after Meridian Insurance adopted blameless post-mortems, the head of operations asked a fair question in a budget meeting: ``These reviews cost us about forty staff-hours a month. How do I know they're working?'' The room offered adjectives — things felt calmer, the last big incident seemed to go more smoothly — and adjectives were not what she asked for. Improvement you can't measure is an opinion, and opinions lose budget meetings.
 
 
 This section is about the small set of numbers that answer her question: metrics that show whether your incident-response and root-cause-analysis process is actually making the organisation more reliable, or just generating well-formatted documents.
@@ -472,39 +512,47 @@ This section is about the small set of numbers that answer her question: metrics
 
 
 \subsection{Why measure at all}
-\index{Why measure at all}
 
 
+\index{ISO 27001}
 Five reasons, in roughly descending order of how often they'll matter to you. First, measurement shows whether improvements work — whether the fix from March actually prevented the April repeat, or whether you patched a symptom. Second, it spots repeat issues early: a recurrence trend is visible in a chart weeks before it becomes obvious in anyone's memory. Third, it lets you prioritise with data. Every team has more improvement ideas than capacity; the numbers tell you which category of incident is eating the most recovery time and deserves the next slice of effort. Fourth, it keeps leadership informed in the only language that survives translation up the org chart: trends. And fifth, auditors ask. Compliance frameworks such as ISO 27001 expect evidence that incidents were followed up, and a metrics trail is exactly that evidence, pre-assembled.
 
 
 
 \subsection{The five numbers worth tracking}
-\index{The five numbers worth tracking}
 
 
 You could track dozens of things. Five earn their keep.
 
 
 \begin{itemize}[leftmargin=*]
+\index{DORA metrics}
+\index{DORA metrics!MTTR}
+\index{MTTR}
+\index{runbook}
 \item \textbf{Mean time to recovery (MTTR)} — the average time from an incident being detected to full service restoration. You met MTTR as a DORA metric in Part 3; here you read it per incident category and watch the trend. If your post-mortems are producing better runbooks and monitoring, MTTR falls.
+\index{RCA}
 \item \textbf{Recurrence rate} — how often the same type of incident reappears within a set window, say ninety days. This is the single sharpest test of your root cause analysis: if the same class of outage keeps returning, your five-whys chains are stopping early.
+\index{action items}
 \item \textbf{Action item completion ratio} — the percentage of agreed post-mortem fixes that were actually carried out. A team completing 90\% of its action items is improving; a team completing 30\% is holding meetings.
 \item \textbf{Age of open follow-ups} — how long items have been sitting open. A 200-day-old action item is really a decision to accept a known risk, made by nobody in particular, which is the worst way to make it.
 \item \textbf{Updates sent to stakeholders} — a crude but honest proxy for communication discipline: how many progress updates went out per incident. It matters because silence after an incident corrodes trust faster than the incident did, a theme the communication section of this part takes up properly.
 \end{itemize}
 
-Define each one precisely and write the definition down. "Recovery" means what, exactly — service responding, or backlog cleared? Does the recurrence window reset after a fix ships? Ambiguous definitions produce arguments dressed up as data.
+Define each one precisely and write the definition down. ``Recovery'' means what, exactly — service responding, or backlog cleared? Does the recurrence window reset after a fix ships? Ambiguous definitions produce arguments dressed up as data.
 
 
 
 \subsection{Tools, in ascending order of ceremony}
-\index{Tools, in ascending order of ceremony}
 
 
 For a small team, a shared spreadsheet is genuinely fine — one row per incident, columns for the five metrics — provided one named person updates it every week. The habit matters far more than the tooling, and a stale dashboard is worse than a current spreadsheet because it looks authoritative while being wrong.
 
 
+\index{change failure rate}
+\index{DORA metrics!change failure rate}
+\index{problem management}
+\index{ServiceNow}
 Beyond that, ServiceNow and Jira will both report directly from your incident and problem records, which is a strong argument for the disciplined ticket-linking covered elsewhere in this part: if the records are linked properly, the metrics fall out for free. Grafana or Kibana can graph MTTR and recurrence trends alongside your deployment metrics, which is where interesting correlations show up — a jump in change failure rate and a jump in recurrence often share a cause. Whatever you choose, make sure it exports to CSV, because when the auditors arrive they will not want a guided tour of your dashboard; they'll want the file.
 
 
@@ -513,15 +561,15 @@ One placement decision matters more than the tool: where the numbers get looked 
 
 
 \subsection{Acting on the data}
-\index{Acting on the data}
 
 
-Numbers only help if something happens because of them, so build a small routine around each one. Compare trends month to month, and treat any spike as a question rather than a verdict — the interesting part is always \emph{why}. When recurrence stays high for a category of incident, escalate and reopen the analysis: a root cause was probably missed, and re-running the five whys with fresh eyes is cheaper than a fourth outage. When MTTR drops or a post-mortem's action items all close on time, say so loudly — in the team channel, in the monthly report — because celebrated wins are what keep people filling in the tracking data honestly. Review overdue action items in stand-ups, where the conversation is "what's blocking this and should we re-prioritise?", not "why haven't you done it?". And when the evidence says a process isn't working — the completion ratio has sagged for a quarter, say — change the process, not the chart.
+\index{five whys}
+Numbers only help if something happens because of them, so build a small routine around each one. Compare trends month to month, and treat any spike as a question rather than a verdict — the interesting part is always \emph{why}. When recurrence stays high for a category of incident, escalate and reopen the analysis: a root cause was probably missed, and re-running the five whys with fresh eyes is cheaper than a fourth outage. When MTTR drops or a post-mortem's action items all close on time, say so loudly — in the team channel, in the monthly report — because celebrated wins are what keep people filling in the tracking data honestly. Review overdue action items in stand-ups, where the conversation is ``what's blocking this and should we re-prioritise?'', not ``why haven't you done it?''. And when the evidence says a process isn't working — the completion ratio has sagged for a quarter, say — change the process, not the chart.
 
 
 
 \begin{quote}\small
-Recurrence is the metric people are most tempted to fudge, because a repeat incident feels like a public failure of the last post-mortem. Watch for quiet reclassification — "it's not the \emph{same} issue, this time the pool exhausted from the read side" — and count the embarrassing way. A recurrence counted honestly costs you a red cell in a spreadsheet. A recurrence hidden costs you the whole system, because every number downstream of it becomes fiction.
+Recurrence is the metric people are most tempted to fudge, because a repeat incident feels like a public failure of the last post-mortem. Watch for quiet reclassification — ``it's not the \emph{same} issue, this time the pool exhausted from the read side'' — and count the embarrassing way. A recurrence counted honestly costs you a red cell in a spreadsheet. A recurrence hidden costs you the whole system, because every number downstream of it becomes fiction.
 \end{quote}
 
 
@@ -531,7 +579,7 @@ Back at Meridian, the answer to the operations head's question eventually took t
 That's the takeaway. Fixes without measurement are one-off events; measured fixes compound. Track recovery time, recurrence, and whether the promised work actually happens, review the trends with the team monthly, and let the evidence — not the loudest voice, not the most recent trauma — decide where the improvement effort goes next.
 
 \section{Post-Mortem Agenda}
-\index{Post-Mortem Agenda}
+\index{post-mortem}
 Left to their own devices, post-mortems drift. Someone opens with a war story, someone else relitigates a decision from forty minutes into the outage, two engineers start designing a fix on the whiteboard, and an hour later the meeting ends with no owners, no dates and a vague sense that everyone should be more careful. The cure is unglamorous: an agenda. A written, repeatable agenda keeps the discussion anchored to facts, gives every incident the same level of scrutiny regardless of who was involved, and — done well — gets the whole thing finished in under thirty minutes.
 
 
@@ -540,7 +588,6 @@ Timing matters as much as structure. Schedule the post-mortem within 24 to 48 ho
 
 
 \subsection{The seven stops on the timeline}
-\index{The seven stops on the timeline}
 
 
 The core of the agenda is a walk along the incident's timeline, and it helps to think of it as seven stops in a fixed order.
@@ -551,20 +598,23 @@ The core of the agenda is a walk along the incident's timeline, and it helps to 
 \item \textbf{Acknowledge} — who took command? When did a responder pick up the alert and start acting? The gap between stops one and two is your response lag.
 \item \textbf{Restore} — when was service stable again? Note what actually restored it: a rollback, a restart, a config change. This stamp defines your time to recovery.
 \item \textbf{Impact} — who and what was hurt? Customers affected, revenue lost, operational disruption. Business language, with numbers.
+\index{fishbone diagram}
+\index{five whys}
 \item \textbf{Root cause} — what were the contributing factors? This is where the five whys or a fishbone diagram come in, and it deliberately comes \emph{after} the facts, not before.
 \item \textbf{Actions} — what will change? Each item gets an owner, a due date and a definition of the evidence that will prove it happened.
 \item \textbf{Verify} — did the fixes hold? Agree now on when you'll check, and against which metric.
 \end{enumerate}
 
+\index{blameless post-mortems}
 The order is doing real work. Facts come first because they're the least contentious thing in the room — nobody argues about what time the alert fired. Impact comes before root cause so that the analysis stays proportionate to the damage. Actions come last so the team doesn't rush to solutions before understanding the problem. And running alongside all seven stops is the blameless rule from the previous section: describe system conditions and decisions, never hunt for a culprit.
 
 
+\index{action items}
 A realistic pacing for a moderate incident: five minutes on the timeline, five on impact, ten on root cause, five capturing action items and confirming owners, five confirming due dates and the follow-up review. Thirty minutes, done. If the root cause discussion genuinely needs longer, book a separate working session rather than letting the meeting sprawl — most of the attendees don't need to be there for it.
 
 
 
 \subsection{Who's in the room, and why}
-\index{Who's in the room, and why}
 
 
 A good post-mortem needs a specific mix of perspectives, and each seat has a job.
@@ -583,16 +633,17 @@ For a small team these can double up (a service owner can facilitate a post-mort
 
 
 \subsection{Documentation: the part everyone skips}
-\index{Documentation: the part everyone skips}
 
 
 The meeting produces understanding; the write-up is what makes that understanding outlive the attendees. Documentation is routinely the most neglected part of the process, which is why the standards need to be explicit.
 
 
+\index{ServiceNow}
 Use one central template for every incident report, so the reports are comparable and nobody has to decide what to write down while still tired. The template should carry the timeline, the impact assessment, the root-cause analysis, and the action items with owners and dates. Link everything: the ServiceNow or Jira tickets raised during the incident, and the GitHub commits or pull requests that contain the fixes. When a similar issue resurfaces in two years — and it will — the on-call engineer should be able to trace the whole history in ten minutes.
 
 
-Add the metrics: mean time to recovery, number of users affected, duration of the outage. These feed the trend lines discussed later in this part, and they turn "we think we're getting better" into a graph. Then summarise the lessons learned in plain language — plain enough that the paragraph can be lifted straight into onboarding material or training, because that's exactly where it should end up.
+\index{MTTR}
+Add the metrics: mean time to recovery, number of users affected, duration of the outage. These feed the trend lines discussed later in this part, and they turn ``we think we're getting better'' into a graph. Then summarise the lessons learned in plain language — plain enough that the paragraph can be lifted straight into onboarding material or training, because that's exactly where it should end up.
 
 
 Finally, publish. Store the report in a shared, findable location and announce it to the team, including people who weren't at the meeting. A post-mortem that only its attendees ever read has taught five people what it could have taught fifty.
@@ -606,7 +657,6 @@ A quiet trust-killer: action items that are still open six months later, unowned
 
 
 \subsection{Making it routine}
-\index{Making it routine}
 
 
 The payoff of all this structure is that post-mortems stop being dreaded and start being useful. A consistent agenda means engineers know what to expect and can prepare their part of the timeline in advance. Consistent roles mean nobody wonders whether they're supposed to be taking notes. Consistent documentation means the organisation accumulates a searchable memory of how it fails and what it did about it — which is a genuinely rare asset, and one that auditors, new hires and future incident commanders will all thank you for.
@@ -615,16 +665,17 @@ The payoff of all this structure is that post-mortems stop being dreaded and sta
 What you should be able to do now: given yesterday's outage, book the meeting inside the 48-hour window, invite the five roles, run the seven timeline stops in order, and leave behind a linked, metric-bearing report with owned action items and a verification date. That's the whole craft. It isn't hard; it's just discipline, applied every single time.
 
 \section{Post-mortem Culture}
-\index{Post-mortem Culture}
-Picture the meeting after a payment system crash. Twelve people around a table, one empty chair for the manager who's "just getting an update from the CTO", and at the far end, the engineer who pushed Friday's deploy. For forty minutes, every question in the room lands on her. Why didn't you test it? Didn't you read the checklist? Who approved this? She answers less and less. The meeting notes eventually say "human error — reminded staff to follow procedure", everyone escapes to lunch, and three months later the same class of failure takes the site down again. Nobody mentions that the deploy pipeline still lets an untested change through, because nobody in that room was ever going to volunteer information again.
+\index{post-mortem}
+Picture the meeting after a payment system crash. Twelve people around a table, one empty chair for the manager who's ``just getting an update from the CTO'', and at the far end, the engineer who pushed Friday's deploy. For forty minutes, every question in the room lands on her. Why didn't you test it? Didn't you read the checklist? Who approved this? She answers less and less. The meeting notes eventually say ``human error — reminded staff to follow procedure'', everyone escapes to lunch, and three months later the same class of failure takes the site down again. Nobody mentions that the deploy pipeline still lets an untested change through, because nobody in that room was ever going to volunteer information again.
 
 
+\index{blameless post-mortems}
 That meeting is a post-mortem in name only. A real post-mortem — the kind this whole part of the course is built around — is a structured review held shortly after an incident, whose only purpose is to understand how the system allowed the failure and to change the system so it can't happen the same way twice. The word \emph{blameless} gets attached to it not because blame is impolite, but because blame is epistemically useless: the moment people fear punishment, they stop telling you the truth, and everything downstream of the meeting is built on fiction.
 
 
 
 \subsection{Psychological safety is the raw material}
-\index{Psychological safety is the raw material}
+\index{psychological safety}
 
 
 Psychological safety is the shared belief that you can admit a mistake, ask a naive question or raise a concern without being punished or humiliated for it. Amy Edmondson's research (her book \emph{The Fearless Organization} is the standard reference) found that teams with high psychological safety don't make fewer errors — they \emph{report} more of them, which means they actually get fixed. One engineer in this course's running example put it more bluntly: a good post-mortem is a confession booth for code. People need to feel safe admitting their digital sins.
@@ -638,27 +689,28 @@ Failure is inevitable in any complex system. The only decision you actually get 
 
 
 \subsection{Debug the process, not the person}
-\index{Debug the process, not the person}
 
 
-The first instinct after an outage is always "who broke it?" Blame satisfies curiosity, but it shuts down learning, so blameless teams train themselves to rephrase. Instead of "Why did you delete the database?", ask "What led you to run that command?" Instead of "Who skipped the review?", ask "How did our checklist fail us?" The difference isn't cosmetic. The first version puts a person on trial; the second version puts the process on the workbench, where it belongs. Nobody has ever fixed a system by making someone cry.
+The first instinct after an outage is always ``who broke it?'' Blame satisfies curiosity, but it shuts down learning, so blameless teams train themselves to rephrase. Instead of ``Why did you delete the database?'', ask ``What led you to run that command?'' Instead of ``Who skipped the review?'', ask ``How did our checklist fail us?'' The difference isn't cosmetic. The first version puts a person on trial; the second version puts the process on the workbench, where it belongs. Nobody has ever fixed a system by making someone cry.
 
 
 A few phrases are worth memorising, because in a tense meeting you won't have time to compose them:
 
 
 \begin{itemize}[leftmargin=*]
-\item "Help me understand what led up to this."
-\item "What factors contributed to this event?"
-\item "What monitoring or review step failed us here?"
-\item "The system allowed…" and "We learned that…" when summarising, rather than naming an actor.
-\item "Anything we missed from your side?" — addressed deliberately to the quietest person in the room.
+\item ``Help me understand what led up to this.''
+\item ``What factors contributed to this event?''
+\item ``What monitoring or review step failed us here?''
+\item ``The system allowed…'' and ``We learned that…'' when summarising, rather than naming an actor.
+\item ``Anything we missed from your side?'' — addressed deliberately to the quietest person in the room.
 \end{itemize}
 
-These sound like small language tweaks. They are actually the whole discipline in miniature: every one of them redirects attention from an individual's decision to the conditions that shaped it. Usually the "careless" engineer turns out to have been following an outdated runbook, patching under a deadline, or acting on an alert that told them half the story. That context is exactly the material you need for the fix — and it only surfaces when the question doesn't sound like an accusation.
+\index{runbook}
+These sound like small language tweaks. They are actually the whole discipline in miniature: every one of them redirects attention from an individual's decision to the conditions that shaped it. Usually the ``careless'' engineer turns out to have been following an outdated runbook, patching under a deadline, or acting on an alert that told them half the story. That context is exactly the material you need for the fix — and it only surfaces when the question doesn't sound like an accusation.
 
 
 
+\index{RCA}
 \begin{quote}\small
 Rule of thumb: if a root cause analysis ends at a person, it isn't finished. Keep asking why until you reach something you can change with a process, a tool or a test.
 \end{quote}
@@ -666,9 +718,9 @@ Rule of thumb: if a root cause analysis ends at a person, it isn't finished. Kee
 
 
 \subsection{Everyone in the room, every voice heard}
-\index{Everyone in the room, every voice heard}
 
 
+\index{action items}
 Invite everyone who touched the incident: the junior developer who pushed the code, the senior engineer who diagnosed it at 2 am, the manager who coordinated the response, and — this one gets forgotten constantly — the customer support staff who spent four hours apologising to users. Each role holds a piece of the picture nobody else has. Junior devs notice the missing tests. Support can tell you what the outage actually cost in customer goodwill, which is the number executives care about. Managers connect action items to budgets so the fixes actually get funded.
 
 
@@ -677,15 +729,20 @@ A facilitator's job is to draw out the quiet participants, because the accuracy 
 
 
 \subsection{Give the meeting a spine}
-\index{Give the meeting a spine}
 
 
+\index{DORA metrics}
+\index{fishbone diagram}
+\index{five whys}
+\index{GitHub issues}
+\index{ITIL}
+\index{MTTR}
+\index{ServiceNow}
 Blamelessness doesn't mean looseness. A productive post-mortem follows a repeatable structure that connects to the IT processes you met in earlier parts of this course. Start from the ServiceNow incident ticket and any linked change requests, and establish the factual timeline: 09:00 outage detected, 09:10 rollback started, 09:25 service restored, 09:30 discussion begins. Map those steps onto the ITIL incident-management flow so the team can see where the process worked and where it creaked. Then dig into contributing causes with a structured method — the five whys or a fishbone diagram, both covered in the next section. Record each action item as a GitHub issue with an owner, and track whether the fixes work using DORA metrics such as mean time to recovery. The agenda and roles get their own detailed treatment shortly; the point here is that culture and structure reinforce each other. Structure keeps the discussion factual, and facts are much harder to fight about than opinions.
 
 
 
 \subsection{Three ways it goes wrong}
-\index{Three ways it goes wrong}
 
 
 The failure modes of post-mortems are as predictable as the failure modes of software. The \textbf{solution rush} is jumping to fixes before anyone understands the problem — you end up patching a symptom and feeling productive while the root cause sits untouched. The \textbf{hero complex} is one person absorbing all the responsibility (or all the glory) like a lone Batman; it feels noble, but complex systems fail in ways that involve the whole team, and the whole Justice League needs to learn. And the \textbf{blame spiral} is what happens when the first accusation lands: people stop contributing, information goes underground, and the meeting quietly dies while still technically continuing. A good facilitator watches for all three, and also pays attention to how the team communicated under stress during the incident itself — coordination failures are findings too.
@@ -694,22 +751,25 @@ The failure modes of post-mortems are as predictable as the failure modes of sof
 Here's a scenario to test yourself on. Your team's website crashes during a big marketing promotion because the database maxed out its connections; the monitoring alerts were buried in a busy Slack channel while half the team was at coffee. Who do you invite to the post-mortem? What are your first three questions, and how do you phrase them so nobody gets defensive? If your questions are about the timeline, the monitoring gaps and the alert routing — rather than about who was at coffee — you've absorbed the lesson.
 
 
+\index{SRE}
 For going deeper, Google's SRE workbook publishes a post-mortem template covering timelines, contributing factors and action items, and Edmondson's \emph{The Fearless Organization} explains why the trust piece works. But the takeaway fits in a sentence: a blame-free post-mortem turns every incident into fuel. Junior staff learn they can be honest; senior engineers get to demonstrate leadership by how they run the analysis; and the organisation gets systems that fail in \emph{new} ways instead of the same old ones — which, in this industry, is what progress looks like.
 
 \section{Root Cause Analysis Frameworks}
-\index{Root Cause Analysis Frameworks}
+\index{RCA}
+\index{post-mortem}
 The previous sections established the culture and the meeting; this one supplies the toolkit. Once a post-mortem reaches stop five on the timeline — root cause — the team needs a method for digging, because unstructured digging goes wrong in predictable ways. People jump to the first plausible explanation. The loudest theory wins. Someone proposes a fix before anyone has established what's broken. A root cause analysis (RCA) framework is a defence against all of that: a step-by-step path from the visible symptom down to the system weakness underneath it.
 
 
-Why does structure matter so much here? Three reasons. First, a framework moves the discussion from blame to causes almost automatically — when the next step is always "what evidence supports that answer?", there's no room for "well, Dave broke it". Second, it's repeatable: if every incident is analysed the same way, new team members learn the method quickly, and the organisation builds a comparable knowledge base of root causes instead of a pile of one-off essays. Third, the framework guides documentation for free, because the questions you asked and the evidence you gathered \emph{are} the record. Teams that apply consistent RCA methods report dramatic drops in repeat incidents — the commonly cited figure is more than half — and repeat incidents are the most expensive kind, because you've already paid for the lesson once.
+Why does structure matter so much here? Three reasons. First, a framework moves the discussion from blame to causes almost automatically — when the next step is always ``what evidence supports that answer?'', there's no room for ``well, Dave broke it''. Second, it's repeatable: if every incident is analysed the same way, new team members learn the method quickly, and the organisation builds a comparable knowledge base of root causes instead of a pile of one-off essays. Third, the framework guides documentation for free, because the questions you asked and the evidence you gathered \emph{are} the record. Teams that apply consistent RCA methods report dramatic drops in repeat incidents — the commonly cited figure is more than half — and repeat incidents are the most expensive kind, because you've already paid for the lesson once.
 
 
+\index{fishbone diagram}
+\index{five whys}
 Two frameworks cover the overwhelming majority of IT incidents: the five whys and the fishbone diagram.
 
 
 
 \subsection{The five whys}
-\index{The five whys}
 
 
 The five whys is exactly what it sounds like. Start with the problem statement and ask why it happened. Take the answer, and ask why \emph{that} happened. Repeat until you hit something structural. Here's a worked chain from a real-shaped incident:
@@ -723,10 +783,10 @@ The five whys is exactly what it sounds like. Start with the problem statement a
 \item \textbf{Why doesn't it?} Because nobody has made approval a mandatory step in the pipeline.
 \end{enumerate}
 
-Notice the shape of that descent. The first answer is a symptom. The second is a mechanism. By the fourth and fifth, you're looking at a \emph{process} weakness — and the fix ("add a mandatory approval step to the pipeline") prevents a whole family of future incidents, not just this one. Compare that with stopping at why number two: you'd revert the network settings, close the ticket, and wait for the same pipeline to ship the next unreviewed change.
+Notice the shape of that descent. The first answer is a symptom. The second is a mechanism. By the fourth and fifth, you're looking at a \emph{process} weakness — and the fix (``add a mandatory approval step to the pipeline'') prevents a whole family of future incidents, not just this one. Compare that with stopping at why number two: you'd revert the network settings, close the ticket, and wait for the same pipeline to ship the next unreviewed change.
 
 
-Two disciplines keep the technique honest. The first: don't stop early. The second and third whys almost always land on something that \emph{feels} like a root cause — a bad script, a wrong config — and the temptation to switch into solution mode right there is strong. Keep going until the answers run out of evidence, not until you run out of patience. The second discipline: every answer must be backed by evidence — a log line, a commit, a timestamp — not speculation. "Probably the cache" is not an answer; it's a hypothesis waiting for a log entry. Document each question-and-answer pair as you go, so anyone reading the post-mortem later can follow the logic and challenge it.
+Two disciplines keep the technique honest. The first: don't stop early. The second and third whys almost always land on something that \emph{feels} like a root cause — a bad script, a wrong config — and the temptation to switch into solution mode right there is strong. Keep going until the answers run out of evidence, not until you run out of patience. The second discipline: every answer must be backed by evidence — a log line, a commit, a timestamp — not speculation. ``Probably the cache'' is not an answer; it's a hypothesis waiting for a log entry. Document each question-and-answer pair as you go, so anyone reading the post-mortem later can follow the logic and challenge it.
 
 
 The number five is a guideline, not a law. Some chains bottom out in three whys; some need seven. You've gone deep enough when the answer is something your team can change with a process, tool or test — and, as the previous section warned, if your chain ends at a person, keep digging.
@@ -734,13 +794,12 @@ The number five is a guideline, not a law. Some chains bottom out in three whys;
 
 
 \subsection{Fishbone diagrams}
-\index{Fishbone diagrams}
 
 
-The five whys assumes the incident follows a single causal chain. Plenty don't. When an outage has several intertwined contributors — the deploy was risky \emph{and} the monitoring was blind \emph{and} the on-call handover dropped the context — forcing it into one chain of whys either loses causes or turns into an argument about which chain is "the real one". That's the moment to switch to a fishbone diagram (also called an Ishikawa or cause-and-effect diagram).
+The five whys assumes the incident follows a single causal chain. Plenty don't. When an outage has several intertwined contributors — the deploy was risky \emph{and} the monitoring was blind \emph{and} the on-call handover dropped the context — forcing it into one chain of whys either loses causes or turns into an argument about which chain is ``the real one''. That's the moment to switch to a fishbone diagram (also called an Ishikawa or cause-and-effect diagram).
 
 
-The diagram looks like a fish skeleton: the problem sits at the head, and major cause categories branch off the spine. The classic categories are People, Process, Technology, Environment, Materials and Methods; in an IT context the Technology branch might carry entries like "network configuration drift", while Process might reveal "no change-management gate for config edits". For each branch, the team brainstorms possible contributing factors and pins them on. Nothing is judged during the brainstorm; the structure itself keeps the ideas organised so nothing gets lost while people are thinking out loud.
+The diagram looks like a fish skeleton: the problem sits at the head, and major cause categories branch off the spine. The classic categories are People, Process, Technology, Environment, Materials and Methods; in an IT context the Technology branch might carry entries like ``network configuration drift'', while Process might reveal ``no change-management gate for config edits''. For each branch, the team brainstorms possible contributing factors and pins them on. Nothing is judged during the brainstorm; the structure itself keeps the ideas organised so nothing gets lost while people are thinking out loud.
 
 
 The visual layout is the point. As the branches fill in, clusters emerge — six sticky notes on Process and one on Technology tells you where to investigate first. It also makes contributions easy: someone who'd never interrupt a debate will happily add a note to a branch. Draw it on a whiteboard or in a collaboration tool, photograph or export it, and attach it to the post-mortem record, because the diagram doubles as documentation of what the team considered, not just what it concluded.
@@ -748,12 +807,12 @@ The visual layout is the point. As the branches fill in, clusters emerge — six
 
 
 \subsection{Choosing, combining, and knowing the limits}
-\index{Choosing, combining, and knowing the limits}
 
 
 A practical decision rule: \textbf{start with the five whys} when the incident looks like a single chain of events — it's fast, needs nothing but a whiteboard, and most incidents genuinely are one chain. \textbf{Switch to a fishbone} when the conversation stalls, when new causal branches keep sprouting mid-analysis, or when you know going in that the failure had many hands. And combine them freely: a common pattern is to use the fishbone to map the territory, then run a five-whys descent down each branch that looks load-bearing. The frameworks are lenses, not loyalty oaths.
 
 
+\index{ServiceNow}
 Whichever you use, capture everything — the questions asked, the evidence gathered, the dead ends, the conclusions. That record becomes part of the post-mortem notes, feeds directly into the ServiceNow problem tickets covered later in this part, and lets the next team understand not just what you concluded but how you got there.
 
 
@@ -763,47 +822,55 @@ Know when you're out of your depth. A five-whys session is built for technical a
 \end{quote}
 
 
-The takeaway is the same for both tools: the goal is to get underneath the symptom to the cause that, once fixed, stays fixed. Run the analysis consistently, share the findings beyond the room, and track the action items that fall out of it. Over months, the accumulated records start showing patterns across incidents — the same process gaps recurring in different costumes — and that's when RCA stops being a meeting technique and becomes an improvement engine. It's also a skill with a career attached: the person who can facilitate a crisp root-cause analysis is the person who ends up leading problem management, and there are worse things to be known for than "makes problems stay dead".
+\index{action items}
+\index{ITIL!problem management}
+\index{problem management}
+The takeaway is the same for both tools: the goal is to get underneath the symptom to the cause that, once fixed, stays fixed. Run the analysis consistently, share the findings beyond the room, and track the action items that fall out of it. Over months, the accumulated records start showing patterns across incidents — the same process gaps recurring in different costumes — and that's when RCA stops being a meeting technique and becomes an improvement engine. It's also a skill with a career attached: the person who can facilitate a crisp root-cause analysis is the person who ends up leading problem management, and there are worse things to be known for than ``makes problems stay dead''.
 
 \section{RCA Records in ServiceNow \& GitHub}
-\index{RCA Records in ServiceNow \& GitHub}
-"We'll remember to fix that" are famous last words. Every experienced engineer has watched the cycle: an outage, a genuinely excellent post-mortem, a whiteboard covered in insight, a shared document full of action items — and then a sprint deadline, and another, and six weeks later the document is sitting in the personal drive of an engineer who has since resigned. When the same outage returns, the new on-call engineer searches the ticketing system, finds nothing, and starts the investigation from scratch. The failure wasn't the analysis. The failure was memory. Post-mortems have a way of becoming post-mortems themselves — dead and buried in someone's email within a week.
+\index{RCA}
+\index{ServiceNow}
+\index{action items}
+\index{post-mortem}
+``We'll remember to fix that'' are famous last words. Every experienced engineer has watched the cycle: an outage, a genuinely excellent post-mortem, a whiteboard covered in insight, a shared document full of action items — and then a sprint deadline, and another, and six weeks later the document is sitting in the personal drive of an engineer who has since resigned. When the same outage returns, the new on-call engineer searches the ticketing system, finds nothing, and starts the investigation from scratch. The failure wasn't the analysis. The failure was memory. Post-mortems have a way of becoming post-mortems themselves — dead and buried in someone's email within a week.
 
 
+\index{audit trail}
+\index{ITSM}
 The cure is unglamorous: put the findings where work is tracked, and wire the records together. In most IT organisations that means two systems. ServiceNow (or a similar IT service management tool) holds the operational record — what happened, what it cost, what was decided. GitHub (or GitLab, or Bitbucket) holds the engineering record — the issues, commits and pull requests that implement the fixes. Neither alone is enough: ServiceNow can't show you the code, and GitHub can't show an auditor the business impact. Linked, they turn scattered post-mortem notes into an actionable backlog, keep the root cause attached to its related incidents and changes, preserve an audit trail for compliance reviews, and give planning meetings a ranked list of improvements instead of a vague sense of dread.
 
 
-When you join a team, two questions will tell you quickly how mature its incident practice is: \emph{where do past RCAs live?} and \emph{who actually reads them?} If the answers are "various places" and "nobody", you've found your first improvement project.
+When you join a team, two questions will tell you quickly how mature its incident practice is: \emph{where do past RCAs live?} and \emph{who actually reads them?} If the answers are ``various places'' and ``nobody'', you've found your first improvement project.
 
 
 
 \subsection{The ServiceNow problem record}
-\index{The ServiceNow problem record}
+\index{problem management}
 
 
+\index{ITIL}
 Recall the ITIL distinction from earlier in the course: an \emph{incident} is the fire — restore service now — while a \emph{problem} is the underlying cause that keeps lighting fires. The problem record is where root cause analysis findings belong, created once the investigation has something to say.
 
 
-A good problem record has a specific anatomy. Start with a short title that leads with business impact: "Checkout failure during Black Friday — DB connection pool exhausted; manual phone orders used as workaround" tells a manager everything they need in one line, where "database issues" tells them nothing. Then the body: a clear timeline, the contributing factors the RCA uncovered, and any workarounds used during the incident — workarounds matter because they're what the support team will reach for when the problem recurs before the fix ships. Link every related artefact: the incident tickets this problem has caused, the change request that will eventually fix it, and any knowledge-base articles written along the way. Finally, assign an owner and a target resolution date. An ownerless problem record is a well-formatted shrug.
+A good problem record has a specific anatomy. Start with a short title that leads with business impact: ``Checkout failure during Black Friday — DB connection pool exhausted; manual phone orders used as workaround'' tells a manager everything they need in one line, where ``database issues'' tells them nothing. Then the body: a clear timeline, the contributing factors the RCA uncovered, and any workarounds used during the incident — workarounds matter because they're what the support team will reach for when the problem recurs before the fix ships. Link every related artefact: the incident tickets this problem has caused, the change request that will eventually fix it, and any knowledge-base articles written along the way. Finally, assign an owner and a target resolution date. An ownerless problem record is a well-formatted shrug.
 
 
-The payoff for writing it well is practical: managers can see the impact, which is how fixes get resourced. "Exhausted connection pool" competes badly for budget; "checkout down for ninety minutes on the year's biggest trading day" competes rather well.
+The payoff for writing it well is practical: managers can see the impact, which is how fixes get resourced. ``Exhausted connection pool'' competes badly for budget; ``checkout down for ninety minutes on the year's biggest trading day'' competes rather well.
 
 
 
 \subsection{The GitHub half}
-\index{The GitHub half}
 
 
-The problem record says what should change; GitHub issues track the code work that changes it. Open one issue per improvement item, and put the ServiceNow number in the title — "Increase DB connection pool size - PRB0001234", never just "Fix database" — so that anyone searching either system can find the other end of the thread. In the issue description, restate the business impact in plain terms: developers prioritise better when they can see \emph{why} the work matters without leaving GitHub, and a sentence like "this caused the Black Friday checkout outage" outranks any priority label.
+\index{GitHub issues}
+The problem record says what should change; GitHub issues track the code work that changes it. Open one issue per improvement item, and put the ServiceNow number in the title — ``Increase DB connection pool size - PRB0001234'', never just ``Fix database'' — so that anyone searching either system can find the other end of the thread. In the issue description, restate the business impact in plain terms: developers prioritise better when they can see \emph{why} the work matters without leaving GitHub, and a sentence like ``this caused the Black Friday checkout outage'' outranks any priority label.
 
 
-From there, normal engineering discipline applies, with the links maintained. Commits and pull requests mention the issue number, so the whole implementation history hangs off one thread. The fix goes through code review like anything else — an RCA action item is not a hall pass around your quality gates, and it's worth asking explicitly who signs off. And the issue is closed only when the fix is deployed to production \emph{and verified}, not when the pull request merges. Merged-but-not-deployed is precisely the gap where "fixed" problems recur. When the issue closes, update the ServiceNow record, and both systems now tell the same story.
+From there, normal engineering discipline applies, with the links maintained. Commits and pull requests mention the issue number, so the whole implementation history hangs off one thread. The fix goes through code review like anything else — an RCA action item is not a hall pass around your quality gates, and it's worth asking explicitly who signs off. And the issue is closed only when the fix is deployed to production \emph{and verified}, not when the pull request merges. Merged-but-not-deployed is precisely the gap where ``fixed'' problems recur. When the issue closes, update the ServiceNow record, and both systems now tell the same story.
 
 
 
 \subsection{A cadence that keeps them honest}
-\index{A cadence that keeps them honest}
 
 
 The linkage works when it follows a rhythm rather than relying on anyone's memory.
@@ -822,7 +889,6 @@ Done this way, the whole arc of an incident is readable in one place years later
 
 
 \subsection{Where it falls apart}
-\index{Where it falls apart}
 
 
 The failure modes are few and predictable, which makes them checkable.
@@ -830,7 +896,7 @@ The failure modes are few and predictable, which makes them checkable.
 
 \begin{itemize}[leftmargin=*]
 \item \textbf{The link never gets made.} The problem ticket and the GitHub issue drift apart: ServiceNow says open, the code shipped months ago, and nobody can prove the fix happened. Cross-reference at creation time, not later.
-\item \textbf{Vague problem statements.} "Intermittent errors in production" hides the business impact and guarantees the record gets ignored at planning time.
+\item \textbf{Vague problem statements.} ``Intermittent errors in production'' hides the business impact and guarantees the record gets ignored at planning time.
 \item \textbf{Issues open for months with no owner.} An action item without a name and a date isn't a plan; it's a wish.
 \item \textbf{The undocumented hotfix.} Something urgent gets patched straight to production outside the process, works, and is never written down. Two years later it's the change nobody can explain, and one refactor away from becoming an incident of its own.
 \item \textbf{The one-and-done review.} Records checked once, at creation, then never again. Lessons fade at exactly the speed you'd expect.
@@ -842,10 +908,12 @@ A habit that costs thirty seconds and saves hours: whenever you touch either rec
 \end{quote}
 
 
-The takeaway: ServiceNow captures the process, GitHub tracks the code, and the links between them are what turn an incident into documented organisational learning rather than another "we should totally fix that someday" conversation. There's a personal angle too. Post-mortem follow-through is unusually visible work — managers, auditors and senior engineers all read these records — and the person whose problem tickets reliably trace through to closed, verified fixes acquires a reputation for finishing things. In a field full of brilliant starters, that reputation is rarer than it should be, and it's the one that gets people trusted with problem management, then with teams.
+\index{ITIL!problem management}
+The takeaway: ServiceNow captures the process, GitHub tracks the code, and the links between them are what turn an incident into documented organisational learning rather than another ``we should totally fix that someday'' conversation. There's a personal angle too. Post-mortem follow-through is unusually visible work — managers, auditors and senior engineers all read these records — and the person whose problem tickets reliably trace through to closed, verified fixes acquires a reputation for finishing things. In a field full of brilliant starters, that reputation is rarer than it should be, and it's the one that gets people trusted with problem management, then with teams.
 
 \section{Tracking Improvement}
-\index{Tracking Improvement}
+\index{action items}
+\index{post-mortem}
 Every post-mortem ends the same way: a list of confident action items and a shared feeling that this time will be different. The question almost nobody asks eight weeks later is the only one that matters — did any of it work? Did the new staging step actually reduce failures, or did the problem just move somewhere quieter? Teams that don't check are running an improvement theatre: action items pile up, effort gets spent, and whether anything improved remains a matter of vibes.
 
 
@@ -854,20 +922,27 @@ This section is about closing that loop with data — specifically, deployment m
 
 
 \subsection{Why trends beat anecdotes}
-\index{Why trends beat anecdotes}
 
 
-Four reasons to bother. First, metrics show whether fixes actually work, which is the entire point of doing root cause analysis in the first place. Second, they reveal patterns no individual remembers — incidents clustering after Friday releases, severity creeping up quarter by quarter. Third, they support business cases: "we need another engineer" is a request, while "recovery time fell 40\% after we automated rollbacks; here's what the next automation would cost and save" is an argument. Fourth, and most under-rated: trends end debates. Part 3 opened with a release meeting settled by whoever argued longest; a visible trend line settles the same argument in thirty seconds, and everyone gets to lunch on time.
+\index{RCA}
+Four reasons to bother. First, metrics show whether fixes actually work, which is the entire point of doing root cause analysis in the first place. Second, they reveal patterns no individual remembers — incidents clustering after Friday releases, severity creeping up quarter by quarter. Third, they support business cases: ``we need another engineer'' is a request, while ``recovery time fell 40\% after we automated rollbacks; here's what the next automation would cost and save'' is an argument. Fourth, and most under-rated: trends end debates. Part 3 opened with a release meeting settled by whoever argued longest; a visible trend line settles the same argument in thirty seconds, and everyone gets to lunch on time.
 
 
 
 \subsection{What to collect}
-\index{What to collect}
 
 
+\index{change failure rate}
+\index{DORA metrics}
+\index{DORA metrics!change failure rate}
+\index{DORA metrics!deployment frequency}
+\index{DORA metrics!lead time for changes}
+\index{MTTR}
 The core set is the four DORA metrics from Part 3 — deployment frequency, lead time for changes, change failure rate and mean time to recovery — now wearing a different hat. In Part 3 they described your delivery performance; here they serve as the before-and-after instrument for your improvement work. Alongside them, track incident count and severity, and plot everything on one timeline so deployments and incidents can be read against each other.
 
 
+\index{CI/CD}
+\index{ServiceNow}
 Collection is less work than people fear. GitHub Insights and your CI/CD dashboard already know your deployment stats; Jira or ServiceNow already hold your incident history. The step teams actually skip is the baseline: capture the numbers \emph{before} you roll out a new process, because without a before, your after is just a number. If you're proposing a change in next week's retro, tonight is the right time to screenshot the current state.
 
 
@@ -876,24 +951,25 @@ Read the numbers as connected to humans, not as abstractions. A long recovery ti
 
 
 \subsection{Reading the results}
-\index{Reading the results}
 
 
 Give a change a few sprints, then compare against the baseline. Did lead time shrink? Are rollbacks rarer? When the numbers improve, show them — a quick dashboard demo in the post-mortem, a trend line in the team channel. A graph moving from two-week deployment cycles to two-day cycles has convinced more leadership teams to keep funding automation than any slide full of adjectives ever has.
 
 
+\index{blameless post-mortems}
 When the numbers move the wrong way, resist the urge to explain them away. Dig into the timeline around each spike: maybe the new testing tool genuinely slowed the pipeline; maybe incidents correlate with a Friday release habit. Then invite the team to propose fixes rather than assigning fault — the same blameless stance that runs through this whole part applies to metrics reviews, because the moment a chart becomes an indictment, people start managing the chart.
 
 
-Translate for management in plain language, proposal attached: "Our recovery time increased last month, most likely due to rushed hotfixes. We propose adding a staging step." That sentence carries evidence, an interpretation honestly labelled as likely rather than certain, and a costed next move — which is exactly the shape of communication that gets approvals. Roll the same material up into quarterly summaries so long-term progress stays visible; week-to-week noise hides improvements that a quarter-scale view makes obvious.
+Translate for management in plain language, proposal attached: ``Our recovery time increased last month, most likely due to rushed hotfixes. We propose adding a staging step.'' That sentence carries evidence, an interpretation honestly labelled as likely rather than certain, and a costed next move — which is exactly the shape of communication that gets approvals. Roll the same material up into quarterly summaries so long-term progress stays visible; week-to-week noise hides improvements that a quarter-scale view makes obvious.
 
 
 
 \subsection{Staying honest with the numbers}
-\index{Staying honest with the numbers}
 
 
-Four disciplines keep the practice trustworthy. \textbf{Patience}: real patterns take a month or two to emerge, and reacting to a single week's blip mostly generates churn. \textbf{Humility about causation}: correlation doesn't imply causation — though as the saying goes, it does wave its arms and point suggestively. Incidents dropped after the staging step, but the traffic mix changed that month too; hold interpretations loosely and let more data arbitrate. \textbf{Vigilance about gaming}: if someone deploys "fix typo" fifty times on a Friday, your deployment count is now measuring enthusiasm, not health. Balance every speed metric with a quality metric like change failure rate, and revisit what you measure when behaviour starts orbiting the metric instead of the work. \textbf{Connection to consequences}: use the numbers. One team's documented 40\% drop in recovery time secured the budget for an additional SRE; conversely, when three months of data showed a cherished process change had achieved nothing, they dropped it without a fight. Data lets you pivot quickly when things don't work and celebrate honestly when they do.
+\index{churn}
+\index{SRE}
+Four disciplines keep the practice trustworthy. \textbf{Patience}: real patterns take a month or two to emerge, and reacting to a single week's blip mostly generates churn. \textbf{Humility about causation}: correlation doesn't imply causation — though as the saying goes, it does wave its arms and point suggestively. Incidents dropped after the staging step, but the traffic mix changed that month too; hold interpretations loosely and let more data arbitrate. \textbf{Vigilance about gaming}: if someone deploys ``fix typo'' fifty times on a Friday, your deployment count is now measuring enthusiasm, not health. Balance every speed metric with a quality metric like change failure rate, and revisit what you measure when behaviour starts orbiting the metric instead of the work. \textbf{Connection to consequences}: use the numbers. One team's documented 40\% drop in recovery time secured the budget for an additional SRE; conversely, when three months of data showed a cherished process change had achieved nothing, they dropped it without a fight. Data lets you pivot quickly when things don't work and celebrate honestly when they do.
 
 
 
