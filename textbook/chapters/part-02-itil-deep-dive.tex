@@ -4,444 +4,558 @@
 
 \index{ITIL Deep Dive}
 
-This part builds on the foundations by examining how mature IT teams use ITIL processes to manage change and drive continual improvement.
+Part 1 taught you how to fight fires well: log the incident, escalate it sensibly, restore service, and keep your head when something big breaks. That's a genuine skill, and plenty of IT careers are built on it. But an organisation that only fights fires never gets any safer. The same server falls over every Monday, the same rushed change takes out the same system, and nobody can say with confidence what "good service" even means — so every argument about performance turns into a contest of anecdotes.
+
+
+This part is about running a service properly. It starts with promises: service level agreements that tell customers what they can expect, the operational level agreements between internal teams that make those promises achievable, and the KPIs that reveal whether anyone is actually keeping them. It then turns to change — how mature teams assess risk before touching production, and how release management turns approved work into orderly, well-communicated deployments. Problem management follows: the discipline of asking \emph{why} an incident happened, not just clearing the ticket. Underneath all of it sits the configuration management database, the inventory of what you own and how it connects — unglamorous, and indispensable. The chapter closes with continual improvement and with the dashboards that turn thousands of ticket records into evidence a CIO can read in three seconds.
+
+
+Throughout the chapter we'll follow Kestrel Freight, a fictional national logistics company headquartered in Melbourne, and the people running its IT: Priya, the service delivery manager; Marcus, the change manager; Dana, who leads the database team; and Elaine, the CIO who keeps asking the only question that matters — "are we getting better or worse?" By the end of this part you should be able to answer her with data instead of a shrug.
 
 \section{Change Enablement vs Release Management}
 \index{Change Enablement vs Release Management}
-Change enablement and release management are two sides of the same coin. One keeps risky alterations under control, the other moves approved work into production. In practice you need both disciplines working together so that updates land smoothly without disrupting users.
+At 4:45 on a Friday afternoon, a developer at Kestrel Freight wants to push "one small config tweak" to the booking portal. Marcus, Kestrel's change manager, has heard this sentence before. The last time someone shipped a small Friday tweak, the portal rejected every booking from Western Australia for two days, and nobody noticed until Monday because the person who made the change was camping.
 
-\subsection{Change enablement}
 
-\index{Change enablement}
+Two distinct disciplines exist to stop that story repeating, and this topic is about telling them apart. \textbf{Change enablement} asks: \emph{should} this change happen, and what could it break? \textbf{Release management} asks: given the changes we've approved, \emph{how} do we get them into production smoothly, and who needs to know? They're two sides of the same coin — one controls risk going in, the other coordinates work going out — and confusing them is one of the most common mistakes early-career practitioners make.
 
-Change enablement focuses on assessing risk before any code or configuration shift happens. Small tweaks might be pre-approved, while major ones get a thorough review. The goal is to prevent nasty surprises in production. It acts as a safety net so development teams can't accidentally take down critical services.
 
-\paragraph{Practice checkpoints.}
+
+\subsection{Change enablement: gating the risk}
+\index{Change enablement: gating the risk}
+
+
+In ITIL terms, a change is any addition, modification or removal that could affect services — code, configuration, infrastructure, even documentation that people rely on operationally. Change enablement exists to maximise the number of successful changes while protecting production stability, which means assessing risk \emph{before} work starts, not after it explodes.
+
+
+The key insight is that not all changes deserve the same scrutiny. ITIL recognises three types:
+
 
 \begin{itemize}[leftmargin=*]
-\item Assess risk before work starts
-\item Require approvals for significant changes
-\item Protect production stability
+\item \textbf{Standard changes} are low-risk, routine, well-understood, and pre-approved. Adding a user to a group, applying a certified patch to a non-critical server, increasing a disk quota. The risk assessment happened once, when the change type was defined; individual instances just follow the recipe.
+\item \textbf{Normal changes} need individual assessment and approval. Someone — a change authority, which for higher-risk items may be a change advisory board (CAB) of technical and business representatives — weighs the risk, checks the plan, and approves or rejects it.
+\item \textbf{Emergency changes} can't wait for the normal cycle: a security hole being actively exploited, a broken service that needs a fix \emph{now}. They still get assessed and approved, just faster and by fewer people, with the paperwork completed retrospectively.
 \end{itemize}
 
-\subsection{Minor Change Process Flow}
+Matching scrutiny to risk is the whole game. A change process that forces a two-week approval cycle onto password resets doesn't reduce risk; it teaches people to route around the process, and changes that happen outside the process are precisely the ones that take production down. Marcus's rule at Kestrel: make the safe path the easy path. The more changes he can safely reclassify as standard, the more attention the CAB can give the genuinely dangerous ones.
 
-\index{Minor Change Process Flow}
 
-Minor Change Process Flow focuses attention on a concrete part of the work. ITIL Minor Change Process Flow. In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.
+
+\subsection{Following a minor change through the process}
+\index{Following a minor change through the process}
+
+
+It's worth walking one change through the machinery end to end, because the flow reveals how much thinking is baked into even the "minor" path.
+
+
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.86\linewidth]{figures/part-02/change-vs-release/images/itil-minor-change.png}
-\caption{ITIL Minor Change Process Flow}
+\caption{The ITIL minor change process flow, from change request through implementation, verification and CMDB update}
 \end{figure}
 
-\paragraph{Practice checkpoints.}
+
+The requester — say, Dana's database team wanting to bump a server's memory allocation — creates a \textbf{request for change (RFC)}. The service desk or change management function logs and categorises it, then hits the first decision point: \emph{is this actually a minor change?} If not, it's routed to the normal or emergency process and this flowchart ends. If it is, the next step is to confirm it matches a \textbf{pre-approved authorisation} — that is, it genuinely fits the template of a standard change, rather than being a risky change wearing a minor change's clothing.
+
+
+Then the technical team plans and schedules the implementation, does the work, and — this step matters — \textbf{verifies} that it succeeded. Not "the script ran without errors," but "the service behaves the way it should." If verification fails, the team initiates the \textbf{back-out plan}, restoring the previous state, and the change goes back for review, rescheduling or cancellation. Note the quiet implication: the back-out plan existed \emph{before} implementation started. Writing a rollback procedure at 2 a.m., mid-failure, with a director on the phone, is not a plan; it's improvisation with witnesses.
+
+
+Finally — and students skip this step in every simulation until it's beaten into them — the team \textbf{updates the CMDB and closes the record}. The configuration management database (covered in its own topic later in this part) is only trustworthy if every change updates it. A change process that ends at "it works" rather than "it works and the records reflect it" is slowly poisoning every future troubleshooting session.
+
+
+
+\subsection{Release management: shipping the work}
+\index{Release management: shipping the work}
+
+
+Approving changes one by one doesn't tell you how they reach users. Release management picks up where approval ends: it packages related changes into a coherent release, schedules deployment into agreed release windows, and communicates what's shipping to everyone affected.
+
+
+Think of a magazine publisher. Individual articles get written and edited on their own timelines, but readers don't receive articles one at a time — they receive an \emph{issue}, assembled, checked as a whole, and published on a known date. Release management does the same for software and infrastructure: version 2.4 of the booking portal might bundle a dozen approved changes — two features, six bug fixes, a security patch, three configuration updates — tested together, deployed together, and announced together.
+
+
+The coordination work is unglamorous and essential:
+
 
 \begin{itemize}[leftmargin=*]
-\item ITIL Minor Change Process Flow
+\item \textbf{Release windows.} Kestrel deploys portal releases on Tuesday nights, when freight bookings are at their weekly low. Windows are negotiated with the business, not decreed by IT — a release window in the middle of end-of-month invoicing is a self-inflicted incident.
+\item \textbf{Bundling and dependencies.} Changes that interact must ship together or in the right order. The database schema change goes out before the application version that depends on it, never after.
+\item \textbf{Communication.} Release notes for users, a heads-up to the service desk (who will take the calls if anything's off), and clear entry in the change calendar so nobody schedules conflicting work. When the service desk learns about a release from a confused caller, release management has failed regardless of whether the deployment worked.
 \end{itemize}
 
-\subsection{Release management}
 
-\index{Release management}
+\subsection{Two disciplines, one outcome}
+\index{Two disciplines, one outcome}
 
-Release management picks up once a change is approved. It bundles related work into versions and schedules them for deployment. Think of it like publishing a magazine. All the articles need editing before the final issue goes to print, and everyone should know exactly when it's hitting the shelves.
 
-\paragraph{Practice checkpoints.}
+Put them together and the division of labour is clean: change enablement gates the work; release management plans the rollout. The gate ensures each individual change is worth its risk. The rollout ensures approved changes reach production in coherent, well-communicated batches instead of a random dribble. When both are working, something valuable happens to the organisation's mood: stakeholders know who approves what, when new features will appear, and what to do when something looks wrong. That predictability is what lets teams ship \emph{faster}, not slower — confidence is a prerequisite for speed.
 
-\begin{itemize}[leftmargin=*]
-\item Package changes for deployment
-\item Coordinate release windows
-\item Communicate what is shipping
-\end{itemize}
 
-\subsection{Working together}
 
-\index{Working together}
+\begin{quote}\small
+If you've read anything about DevOps, you may be bristling: doesn't continuous deployment ship dozens of releases a day, with no CAB in sight? Hold that thought for Part 3. The short version: high-performing DevOps teams haven't abolished change enablement — they've automated the risk assessment and converted almost everything into standard changes, so the pipeline itself is the change authority. The principles survive; the meetings don't.
+\end{quote}
 
-When change enablement and release management work in harmony, teams can ship quickly without sacrificing stability. It becomes clear who approves what and when new features will appear, which keeps stakeholders confident that the process is under control.
 
-\paragraph{Practice checkpoints.}
-
-\begin{itemize}[leftmargin=*]
-\item Change enablement gates the work
-\item Release management plans the rollout
-\item Both aim for smooth, reliable updates
-\end{itemize}
-
+For your own career, notice that both disciplines are actual jobs. Change managers and release managers sit at the junction of technical teams, business stakeholders and process — roles that suit people who can read a technical plan critically \emph{and} run a meeting where the network team and the application team disagree. And even if you never hold either title, you'll live inside these processes from your first week: the RFC you raise, the release notes you write, the back-out plan a reviewer demands. Write them like they matter, because on the bad Friday, they're the only things that do.
 
 \section{Building and Maintaining a Configuration Management Database}
 \index{Building and Maintaining a Configuration Management Database}
-A configuration management database, or CMDB, is the master inventory of systems and services. It lists configuration items and how they depend on each other so support teams have the full picture.
+Mid-incident at Kestrel Freight, the booking portal limping, Dana's team has traced the trouble to a struggling database server and the fix is a failover — until someone asks the question that stalls the bridge: "what else is on that box?" There are two versions of what happens next. In one, an engineer queries the configuration management database and answers in thirty seconds: \texttt{kf-db-04} also hosts the depot rostering service, so warn that team, then fail over. In the other, the answer is an archaeology expedition — a wiki page last edited two years ago, a spreadsheet called \texttt{server-list-FINAL-v7.xlsx}, and the recollections of an engineer who resigned in March. Kestrel gets the first version because it invested in the second-least-glamorous artefact in IT operations. This topic is about that artefact: what a CMDB is, how you build one, and why keeping it truthful is the hard part.
 
-\subsection{What is a CMDB?}
 
-\index{What is a CMDB?}
 
-Start by identifying key CIs such as servers, applications and network devices. Pull in attributes from source systems and link them together to show relationships. For example, the "web01" server might depend on the "db01" database service.
+\subsection{An inventory, plus the part that matters}
+\index{An inventory, plus the part that matters}
 
-\paragraph{Practice checkpoints.}
 
-\begin{itemize}[leftmargin=*]
-\item Central inventory of systems and relationships
-\item Example CIs: servers, network gear, SaaS applications
-\item Tracks versions, owners and dependencies
-\item Supports reliable ITIL processes
-\end{itemize}
+A \textbf{configuration management database (CMDB)} is the central inventory of an organisation's systems and services. Its records are \textbf{configuration items (CIs)} — servers, network gear, databases, applications, SaaS subscriptions — each carrying attributes: version, owner, environment, support group. So far, that's an asset register, and plenty of organisations already have one gathering dust.
 
-\subsection{Building the CMDB}
 
-\index{Building the CMDB}
+What makes a CMDB more is the \textbf{relationships}. An asset register tells you \texttt{web01} exists and what it cost. The CMDB tells you \texttt{web01} serves the booking portal's front end and \emph{depends on} the \texttt{db01} database service — which means a change to \texttt{db01} is a change to the portal, whether anyone intended that or not. Dependencies are where outages hide, and mapping them is the entire point.
 
-Building the CMDB focuses attention on a concrete part of the work. Identify key configuration items, Populate attributes from trusted sources, and Map relationships between CIs. In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Populate attributes from trusted sources; Map relationships between CIs.
 
-\paragraph{Practice checkpoints.}
+Every practice in this part leans on that map. Incident diagnosis uses it to establish blast radius and to ask "what changed recently near this CI?" Change enablement uses it for risk assessment. Problem management uses it to spot patterns across related CIs. Even the SLA topic quietly assumed it: "the booking portal" in Schedule 4 of Kestrel's supermarket contract is, operationally, a named set of CIs, and you can't defend an availability number for a service you can't enumerate.
 
-\begin{itemize}[leftmargin=*]
-\item Identify key configuration items
-\item Populate attributes from trusted sources
-\item Map relationships between CIs
-\end{itemize}
 
-\subsection{Change management integration}
 
-\index{Change management integration}
+\subsection{Building one without boiling the ocean}
+\index{Building one without boiling the ocean}
 
-Change requests should list the configuration items they will modify. After approval, update those CI records and compare discovery results to catch any unplanned drift.
 
-\paragraph{Practice checkpoints.}
+Construction has three steps, each simpler to state than to do.
 
-\begin{itemize}[leftmargin=*]
-\item Reference affected CIs in each change request
-\item Update the CMDB after approved changes
-\item Link discovery results to spot differences between approved and observed state
-\end{itemize}
 
-\subsection{Maintaining accuracy}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Identify the key CIs.} Not everything — the services that matter, and the CIs they're built from. Kestrel started with the booking portal chain and payroll, modelled those properly, and expanded outward. A CMDB that attempts to catalogue every cable on day one dies of its own ambition before it's ever useful.
+\item \textbf{Populate attributes from trusted sources.} Cloud provider APIs, the hypervisor's inventory, Active Directory, procurement records — wherever a system of record already exists, pull from it rather than retype it. Hand-entered data is wrong at birth or wrong within a month; automated feeds are wrong less often and, more importantly, get corrected in one place.
+\item \textbf{Map the relationships.} \emph{Runs on}, \emph{depends on}, \emph{connects to}. Discovery tooling can infer some of this from network traffic and installed software, but the semantic layer — that this database is what the rostering service actually depends on — needs humans who know what things are \emph{for}. This is the slow, expensive step, and the valuable one.
+\end{enumerate}
 
-\index{Maintaining accuracy}
 
-Keeping the CMDB accurate is a continual task. Automate discovery and update records after every approved change, then audit regularly to find gaps. Compare the observed state from discovery tools against the approved configuration to detect drift.
+\subsection{The change management handshake}
+\index{The change management handshake}
 
-\paragraph{Practice checkpoints.}
 
-\begin{itemize}[leftmargin=*]
-\item Update records as changes happen
-\item Automate discovery where possible
-\item Compare observed state to approved CMDB records
-\item Schedule audits to clean up gaps
-\end{itemize}
+A CMDB and a change process keep each other honest, and the integration runs in both directions.
 
-\subsection{When records and reality differ}
 
-\index{When records and reality differ}
+Going in, every request for change lists the CIs it will touch — Marcus, Kestrel's change manager, won't assess an RFC without that list, because the list is what makes risk assessment mechanical instead of psychic: walk the relationship graph outward from the named CIs and you can see what the change could break, and who needs to be warned. Coming out, an approved and implemented change updates the affected CI records. That's the closing step the change topic insisted on earlier in this part, and here is the reason: the CMDB's claim to be the \textbf{approved state} of the environment holds only if every change lands in it.
 
-Sometimes discovery shows a system in a state the CMDB never approved. This can come from emergency fixes, admins bypassing change control, or forgetting to remove retired equipment. When observed and authorised states diverge, troubleshooting and audits slow down because teams can't trust the data.
 
-\paragraph{Practice checkpoints.}
+Then automated \textbf{discovery} closes the loop. Discovery tools scan networks, cloud accounts and servers on a schedule and report the \textbf{observed state} — what's actually out there, actually configured, actually running. Compare observed against approved. When they match, your records are trustworthy and your change process is being followed. When they don't, you've learned something either way.
+
+
+
+\subsection{When records and reality diverge}
+\index{When records and reality diverge}
+
+
+Divergence has four canonical sources, and each one names a different failure:
+
 
 \begin{itemize}[leftmargin=*]
-\item Unauthorized changes bypass change control
-\item Manual tweaks create configuration drift
-\item Discovery finds devices not in the CMDB
-\item Retired assets linger as phantom entries
+\item \textbf{Unauthorised changes.} Someone altered production outside change control — sometimes an emergency fix whose paperwork never happened, sometimes an administrator who couldn't be bothered. Discovery-versus-CMDB comparison is how change control gets teeth: the bypass that used to be invisible now surfaces as a mismatch within a day.
+\item \textbf{Configuration drift.} Small manual tweaks — a timeout raised here, a package updated there — accumulating until servers that are supposed to be identical aren't. No single tweak was worth a change record, in someone's judgement; collectively they've made the environment unpredictable.
+\item \textbf{Unknown devices.} Discovery finds hardware or services the CMDB has never heard of: shadow IT, a team's "temporary" experiment, the box under a bench nobody mentioned.
+\item \textbf{Phantom CIs.} The mirror image — records for equipment retired long ago, still haunting reports, still counted in licence audits, still paged about during incidents.
 \end{itemize}
 
-\subsection{Why it matters}
+The response discipline is the same for all four: treat every mismatch as information and run it down. Either the record is stale, in which case you fix the record, or the change was unauthorised, in which case you fix the process or the behaviour. What you must not do is shrug, because trust in a CMDB is binary in practice. A database that's 70 per cent accurate is arguably worse than none: people trust it into mistakes for a while, then stop trusting it, then stop updating it — the death spiral that ends in \texttt{server-list-FINAL-v7.xlsx}. Staying out of the spiral takes all three maintenance habits the practice prescribes: update records as changes happen, automate discovery and comparison, and schedule periodic audits to catch what both missed.
 
-\index{Why it matters}
 
-A well-maintained CMDB accelerates incident troubleshooting and change planning. It reduces surprises from hidden dependencies and becomes your single source of truth.
 
-\paragraph{Practice checkpoints.}
+\begin{quote}\small
+Kestrel's first full audit found thirty-one phantom servers still marked live — and one very real server in no record at all, sitting under a bench at the Perth depot, printing the labels for every Western Australian consignment. It had been "temporary" for four years: never patched, never backed up, never in anyone's disaster recovery plan. The audit took two weeks and was widely resented; discovering that server \emph{during} an outage would have been considerably more expensive. Rule of thumb: any diagram or inventory older than its author's tenure should be treated as folklore until discovery confirms it.
+\end{quote}
 
-\begin{itemize}[leftmargin=*]
-\item Speeds up incident and change analysis
-\item Reduces risk of unknown dependencies
-\item Provides a single source of truth
-\end{itemize}
 
+
+\subsection{Why it matters, and to whom}
+\index{Why it matters, and to whom}
+
+
+The payoff shows up as speed and absence. Speed, because incident calls stop stalling on "what else is on that box?" and change assessments stop requiring séances. Absence, because the outages caused by unknown dependencies — the ones where nobody knew the rostering service shared a database server — simply stop happening. A well-kept CMDB is the single source of truth that every other practice quietly consults, and like most infrastructure, it's invisible exactly when it's working.
+
+
+There are careers here: configuration managers own the CMDB's structure and accuracy, and IT asset managers extend the same records into financial and licensing territory — unglamorous titles that senior operations people rely on daily and remember at promotion time. But the more immediate takeaway is a habit that starts in your first job, at any tier: when you touch a system, leave the record as true as you left the system. The thirty seconds that costs you is the archaeology expedition it saves everyone else. And accurate records are about to matter for a different reason — the last two topics of this part are about improving and measuring the operation, and you can't improve what you can't even enumerate.
 
 \section{Continual Improvement Frameworks and Maturity Assessments}
 \index{Continual Improvement Frameworks and Maturity Assessments}
-Continual improvement is the heartbeat of any successful IT service organization. It's not a one-time project but an ongoing commitment to making things better every day. This systematic approach focuses on creating value for customers while learning from every incident, change, and interaction. Think of it as evolving from a reactive firefighting mode to a proactive enhancement culture.
+At 9:15 on Monday morning, Priya is looking at Kestrel Freight's incident queue and feeling a familiar irritation. The booking portal is stable this week, but the same kinds of small failures keep returning: password resets take too long, change records arrive half-complete, and a handover between the service desk and database team still depends on whoever happens to be rostered on. None of these problems is dramatic enough to justify a crisis meeting. Together, though, they tell her something useful: the service is working, but it is not yet learning.
 
-The goal is simple: deliver better service tomorrow than you did this section. But achieving this requires both structure and the right mindset across your entire organization.
 
-\subsection{What is continual improvement?}
+Continual improvement is the discipline of turning that observation into work. It is not a poster on the wall saying "do better". It is a systematic way of enhancing services by using incidents, changes, customer feedback, staff frustration and performance data as evidence. The aim is value: less waiting, fewer repeat incidents, cleaner handoffs, safer changes and a service desk that can spend more time helping people than apologising to them.
 
-\index{What is continual improvement?}
 
-What is continual improvement? focuses attention on a concrete part of the work. Systematic approach to enhancing services, Focus on value creation and customer satisfaction, and Builds on lessons learned from incidents and changes. In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Focus on value creation and customer satisfaction; Builds on lessons learned from incidents and changes; Cultural shift from reactive to proactive mindset.
 
-\paragraph{Practice checkpoints.}
+\subsection{From firefighting to learning}
+\index{From firefighting to learning}
 
-\begin{itemize}[leftmargin=*]
-\item Systematic approach to enhancing services
-\item Focus on value creation and customer satisfaction
-\item Builds on lessons learned from incidents and changes
-\item Cultural shift from reactive to proactive mindset
-\end{itemize}
 
-\subsection{Kaizen vs. formal improvement programs}
+Reactive IT can look productive because everyone is busy. Phones ring, tickets move, engineers jump on calls, and dashboards flash red. The risk is that busyness becomes a substitute for improvement. If the same priority-two incident happens every fortnight and the response is always "restore service, close the ticket", the team is doing incident management but not continual improvement.
 
-\index{Kaizen vs. formal improvement programs}
 
-There are two main approaches to improvement: Kaizen and formal improvement programs. Kaizen comes from Japanese manufacturing and means "change for the better." In Kaizen, everyone makes small daily improvements. A service desk agent might streamline how they document tickets, or a network admin might create a checklist for routine tasks. These small changes add up to significant improvements over time.
+Continual improvement asks different questions:
 
-Formal improvement programs are bigger structured projects. Think of upgrading your monitoring system or redesigning your change approval process. These need dedicated resources and project management. The magic happens when you combine both approaches. Kaizen keeps the improvement mindset alive day-to-day, while formal programs tackle the bigger transformations your organization needs.
-
-\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
-\item Kaizen: Small, daily improvements by everyone
-\item Formal programs: Structured projects with defined outcomes
-\item Both approaches complement each other
-\item Different time horizons and resource commitments
+\item What did this event teach us about the service?
+\item Which part of the value chain made the problem easier or harder to handle?
+\item What small change would reduce friction next time?
+\item What evidence would prove that the change worked?
 \end{itemize}
 
-\subsection{The Plan-Do-Check-Act cycle}
+For Kestrel Freight, the answer might be modest. Priya may not need a six-month transformation program to reduce password reset delays. She might need the service desk to update one knowledge-base article, add a self-service link to the intranet and measure whether repeat tickets fall over the next month. The work is small, but it changes the service.
 
-\index{The Plan-Do-Check-Act cycle}
 
-The Plan-Do-Check-Act cycle is your roadmap for systematic improvement. It's like a scientific method for making changes that actually stick. Plan means identifying what needs improvement and designing a solution. Maybe you've noticed that password reset requests are taking too long, so you plan to implement a self-service portal. Do is implementing your solution, but start small.
+This is the cultural shift the ITIL material is pointing at. A reactive team waits for pain. A proactive team treats every ticket, post-mortem and change review as a clue about where the service is wasting effort or disappointing people.
 
-Roll out that self-service portal to one department first, not the entire organization. This lets you test and learn without major disruption. Check means measuring the results. Are password resets faster? Are users happy with the new process? Are there unexpected issues you need to address? Act is where you decide what to do next. If the pilot worked well, standardize it across the organization.
 
-If it didn't, learn from what went wrong and try a different approach. The cycle then begins again.
 
-\paragraph{Practice checkpoints.}
+\subsection{Kaizen and formal improvement programs}
+\index{Kaizen and formal improvement programs}
+
+
+Improvement happens at two useful scales. \textbf{Kaizen} is the small, everyday version: a service desk analyst notices that new starters keep asking the same VPN question and rewrites the onboarding note; a network engineer adds a checklist for a recurring firewall task; a developer adds a clearer error message after watching support staff struggle to diagnose a failed upload. These improvements do not need a steering committee. They need permission, attention and a lightweight way to record what changed.
+
+
+Formal improvement programs sit at the other end. Marcus might sponsor a redesign of Kestrel's change approval process, Dana might replace brittle monitoring with a proper observability stack, or Elaine might fund a new service management platform. These efforts need a business case, budget, planning, communications and senior ownership. They are slower, but they can remove structural problems that small fixes cannot reach.
+
+
+Neither approach is enough by itself. A team that only runs formal programs waits too long between improvements and trains staff to leave problems to "the project". A team that only does Kaizen can polish the edges of a broken operating model. Good service organisations use both: daily local fixes to keep work healthy, and larger programs when the system itself needs redesign.
+
+
+
+\subsection{Plan, do, check, act}
+\index{Plan, do, check, act}
+
+
+The Plan-Do-Check-Act cycle is a simple guardrail against wishful thinking. It keeps improvement work small enough to test and concrete enough to measure.
+
+
+In the \textbf{Plan} stage, the team names the problem and the expected benefit. "Password reset tickets are slow" is too vague. "Password reset tickets take a median of 38 minutes because users cannot find the self-service page; we want that median below 15 minutes" is better. It names the symptom, a likely cause and a target.
+
+
+In the \textbf{Do} stage, the team tries the change at a controlled scale. Priya might pilot a new self-service link with the finance department before pushing it to every employee. That protects the rest of the organisation from a clumsy rollout and gives the team a chance to learn from real use.
+
+
+In the \textbf{Check} stage, the team looks at evidence. Did ticket volume fall? Did the median resolution time improve? Did users simply start lodging a different kind of request because the instructions were still confusing? The point is not to defend the change. The point is to find out what happened.
+
+
+In the \textbf{Act} stage, the team decides what to standardise, adjust or abandon. A successful pilot becomes the new normal, with documentation, ownership and monitoring. A partial success becomes another cycle. A failed experiment is still useful if it stops the organisation from rolling out a bad idea at full size.
+
+
+
+\subsection{Maturity models without theatre}
+\index{Maturity models without theatre}
+
+
+Maturity models help a team describe where it is now and what capability should come next. Used well, they give leaders a shared language for priority. Used badly, they become theatre: colourful heat maps, optimistic self-ratings and no change in the way work gets done.
+
+
+A low-maturity service organisation may rely on individual memory. Incidents are resolved by whoever knows the system, change approvals are inconsistent, and reporting depends on manual spreadsheet work at the end of the month. A more mature organisation has documented practices, clear ownership, useful metrics and enough governance to make risk visible before production is touched.
+
+
+The important point is that maturity levels are built, not wished into existence. Kestrel cannot have sophisticated problem management if incident records are incomplete. It cannot safely accelerate releases if change risk is not understood. It cannot run credible service reviews if the CMDB is full of stale assets. Each capability depends on earlier habits.
+
+
+ITIL 4 maturity assessment often looks across four dimensions:
+
 
 \begin{itemize}[leftmargin=*]
-\item Plan: Identify improvement opportunities
-\item Do: Implement changes on a small scale
-\item Check: Measure results and gather feedback
-\item Act: Standardize successful improvements
+\item \textbf{Capabilities}: what the organisation can reliably do, such as restore service, assess change risk or plan capacity.
+\item \textbf{Practices}: how work is actually performed, documented, reviewed and improved.
+\item \textbf{Governance}: who has authority, how risk is escalated, and how decisions are checked.
+\item \textbf{Culture}: whether people share knowledge, admit mistakes, collaborate across teams and take improvement seriously.
 \end{itemize}
 
-\subsection{Maturity models overview}
+Culture deserves special attention because it can defeat the other three. A team may have a documented problem-management process and a well-designed dashboard, but if engineers are punished for surfacing uncomfortable facts, the data will be edited into fiction.
 
-\index{Maturity models overview}
 
-Maturity models are like a GPS for your improvement journey. They help you figure out where you are now and chart a path to where you want to be. Think of it like learning to drive. You start with basic skills like steering and braking, then progress to parallel parking, and eventually to driving in complex traffic. Each level builds on the previous one. In IT service management, maturity models assess how well your organization manages services.
 
-A level one organization might be reactive, fixing things as they break. A level five organization predicts and prevents problems before they impact users. The key insight is that you can't skip levels. You need solid incident management before you can do effective problem management. You need good change control before you can implement continuous deployment.
+\subsection{Measuring whether improvement worked}
+\index{Measuring whether improvement worked}
 
-It's about building capability progressively.
 
-\paragraph{Practice checkpoints.}
+Improvement success has to be measured from more than one angle. Service performance metrics are the obvious starting point: fewer repeat incidents, faster restoration, better availability, shorter queues and a lower change-failure rate. These numbers matter because they show whether the service is becoming more reliable.
 
-\begin{itemize}[leftmargin=*]
-\item Assess current capability levels
-\item Identify gaps and improvement priorities
-\item Provide roadmap for progression
-\item Enable benchmarking against industry standards
-\end{itemize}
 
-\subsection{ITIL 4 maturity dimensions}
+Customer satisfaction matters too. A technical improvement that users cannot feel may still be valuable, but the team should know the difference. If password reset time drops from 38 minutes to 12 minutes and employee satisfaction with IT also rises, Priya has a stronger case than either number would provide alone.
 
-\index{ITIL 4 maturity dimensions}
 
-ITIL 4 maturity assessment looks at four key dimensions. Think of them as the four legs of a table - you need all of them to be strong for the table to be stable. Capabilities are what your organization can do. Can you resolve incidents quickly? Can you implement changes without breaking things? Can you plan capacity to meet future demand? Practices are how work gets done.
+Employee engagement is another signal. Continual improvement depends on staff who believe their observations will be heard. If analysts stop suggesting fixes because nothing ever happens, the pipeline of improvement ideas dries up. Short retrospectives, visible action tracking and public credit for useful fixes all help.
 
-Are your processes documented and followed? Do you have standard operating procedures? Are your workflows efficient and effective? Governance covers decision-making and oversight. Who has authority to approve changes? How are resources allocated? How is risk managed? Is there clear accountability? Culture is about values and behaviors. Do people share knowledge freely?
 
-Is there a blame-free environment for learning from mistakes? Are teams collaborative or siloed? Culture often determines whether your improvements will succeed or fail.
-
-\paragraph{Practice checkpoints.}
-
-\begin{itemize}[leftmargin=*]
-\item Capabilities: What the organization can do
-\item Practices: How work gets done
-\item Governance: Decision-making and oversight
-\item Culture: Values and behaviors
-\end{itemize}
-
-\subsection{Measuring improvement success}
-
-\index{Measuring improvement success}
-
-You can't improve what you don't measure. But measuring improvement success goes beyond just technical metrics - you need to look at the whole picture. Service performance metrics are the obvious starting point. Are your incidents being resolved faster? Are there fewer outages? Is system availability improving? These operational metrics show if your processes are working better.
-
-Customer satisfaction scores tell you if your improvements actually matter to users. Sometimes technical improvements don't translate to better user experience, and sometimes small changes make a huge difference to customer happiness. Employee engagement levels are crucial but often overlooked. Are your team members more motivated? Do they feel empowered to make improvements?
-
-Happy employees deliver better service, so this is a leading indicator of future success. Finally, business value delivered is the ultimate measure. Are your improvements helping the organization achieve its goals? Are IT services enabling new business capabilities? This connects your technical work to real business outcomes.
-
-\paragraph{Practice checkpoints.}
-
-\begin{itemize}[leftmargin=*]
-\item Service performance metrics
-\item Customer satisfaction scores
-\item Employee engagement levels
-\item Business value delivered
-\end{itemize}
-
+Finally, the work must connect to business value. Elaine does not need every technical detail, but she does need to know whether IT changes are helping Kestrel deliver freight, serve customers and avoid costly disruption. The mature answer to "are we getting better?" is not a slogan. It is a small set of measures, a record of completed improvements and a service team that can explain what it will improve next.
 
 \section{Metrics \& Reporting Dashboards}
 \index{Metrics \& Reporting Dashboards}
-Dashboards are the way we turn thousands of ticket updates and log records into a single page the CIO can understand at a glance. When designed well, those tiny coloured boxes and trend lines become an early-warning system that saves you from unpleasant surprise incidents.
+Elaine, Kestrel Freight's CIO, does not have time to read every incident note, monitoring alert and change review. She still needs to know whether IT service is getting better or worse. That is the job of metrics and dashboards: to turn operational noise into evidence that a leader, team lead or service owner can act on.
+
+
+A good dashboard is not a trophy screen covered in graphs. It is a decision tool. It shows which service is healthy, which one is drifting toward trouble, and where someone needs to ask a better question. When it works, the dashboard gives Priya a three-second view of service performance and a three-minute path into the detail.
+
+
 
 \subsection{Why metrics matter}
-
 \index{Why metrics matter}
 
-Metrics act like a health check for each ITIL practice. If incident backlogs spike, the numbers will show it long before end-users start shouting. They also give us proof when things are improving. A downward trend in mean-time-to-restore beats anecdotal "I think we're faster now" any day.
 
-\paragraph{Practice checkpoints.}
+Metrics validate whether processes are working as designed. If the incident process says priority-one tickets should be acknowledged within ten minutes, the team needs evidence. If change management is supposed to reduce failed deployments, someone has to compare the change-failure rate before and after the process changed. Without metrics, service reviews collapse into anecdotes: the loudest recent outage, the most frustrated executive or the analyst who remembers last month differently from everyone else.
 
-\begin{itemize}[leftmargin=*]
-\item Validate that processes are working as designed
-\item Spot bottlenecks before they become incidents
-\item Provide evidence for continual-improvement discussions
-\end{itemize}
 
-\subsection{Choosing the right KPIs}
+Metrics also expose bottlenecks before they become incidents. A growing backlog of access requests may not be an outage, but it tells Priya that the service desk is under strain. A rise in emergency changes may suggest that teams are bypassing normal planning. A flat customer satisfaction score after several technical improvements may show that IT is solving the wrong problem.
 
-\index{Choosing the right KPIs}
 
-When picking KPIs, start with what the customer actually cares about—availability, response time, resolution quality. Mix in leading indicators like change success rate so you can act before outages happen, but avoid the fifty-metric dashboard that no one reads.
+The useful question is always, "What decision would this number change?" If nobody can answer, the metric probably belongs in an audit archive rather than on a dashboard.
 
-\paragraph{Practice checkpoints.}
 
-\begin{itemize}[leftmargin=*]
-\item Align with customer value rather than gut feel
-\item Balance leading and lagging indicators
-\item Keep the list short – focus drives behaviour
-\end{itemize}
+
+\subsection{Choosing KPIs that shape behaviour}
+\index{Choosing KPIs that shape behaviour}
+
+
+A key performance indicator should connect to customer value, not just internal convenience. Availability, restoration time, response time, service request age, first-contact resolution and change success rate all say something about whether people can get work done. Raw activity counts can be useful, but they are dangerous when treated as success. A service desk that closes 2,000 tickets a week may be excellent, overwhelmed or closing work prematurely.
+
+
+Balance leading and lagging indicators. Lagging indicators tell you what already happened: last month's uptime, the number of breached SLAs, the mean time to restore service after incidents. Leading indicators warn you before the pain arrives: unresolved critical vulnerabilities, failed backup tests, open problem records, repeat alerts, changes approved without peer review. Elaine needs both. Lagging indicators give accountability; leading indicators buy time.
+
+
+Keep the list short. A fifty-metric dashboard creates the impression of control while making priority harder. For an executive review, Priya might choose six measures: availability for critical services, priority-one incident count, median restoration time, change-failure rate, aged high-risk problem records and customer satisfaction. The service desk's operational dashboard can show more detail, but the top-level view should force choices.
+
+
 
 \subsection{Building the dashboard}
-
 \index{Building the dashboard}
 
-Start with a single pane of glass that pulls ticket data from ServiceNow, uptime from your monitoring stack and config context from the CMDB. Then layer on traffic-light widgets—green for on-target, amber for at-risk, red for breach—so any stakeholder can see the story in three seconds.
 
-\paragraph{Practice checkpoints.}
+Most service dashboards combine data from several systems. Ticket data may come from ServiceNow. Uptime and latency may come from a monitoring platform. Ownership and dependency information may come from the CMDB. Deployment data may come from GitHub Actions or another release tool. The dashboard's value depends on how cleanly these sources line up.
 
-\begin{itemize}[leftmargin=*]
-\item Combine data from ITSM, monitoring and CMDB sources
-\item Use traffic-light visuals for quick scanning
-\item Let stakeholders drill down for root-cause context
-\end{itemize}
 
-\subsection{Storytelling with data}
+That is why dashboards often reveal boring but important data problems. If services are named differently in the CMDB, monitoring tool and ITSM queue, the dashboard will either mislead people or require manual cleanup before every review. If priority is used inconsistently, SLA reports become suspect. If teams forget to close problem records, improvement metrics drift away from reality.
 
-\index{Storytelling with data}
 
-Numbers alone rarely move people. Pair every chart with a one-sentence takeaway—“We cut P1 resolution time by 30 \% last quarter.” That narrative makes the data memorable and, more importantly, sparks the discussions that keep the improvement loop turning.
+Traffic-light visuals are useful when they are tied to clear thresholds. Green should mean "within target", amber should mean "needs attention soon", and red should mean "action required". Avoid decorative colour. A red box that nobody owns is just wallpaper.
 
-\paragraph{Practice checkpoints.}
 
-\begin{itemize}[leftmargin=*]
-\item Frame trends in plain language, not just charts
-\item Celebrate wins and highlight risks
-\item Close the loop: feed insights back into the service value chain
-\end{itemize}
+Drill-down matters as much as the summary. Elaine may only need the top row, but Priya needs to click from "change-failure rate amber" to the failed changes, affected services, teams involved and linked incident records. A dashboard that cannot explain its own numbers becomes a source of arguments rather than decisions.
+
+
+
+\subsection{Telling the story in plain language}
+\index{Telling the story in plain language}
+
+
+Charts do not speak for themselves. Every operational review needs a short interpretation of the trend: "Priority-one incidents fell from five to two this month, but both remaining incidents involved the warehouse scanning service"; "The access-request backlog is growing because the identity team lost two contractors"; "Change failures are down, but emergency changes are up, so we may be hiding risk rather than reducing it."
+
+
+This is what the slides call storytelling with data. It does not mean decorating the numbers. It means framing the trend in language that helps people decide what to do. Celebrate real wins, especially when teams have done hard improvement work, but do not let celebration bury risk. A dashboard should make uncomfortable truths discussable while there is still time to act.
+
+
+Use the same discipline for customer-facing or leadership updates. A monthly report that says "MTTR improved by 30 percent" is better than a raw chart. A report that adds "because database failover now runs from a tested runbook" is better again, because it connects the number to a specific operational change.
+
+
 
 \subsection{From reports to action}
-
 \index{From reports to action}
 
-Dashboards only matter if they trigger action. Build a cadence—daily stand-ups, weekly ops reviews—where owners commit to fixes on the spot. Track those tasks in the same tool so next week’s dashboard shows whether the needle actually moved. That’s when metrics become culture.
 
-\paragraph{Practice checkpoints.}
+Metrics become culture only when they are attached to review rituals. A daily stand-up might use a small operational board: red services, breached SLAs, major incidents, blocked changes and overnight alerts. A weekly operations review might look at trends, owners and due dates. A monthly service review might focus on business outcomes, investment decisions and persistent risks.
 
-\begin{itemize}[leftmargin=*]
-\item Schedule regular review rituals (daily stand-up, weekly ops review)
-\item Tie improvement tasks to owners and due dates
-\item Track progress to prove the dashboard drives change
-\end{itemize}
 
+Each review should produce visible work. If a dashboard shows that the same service has breached its SLA three weeks in a row, the action should not be "monitor closely". It should name the owner, next step and deadline: Dana to review database capacity by Friday; Marcus to check whether recent emergency changes bypassed risk review; Priya to update the service owner on customer impact.
+
+
+Track those actions in the same ecosystem as the work, not in someone's private notes. ServiceNow problem records, GitHub issues, Jira tickets or a shared action register are all acceptable if the team can see status and history. The next dashboard should show whether the action moved the number. If it did not, the team has learned something and needs a different intervention.
+
+
+The test of a dashboard is simple: does it change what competent people do next? If it only produces a monthly PDF that everyone skims and forgets, it is reporting. If it helps Kestrel spot risk early, choose owners, fund fixes and prove improvement, it is service management.
 
 \section{Problem Management Techniques for Root Cause Analysis}
 \index{Problem Management Techniques for Root Cause Analysis}
-Problem management digs into the why behind repeat incidents so we can stop firefighting the same issues over and over. It's about stepping back, analysing patterns and addressing the real root cause rather than just clearing another ticket.
+Every Monday between 9:00 and 9:20 a.m., Kestrel Freight's booking portal falls over. The service desk knows the drill by now: restart the application server, watch the portal come back, close the ticket. Twenty minutes, textbook incident management, SLA met. It has happened eleven Mondays in a row.
 
-\subsection{When to use problem management}
 
-\index{When to use problem management}
+Here's the uncomfortable observation: by every incident-management measure, Kestrel is doing \emph{well}. Fast response, fast restoration, tidy records. And nothing is getting better. The same failure, the same scramble, the same twenty minutes of lost bookings, every single week. Incident management is designed to restore service quickly — it is explicitly \emph{not} designed to make failures stop happening. That's a different practice with a different mindset, and it's the subject of this topic: problem management.
 
-We invoke problem management when incidents keep cropping up or the impact is too big to ignore. Think chronic outages or situations where quick fixes won't cut it—we need a deeper look to stop the bleeding.
 
-\paragraph{Practice checkpoints.}
 
-\begin{itemize}[leftmargin=*]
-\item Repeated incidents pointing to a common cause
-\item High impact issues without an obvious fix
-\item Need to prevent further disruptions
-\end{itemize}
+\subsection{Incidents and problems are not the same thing}
+\index{Incidents and problems are not the same thing}
 
-\subsection{Root cause analysis methods}
 
-\index{Root cause analysis methods}
+The vocabulary matters, because the two practices pull in opposite directions. An \textbf{incident} is an unplanned interruption or degradation of a service. A \textbf{problem} is the underlying cause of one or more incidents. Kestrel has had eleven incidents; it has one problem.
 
-Techniques like the 5 Whys or fishbone diagrams help track symptoms back to the true cause. By linking related incidents, we can see patterns and gather evidence from every team involved.
 
-\paragraph{Practice checkpoints.}
+Incident management is a sprint: restore service by whatever safe means available, and if a workaround gets users going again, use it — understanding \emph{why} can wait. Problem management is the practice that makes sure "can wait" doesn't become "never happens." It steps back from the individual ticket, analyses patterns across many tickets, and pursues the root cause with the patience incident response can't afford. The two practices even want different things from the same event: the incident manager wants the server restarted \emph{now}; the problem manager would secretly love ten minutes to capture diagnostics before the evidence disappears in the reboot. Mature teams negotiate that tension explicitly rather than pretending it doesn't exist.
 
-\begin{itemize}[leftmargin=*]
-\item 5 Whys and fishbone diagrams
-\item Link incident records to underlying problems
-\item Collaborate across teams to gather evidence
-\end{itemize}
 
-\subsection{Embedding the lessons}
 
-\index{Embedding the lessons}
+\subsection{When to open a problem record}
+\index{When to open a problem record}
 
-Once we've nailed the root cause, document the workaround and roll out changes to eliminate it. Review whether those fixes stick. Problem management is a cycle of learning and preventing future pain.
 
-\paragraph{Practice checkpoints.}
+Not every incident deserves a root cause investigation — analysis costs skilled people's time, and a one-off glitch with trivial impact may simply not be worth it. Problem management earns its keep in three situations:
+
 
 \begin{itemize}[leftmargin=*]
-\item Document workarounds and known errors
-\item Implement changes to remove the cause
-\item Review effectiveness and refine processes
+\item \textbf{Repeated incidents pointing at a common cause.} Kestrel's Monday crashes are the canonical case. Any time the service desk finds itself saying "this again," a problem record should exist.
+\item \textbf{High-impact incidents with no obvious fix.} After a major incident, even a one-off, the organisation needs to know why it happened and whether it can recur. If the honest answer to "could this happen again tomorrow?" is "no idea," that's a problem record.
+\item \textbf{Preventing disruption you can see coming.} The proactive side: trawling incident data, vendor security bulletins and monitoring trends for trouble that hasn't struck yet. Reactive problem management asks "why did that happen?"; proactive problem management asks "what's going to happen next?" — and it's a reliable marker of a mature operation.
 \end{itemize}
 
+
+\subsection{Finding the root cause}
+\index{Finding the root cause}
+
+
+Root cause analysis (RCA) sounds grand, but its core techniques are disarmingly simple. What makes them work is discipline and evidence, not cleverness.
+
+
+\textbf{The 5 Whys} is exactly what it sounds like: start with the failure and keep asking why until you hit something fundamental. Watch it work on Kestrel's Monday problem:
+
+
+\begin{enumerate}[leftmargin=*]
+\item Why did the portal crash? The application server ran out of memory.
+\item Why did it run out of memory? A scheduled reporting job spikes memory use at 9 a.m. Mondays.
+\item Why does the job spike memory? It loads the entire weekend's bookings into memory at once.
+\item Why does it load everything at once? It was written five years ago when weekend volume was a tenth of today's, and it's never been revisited.
+\item Why was it never revisited? Nothing in Kestrel's process reviews scheduled jobs against data growth.
+\end{enumerate}
+
+Five questions took us from "server crashed" to two findings: an immediate technical cause (fix the job to process bookings in batches) and a process gap (nobody reviews capacity assumptions as the business grows). That second finding is the more valuable one — it's the difference between fixing this problem and preventing the next three like it. Five is a guideline, not a rule; stop when another "why" stops producing anything actionable.
+
+
+\textbf{Fishbone (Ishikawa) diagrams} suit messier situations where multiple factors interact and no single chain of whys captures it. You draw the effect at the fish's head and branch the possible contributing causes along the spine, grouped by category — people, process, technology, environment, suppliers are common groupings for IT. The diagram's real value is social: it structures a workshop, forces the group to consider categories they'd otherwise skip ("could this be a \emph{process} cause?"), and stops the loudest theory in the room from crowding out the others.
+
+
+Whichever technique you use, two habits separate real RCA from ritual. First, \textbf{link the incident records to the problem record} in your ITSM tool. Eleven linked tickets give you timestamps, error messages, affected users and duration — a dataset. Eleven orphaned tickets give you vibes. Second, \textbf{gather evidence across teams}. Kestrel's Monday problem touched the application team (the job), Dana's database team (the query behaviour) and the infrastructure team (the memory limits); any single team investigating alone would have seen a third of the picture. And keep the investigation blameless: the question is always "why did the system let this happen?", never "who touched it last?" The moment RCA becomes a search for a culprit, people stop volunteering the evidence you need.
+
+
+
+\subsection{Known errors and workarounds}
+\index{Known errors and workarounds}
+
+
+RCA takes time, and users are not going to stop working while you diagram fish. Problem management handles the interim with two artefacts. A \textbf{workaround} is a documented way to reduce or eliminate the impact of incidents whose root cause isn't fixed yet — for Kestrel, "restart the app server; takes four minutes; here's the script." A \textbf{known error} is a problem that has been analysed to the point where the root cause is understood and a workaround is documented, recorded in a known error database the service desk can search.
+
+
+This is quietly one of the highest-leverage things a support organisation does. When the twelfth Monday crash hits, the L1 analyst who's never seen it before searches the known error database, finds the entry, applies the scripted workaround in four minutes, and links the ticket to the problem record — no escalation, no rediscovery, no heroics. Institutional memory, written down, beats institutional memory in someone's head, because the someone eventually resigns.
+
+
+
+\subsection{Removing the cause — and checking it worked}
+\index{Removing the cause — and checking it worked}
+
+
+Diagnosis without treatment is just expensive documentation. The permanent fix for a root cause is a \emph{change}, which means it flows through the change enablement process from the previous topic: an RFC to rewrite the reporting job, risk-assessed, approved, scheduled, with a back-out plan. Problem management and change enablement are deliberately interlocked — one identifies what must change, the other governs changing it safely.
+
+
+Then comes the step that turns problem management into a cycle rather than a filing exercise: \textbf{review effectiveness}. After the fix ships, watch the linked incident category. Did the Monday crashes stop? Kestrel's did — eleven weeks of failures, then silence, which is the most satisfying flat line in operations. If they hadn't stopped, that's not failure, it's information: the root cause analysis was wrong or incomplete, and the problem record reopens with better data. Either way, close the loop: update the known error database, retire the workaround if it's no longer needed, and feed any process findings (like Kestrel's missing capacity reviews) into continual improvement, which we'll meet later in this part.
+
+
+
+\begin{quote}\small
+A rule of thumb from the field: problem management is the practice most likely to be quietly abandoned under pressure, because its payoff is invisible — the reward for doing it well is incidents that \emph{don't happen}, and nobody gets a trophy for an absence. Organisations that protect problem-management time anyway are the ones whose on-call rosters slowly get boring. Boring is the goal.
+\end{quote}
+
+
+If the detective work appeals to you, this is a career signal worth noticing. Problem analysts and problem managers are the people trusted to run RCA workshops, challenge comfortable explanations, and tell a room of senior engineers that the evidence doesn't support their favourite theory. It rewards curiosity, statistical literacy and tact in roughly equal measure — and it's a common step from senior support roles toward service management leadership. The practical takeaway is smaller and starts immediately: the next time you see the same ticket twice, don't just fix it faster. Ask why it exists at all.
 
 \section{Service Level Agreements, OLAs and KPIs}
 \index{Service Level Agreements, OLAs and KPIs}
-Service level agreements, or SLAs, spell out exactly what customers can expect from the support team. They keep everyone honest about response times and resolution goals. Think of them as the ground rules for collaboration. If an SLA gets breached, it usually triggers extra scrutiny or penalties, so they're worth taking seriously.
+When Kestrel Freight won the contract to handle overnight distribution for a national supermarket chain, the celebration lasted about an hour. Then the contract landed on Priya's desk. Priya is Kestrel's service delivery manager, and Schedule 4 of the contract was a service level agreement: if the customer's booking portal goes down, Kestrel's IT team must respond within fifteen minutes and restore service within four hours, around the clock, every day of the year. Miss the target and the customer receives a service credit — real money off next month's invoice. Miss it repeatedly and the customer can walk away from the whole contract.
 
-\subsection{Understanding SLAs}
 
-\index{Understanding SLAs}
+Priya's first question wasn't "can we sign this?" It was "can we \emph{deliver} this?" — and that question is what this topic is about. Service level agreements, operational level agreements and key performance indicators are three layers of the same structure: the promise you make, the internal handoffs that make the promise achievable, and the evidence that tells you whether you're keeping it.
 
-A solid SLA defines the services covered, the hours of support and how quickly the team needs to respond or resolve different issue types. It also spells out the consequences if those targets aren't met. No one likes a penalty clause, but it's there to keep priorities clear when systems break.
 
-\paragraph{Practice checkpoints.}
 
-\begin{itemize}[leftmargin=*]
-\item Set expectations with customers
-\item Document response and resolution times
-\item Outline consequences for missed targets
-\end{itemize}
+\subsection{The anatomy of an SLA}
+\index{The anatomy of an SLA}
 
-\subsection{Operational Level Agreements}
 
-\index{Operational Level Agreements}
+A service level agreement is a documented agreement between a service provider and a customer that defines what the service is and what level of performance the customer can expect. The customer might be external, like Kestrel's supermarket client, or internal — most large organisations have SLAs between the IT department and the business units it serves. Either way, a useful SLA answers the same questions:
 
-Operational level agreements, or OLAs, sit behind the scenes. They define how internal teams support each other so that customer-facing SLAs can be met. Imagine the database team promising the app team a five-minute failover. Without that kind of OLA, it would be hard to guarantee the bigger service commitments.
-
-\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
-\item Internal commitments between teams
-\item Clarify dependencies for each workflow
-\item Keep cross-functional support on track
+\item \textbf{What's covered.} Which services, which environments, which components. "The booking portal" needs pinning down: does that include the mobile app? The reporting module? The test environment? (Almost certainly not the test environment.)
+\item \textbf{When support is available.} Business hours only, extended hours, or 24/7. Support hours are one of the biggest cost drivers in any SLA, because after-hours coverage means paying people to be on call.
+\item \textbf{How fast the team responds and resolves.} These are two different clocks. \emph{Response time} is how quickly a human acknowledges the issue and starts working on it. \emph{Resolution time} is how quickly service is restored. Both are usually tiered by priority.
+\item \textbf{How performance is measured.} Which tool records the timestamps, whether the clock pauses while waiting on the customer, and over what period compliance is calculated — usually monthly.
+\item \textbf{What happens when targets are missed.} Service credits, escalation to senior management, and in serious cases termination rights. Nobody enjoys a penalty clause, but it does something valuable: when three things break at once, the SLA tells everyone which one gets fixed first.
 \end{itemize}
 
-\subsection{KPIs and continual improvement}
+A typical priority structure looks like this:
 
-\index{KPIs and continual improvement}
-
-Key performance indicators turn these agreements into measurable results. Response time, first-call resolution and uptime are common examples. Tracking KPIs month over month shows whether your processes actually work. If a target keeps slipping, it's a prompt to refine the workflow or renegotiate the SLA.
-
-\paragraph{Practice checkpoints.}
 
 \begin{itemize}[leftmargin=*]
-\item Measure service health and trends
-\item Report progress to stakeholders
-\item Adjust targets as business needs change
+\item \textbf{P1 — service down for everyone.} Respond in 15 minutes, restore in 4 hours, 24/7.
+\item \textbf{P2 — service degraded, or down for one site.} Respond in 1 hour, resolve within 1 business day.
+\item \textbf{P3 — single user affected, workaround available.} Respond in 4 business hours, resolve within 5 business days.
 \end{itemize}
+
+Notice how the numbers embody judgement. A P1 target of four hours means the organisation has decided it can survive a four-hour outage but not an eight-hour one — and it's willing to pay for the staffing and redundancy that a four-hour promise requires. An SLA is ultimately an economic document wearing technical clothing.
+
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\linewidth]{figures/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png}
+\caption{The SLA, OLA and KPI stack: the customer promise on top, internal handoffs in the middle, measurement evidence underneath}
+\end{figure}
+
+
+
+\subsection{OLAs: the promises behind the promise}
+\index{OLAs: the promises behind the promise}
+
+
+Here's the trap Priya has to avoid: signing a customer-facing promise that no single team inside Kestrel can actually keep. Restoring the booking portal in four hours isn't one team's job. The service desk has to triage the incident, the application team has to diagnose it, and if the database is the culprit, Dana's database team has to fail over to the standby server. If any link in that chain is slow, the SLA is breached — even though every individual team might feel it did its bit promptly.
+
+
+Operational level agreements exist to close that gap. An OLA is an internal commitment between teams inside the same organisation, written to support a customer-facing SLA. Dana's team, for example, commits to a five-minute database failover, any time of day. The application team commits to acknowledging a portal escalation within ten minutes. The network team commits to a two-hour turnaround on firewall changes flagged as incident-related. None of these are legal contracts — no one is suing the database team — but they are written down, agreed and measured, which changes behaviour in exactly the way a verbal "yeah, we'll be quick" does not.
+
+
+The discipline here is traceability. Every clause in the SLA should decompose into OLAs (and, where external suppliers are involved, into \emph{underpinning contracts} with those vendors) that add up to the promised outcome. If the SLA says four hours and the OLAs underneath it sum to six, you haven't made a promise — you've scheduled a breach. When Priya reviewed Schedule 4, she went team by team asking, "what would you have to commit to for this to work?" Two OLAs had to be renegotiated and one on-call roster expanded before she let anyone sign.
+
+
+
+\subsection{KPIs: how you know}
+\index{KPIs: how you know}
+
+
+Agreements without measurement are decoration. Key performance indicators turn the SLA and OLA structure into numbers you can track, report and argue about productively. The common ones for support services:
+
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Response and resolution times} against target, per priority level.
+\item \textbf{SLA compliance rate} — the percentage of incidents resolved within target, usually reported monthly.
+\item \textbf{First-call resolution} — the share of issues fixed at first contact, without escalation. A good proxy for both service desk skill and knowledge-base quality.
+\item \textbf{Availability (uptime)} — the percentage of time the service was usable, measured by monitoring tools rather than by whether anyone complained.
+\end{itemize}
+
+The value is in the trend, not the snapshot. One bad month is noise; three consecutive months of slipping P2 resolution times is a signal. When a target keeps being missed, there are only two honest responses: fix the workflow that's failing, or renegotiate the target because it was never realistic. Quietly missing it every month while nobody mentions it — the most common third option in the wild — corrodes trust in the whole system. The stack diagram above gives you the rule of thumb: when a KPI goes red, the OLA or the SLA above it is usually unrealistic, broken, or both.
+
+
+KPIs also feed continual improvement, which gets its own topic later in this part. Priya's monthly report doesn't just say "97.2\% SLA compliance"; it says which categories of incident caused the misses, which feeds directly into decisions about training, staffing and automation. And targets aren't carved in stone: when Kestrel's supermarket client moved to overnight restocking, "business hours" support for the warehouse systems stopped matching reality, and the SLA was renegotiated to match how the business actually operated.
+
+
+
+\begin{quote}\small
+A warning about what practitioners call \emph{watermelon metrics}: green on the outside, red on the inside. A service can hit 100\% of its SLA targets while users are miserable — because the targets measure the wrong things, or because staff learn to game the clock (responding instantly with a meaningless "we're looking into it," then letting the real work languish). If your compliance report is green and your customers are grumpy, believe the customers, then go fix your metrics.
+\end{quote}
+
+
+
+\subsection{Where you fit in}
+\index{Where you fit in}
+
+
+If you join a support team, SLAs will shape your daily work from week one: the queue you work from is sorted by SLA clock, and the "time to breach" counter next to each ticket is what makes a P1 feel different from a P3. As you get more senior, the work shifts from meeting the numbers to \emph{setting} them — service delivery managers like Priya spend much of their time negotiating SLAs, brokering OLAs between teams that don't report to each other, and defending or revising targets with data. It's a genuine career path, and it rewards a rare combination: enough technical depth to know what's achievable, and enough commercial sense to know what a promise costs.
+
+
+The takeaway is a habit of mind. Whenever you see a service promise, ask the three questions the stack implies: what exactly did we promise, which teams have agreed to the handoffs that make it possible, and what evidence would tell us — before the customer does — that we're failing?

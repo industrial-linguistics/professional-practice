@@ -546,7 +546,10 @@ def write_audit(parts: list[Part]) -> None:
     )
     (AUDIT / "slop-patterns.md").write_text(
         "# Slop Patterns\n\n"
-        "- Avoid generic motivational bridge prose when expanding the slide-derived chapters.\n",
+        "- Avoid generic motivational bridge prose when expanding the slide-derived chapters.\n"
+        "- Watch for service-marketing adjectives such as \"seamless\", \"holistic\" and \"transformative\"; replace them with the actual handoff, control or workflow.\n"
+        "- Avoid \"journey\" unless it names a specific artefact such as a journey map; prefer request path, workflow, handoff or lifecycle.\n"
+        "- Meta-openers like \"this chapter explores\" or \"it is important to note\" should become a concrete workplace problem or decision.\n",
         encoding="utf-8",
     )
 

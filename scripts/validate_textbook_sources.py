@@ -22,10 +22,18 @@ BANNED_PHRASES = [
     "more important than ever",
     "ever-evolving",
     "in conclusion",
+    "it is important to note",
+    "it is worth noting",
     "let's delve",
     "delve into",
     "in the landscape of",
     "navigating the landscape",
+    "this chapter explores",
+    "serves as a reminder",
+    "this highlights the importance",
+    "seamless",
+    "holistic",
+    "transformative",
 ]
 
 MIN_WORDS = 600

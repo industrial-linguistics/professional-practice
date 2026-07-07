@@ -1,0 +1,35 @@
+Think about the last time you chose a phone plan or an internet provider. Every vendor promised fast service and low prices; only some of them actually answer the phone when the connection dies. Choosing an IT vendor is the same problem with more zeros attached, and the stakes compound: a poor choice doesn't just annoy you, it ripples across departments for years. The marketing team buys a CRM that turns out not to connect to the billing system, and now two teams copy data between them by hand, forever. A small point-of-sale provider folds — as several did during the pandemic — and its retail customers are left scrambling for an alternative mid-trading. Meanwhile the organisations that chose well barely think about their vendors at all, which is the point: a reliable partner frees your team to work on strategy instead of firefighting.
+
+Vendor evaluation is sometimes dismissed as procurement busywork. It isn't. It's the difference between a partnership you can lean on when the unexpected strikes and a contract you spend three years trying to escape.
+
+## What to actually evaluate
+
+Start with the hard facts. **Technical capability** comes first: does the product do what you need, does it integrate with what you already run, and can it scale when your usage doubles? Then **security posture** — and here's the catch: asking a vendor about security is like asking someone if they're a good driver. Everyone says yes. So don't ask; check. Look for independent audit results (SOC 2 reports, ISO 27001 certification), their breach history, and how they behaved when something did go wrong. A vendor that discloses incidents promptly and publishes post-mortems is more trustworthy than one with a suspiciously spotless story.
+
+**Financial health** matters more than buyers expect, because a vendor's failure becomes your outage. When Borders collapsed, plenty of niche suppliers lost their major client overnight; the same dynamic runs in both directions, and a startup vendor whose funding dries up can take your data and your workflows down with it. You don't need forensic accounting — ask how long they've been profitable, who their reference customers are, and what happens to your data if they wind up.
+
+Then the softer criteria, which are just as predictive. **Cultural fit and communication style**: a two-person startup vendor will move fast and break things; a large enterprise vendor will want six weeks and three approvals to change a config setting. Neither is wrong, but one of them matches your organisation's rhythm and one will drive you mad. Look for transparent communication and a published roadmap — vendors that surprise you with hidden fees or sudden direction changes during the sales process will do it worse afterwards. Finally, **compliance**: privacy law, industry regulation and data residency requirements are pass/fail criteria, not preferences, and in Australia that includes being clear about where customer data physically lives.
+
+## A process that keeps you honest
+
+The purpose of a selection process is to protect you from your own enthusiasm. The sequence that works:
+
+1. **Define requirements first**, before you see a single demo, and build a scoring matrix from them. It's the same logic as getting quotes for a kitchen renovation — every contractor bids against the same specs, so the bids are comparable. Decide the weightings before you know which vendor they favour.
+2. **Issue an RFP** (request for proposal) to your shortlist and score the responses against the matrix, not against how much you enjoyed the salesperson.
+3. **Run demos with your real data.** A canned demo shows the product on its best day. Handing the vendor a sample of your actual records — messy, inconsistent, full of edge cases — is the fastest way to surface the problems you'd otherwise meet after signing. For anything expensive, extend this into a proper proof of concept, which an earlier section of this part covers in detail.
+4. **Check references** the way you read restaurant reviews: one bad comment might be a fluke or a difficult customer, but if several clients independently mention slow support, believe them. Ask references the pointed question — "what do you wish you'd known before signing?" — rather than inviting a testimonial.
+5. **Negotiate before you sign**: service levels with numbers attached, pricing including the costs that appear in year two, and — critically — exit clauses. The best deal balances cost, performance and a plan B.
+
+The scoring matrix does something subtle and valuable: it makes the decision defensible. When the CFO asks in eighteen months why you chose this vendor, "they scored highest against the criteria we agreed" is a much better answer than "their demo was slick".
+
+## Plan for failure before you sign
+
+Even a well-chosen vendor can stumble, so the contract should be written for the bad days. Understand their backup strategy and insurance coverage, and what compensation applies if they miss critical deadlines. Insist on **data portability and ownership clauses**: if you ever need to walk away, you want your information back in a usable format without a legal fight — a topic the risk-management section of this part treats in more depth alongside vendor lock-in.
+
+Run the numbers on **total cost of ownership**, not the sticker price. Training, integration work, migration effort and support tiers add up, and an attractive licence fee can hide a poor return on investment once you cost the six months of internal effort needed to make it work. A simple ROI comparison across your shortlist — total cost against measurable benefit — regularly reorders the ranking that price alone would give you.
+
+And then keep evaluating after the ink dries, because relationships that start strong drift when ignored. Schedule regular reviews — quarterly is a sensible default — where both sides look at service-level metrics, open issues and upcoming plans. Agree escalation paths in advance so that when something serious happens, you're executing a plan rather than searching for a phone number. Small gaps caught at a quarterly review stay small; the same gaps ignored for a year become disputes with lawyers attached.
+
+> A useful test when shortlisting: ask each vendor to describe their worst outage or their most difficult customer situation, and what they changed afterwards. Vendors with a real answer have been tested. Vendors with no answer are either brand new or not being straight with you — and both are findings.
+
+The takeaway is that thoughtful evaluation is an investment that pays off long after the contract is signed. When a vendor genuinely aligns with your requirements, your budget and your culture, projects finish on time, support issues get resolved without drama, and your team's attention goes to work that matters. Treat vendor selection as a recurring discipline — criteria, process, contract, review — rather than a one-off shopping trip, and it becomes a cornerstone of IT strategy instead of a periodic gamble.

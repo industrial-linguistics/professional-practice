@@ -1,0 +1,43 @@
+The request arrives politely, the way these requests usually do. A university NLP lab is assembling an open speech corpus and would like to include a community organisation's language audio — decades of recordings, many of elders who have since died. The email promises attribution, a citation, and the warm glow of contributing to science. To the researchers this is routine: open data is a public good, and more data means better models. To the community that made those recordings, the question looks entirely different. Those voices carry whakapapa and obligation. Some material was recorded on the understanding that it would stay close to home. "Just put it online" is not a neutral default; it is a decision about authority, made by whoever happens to hold the file.
+
+This section is about managing that tension on purpose. Communities want visibility for their stories. Research wants data. Platforms default to "public". Cultural safety requires respecting protocols, whakapapa and the community's right to say "not now" — which is not the same as "never", and treating the two as identical is how trust gets burned. The way through is to stop treating openness as a switch and start treating it as a spectrum with three axes: open to whom, for what purpose, and under whose authority. Underneath it all sits a reframing worth memorising: treat each dataset as taonga first, asset second.
+
+None of this is anti-openness. It is a strategic position as much as an ethical one. Communities want impact from their language archives, climate observations and health studies; what they have also seen is extractive research hollow out trust, with data leaving and nothing coming back. Balancing openness with cultural safety means designing processes that answer "who benefits?" and "who decides?" before a single CSV moves.
+
+## Principles you can point to
+
+When a project touches Indigenous data, you don't have to improvise the ethics from scratch. Three frameworks give teams shared language, and — just as usefully — give community representatives something concrete to cite in a negotiation.
+
+- **CARE** — Collective benefit, Authority to control, Responsibility, Ethics — complements the better-known FAIR principles (findable, accessible, interoperable, reusable). FAIR asks whether people *can* use the data; CARE asks whether they should, who retains the authority to say no, and what flows back to the community. Culturally grounded projects need both.
+- **OCAP®** — Ownership, Control, Access, Possession — affirms First Nations governance across the entire data lifecycle, from collection to storage to disposal. Possession matters: it is hard to enforce ownership of data sitting on someone else's servers.
+- **UNDRIP Articles 18 and 31** underpin community decision-making over cultural expressions. Citing them in an agreement grounds the arrangement in international law rather than goodwill, and it gives a community tech-lead real standing to slow down an eager research partner and convene the appropriate discussions before anything is exported.
+
+The operational consequence is simple to state: apply tikanga-led approval processes before any data leaves community servers. Approval is a process with named participants, not a checkbox on an upload form.
+
+## Consent that keeps working
+
+Consent in this context is not a one-off signature; it is an ongoing conversation. A consent form signed in 2009 for an oral-history project says nothing about training a voice model in 2026, so agreements need explicit language about derivative uses and AI training — the uses nobody imagined when the recording light first went on.
+
+Practical teams classify material into sensitivity tiers: open educational content, community-restricted material, and sacred or closed knowledge. The tiers exist so that the people with cultural authority can make real distinctions — a language-learning clip that can go to every school in the country sits in a different category from karakia that never leave the marae. Alongside the technical metadata, record provenance, the cultural narratives attached to the material, and explicit usage boundaries, so a future analyst understands the context and not just the sample rate. Where sharing could expose tapu knowledge, plan for redaction or data synthesis instead of publication.
+
+> If the only thing standing between sacred audio and someone's training run is a descriptive file name, you don't have governance. You have luck.
+
+## Tiers, agreements and review boards
+
+Principles become practice through access design. A common pattern is a membership-based portal with whānau-first access and layered permissions for researchers — insiders see more, outsiders earn access progressively. Data-sharing agreements do the heavy lifting: they require reciprocity, cultural briefings before access is granted, and the return of insights to the community in a usable form. A community review board sits above the process with the power to veto or amend any release plan, and sunset reviews are scheduled from the start so that sharing levels can evolve as community comfort changes — in either direction.
+
+The paperwork layer matters as much as the portal. Memoranda of understanding spell out kaitiaki roles, dispute resolution and benefit-sharing. Cultural licences or Traditional Knowledge labels are embedded so the terms travel with the dataset rather than living in a drawer. Institutional partners are required to appoint liaison staff who are accountable back to tribal councils, and escalation paths are documented in advance for the day a request breaches protocol or legal boundaries. None of this is exotic to an IT professional: it is access control, data classification and incident response, pointed at a different risk register.
+
+## Technical safeguards
+
+People sometimes assume cultural safety is purely policy. The stack matters. Attribute-based access control lets permissions honour roles and protocols rather than a flat "registered user" tier, and audit trails show exactly who downloaded which file and when. Encrypt data at rest and in transit, with keys held by community stewards — that detail changes the power dynamic, because the community can revoke access rather than request revocation. Watermarking and data-usage dashboards surface secondary sharing attempts, and automated alerts fire when access patterns deviate from an approved research plan. If someone suddenly scrapes thousands of files, the licence can be paused while the parties convene — the source communities frame this as a restorative process, not just a contract termination. Configured this way, the technology acts as a guardian alongside the people.
+
+## Who does this work
+
+Delivering all of the above takes a deliberate team: community tech-leads, Indigenous knowledge holders, data stewards, legal counsel and platform engineers. The staffing ratios that recur in practice are one cultural advisor per squad and one data steward per three to five data partnerships — enough coverage that cultural review is part of the workflow, not a bottleneck at the end.
+
+The entry pathways are broader than a computer science degree. Interns come through iwi digital hubs; policy analysts move sideways into data governance; data analysts retrain in cultural frameworks. The trait that predicts success is relational: patient negotiators who can translate tikanga into platform features and platform constraints back into terms a community can weigh. Career progression runs from cultural data analyst to community tech-lead to Chief Data Steward, guiding practice across whole organisations — a reminder that this is a career track, not a compliance chore.
+
+So how does the opening scenario end? Not with a flat refusal, and not with a quiet upload either. The community council requires a CARE-aligned impact statement and a co-design workshop before anything moves. Access is granted through a time-bound licence with obligations attached: the university funds digitisation work and reports back on outcomes in te reo Māori. Breaches trigger suspension, a restorative hui, and potentially the withdrawal of models derived from the data. The lab gets its corpus; the community gets resourcing, accountability and continuing authority.
+
+That is the takeaway worth carrying into your own projects: openness can honour Indigenous sovereignty when cultural governance sets the terms of sharing. The next time someone in a meeting says "let's just make it open", you should be able to ask the three questions that turn a slogan into a design: open to whom, for what purpose, and under whose authority?
