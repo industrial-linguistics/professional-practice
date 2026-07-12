@@ -26,6 +26,7 @@ bin/
 state/
 logs/
 content/**/subtitles.vtt
+content/**/audio.mp3
 content/**/audio.wav
 content/**/final.mp4
 content/**/temp/

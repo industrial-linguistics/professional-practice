@@ -13,6 +13,7 @@ on:
       - 'scripts/generate_run_sheets_html.sh'
       - 'scripts/generate_website_index.sh'
       - 'scripts/deploy_website.sh'
+      - 'scripts/sync_deployed_audio.sh'
       - 'scripts/install_chrome.sh'
       - '.github/workflows/run_sheets.yml'
       - 'go.mod'
@@ -49,9 +50,6 @@ jobs:
       - name: Update website index
         run: |
           ./scripts/generate_website_index.sh
-      - name: Build e-learning site
-        run: |
-          python3 scripts/build_elearning.py
       - name: Prepare SSH key
         if: ${{ vars.ENABLE_GITHUB_SITE_DEPLOY == '1' }}
         env:
@@ -60,6 +58,13 @@ jobs:
           echo "$DEPLOYMENT_SSH_KEY" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
           echo "DEPLOYMENT_SSH_KEY=/tmp/deploy_key" >> $GITHUB_ENV
+      - name: Sync deployed audio
+        if: ${{ vars.ENABLE_GITHUB_SITE_DEPLOY == '1' }}
+        run: |
+          ./scripts/sync_deployed_audio.sh
+      - name: Build e-learning site
+        run: |
+          python3 scripts/build_elearning.py
       - name: Deploy website
         if: ${{ vars.ENABLE_GITHUB_SITE_DEPLOY == '1' }}
         run: |
