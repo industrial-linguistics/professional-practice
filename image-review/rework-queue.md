@@ -125,3 +125,18 @@ Original prompt/spec:
 Diagram spec: create a 16:9 post-incident review timeline showing alert, acknowledge, restore, impact review, root cause discussion, action ownership, and follow-up verification. Make the order unmistakable, include plain-language labels, and keep the tone blameless and operational.
 ```
 
+## 2026-07-06-due-diligence-evidence-map
+
+- Requeued: 2026-07-12T23:02:38+00:00
+- Status: commented
+- Target: `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png`
+- Slide: slide 1
+- Reviewer: codex-image-review at 2026-07-06 11:35:22
+- Comment: Codex public HTTPS POST smoke after CGI fix
+
+Original prompt/spec:
+
+```text
+Diagram spec: create a 16:9 evidence map for startup investor diligence with a central data room linked to policies, control evidence, customer or vendor proof, and governance artifacts. Make it feel executive-ready, use no brand logos, and keep labels readable enough for classroom projection.
+```
+

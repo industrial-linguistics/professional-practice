@@ -44,7 +44,7 @@ def ensure_rework_file(path: Path) -> None:
 
 def append_rework(path: Path, row: sqlite3.Row) -> None:
     ensure_rework_file(path)
-    now = dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat()
+    now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
     comment = row["review_comment"].strip() or "(no comment supplied)"
     prompt = row["prompt"].strip() or "(no prompt recorded)"
     with path.open("a", encoding="utf-8") as handle:

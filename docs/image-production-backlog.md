@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-07-06.
+Last checked: 2026-07-13.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -46,7 +46,7 @@ These are the best first candidates because they either support early course con
 | 1 | ready | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | Good second batch candidate. |
 | 1 | ready | `content/part-01/servicenow-visual-guide/images/servicenow-ticket-lifecycle.png` | mockup | Clean ServiceNow-style ticket lifecycle mockup. | Avoid live screenshot dependency. |
 | 1 | accepted | `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png` | diagram | Contract SLA, internal OLA and operational KPI stack. | Approved 2026-07-06; referenced from slide 2. |
-| 1 | candidate-generated | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | 2026-07-06 candidate rejected with fixes (text overflow, caption collision); see rework queue. |
+| 1 | candidate-generated | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | 2026-07-13 HTML/SVG rework candidate pending review; distinct owner-metadata link and fitted labels address the 2026-07-06 comments. |
 | 1 | ready | `content/part-02/metrics-reporting-dashboards/images/itil-dashboard-mockup.png` | mockup | Operational dashboard mockup for ITIL metrics. | Use realistic but fictional numbers. |
 | 1 | superseded-html | `content/part-03/dora-metrics/images/dora-current-target-radar.png` | diagram | DORA current vs target performance visual. | Implemented as HTML shift table on slide 2 (2026-07-06); radar form rejected. |
 | 1 | superseded-html | `content/part-03/cicd-pipeline-design/images/cicd-flow.png` | diagram | Commit, build, test, package, deploy, observe, rollback. | Implemented as HTML flow on slide 4 (2026-07-06). |
@@ -71,7 +71,7 @@ These are the best first candidates because they either support early course con
 | 2 | backlog | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | mockup | POC scorecard. | Potential worksheet asset. |
 | 2 | ready | `content/part-06/remote-first-reality-check/images/remote-onboarding-flow.png` | diagram | Remote onboarding/offboarding flow. | Strong operations asset. |
 | 2 | accepted | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | diagram | Weekly/monthly/quarterly vendor cadence and scorecard. | Approved 2026-07-06; referenced from slide 7. |
-| 2 | candidate-generated | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | diagram | Evidence map for policy, logs, access reviews, backups and board reporting. | 2026-07-06 candidate rejected with fixes (Data Room text overflow, badge spacing); see rework queue. |
+| 2 | candidate-generated | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | diagram | Evidence map for policy, logs, access reviews, backups and board reporting. | 2026-07-13 HTML/SVG rework candidate pending review; contained labels and separated badge/caption address the 2026-07-06 comments. |
 | 2 | ready | `content/part-06/capstone-red-team-exercise/images/startup-maturity-radar.png` | diagram | Startup maturity radar. | Good visual for group exercise. |
 | 2 | backlog | `content/part-07/foss-licensing-options/images/license-decision-tree.png` | diagram | License choice decision tree. | Needs legal wording caution. |
 | 2 | backlog | `content/part-07/community-governance-structures/images/oss-governance-spectrum.png` | diagram | Maintainer to foundation governance spectrum. | Useful after Part 7 polish pass. |
@@ -81,6 +81,14 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-07-13 review sweep
+
+Selected the two remaining reviewer-requested image reworks rather than opening new backlog items:
+
+- `2026-07-13-cmdb-service-map-rework-1` keeps the approved service-map concept, gives the service-owner record a dashed metadata link, and fits all text with clear bottom-caption spacing.
+- `2026-07-13-due-diligence-evidence-map-rework-1` keeps the approved evidence-map concept, shortens the centre and category labels, and separates the investor-lens badge from the caption.
+- Both candidates use deterministic HTML/SVG sources rendered to PNG. This is cheaper and more controllable than raster generation for label-heavy diagrams while still producing the candidate image and slide-preview bundle required by the protected review workflow.
 
 ### 2026-07-06 review sweep
 

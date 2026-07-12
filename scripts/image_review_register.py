@@ -64,7 +64,7 @@ def read_prompt(args: argparse.Namespace) -> str:
 
 
 def default_id(batch_id: str, target_path: str) -> str:
-    stamp = dt.datetime.now(dt.UTC).strftime("%Y%m%d%H%M%S")
+    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%d%H%M%S")
     return f"{slug(batch_id)}-{slug(target_path)}-{stamp}"
 
 
