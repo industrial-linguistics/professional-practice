@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-07-13.
+Last checked: 2026-07-20.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -35,7 +35,7 @@ These are the best first candidates because they either support early course con
 | 1 | superseded-html | `content/part-01/escalation-tiers/images/support-tier-swimlane.png` | diagram | Swimlane for L1 triage, L2 specialist support, L3 engineering/vendor escalation and feedback to knowledge base. | Shows handoffs and closure loop; not a generic org chart. |
 | 1 | superseded-html | `content/part-03/dora-metrics/images/dora-current-target-radar.png` | diagram | Radar or quadrant showing deployment frequency, lead time, change failure rate and MTTR for current vs target state. | Uses directional labels clearly; avoids fake precision; works in greyscale. |
 | 1 | superseded-html | `content/part-04/post-mortem-agenda/images/review-agenda-timeline.png` | diagram | Timeline of alert, acknowledge, restore, review, action ownership and follow-up verification. | Makes blameless review sequence obvious; includes business impact and action tracking. |
-| 1 | ready | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Startup day-zero map covering domain, DNS, identity, email, chat, docs, devices, backups and support owner. | Uses Sarah/startup framing without decorative clutter; suitable as commercial preview. |
+| 1 | candidate-generated | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Startup day-zero map covering domain, DNS, identity, email, chat, docs, devices, backups and support owner. | 2026-07-20 deterministic HTML/SVG candidate pending review; uses Sarah/startup framing and distinguishes dependencies, recovery and ownership. |
 
 ## Backlog
 
@@ -43,11 +43,11 @@ These are the best first candidates because they either support early course con
 | --- | --- | --- | --- | --- | --- |
 | 1 | superseded-html | `content/part-01/incident-vs-request/images/incident-request-decision.png` | diagram | Incident/request/problem/change decision tree. | Implemented as HTML decision guide on slide 4 (2026-07-06). |
 | 1 | superseded-html | `content/part-01/escalation-tiers/images/support-tier-swimlane.png` | diagram | L1/L2/L3 support handoff swimlane. | Implemented as HTML lane diagram on slide 4 (2026-07-06). |
-| 1 | ready | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | Good second batch candidate. |
+| 1 | candidate-generated | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | 2026-07-20 deterministic HTML/SVG candidate pending review; supports an aligned topic with generated audio. |
 | 1 | ready | `content/part-01/servicenow-visual-guide/images/servicenow-ticket-lifecycle.png` | mockup | Clean ServiceNow-style ticket lifecycle mockup. | Avoid live screenshot dependency. |
 | 1 | accepted | `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png` | diagram | Contract SLA, internal OLA and operational KPI stack. | Approved 2026-07-06; referenced from slide 2. |
 | 1 | candidate-generated | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | 2026-07-13 HTML/SVG rework candidate pending review; distinct owner-metadata link and fitted labels address the 2026-07-06 comments. |
-| 1 | ready | `content/part-02/metrics-reporting-dashboards/images/itil-dashboard-mockup.png` | mockup | Operational dashboard mockup for ITIL metrics. | Use realistic but fictional numbers. |
+| 1 | candidate-generated | `content/part-02/metrics-reporting-dashboards/images/itil-dashboard-mockup.png` | mockup | Operational dashboard mockup for ITIL metrics. | 2026-07-20 deterministic HTML/SVG candidate pending review; uses fictional rounded values and connects measures to an owned action. |
 | 1 | superseded-html | `content/part-03/dora-metrics/images/dora-current-target-radar.png` | diagram | DORA current vs target performance visual. | Implemented as HTML shift table on slide 2 (2026-07-06); radar form rejected. |
 | 1 | superseded-html | `content/part-03/cicd-pipeline-design/images/cicd-flow.png` | diagram | Commit, build, test, package, deploy, observe, rollback. | Implemented as HTML flow on slide 4 (2026-07-06). |
 | 1 | ready | `content/part-03/github-actions-workflows/images/workflow-dag.png` | diagram | GitHub Actions jobs, matrix, artifacts and approval gate. | Could derive from simple YAML example. |
@@ -81,6 +81,15 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-07-20 review sweep
+
+Selected three ready items that add immediate teaching value without consuming generative-image quota:
+
+- `2026-07-20-p1-incident-timeline` makes the response cadence and commander, communications, resolver and scribe ownership visible on an aligned Part 1 topic with audio.
+- `2026-07-20-itil-dashboard-mockup` turns the aligned Part 2 dashboard topic into a concrete, fictional decision surface with trends, backlog ageing and a named follow-up action.
+- `2026-07-20-startup-day-zero-architecture` advances the backlog's named commercial-preview priority with a dependency map for identity, communication, devices, recovery and support ownership.
+- No new reviewer-requested rework was ready: both July 13 rework candidates remain pending in the protected review database. All three new candidates use deterministic HTML/SVG sources rendered to PNG so their labels and connectors can be corrected without repeated raster generation.
 
 ### 2026-07-13 review sweep
 

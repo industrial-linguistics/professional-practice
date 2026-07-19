@@ -1,21 +1,21 @@
 # Media and Diagram Plan
 
-Last checked: 2026-04-25.
+Last checked: 2026-07-20.
 
 ## Current media state
 
 - Slide decks found: 81.
-- Slide count across decks: 773.
-- Narrative files found: 614.
-- Current generated media: topic-level `audio.wav` files are generated outside source control as audio masters; the e-learning build transcodes those masters to `audio.mp3` for browser delivery. MP4s are optional manual outputs and are not part of the default learner-facing course surface.
+- Slide count across decks: 715.
+- Narrative files found: 715.
+- Current generated media: 30 topics have a local `audio.mp3` or `audio.wav`; topic-level `audio.wav` files are generated outside source control as audio masters, and the e-learning build transcodes those masters to `audio.mp3` for browser delivery. One optional MP4 is present; MP4s are not part of the default learner-facing course surface.
 - Source images currently committed:
   - `content/part-01/value-chain/images/service-value-chain-continual-improvement.png`
   - `content/part-02/change-vs-release/images/itil-minor-change.png`
   - `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png`
   - `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png`
-- Topics with matching slide and narrative counts: 17.
+- Topics with matching slide and narrative counts: 81.
 
-The largest immediate blocker for audio and video is not imagery. It is slide/narrative alignment: most topics have more slides than narrative files, and two Part 5 topics have no narratives at all.
+Slide/narrative alignment is now complete across all 81 topics. The next media constraint is generating and verifying audio for the remaining topics; image work should continue in small reviewable batches rather than blocking audio coverage.
 
 ## QR code decision
 
@@ -32,7 +32,7 @@ Recommended decision:
 
 ## Priority diagrams and images
 
-The structured production queue is maintained in [image-production-backlog.md](image-production-backlog.md).
+The structured production queue and current disposition of each asset are maintained in [image-production-backlog.md](image-production-backlog.md). The table below remains the coverage plan rather than a duplicate status ledger.
 
 Use diagrams where the concept is process, dependency, decision, or role ownership. Use screenshots or realistic mockups where the concept is tool literacy.
 
