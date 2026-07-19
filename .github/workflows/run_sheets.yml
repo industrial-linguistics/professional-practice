@@ -5,6 +5,9 @@ on:
     branches: ["main"]
     paths:
       - 'content/**'
+      - 'docs/image-production-backlog.md'
+      - 'docs/media-and-diagram-plan.md'
+      - 'image-review/batches/**'
       - 'cmd/run_sheets/**'
       - 'scripts/render_html_slides.py'
       - 'scripts/course_content.py'
