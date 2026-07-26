@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-07-20.
+Last checked: 2026-07-27.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -44,13 +44,13 @@ These are the best first candidates because they either support early course con
 | 1 | superseded-html | `content/part-01/incident-vs-request/images/incident-request-decision.png` | diagram | Incident/request/problem/change decision tree. | Implemented as HTML decision guide on slide 4 (2026-07-06). |
 | 1 | superseded-html | `content/part-01/escalation-tiers/images/support-tier-swimlane.png` | diagram | L1/L2/L3 support handoff swimlane. | Implemented as HTML lane diagram on slide 4 (2026-07-06). |
 | 1 | candidate-generated | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | 2026-07-20 deterministic HTML/SVG candidate pending review; supports an aligned topic with generated audio. |
-| 1 | ready | `content/part-01/servicenow-visual-guide/images/servicenow-ticket-lifecycle.png` | mockup | Clean ServiceNow-style ticket lifecycle mockup. | Avoid live screenshot dependency. |
+| 1 | candidate-generated | `content/part-01/servicenow-visual-guide/images/servicenow-ticket-lifecycle.png` | mockup | Clean ServiceNow-style ticket lifecycle mockup. | 2026-07-27 fictional ITSM lifecycle candidate pending review; shows the SLA pause, resolution/closure handoff and attributed activity log without copying a live product UI. |
 | 1 | accepted | `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png` | diagram | Contract SLA, internal OLA and operational KPI stack. | Approved 2026-07-06; referenced from slide 2. |
 | 1 | candidate-generated | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | 2026-07-13 HTML/SVG rework candidate pending review; distinct owner-metadata link and fitted labels address the 2026-07-06 comments. |
 | 1 | candidate-generated | `content/part-02/metrics-reporting-dashboards/images/itil-dashboard-mockup.png` | mockup | Operational dashboard mockup for ITIL metrics. | 2026-07-20 deterministic HTML/SVG candidate pending review; uses fictional rounded values and connects measures to an owned action. |
 | 1 | superseded-html | `content/part-03/dora-metrics/images/dora-current-target-radar.png` | diagram | DORA current vs target performance visual. | Implemented as HTML shift table on slide 2 (2026-07-06); radar form rejected. |
 | 1 | superseded-html | `content/part-03/cicd-pipeline-design/images/cicd-flow.png` | diagram | Commit, build, test, package, deploy, observe, rollback. | Implemented as HTML flow on slide 4 (2026-07-06). |
-| 1 | ready | `content/part-03/github-actions-workflows/images/workflow-dag.png` | diagram | GitHub Actions jobs, matrix, artifacts and approval gate. | Could derive from simple YAML example. |
+| 1 | candidate-generated | `content/part-03/github-actions-workflows/images/workflow-dag.png` | diagram | GitHub Actions jobs, matrix, artifacts and approval gate. | 2026-07-27 deterministic HTML/SVG candidate pending review; distinguishes clean matrix runners, the promoted artifact, environment ordering and the production gate. |
 | 1 | superseded-html | `content/part-04/post-mortem-agenda/images/review-agenda-timeline.png` | diagram | Post-incident review timeline. | Implemented as HTML timeline on slide 2 (2026-07-06). |
 | 1 | ready | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | diagram | Five whys versus fishbone comparison. | Needs compact labels. |
 | 1 | ready | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | diagram | Vendor lifecycle funnel with IT, finance, legal and MSP swimlanes. | Strong commercial asset. |
@@ -59,7 +59,7 @@ These are the best first candidates because they either support early course con
 | 1 | ready | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Day-zero startup IT architecture. | First batch. |
 | 1 | ready | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | diagram | Low-cost controls grid for MFA, password manager, MDM-lite, backups and logging. | Good for worksheet reuse. |
 | 1 | ready | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | diagram | Pre-seed, Series A and Series B stack cost step-up chart. | Use illustrative, labelled ranges. |
-| 1 | ready | `content/part-06/capstone-remediation-roadmap/images/roadmap-30-60-90.png` | diagram | 30/60/90 remediation roadmap. | Supports validated topic. |
+| 1 | candidate-generated | `content/part-06/capstone-remediation-roadmap/images/roadmap-30-60-90.png` | diagram | 30/60/90 remediation roadmap. | 2026-07-27 deterministic HTML/SVG candidate pending review; pairs each action with an owner, evidence of done and an executive review gate. |
 | 1 | ready | `content/part-07/maori-case-study/images/te-hiku-data-governance-map.png` | diagram | Community control, consent, vendors, storage and audit loops. | Needs cultural review sensitivity. |
 | 2 | backlog | `content/part-02/continual-improvement/images/pdca-csi-loop.png` | diagram | PDCA/continual-service-improvement loop. | Lower priority because existing value-chain image covers adjacent idea. |
 | 2 | superseded-html | `content/part-03/sre-error-budgets/images/error-budget-burn.png` | diagram | Error-budget burn chart linked to release freeze decision. | Implemented as inline SVG on slide 4 (2026-07-06). |
@@ -81,6 +81,15 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-07-27 review sweep
+
+Selected three ready items that support aligned topics with generated audio and do not consume generative-image quota:
+
+- `2026-07-27-servicenow-ticket-lifecycle` uses a fictional Coralline ITSM view to make state, ownership, SLA pausing and the activity log concrete without relying on a licensed or login-dependent screenshot.
+- `2026-07-27-github-actions-workflow-dag` derives a job graph from the topic's workflow example and keeps matrix runners, artifact promotion, failure notification and the production approval gate distinct.
+- `2026-07-27-roadmap-30-60-90` turns the capstone horizon into an executive-ready roadmap whose actions name both an owner and evidence of completion.
+- No new reviewer-requested rework was ready: the July 13 rework candidates and July 20 candidates remain pending in the protected review database. All three new candidates use deterministic HTML/SVG sources rendered to PNG so label and layout changes remain cheap.
 
 ### 2026-07-20 review sweep
 
