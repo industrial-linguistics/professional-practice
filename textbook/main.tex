@@ -5,8 +5,10 @@
   \usepackage[a4paper,margin=2.6cm]{geometry}
 \fi
 \usepackage{fontspec}
+\usepackage[australian]{babel}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{tabularx}
@@ -15,63 +17,92 @@
 \usepackage{setspace}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{fvextra}
+\usepackage{csquotes}
 \usepackage{xcolor}
 \usepackage{float}
+\usepackage{xurl}
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nyt,
+  maxcitenames=2,
+  maxbibnames=8,
+  giveninits=true,
+  uniquename=init
+]{biblatex}
+\addbibresource{references.bib}
+\captionsetup{
+  justification=raggedright,
+  singlelinecheck=false,
+  font=small,
+  labelfont=bf
+}
 \DefineVerbatimEnvironment{CodeBlock}{Verbatim}{breaklines=true,breakanywhere=true,fontsize=\small}
 \makeindex
 \setstretch{1.14}
 \setcounter{tocdepth}{1}
 \setlength{\emergencystretch}{3em}
 \sloppy
+\raggedbottom
 \pagestyle{plain}
 \hypersetup{
-  pdftitle={IT Professional Practice},
+  pdftitle={IT Professional Practice: How Digital Services Are Operated, Improved, Bought and Governed},
   pdfauthor={Greg Baker},
   hidelinks
 }
-\title{IT Professional Practice\\\large A Practical Course Reader}
+\title{IT Professional Practice\\\large How Digital Services Are Operated, Improved, Bought and Governed}
 \author{Greg Baker}
-\date{Draft edition}
-\newif\ifcoverpage
-\coverpagetrue
-\ifdefined\omitcoverpage
-  \coverpagefalse
-\fi
+\date{First edition, 2026}
 
 \begin{document}
-\ifcoverpage
 \begin{titlepage}
 \thispagestyle{empty}
 \vspace*{0.12\textheight}
 {\Huge\bfseries IT Professional Practice\par}
 \vspace{1.2em}
-{\Large A Practical Course Reader\par}
+\begin{minipage}{0.86\textwidth}
+\raggedright\Large How Digital Services Are Operated, Improved, Bought and Governed
+\end{minipage}
 \vfill
 {\large Greg Baker\par}
-{\large Draft edition\par}
+{\large Industrial Linguistics\par}
 \end{titlepage}
-\fi
+
+\thispagestyle{empty}
+\vspace*{\fill}
+\noindent Copyright \textcopyright\ 2026 Greg Baker\\
+All rights reserved.\\[1.2em]
+\noindent First edition, 2026\\
+Published by Industrial Linguistics\\
+
+\noindent The examples and case organisations identified as fictional are
+teaching devices. Product names and trademarks belong to their respective
+owners. OCAP\textsuperscript{\textregistered} is a registered trademark of
+the First Nations Information Governance Centre.\\[1.2em]
+\noindent This book provides professional-practice education, not legal,
+financial, security, or cultural-authority advice. Verify current rules and
+seek qualified advice for decisions that carry material consequences.
+\clearpage
 
 \frontmatter
-\chapter*{About This Course Reader}
-\addcontentsline{toc}{chapter}{About This Course Reader}
+\chapter*{About This Book}
+\addcontentsline{toc}{chapter}{About This Book}
 \setcounter{secnumdepth}{-1}
-This is a professional-practice handbook for technical graduates who must operate, improve, buy, sell, and steward digital services responsibly. It is written for university students about to enter IT, data, software, support, platform, customer-success, sales-engineering, vendor-management, and digital-governance roles, and for early-career practitioners who have already discovered that real services are held together by more than code.
+This is a professional-practice handbook for people who must operate, improve, buy, sell and steward digital services responsibly. It is written for readers entering IT, data, software, support, platform, customer-success, sales-engineering, vendor-management and digital-governance roles, and for early-career practitioners who have already discovered that real services are held together by more than code.
 
 
 \index{change record}
 \index{CRM}
 \index{DevOps}
 \index{ITIL}
-\index{service desk}
-The book is not trying to be an ITIL exam manual, a DevOps transformation book, a CRM sales text, or a startup operations guide. Those shelves already have strong books. This reader sits between them. Its job is to teach the conversations that early-career technical people keep being pulled into: the service desk ticket that becomes a change record, the sales promise that becomes an operational obligation, the incident review that becomes a product decision, the vendor contract that becomes next year's budget, and the dataset that cannot be treated as raw material just because it is easy to copy.
+The book is not an ITIL exam manual, a DevOps transformation prescription, a CRM sales text or a start-up operations manual. Each of those subjects has a shelf of its own. This book connects them. Its subject is the set of conversations technical people are repeatedly drawn into: the service-desk ticket that becomes a change record, the sales promise that becomes an operational obligation, the incident review that becomes a product decision, the vendor contract that becomes next year's budget, and the dataset that cannot be treated as raw material merely because it is easy to copy.
 
 
 
-\subsection{The Course Map}
+\subsection{The Book's Through-Line}
 
 
-Read the course as one service story:
+Read the chapters as one service story:
 
 
 
@@ -81,7 +112,7 @@ Read the course as one service story:
 \renewcommand{\arraystretch}{1.18}
 \begin{tabularx}{\linewidth}{@{}p{0.30\linewidth}X@{}}
 \toprule
-\textbf{Course movement} & \textbf{Professional question} \\
+\textbf{Book movement} & \textbf{Professional question} \\
 \midrule
 Promise & What are we promising users, and what does good service look like? \\
 Operating model & Who receives work, escalates it, changes it, measures it, and improves it? \\
@@ -90,10 +121,10 @@ Incident learning & What did the incident teach us about the system, and who own
 Vendor lifecycle & What commercial promise has operations inherited, and what evidence keeps the relationship honest? \\
 Small org constraints & Which controls matter first when money, time, and specialist staff are scarce? \\
 Data authority & Who has authority to share, reuse, maintain, and benefit from the artefact or dataset? \\
-Capstone defence & Can the whole service design survive questions from operations, commercial, technical, and community perspectives? \\
+Service-design defence & Can the whole service design survive questions from operations, commercial, technical, and community perspectives? \\
 \bottomrule
 \end{tabularx}
-\caption{The course arc: from service promise to defended service design.}
+\caption{The book's through-line: from service promise to defended service design.}
 \end{figure}
 
 
@@ -102,22 +133,19 @@ Capstone defence & Can the whole service design survive questions from operation
 \index{open source}
 \index{Salesforce}
 \index{ServiceNow}
-That map is the reason ServiceNow, GitHub Actions, Salesforce, vendor scorecards, open-source licences, and Indigenous data-governance frameworks belong in the same course. They are all places where technical work becomes accountable to other people.
+That through-line explains why ServiceNow, GitHub Actions, Salesforce, vendor scorecards, open-source licences and Indigenous data-governance frameworks belong in the same book. They are all places where technical work becomes accountable to other people.
 
 
 
-\subsection{How To Use The Book And Site}
+\subsection{How To Use This Book}
 
 
-\index{capstone}
-\index{DORA metrics}
-\index{KPI}
 \index{post-mortem}
-\index{service level agreement}
-The book carries the stable material: concepts, cases, vocabulary, decision patterns, and the professional judgement behind them. The companion site is the operational half of the course. It should carry the artefacts that change more often: ticket examples, post-mortem templates, SLA and KPI worksheets, DORA metric exercises, vendor-evaluation rubrics, CRM pipeline exercises, startup IT checklists, data-sovereignty review prompts, capstone marking rubrics, and current market notes.
+\index{vendor evaluation}
+The chapters move from operating a service to improving, delivering, buying and governing it. Read them in order for the full argument, or use the contents and index to solve a problem at work. Each part ends with a practice artefact. Completing those artefacts turns the book from a source of vocabulary into a working portfolio: an incident-triage aid, a change record, a delivery measurement plan, a post-mortem, a vendor assessment, a small-organisation control baseline, a data-authority review and a defended service design.
 
 
-Treat dated numbers with care. Salary ranges, certification details, vendor prices, legal thresholds, platform behaviour, and survey claims are useful examples only when they are current and sourced. When this book uses a live-market example, read it as a pattern to verify, not a promise that the number will still be true when you graduate.
+Tool interfaces, prices, certification rules, legal thresholds and market statistics change. The book therefore cites stable frameworks and current primary sources while treating volatile numbers as dated examples. Before using a claim in a consequential decision, follow the reference and check the current position.
 
 
 
@@ -126,7 +154,7 @@ Treat dated numbers with care. Salary ranges, certification details, vendor pric
 
 \begin{itemize}[leftmargin=*]
 \index{support tiers}
-\item \textbf{Coralline} is a fictional Brisbane online retailer used to introduce ITIL foundations, service value, support tiers, and major-incident work through Priya's entry-level service-desk perspective.
+\item \textbf{Coralline} is a fictional Brisbane online retailer used to introduce ITIL foundations, service value, support tiers and major-incident work through Priya's entry-level service-desk perspective.
 \index{change enablement}
 \index{CMDB}
 \index{continual improvement}
@@ -134,14 +162,15 @@ Treat dated numbers with care. Salary ranges, certification details, vendor pric
 \index{ITIL!continual improvement}
 \index{OLA}
 \index{release management}
-\item \textbf{Kestrel Freight} is a fictional Melbourne logistics company used for mature service management: SLAs, OLAs, change enablement, release management, CMDB practice, dashboards, and continual improvement.
+\index{service level agreement}
+\item \textbf{Kestrel Freight} is a fictional Melbourne logistics company used for mature service management: SLAs, OLAs, change enablement, release management, CMDB practice, dashboards and continual improvement.
 \index{security baseline}
-\item \textbf{Sarah's startup} is a fictional high-growth small company used for constrained IT judgement: domain setup, identity, device management, security baselines, vendor rhythm, due diligence, and enterprise-stack decisions.
+\item \textbf{Sarah's start-up} is a fictional high-growth small company used for constrained IT judgement: domain setup, identity, device management, security baselines, vendor rhythm, due diligence and enterprise-stack decisions.
 \index{buying committee}
-\item \textbf{Vendor and CRM scenarios} use fictional accounts and sales teams to show how buying committees, account executives, sales engineers, customer-success managers, and service teams hand work to one another.
+\item \textbf{Vendor and CRM scenarios} use fictional accounts and sales teams to show how buying committees, account executives, sales engineers, customer-success managers and service teams hand work to one another.
 \index{Te Hiku Media}
-\item \textbf{Te Hiku Media and Indigenous data-governance examples} are not generic case fiction. They require careful sourcing, local context, and respect for the communities and frameworks being discussed.
-\item \textbf{The capstone organisation} should be real enough that its constraints matter: funding cycle, staff capacity, data authority, risk tolerance, and support model.
+\item \textbf{Te Hiku Media and the Indigenous data-governance frameworks are not case fiction.} They require careful sourcing, local context and respect for the communities and authorities being discussed.
+\item \textbf{The final service-design organisation} may be fictional, or it may be a real organisation whose operators have agreed to participate. Either way, its funding cycle, staff capacity, data authority, risk tolerance and support model must constrain the design.
 \end{itemize}
 
 
@@ -152,7 +181,7 @@ Treat dated numbers with care. Salary ranges, certification details, vendor pric
 \index{kaitiakitanga}
 \index{Maori}
 \index{OCAP}
-Part 7 introduces Indigenous-led frameworks and examples, including CARE, OCAP, tikanga-led governance, kaitiakitanga, and Te Hiku Media's language-technology work. It does not make one framework stand in for every Indigenous context. Māori, Aboriginal, Torres Strait Islander, First Nations, and other Indigenous communities have different histories, authorities, legal settings, and protocols. Publication use of this material should be reviewed with people who have relevant community authority or specialist expertise; classroom use should still treat the material as responsibility-bearing professional practice, not as an ethics box to tick.
+Part 7 introduces Indigenous-led frameworks and examples, including CARE, OCAP®, Māori data-sovereignty principles, Indigenous data-sovereignty principles from Australia, Local Contexts labels, tikanga-led governance, kaitiakitanga and Te Hiku Media's language-technology work. These are distinct sources, not interchangeable labels. Māori, Aboriginal, Torres Strait Islander, First Nations and other Indigenous communities have different histories, authorities, legal settings and protocols. The material provides starting questions for professional practice; it does not grant authority to collect, share or reuse community data. Any real project must work with the relevant community authority, and this part requires specialist or community-authority review before publication.
 \setcounter{secnumdepth}{2}
 
 \tableofcontents
@@ -166,6 +195,10 @@ Part 7 introduces Indigenous-led frameworks and examples, including CARE, OCAP, 
 \include{chapters/part-07-open-source-indigenous-digital-sovereignty}
 \include{chapters/part-08-project-studio-and-presentations}
 \backmatter
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\printbibliography[title={References}]
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{Index}

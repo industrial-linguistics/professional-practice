@@ -1,4 +1,4 @@
-Every team that deploys by hand has a version of the same story. Someone runs the release steps from memory, skips one — clearing a cache, restarting a service, copying one last file — and spends the next four hours working out why production is broken when "nothing changed." The previous topic argued that the cure is a pipeline. This topic is about the most accessible tool for building one: GitHub Actions, the automation platform built into the place your code already lives.
+Every team that deploys by hand has a version of the same story. Someone runs the release steps from memory, skips one (clearing a cache, restarting a service, copying one last file) and spends the next four hours working out why production is broken when "nothing changed." The previous topic argued that the cure is a pipeline. This topic is about the most accessible tool for building one: GitHub Actions, the automation platform built into the place your code already lives.
 
 The core idea is simple. You write down your release checklist once, as a file in the repository, and GitHub executes it exactly the same way every time the trigger fires. Fragile human memory becomes reliable machinery. Teams ship faster because nobody is re-typing the same commands, and operations staff see fewer "works on my machine" incidents because every change passes through identical automated gates. Just as valuably, every run leaves a record — you always know who deployed what, and when. Automation converts hoping things will work into knowing they will.
 
@@ -10,7 +10,7 @@ Three concepts do all the work:
 
 - **Triggers (events).** A workflow starts when something happens — code is pushed, a pull request is opened, a timer fires on schedule, or a person presses a button.
 - **Jobs and runners.** Each workflow contains one or more jobs, which execute on **runners**: temporary virtual machines GitHub provides (or servers you host yourself). Jobs get a fresh machine each run, which is why builds are reproducible.
-- **Steps.** Inside a job, steps run in order. A step either invokes a prebuilt **action** — a reusable module published by GitHub, a vendor or the community — or runs a shell command directly.
+- **Steps.** Inside a job, steps run in order. A step either invokes a prebuilt **action** (a reusable module published by GitHub, a vendor or the community) or runs a shell command directly.
 
 A minimal but genuinely useful workflow looks like this:
 

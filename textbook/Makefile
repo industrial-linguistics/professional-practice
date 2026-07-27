@@ -7,15 +7,16 @@ BASE=$(basename $(TEX))
 AMAZON_BASE=$(basename $(AMAZON_TEX))
 CHAPTERS=$(wildcard chapters/*.tex)
 FIGURES=$(shell find figures -type f 2>/dev/null)
+REFERENCES=references.bib
 
 all: $(PDF) $(AMAZON_PDF)
 
-$(PDF): $(TEX) $(CHAPTERS) $(FIGURES)
+$(PDF): $(TEX) $(CHAPTERS) $(FIGURES) $(REFERENCES)
 	$(LATEXMK) $(TEX)
 	makeindex $(BASE) >/dev/null || true
 	$(LATEXMK) $(TEX)
 
-$(AMAZON_PDF): $(AMAZON_TEX) $(TEX) $(CHAPTERS) $(FIGURES)
+$(AMAZON_PDF): $(AMAZON_TEX) $(TEX) $(CHAPTERS) $(FIGURES) $(REFERENCES)
 	$(LATEXMK) $(AMAZON_TEX)
 	makeindex $(AMAZON_BASE) >/dev/null || true
 	$(LATEXMK) $(AMAZON_TEX)

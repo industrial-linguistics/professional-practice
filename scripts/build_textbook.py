@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import html
+import json
 import re
 import shutil
 import subprocess
@@ -17,6 +18,26 @@ CHAPTERS = TEXTBOOK / "chapters"
 FIGURES = TEXTBOOK / "figures"
 AUDIT = TEXTBOOK / "audit"
 PREFACE = ROOT / "content" / "textbook-preface.md"
+METADATA_SOURCE = ROOT / "content" / "textbook-metadata.json"
+REFERENCES_SOURCE = ROOT / "content" / "textbook-references.bib"
+
+BOOK_PART_TITLES = {
+    "part-08": "Design and Defend an IT Service",
+}
+
+BOOK_TOPIC_TITLES = {
+    ("part-06", "capstone-red-team-exercise"): "Red-Team Exercise: A Friend's Start-up",
+    ("part-06", "capstone-remediation-roadmap"): "From Findings to a Remediation Roadmap",
+    ("part-06", "guest-speaker-ideas"): "Learning from Practitioners",
+}
+
+
+def book_part_title(part: Part) -> str:
+    return BOOK_PART_TITLES.get(part.slug, part.title)
+
+
+def book_topic_title(topic: Topic) -> str:
+    return BOOK_TOPIC_TITLES.get((topic.part, topic.slug), topic.title)
 
 
 INDEX_TERMS: tuple[tuple[str, tuple[str, ...]], ...] = (
@@ -363,6 +384,8 @@ def clean_generated() -> None:
     for stale in [TEXTBOOK / "index.html"]:
         if stale.exists():
             stale.unlink()
+    if REFERENCES_SOURCE.exists():
+        shutil.copy2(REFERENCES_SOURCE, TEXTBOOK / "references.bib")
 
 
 def copy_topic_images(topic: Topic) -> None:
@@ -497,15 +520,29 @@ def md_inline(text: str) -> str:
 
 def md_line(text: str) -> str:
     code_spans: list[str] = []
+    citations: list[str] = []
 
     def protect_code(match: re.Match[str]) -> str:
         code_spans.append(rf"\texttt{{{tex_escape(match.group(1))}}}")
         return f"@@CODESPAN{len(code_spans) - 1}@@"
 
     protected = re.sub(r"`([^`\n]+)`", protect_code, text)
+
+    def protect_citation(match: re.Match[str]) -> str:
+        keys = re.findall(r"@([A-Za-z0-9:_-]+)", match.group(0))
+        citations.append(rf"\autocite{{{','.join(keys)}}}")
+        return f"@@CITATION{len(citations) - 1}@@"
+
+    protected = re.sub(
+        r"\[@[A-Za-z0-9:_-]+(?:\s*;\s*@[A-Za-z0-9:_-]+)*\]",
+        protect_citation,
+        protected,
+    )
     rendered = md_inline(tex_escape(smarten_double_quotes(protected)))
     for i, code in enumerate(code_spans):
         rendered = rendered.replace(f"@@CODESPAN{i}@@", code)
+    for i, citation in enumerate(citations):
+        rendered = rendered.replace(f"@@CITATION{i}@@", citation)
     return rendered
 
 
@@ -522,7 +559,7 @@ def course_map_diagram() -> str:
 \renewcommand{\arraystretch}{1.18}
 \begin{tabularx}{\linewidth}{@{}p{0.30\linewidth}X@{}}
 \toprule
-\textbf{Course movement} & \textbf{Professional question} \\
+\textbf{Book movement} & \textbf{Professional question} \\
 \midrule
 Promise & What are we promising users, and what does good service look like? \\
 Operating model & Who receives work, escalates it, changes it, measures it, and improves it? \\
@@ -531,10 +568,10 @@ Incident learning & What did the incident teach us about the system, and who own
 Vendor lifecycle & What commercial promise has operations inherited, and what evidence keeps the relationship honest? \\
 Small org constraints & Which controls matter first when money, time, and specialist staff are scarce? \\
 Data authority & Who has authority to share, reuse, maintain, and benefit from the artefact or dataset? \\
-Capstone defence & Can the whole service design survive questions from operations, commercial, technical, and community perspectives? \\
+Service-design defence & Can the whole service design survive questions from operations, commercial, technical, and community perspectives? \\
 \bottomrule
 \end{tabularx}
-\caption{The course arc: from service promise to defended service design.}
+\caption{The book's through-line: from service promise to defended service design.}
 \end{figure}
 """.strip()
 
@@ -548,7 +585,7 @@ def md_figure(alt: str, src: str, topic: Topic | None) -> str:
     rel = Path("figures") / topic.part / topic.slug / src
     return "\n".join(
         [
-            r"\begin{figure}[htbp]",
+            r"\begin{figure}[H]",
             r"\centering",
             rf"\includegraphics[width=0.86\linewidth]{{{rel.as_posix()}}}",
             rf"\caption{{{tex_heading(alt or topic.title)}}}",
@@ -764,7 +801,7 @@ def render_slide(
         parts.append(
             "\n".join(
                 [
-                    r"\begin{figure}[htbp]",
+                    r"\begin{figure}[H]",
                     r"\centering",
                     rf"\includegraphics[width=0.86\linewidth]{{{rel.as_posix()}}}",
                     rf"\caption{{{tex_heading(caption)}}}",
@@ -795,7 +832,7 @@ def render_topic(topic: Topic) -> str:
     copy_topic_images(topic)
     seen: set[str] = set()
     lines = [
-        rf"\section{{{tex_heading(topic.title)}}}",
+        rf"\section{{{tex_heading(book_topic_title(topic))}}}",
     ]
     lines.extend(index_entries_for_text(topic.title, seen))
     authored = topic.source_path / "textbook.md"
@@ -822,7 +859,7 @@ def render_part(part: Part) -> str:
     seen: set[str] = set()
     body = [
         "% Generated by scripts/build_textbook.py; edit content/ and rebuild.",
-        rf"\chapter{{{tex_heading(part.title)}}}",
+        rf"\chapter{{{tex_heading(book_part_title(part))}}}",
     ]
     body.extend(index_entries_for_text(part.title, seen))
     intro = ROOT / "content" / part.slug / "textbook-intro.md"
@@ -862,8 +899,8 @@ def render_preface() -> str:
         return ""
     return "\n".join(
         [
-            r"\chapter*{About This Course Reader}",
-            r"\addcontentsline{toc}{chapter}{About This Course Reader}",
+            r"\chapter*{About This Book}",
+            r"\addcontentsline{toc}{chapter}{About This Book}",
             r"\setcounter{secnumdepth}{-1}",
             body,
             r"\setcounter{secnumdepth}{2}",
@@ -873,15 +910,32 @@ def render_preface() -> str:
 
 
 def write_main(parts: list[Part]) -> None:
+    metadata = json.loads(METADATA_SOURCE.read_text(encoding="utf-8"))
     includes = "\n".join(
         rf"\include{{chapters/{part.slug}-{slug(part.title)}}}" for part in parts
     )
-    main_tex = MAIN_TEX.replace("@@PREFACE@@", render_preface()).replace(
-        "@@INCLUDES@@", includes
+    replacements = {
+        "@@TITLE@@": tex_heading(metadata["title"]),
+        "@@SUBTITLE@@": tex_heading(metadata["subtitle"]),
+        "@@AUTHOR@@": tex_heading(metadata["author"]),
+        "@@PUBLISHER@@": tex_heading(metadata["publisher"]),
+        "@@EDITION@@": tex_heading(metadata["edition"]),
+        "@@YEAR@@": str(metadata["year"]),
+        "@@PREFACE@@": render_preface(),
+        "@@INCLUDES@@": includes,
+    }
+    paperback_isbn = metadata.get("paperback_isbn", "").strip()
+    replacements["@@ISBN_LINE@@"] = (
+        rf"Paperback ISBN: {tex_escape(paperback_isbn)}\\"
+        if paperback_isbn
+        else ""
     )
+    main_tex = MAIN_TEX
+    for marker, value in replacements.items():
+        main_tex = main_tex.replace(marker, value)
     (TEXTBOOK / "main.tex").write_text(main_tex, encoding="utf-8")
     (TEXTBOOK / "main-amazon.tex").write_text(
-        "\\def\\amazontrimsize{}\n\\def\\omitcoverpage{}\n\\input{main.tex}\n",
+        "\\def\\amazontrimsize{}\n\\input{main.tex}\n",
         encoding="utf-8",
     )
     (TEXTBOOK / "Makefile").write_text(MAKEFILE, encoding="utf-8")
@@ -912,11 +966,14 @@ def write_audit(parts: list[Part]) -> None:
     (AUDIT / "open-issues.md").write_text(
         "# Textbook Open Issues\n\n"
         f"- Generated from {len(parts)} parts, {topics} topics and {slides} slides.\n"
-        f"- {authored} of {topics} topics have authored `textbook.md` prose; the rest fall back to narration-derived text with practice checkpoints.\n"
-        f"- {len(mismatches)} topics currently have slide/narrative count mismatches; "
-        "see `docs/narrative-mismatch-audit.md`.\n"
+        f"- {authored} of {topics} topics have authored `textbook.md` prose.\n"
+        f"- {len(mismatches)} slide/narrative count mismatches remain in the course media source; "
+        "they do not trigger prose fallback in this fully authored book.\n"
         f"- Front matter is sourced from `{PREFACE.relative_to(ROOT)}` when that file exists.\n"
         "- Optional part-level practice artefacts are sourced from `content/part-XX/practice-artifact.md`.\n"
+        "- The Part 7 publication review in `docs/indigenous-content-publication-review.md` must be completed by suitable external reviewers before release.\n"
+        "- A paperback ISBN must be assigned before publication; the canonical metadata deliberately contains no placeholder.\n"
+        "- Kindle Previewer, KDP Print Previewer and a physical proof remain release gates because local file validation cannot reproduce those surfaces.\n"
         "- Authoring guidelines live in `docs/textbook-authoring-guidelines.md`.\n",
         encoding="utf-8",
     )
@@ -946,7 +1003,8 @@ def write_audit(parts: list[Part]) -> None:
     )
     (AUDIT / "evidence-discipline.md").write_text(
         "# Evidence Discipline\n\n"
-        "- Keep salary bands, vendor pricing, certification details, legal thresholds and current platform behaviour dated or move them to the companion site as updateable notes.\n"
+        "- The manuscript cites its stable standards, frameworks and primary institutional sources through `content/textbook-references.bib`.\n"
+        "- Keep salary bands, vendor pricing, certification details, legal thresholds and current platform behaviour dated or phrase them as items the reader must verify.\n"
         "- The stable book should teach the judgement pattern; volatile examples should be treated as illustrations rather than promises.\n"
         "- Indigenous data sovereignty material should cite Indigenous-led frameworks and be reviewed with relevant community authority before publication use.\n",
         encoding="utf-8",
@@ -976,8 +1034,10 @@ MAIN_TEX = r"""\documentclass[11pt,openany]{book}
   \usepackage[a4paper,margin=2.6cm]{geometry}
 \fi
 \usepackage{fontspec}
+\usepackage[australian]{babel}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{tabularx}
@@ -986,42 +1046,72 @@ MAIN_TEX = r"""\documentclass[11pt,openany]{book}
 \usepackage{setspace}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{fvextra}
+\usepackage{csquotes}
 \usepackage{xcolor}
 \usepackage{float}
+\usepackage{xurl}
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nyt,
+  maxcitenames=2,
+  maxbibnames=8,
+  giveninits=true,
+  uniquename=init
+]{biblatex}
+\addbibresource{references.bib}
+\captionsetup{
+  justification=raggedright,
+  singlelinecheck=false,
+  font=small,
+  labelfont=bf
+}
 \DefineVerbatimEnvironment{CodeBlock}{Verbatim}{breaklines=true,breakanywhere=true,fontsize=\small}
 \makeindex
 \setstretch{1.14}
 \setcounter{tocdepth}{1}
 \setlength{\emergencystretch}{3em}
 \sloppy
+\raggedbottom
 \pagestyle{plain}
 \hypersetup{
-  pdftitle={IT Professional Practice},
-  pdfauthor={Greg Baker},
+  pdftitle={@@TITLE@@: @@SUBTITLE@@},
+  pdfauthor={@@AUTHOR@@},
   hidelinks
 }
-\title{IT Professional Practice\\\large A Practical Course Reader}
-\author{Greg Baker}
-\date{Draft edition}
-\newif\ifcoverpage
-\coverpagetrue
-\ifdefined\omitcoverpage
-  \coverpagefalse
-\fi
+\title{@@TITLE@@\\\large @@SUBTITLE@@}
+\author{@@AUTHOR@@}
+\date{@@EDITION@@, @@YEAR@@}
 
 \begin{document}
-\ifcoverpage
 \begin{titlepage}
 \thispagestyle{empty}
 \vspace*{0.12\textheight}
-{\Huge\bfseries IT Professional Practice\par}
+{\Huge\bfseries @@TITLE@@\par}
 \vspace{1.2em}
-{\Large A Practical Course Reader\par}
+\begin{minipage}{0.86\textwidth}
+\raggedright\Large @@SUBTITLE@@
+\end{minipage}
 \vfill
-{\large Greg Baker\par}
-{\large Draft edition\par}
+{\large @@AUTHOR@@\par}
+{\large @@PUBLISHER@@\par}
 \end{titlepage}
-\fi
+
+\thispagestyle{empty}
+\vspace*{\fill}
+\noindent Copyright \textcopyright\ @@YEAR@@ @@AUTHOR@@\\
+All rights reserved.\\[1.2em]
+\noindent @@EDITION@@, @@YEAR@@\\
+Published by @@PUBLISHER@@\\
+@@ISBN_LINE@@
+\noindent The examples and case organisations identified as fictional are
+teaching devices. Product names and trademarks belong to their respective
+owners. OCAP\textsuperscript{\textregistered} is a registered trademark of
+the First Nations Information Governance Centre.\\[1.2em]
+\noindent This book provides professional-practice education, not legal,
+financial, security, or cultural-authority advice. Verify current rules and
+seek qualified advice for decisions that carry material consequences.
+\clearpage
 
 \frontmatter
 @@PREFACE@@
@@ -1029,6 +1119,10 @@ MAIN_TEX = r"""\documentclass[11pt,openany]{book}
 \mainmatter
 @@INCLUDES@@
 \backmatter
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\printbibliography[title={References}]
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{Index}
@@ -1046,15 +1140,16 @@ BASE=$(basename $(TEX))
 AMAZON_BASE=$(basename $(AMAZON_TEX))
 CHAPTERS=$(wildcard chapters/*.tex)
 FIGURES=$(shell find figures -type f 2>/dev/null)
+REFERENCES=references.bib
 
 all: $(PDF) $(AMAZON_PDF)
 
-$(PDF): $(TEX) $(CHAPTERS) $(FIGURES)
+$(PDF): $(TEX) $(CHAPTERS) $(FIGURES) $(REFERENCES)
 	$(LATEXMK) $(TEX)
 	makeindex $(BASE) >/dev/null || true
 	$(LATEXMK) $(TEX)
 
-$(AMAZON_PDF): $(AMAZON_TEX) $(TEX) $(CHAPTERS) $(FIGURES)
+$(AMAZON_PDF): $(AMAZON_TEX) $(TEX) $(CHAPTERS) $(FIGURES) $(REFERENCES)
 	$(LATEXMK) $(AMAZON_TEX)
 	makeindex $(AMAZON_BASE) >/dev/null || true
 	$(LATEXMK) $(AMAZON_TEX)
@@ -1074,7 +1169,7 @@ clean:
 
 README = """# IT Professional Practice Textbook
 
-This directory contains the generated LaTeX textbook project for the course.
+This directory contains the generated LaTeX project for the book.
 It is generated by `scripts/build_textbook.py`. The preferred source for each
 topic is an authored `content/part-*/topic/textbook.md` (see
 `docs/textbook-authoring-guidelines.md`); topics without one fall back to
@@ -1082,7 +1177,7 @@ narration-derived prose from `slides.html` and `narratives/`. Part openers
 come from `content/part-*/textbook-intro.md` when present. Do not edit the
 `.tex` files here directly — they are regenerated on every build.
 
-Build both student-print and Amazon print-on-demand PDFs with:
+Build both A4 and Amazon print-on-demand PDFs with:
 
 ```bash
 make -C textbook
@@ -1090,8 +1185,21 @@ make -C textbook
 
 Outputs:
 
-- `textbook/main.pdf`: A4 PDF for student printing.
+- `textbook/main.pdf`: A4 PDF for ordinary printing.
 - `textbook/main-amazon.pdf`: 6x9 inch PDF for Amazon KDP-style print-on-demand.
+- `textbook/kdp/paperback-cover.pdf`: full-wrap paperback cover generated from
+  the final page count.
+- `textbook/kdp/ebook-cover.jpg`: 1600x2560 RGB Kindle cover.
+- `textbook/it-professional-practice.epub`: reflowable EPUB 3.
+
+Build and validate all release files with:
+
+```bash
+python3 scripts/build_textbook_release.py
+```
+
+Publication settings, listing copy and non-automated release gates are in
+`docs/kdp-publication.md`.
 
 Do not edit generated chapter files directly; edit course source and rebuild.
 """

@@ -12,13 +12,13 @@ Any two of these is your burning platform. The mistake most startups make next i
 
 The first real step is designing intake and triage — the tool merely amplifies whatever discipline exists. Start with a single doorway: one portal plus one email alias, both feeding the same queue, with required fields that capture enough context to act (device, urgency, screenshot). One doorway means one queue, one set of numbers, one place where "did anyone pick this up?" has an answer.
 
-Then define what good looks like: lightweight SLAs — critical in two hours, high in four, normal within a business day — and an explicit escalation ladder into engineering. Build macros for the top twenty request types so the common stuff is fast; everything else routes to a visible backlog. Add a daily standup to make invisible work visible and a weekly ops review to keep the backlog honest. And because Sarah's team is distributed, write the remote playbooks now: device shipping, break/fix couriers, regional on-call rotations.
+Then define what good looks like: lightweight SLAs (critical in two hours, high in four, normal within a business day) and an explicit escalation ladder into engineering. Build macros for the top twenty request types so the common stuff is fast; everything else routes to a visible backlog. Add a daily standup to make invisible work visible and a weekly ops review to keep the backlog honest. And because Sarah's team is distributed, write the remote playbooks now: device shipping, break/fix couriers, regional on-call rotations.
 
 Here's the liberating part: a Trello board can run this process. If the intake, SLAs and escalation ladder are crisp, cheap tooling works; if they're not, ServiceNow won't save you.
 
 ## The knowledge base that stays alive
 
-Most startup knowledge bases are graveyards — written once in a burst of enthusiasm, never updated, quietly distrusted. The living alternative is tied to ticket closure: the agent drafts an article while the fix is fresh, before the ticket closes, and a subject-matter expert reviews it in a scheduled weekly hour. Run "seed, grow, prune" cycles — monthly SME review, quarterly archiving of stale pages — so the collection stays trustworthy.
+Most startup knowledge bases are graveyards — written once in a burst of enthusiasm, never updated, quietly distrusted. The living alternative is tied to ticket closure: the agent drafts an article while the fix is fresh, before the ticket closes, and a subject-matter expert reviews it in a scheduled weekly hour. Run "seed, grow, prune" cycles (monthly SME review, quarterly archiving of stale pages) so the collection stays trustworthy.
 
 Format matters more than volume. Short video walkthroughs and annotated screenshots beat long prose for teams moving fast. And instrument the thing: track search terms that return zero results, and let that list drive what gets written next. Track article helpfulness and self-service deflection, because those numbers justify more authoring time.
 
@@ -32,10 +32,10 @@ Neither is "better"; the decision is about your context, and four guardrails fra
 
 - Current team size and the realistic 18-month growth trajectory
 - What the existing ecosystem already integrates with, and API maturity
-- Compliance obligations — SOC 2, SOX, HIPAA — and segregation-of-duties requirements
+- Compliance obligations (SOC 2, SOX, HIPAA) and segregation-of-duties requirements
 - The admin expertise you actually have, and an honest implementation runway
 
-A startup with forty engineers living in Jira and a SOC 2 audit twelve months out will usually pick JSM and bridge the gaps with integrations — a Slack virtual agent, an asset-database sync — rather than a rip-and-replace. A regulated fintech heading for 300 staff might swallow ServiceNow early precisely because re-platforming later hurts more.
+A startup with forty engineers living in Jira and a SOC 2 audit twelve months out will usually pick JSM and bridge the gaps with integrations (a Slack virtual agent, an asset-database sync) rather than a rip-and-replace. A regulated fintech heading for 300 staff might swallow ServiceNow early precisely because re-platforming later hurts more.
 
 ## Automate early, and wire in security
 
@@ -45,7 +45,7 @@ Wrap the same machinery around security from day one: privileged access reviews,
 
 ## Staffing the stages
 
-Process without people is a diagram. Under 50 staff, expect one operations lead wearing every hat — part technician, part therapist, part mind reader. The kindest and most effective thing you can give that person is a clear escalation path into engineering, with engineers rotating through escalation duty so support pain stays visible. Between 50 and 150, add dedicated level-1 agents, a part-time knowledge manager, and an on-call matrix that borrows level-2 depth from product squads, keeping their context fresh. Past 150, you need specialists — infrastructure, security, SaaS application owners — plus a service owner accountable for CSAT and backlog health, a tooling admin, and someone who actually analyses the metrics. At every stage, career ladders and certification paths are retention tools: institutional knowledge walking out the door is the most expensive incident a service desk ever has.
+Process without people is a diagram. Under 50 staff, expect one operations lead wearing every hat — part technician, part therapist, part mind reader. The kindest and most effective thing you can give that person is a clear escalation path into engineering, with engineers rotating through escalation duty so support pain stays visible. Between 50 and 150, add dedicated level-1 agents, a part-time knowledge manager, and an on-call matrix that borrows level-2 depth from product squads, keeping their context fresh. Past 150, you need specialists (infrastructure, security, SaaS application owners) plus a service owner accountable for CSAT and backlog health, a tooling admin, and someone who actually analyses the metrics. At every stage, career ladders and certification paths are retention tools: institutional knowledge walking out the door is the most expensive incident a service desk ever has.
 
 ## Milestones, metrics and money
 
@@ -53,7 +53,7 @@ Founders think in roadmaps, so translate maturity into month-by-month wins — a
 
 Prove it with numbers, or it's just overhead. Aim for at least 30% self-service deflection within six months; 90th-percentile response inside SLA with a backlog under 1.5 times weekly throughput; CSAT of 4.5 or better and article helpfulness above 80%; and business-impact measures — downtime minutes prevented, engineering hours returned, audit findings closed. Add two security numbers: mean time to revoke access after offboarding, and phishing report-to-response time.
 
-Then package it. The budget-justification toolkit is a one-page ROI summary (tickets deflected, hours saved, compliance risk reduced), a lightweight CapEx/OpEx model with a three-year outlook, asks tied to business OKRs and upcoming audits — including a "do nothing" risk column — and a human anecdote or customer quote, because executives remember stories longer than spreadsheets. Nothing beats walking into a budget review able to say "we returned 200 engineering hours last quarter."
+Then package it. The budget-justification toolkit is a one-page ROI summary (tickets deflected, hours saved, compliance risk reduced), a lightweight CapEx/OpEx model with a three-year outlook, asks tied to business OKRs and upcoming audits (including a "do nothing" risk column) and a human anecdote or customer quote, because executives remember stories longer than spreadsheets. Nothing beats walking into a budget review able to say "we returned 200 engineering hours last quarter."
 
 > The classic pitfalls, in one breath: tooling before process, no change management, dirty data, and forgotten remote staff. The antidotes: pilot with exit criteria, over-communicate, schedule quarterly data audits, and build follow-the-sun coverage with regional hardware depots.
 

@@ -8,7 +8,7 @@ Four reasons to bother. First, metrics show whether fixes actually work, which i
 
 ## What to collect
 
-The core set is the four DORA metrics from Part 3 — deployment frequency, lead time for changes, change failure rate and mean time to recovery — now wearing a different hat. In Part 3 they described your delivery performance; here they serve as the before-and-after instrument for your improvement work. Alongside them, track incident count and severity, and plot everything on one timeline so deployments and incidents can be read against each other.
+The core set is the four DORA metrics from Part 3 (deployment frequency, lead time for changes, change failure rate and mean time to recovery) now wearing a different hat. In Part 3 they described your delivery performance; here they serve as the before-and-after instrument for your improvement work. Alongside them, track incident count and severity, and plot everything on one timeline so deployments and incidents can be read against each other.
 
 Collection is less work than people fear. GitHub Insights and your CI/CD dashboard already know your deployment stats; Jira or ServiceNow already hold your incident history. The step teams actually skip is the baseline: capture the numbers *before* you roll out a new process, because without a before, your after is just a number. If you're proposing a change in next week's retro, tonight is the right time to screenshot the current state.
 
@@ -28,6 +28,6 @@ Four disciplines keep the practice trustworthy. **Patience**: real patterns take
 
 > Keep the dashboard where the team can't avoid seeing it — the wiki homepage, the wall monitor, the top of the retro agenda. A metric reviewed monthly changes decisions; a metric filed in a folder changes nothing. The half-life of an invisible dashboard is about three weeks.
 
-One clarification to keep this section distinct from its sibling earlier in the part: the follow-up metrics covered there — recurrence rates, action-item completion, age of open items — tell you whether your *improvement process* is being worked. The deployment and incident trends here tell you whether the *system itself* is getting better. You need both, because a team can dutifully complete every action item while the outage rate stays flat — that's a process running perfectly on the wrong fixes, and only the second set of numbers will catch it.
+One clarification to keep this section distinct from its sibling earlier in the part: the follow-up metrics covered there (recurrence rates, action-item completion, age of open items) tell you whether your *improvement process* is being worked. The deployment and incident trends here tell you whether the *system itself* is getting better. You need both, because a team can dutifully complete every action item while the outage rate stays flat — that's a process running perfectly on the wrong fixes, and only the second set of numbers will catch it.
 
 The takeaway fits in two sentences. Metrics turn vague promises into measurable progress: baseline first, change second, comparison third, decision fourth. Teams that run that cycle find out what works while it still matters; teams that skip it find out from their customers.

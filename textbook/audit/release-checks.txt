@@ -1,0 +1,40 @@
+PASS  canonical publication metadata is complete
+PASS  paperback ISBN is blank or a syntactically valid ISBN-13
+PASS  paperback has an even page count (378)
+PASS  paperback trim is 6 x 9 inches (432.00 x 648.00 pt)
+PASS  paperback PDF is not encrypted
+PASS  paperback contains 'IT Professional Practice'
+PASS  paperback contains 'Greg Baker'
+PASS  paperback contains 'Industrial Linguistics'
+PASS  paperback contains 'References'
+PASS  paperback contains 'Index'
+PASS  paperback contains 'Design and Defend an IT Service'
+PASS  paperback front matter contains no draft or proof watermark
+PASS  all paperback fonts are embedded
+PASS  paperback contains 4 interior image(s)
+PASS  all paperback raster images are between 300 and 600 effective PPI
+PASS  paperback cover is one page
+PASS  paperback cover dimensions match the final page count and 0.125-inch bleed
+PASS  Kindle cover is 1600 x 2560 RGB (1600 2560 sRGB)
+PASS  EPUB is below 3 MB (1.31 MB)
+PASS  EPUBCheck reports zero fatal errors, errors and warnings
+PASS  EPUB has the required uncompressed mimetype entry first
+PASS  EPUB metadata/navigation contains 'IT Professional Practice'
+PASS  EPUB metadata/navigation contains 'Greg Baker'
+PASS  EPUB metadata/navigation contains 'Industrial Linguistics'
+PASS  EPUB metadata/navigation contains 'Design and Defend an IT Service'
+PASS  EPUB metadata/navigation contains 'References'
+PASS  EPUB contains its cover and interior images (5)
+PASS  Kindle Previewer produced one conversion result
+PASS  Kindle Previewer conversion succeeded
+PASS  Kindle Enhanced Typesetting is supported
+PASS  Kindle Previewer reports zero errors
+PASS  Kindle Previewer reports zero navigation-quality issues
+PASS  Kindle Previewer produced a KPF device-preview package
+
+EXTERNAL RELEASE GATES
+PENDING  Complete and record the Part 7 Indigenous content review.
+PENDING  Assign the paperback ISBN and rebuild, or choose KDP's free ISBN and accept the Independently published imprint.
+PENDING  Visually inspect the generated KPF in Kindle Previewer's phone, tablet and e-reader views.
+PENDING  Pass KDP Print Previewer and order/approve a physical proof.
+PENDING  Complete the KDP AI-generated-content disclosure.

@@ -1,0 +1,6 @@
+Interior pages (rounded to even): 378
+Trim: 6.000 x 9.000 in
+Interior: black ink on white paper, no bleed
+Spine: 378 x 0.002252 = 0.851256 in
+Full cover with bleed: 13.101256 x 9.250000 in
+KDP should add the barcode in the reserved white area.

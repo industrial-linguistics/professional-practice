@@ -17,7 +17,7 @@ Part 1 taught you how to fight fires well: log the incident, escalate it sensibl
 \index{problem management}
 \index{release management}
 \index{service level agreement}
-This part is about running a service properly after the first incident has been handled. In the course map, the operating model gains contracts, records, measurements, and controlled change. It starts with promises: service level agreements that tell customers what they can expect, the operational level agreements between internal teams that make those promises achievable, and the KPIs that reveal whether anyone is actually keeping them. It then turns to change — how mature teams assess risk before touching production, and how release management turns approved work into orderly, well-communicated deployments. Problem management follows: the discipline of asking \emph{why} an incident happened, not just clearing the ticket. Underneath all of it sits the configuration management database, the inventory of what you own and how it connects — unglamorous, and indispensable. The chapter closes with continual improvement and with the dashboards that turn thousands of ticket records into evidence a CIO can read in three seconds.
+This part is about running a service properly after the first incident has been handled. In the book's through-line, the operating model gains contracts, records, measurements, and controlled change. It starts with promises: service level agreements that tell customers what they can expect, the operational level agreements between internal teams that make those promises achievable, and the KPIs that reveal whether anyone is actually keeping them. It then turns to change — how mature teams assess risk before touching production, and how release management turns approved work into orderly, well-communicated deployments. Problem management follows: the discipline of asking \emph{why} an incident happened, not just clearing the ticket. Underneath all of it sits the configuration management database, the inventory of what you own and how it connects — unglamorous, and indispensable. The chapter closes with continual improvement and with the dashboards that turn thousands of ticket records into evidence a CIO can read in three seconds.
 
 
 \index{change management}
@@ -31,7 +31,7 @@ Throughout the chapter we'll follow Kestrel Freight, a fictional national logist
 At 4:45 on a Friday afternoon, a developer at Kestrel Freight wants to push ``one small config tweak'' to the booking portal. Marcus, Kestrel's change manager, has heard this sentence before. The last time someone shipped a small Friday tweak, the portal rejected every booking from Western Australia for two days, and nobody noticed until Monday because the person who made the change was camping.
 
 
-Two distinct disciplines exist to stop that story repeating, and this topic is about telling them apart. \textbf{Change enablement} asks: \emph{should} this change happen, and what could it break? \textbf{Release management} asks: given the changes we've approved, \emph{how} do we get them into production smoothly, and who needs to know? They're two sides of the same coin — one controls risk going in, the other coordinates work going out — and confusing them is one of the most common mistakes early-career practitioners make.
+Two distinct disciplines exist to stop that story repeating, and this topic is about telling them apart. \textbf{Change enablement} asks: \emph{should} this change happen, and what could it break? \textbf{Release management} asks: given the changes we've approved, \emph{how} do we get them into production smoothly, and who needs to know? They're two sides of the same coin (one controls risk going in, the other coordinates work going out) and confusing them is one of the most common mistakes early-career practitioners make.
 
 
 
@@ -48,7 +48,7 @@ The key insight is that not all changes deserve the same scrutiny. ITIL recognis
 \begin{itemize}[leftmargin=*]
 \item \textbf{Standard changes} are low-risk, routine, well-understood, and pre-approved. Adding a user to a group, applying a certified patch to a non-critical server, increasing a disk quota. The risk assessment happened once, when the change type was defined; individual instances just follow the recipe.
 \index{CAB}
-\item \textbf{Normal changes} need individual assessment and approval. Someone — a change authority, which for higher-risk items may be a change advisory board (CAB) of technical and business representatives — weighs the risk, checks the plan, and approves or rejects it.
+\item \textbf{Normal changes} need individual assessment and approval. Someone (a change authority, which for higher-risk items may be a change advisory board (CAB) of technical and business representatives) weighs the risk, checks the plan, and approves or rejects it.
 \item \textbf{Emergency changes} can't wait for the normal cycle: a security hole being actively exploited, a broken service that needs a fix \emph{now}. They still get assessed and approved, just faster and by fewer people, with the paperwork completed retrospectively.
 \end{itemize}
 
@@ -63,7 +63,7 @@ It's worth walking one change through the machinery end to end, because the flow
 
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.86\linewidth]{figures/part-02/change-vs-release/images/itil-minor-change.png}
 \caption{The ITIL minor change process flow, from change request through implementation, verification and CMDB update}
@@ -72,15 +72,15 @@ It's worth walking one change through the machinery end to end, because the flow
 
 \index{RFC}
 \index{service desk}
-The requester — say, Dana's database team wanting to bump a server's memory allocation — creates a \textbf{request for change (RFC)}. The service desk or change management function logs and categorises it, then hits the first decision point: \emph{is this actually a minor change?} If not, it's routed to the normal or emergency process and this flowchart ends. If it is, the next step is to confirm it matches a \textbf{pre-approved authorisation} — that is, it genuinely fits the template of a standard change, rather than being a risky change wearing a minor change's clothing.
+The requester (say, Dana's database team wanting to bump a server's memory allocation) creates a \textbf{request for change (RFC)}. The service desk or change management function logs and categorises it, then hits the first decision point: \emph{is this actually a minor change?} If not, it's routed to the normal or emergency process and this flowchart ends. If it is, the next step is to confirm it matches a \textbf{pre-approved authorisation} — that is, it genuinely fits the template of a standard change, rather than being a risky change wearing a minor change's clothing.
 
 
 \index{back-out plan}
-Then the technical team plans and schedules the implementation, does the work, and — this step matters — \textbf{verifies} that it succeeded. Not ``the script ran without errors,'' but ``the service behaves the way it should.'' If verification fails, the team initiates the \textbf{back-out plan}, restoring the previous state, and the change goes back for review, rescheduling or cancellation. Note the quiet implication: the back-out plan existed \emph{before} implementation started. Writing a rollback procedure at 2 a.m., mid-failure, with a director on the phone, is not a plan; it's improvisation with witnesses.
+Then the technical team plans and schedules the implementation, does the work, and (this step matters) \textbf{verifies} that it succeeded. Not ``the script ran without errors,'' but ``the service behaves the way it should.'' If verification fails, the team initiates the \textbf{back-out plan}, restoring the previous state, and the change goes back for review, rescheduling or cancellation. Note the quiet implication: the back-out plan existed \emph{before} implementation started. Writing a rollback procedure at 2 a.m., mid-failure, with a director on the phone, is not a plan; it's improvisation with witnesses.
 
 
 \index{CMDB}
-Finally — and students skip this step in every simulation until it's beaten into them — the team \textbf{updates the CMDB and closes the record}. The configuration management database (covered in its own topic later in this part) is only trustworthy if every change updates it. A change process that ends at ``it works'' rather than ``it works and the records reflect it'' is slowly poisoning every future troubleshooting session.
+Finally, the team \textbf{updates the CMDB and closes the record}. This step is easy to omit in a simulation and costly to omit in production. The configuration management database (covered in its own topic later in this part) is only trustworthy if every change updates it. A change process that ends at ``it works'' rather than ``it works and the records reflect it'' is slowly poisoning every future troubleshooting session.
 
 
 
@@ -130,7 +130,7 @@ Mid-incident at Kestrel Freight, the booking portal limping, Dana's team has tra
 \index{asset inventory}
 \index{configuration item}
 \index{SaaS}
-A \textbf{configuration management database (CMDB)} is the central inventory of an organisation's systems and services. Its records are \textbf{configuration items (CIs)} — servers, network gear, databases, applications, SaaS subscriptions — each carrying attributes: version, owner, environment, support group. So far, that's an asset register, and plenty of organisations already have one gathering dust.
+A \textbf{configuration management database (CMDB)} is the central inventory of an organisation's systems and services. Its records are \textbf{configuration items (CIs)} (servers, network gear, databases, applications, SaaS subscriptions) each carrying attributes: version, owner, environment, support group. So far, that's an asset register, and plenty of organisations already have one gathering dust.
 
 
 What makes a CMDB more is the \textbf{relationships}. An asset register tells you \texttt{web01} exists and what it cost. The CMDB tells you \texttt{web01} serves the booking portal's front end and \emph{depends on} the \texttt{db01} database service — which means a change to \texttt{db01} is a change to the portal, whether anyone intended that or not. Dependencies are where outages hide, and mapping them is the entire point.
@@ -155,7 +155,7 @@ Construction has three steps, each simpler to state than to do.
 \item \textbf{Identify the key CIs.} Not everything — the services that matter, and the CIs they're built from. Kestrel started with the booking portal chain and payroll, modelled those properly, and expanded outward. A CMDB that attempts to catalogue every cable on day one dies of its own ambition before it's ever useful.
 \index{API}
 \item \textbf{Populate attributes from trusted sources.} Cloud provider APIs, the hypervisor's inventory, Active Directory, procurement records — wherever a system of record already exists, pull from it rather than retype it. Hand-entered data is wrong at birth or wrong within a month; automated feeds are wrong less often and, more importantly, get corrected in one place.
-\item \textbf{Map the relationships.} \emph{Runs on}, \emph{depends on}, \emph{connects to}. Discovery tooling can infer some of this from network traffic and installed software, but the semantic layer — that this database is what the rostering service actually depends on — needs humans who know what things are \emph{for}. This is the slow, expensive step, and the valuable one.
+\item \textbf{Map the relationships.} \emph{Runs on}, \emph{depends on}, \emph{connects to}. Discovery tooling can infer some of this from network traffic and installed software, but the semantic layer (that this database is what the rostering service actually depends on) needs humans who know what things are \emph{for}. This is the slow, expensive step, and the valuable one.
 \end{enumerate}
 
 
@@ -183,7 +183,7 @@ Divergence has four canonical sources, and each one names a different failure:
 \begin{itemize}[leftmargin=*]
 \item \textbf{Unauthorised changes.} Someone altered production outside change control — sometimes an emergency fix whose paperwork never happened, sometimes an administrator who couldn't be bothered. Discovery-versus-CMDB comparison is how change control gets teeth: the bypass that used to be invisible now surfaces as a mismatch within a day.
 \index{change record}
-\item \textbf{Configuration drift.} Small manual tweaks — a timeout raised here, a package updated there — accumulating until servers that are supposed to be identical aren't. No single tweak was worth a change record, in someone's judgement; collectively they've made the environment unpredictable.
+\item \textbf{Configuration drift.} Small manual tweaks (a timeout raised here, a package updated there) accumulating until servers that are supposed to be identical aren't. No single tweak was worth a change record, in someone's judgement; collectively they've made the environment unpredictable.
 \index{shadow IT}
 \item \textbf{Unknown devices.} Discovery finds hardware or services the CMDB has never heard of: shadow IT, a team's ``temporary'' experiment, the box under a bench nobody mentioned.
 \index{licence}
@@ -204,7 +204,7 @@ Kestrel's first full audit found thirty-one phantom servers still marked live �
 \subsection{Why it matters, and to whom}
 
 
-The payoff shows up as speed and absence. Speed, because incident calls stop stalling on ``what else is on that box?'' and change assessments stop requiring séances. Absence, because the outages caused by unknown dependencies — the ones where nobody knew the rostering service shared a database server — simply stop happening. A well-kept CMDB is the single source of truth that every other practice quietly consults, and like most infrastructure, it's invisible exactly when it's working.
+The payoff shows up as speed and absence. Speed, because incident calls stop stalling on ``what else is on that box?'' and change assessments stop requiring séances. Absence, because the outages caused by unknown dependencies (the ones where nobody knew the rostering service shared a database server) simply stop happening. A well-kept CMDB is the single source of truth that every other practice quietly consults, and like most infrastructure, it's invisible exactly when it's working.
 
 
 There are careers here: configuration managers own the CMDB's structure and accuracy, and IT asset managers extend the same records into financial and licensing territory — unglamorous titles that senior operations people rely on daily and remember at promotion time. But the more immediate takeaway is a habit that starts in your first job, at any tier: when you touch a system, leave the record as true as you left the system. The thirty seconds that costs you is the archaeology expedition it saves everyone else. And accurate records are about to matter for a different reason — the last two topics of this part are about improving and measuring the operation, and you can't improve what you can't even enumerate.
@@ -565,7 +565,7 @@ Notice how the numbers embody judgement. A P1 target of four hours means the org
 
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.86\linewidth]{figures/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png}
 \caption{The SLA, OLA and KPI stack: the customer promise on top, internal handoffs in the middle, measurement evidence underneath}
@@ -580,7 +580,7 @@ Notice how the numbers embody judgement. A P1 target of four hours means the org
 Here's the trap Priya has to avoid: signing a customer-facing promise that no single team inside Kestrel can actually keep. Restoring the booking portal in four hours isn't one team's job. The service desk has to triage the incident, the application team has to diagnose it, and if the database is the culprit, Dana's database team has to fail over to the standby server. If any link in that chain is slow, the SLA is breached — even though every individual team might feel it did its bit promptly.
 
 
-Operational level agreements exist to close that gap. An OLA is an internal commitment between teams inside the same organisation, written to support a customer-facing SLA. Dana's team, for example, commits to a five-minute database failover, any time of day. The application team commits to acknowledging a portal escalation within ten minutes. The network team commits to a two-hour turnaround on firewall changes flagged as incident-related. None of these are legal contracts — no one is suing the database team — but they are written down, agreed and measured, which changes behaviour in exactly the way a verbal ``yeah, we'll be quick'' does not.
+Operational level agreements exist to close that gap. An OLA is an internal commitment between teams inside the same organisation, written to support a customer-facing SLA. Dana's team, for example, commits to a five-minute database failover, any time of day. The application team commits to acknowledging a portal escalation within ten minutes. The network team commits to a two-hour turnaround on firewall changes flagged as incident-related. None of these are legal contracts (no one is suing the database team) but they are written down, agreed and measured, which changes behaviour in exactly the way a verbal ``yeah, we'll be quick'' does not.
 
 
 The discipline here is traceability. Every clause in the SLA should decompose into OLAs (and, where external suppliers are involved, into \emph{underpinning contracts} with those vendors) that add up to the promised outcome. If the SLA says four hours and the OLAs underneath it sum to six, you haven't made a promise — you've scheduled a breach. When Priya reviewed Schedule 4, she went team by team asking, ``what would you have to commit to for this to work?'' Two OLAs had to be renegotiated and one on-call roster expanded before she let anyone sign.
@@ -601,7 +601,7 @@ Agreements without measurement are decoration. Key performance indicators turn t
 \end{itemize}
 
 \index{workflow}
-The value is in the trend, not the snapshot. One bad month is noise; three consecutive months of slipping P2 resolution times is a signal. When a target keeps being missed, there are only two honest responses: fix the workflow that's failing, or renegotiate the target because it was never realistic. Quietly missing it every month while nobody mentions it — the most common third option in the wild — corrodes trust in the whole system. The stack diagram above gives you the rule of thumb: when a KPI goes red, the OLA or the SLA above it is usually unrealistic, broken, or both.
+The value is in the trend, not the snapshot. One bad month is noise; three consecutive months of slipping P2 resolution times is a signal. When a target keeps being missed, there are only two honest responses: fix the workflow that's failing, or renegotiate the target because it was never realistic. Quietly missing it every month while nobody mentions it (the most common third option in the wild) corrodes trust in the whole system. The stack diagram above gives you the rule of thumb: when a KPI goes red, the OLA or the SLA above it is usually unrealistic, broken, or both.
 
 
 \index{continual improvement}
@@ -622,7 +622,7 @@ A warning about what practitioners call \emph{watermelon metrics}: green on the 
 If you join a support team, SLAs will shape your daily work from week one: the queue you work from is sorted by SLA clock, and the ``time to breach'' counter next to each ticket is what makes a P1 feel different from a P3. As you get more senior, the work shifts from meeting the numbers to \emph{setting} them — service delivery managers like Priya spend much of their time negotiating SLAs, brokering OLAs between teams that don't report to each other, and defending or revising targets with data. It's a genuine career path, and it rewards a rare combination: enough technical depth to know what's achievable, and enough commercial sense to know what a promise costs.
 
 
-The takeaway is a habit of mind. Whenever you see a service promise, ask the three questions the stack implies: what exactly did we promise, which teams have agreed to the handoffs that make it possible, and what evidence would tell us — before the customer does — that we're failing?
+The takeaway is a habit of mind. Whenever you see a service promise, ask the three questions the stack implies: what exactly did we promise, which teams have agreed to the handoffs that make it possible, and what evidence would tell us (before the customer does) that we're failing?
 
 \section{Practice Artefact}
 

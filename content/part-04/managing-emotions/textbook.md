@@ -24,7 +24,7 @@ Breaks are not a sign of failure. In a remote call, a five-minute pause can stop
 
 Culture affects how people handle disagreement, silence, hierarchy and public correction. Some teams treat direct critique as normal professional behaviour. Others hear the same words as disrespect. Some people are comfortable challenging a senior engineer in a group meeting. Others will only raise concerns in a one-on-one conversation, at least until trust is built.
 
-The course narrative gives the example of a Japanese developer who rarely spoke in group discussions, even when he had useful context. The mistake would be to read that silence as disinterest. A better response is to create more than one channel for contribution: invite written notes before the meeting, offer one-on-one follow-ups, ask quieter participants directly but respectfully, and pair newer staff with mentors who can model constructive disagreement.
+Consider a developer who rarely speaks in group discussions, even when he has useful context. The mistake would be to read that silence as disinterest or to explain it through a cultural stereotype. A better response is to create more than one channel for contribution: invite written notes before the meeting, offer one-on-one follow-ups, ask quieter participants directly but respectfully, and pair newer staff with mentors who can model constructive disagreement.
 
 Be careful with cultural explanations. They should make the facilitator more observant, not lazy. Do not reduce a colleague to a national stereotype. Watch the actual person, ask what format helps them contribute, and set ground rules that make respectful critique normal for everyone.
 

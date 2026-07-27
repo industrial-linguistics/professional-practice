@@ -17,7 +17,7 @@ Third, **it keeps both sides honest**. A vendor who knows you're watching behave
 You don't need fifty metrics. A handful, tracked consistently, covers the ground:
 
 - **Response and resolution times** for support tickets — how quickly the vendor acknowledges a problem, and how quickly it's actually fixed. Watch both; a vendor can hit response targets all day while resolutions quietly stretch.
-- **Uptime percentage and outage duration** — not just how often the service falls over, but how long it stays down and when.
+- **Uptime percentage and outage duration** — frequency, duration and timing all affect the customer's experience.
 - **Change and release accuracy** — do the vendor's deployments land cleanly, or does every release break an integration? A vendor whose updates regularly damage your systems is shipping you risk on a schedule.
 - **User satisfaction** — surveys and Net Promoter Scores reveal whether the people using the service feel supported, which the ticket data alone won't tell you.
 - **Adoption and usage rates** for key features — because a feature nobody uses delivers no value even if it works perfectly, and paying for unused capability is a cost problem wearing a service costume.
@@ -32,7 +32,7 @@ Collecting KPIs is the easy half. Numbers on a dashboard change nothing by thems
 
 Schedule regular reviews with the vendor — quarterly is a common cadence, matching the service reviews you negotiated in the contract. Come with a short list of the worst-performing metrics and ask, plainly, what they're doing about them. Recurring outages might point to extra capacity; slipping resolution times to a staffing problem; poor survey feedback to documentation that needs rewriting or training that never happened. Let the data choose the agenda rather than whoever complains loudest.
 
-Then apply the discipline this course keeps returning to: every action item gets a named owner and a date, written down, and the first order of business at the next review is checking what happened to the last review's list. Action items without owners evaporate — it's practically a law of nature. Individually these improvements are small: one documentation fix, one capacity upgrade, one escalation path repaired. Compounded over a few quarters, they add up to a visibly better service, and to a paper trail proving the monitoring effort pays for itself.
+Then apply the discipline used throughout this book: every action item gets a named owner and a date, written down, and the first order of business at the next review is checking what happened to the last review's list. Action items without owners evaporate — it's practically a law of nature. Individually these improvements are small: one documentation fix, one capacity upgrade, one escalation path repaired. Compounded over a few quarters, they add up to a visibly better service, and to a paper trail proving the monitoring effort pays for itself.
 
 That paper trail is also your renewal brief. By the time contract talks arrive, you should already know whether promised service levels held up, which problems the vendor fixed when challenged, and which ones they ignored. The renewal decision stops being a leap of faith and becomes a summary of evidence you've been gathering all along — success stories included, because a vendor who consistently hits targets deserves to hear that too.
 

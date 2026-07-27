@@ -1,42 +1,59 @@
-Picture the monthly release meeting at Meridian Insurance, a mid-sized firm with a claims platform that most of its two thousand staff touch every day. The head of operations wants to push the next release back a fortnight: the last one caused a Saturday outage. The development manager wants to ship this week: three teams have finished features that customers were promised in March. Both are certain they're right, and the meeting settles it the way these meetings usually get settled — by whoever argues longest.
+Picture the monthly release meeting at Meridian Insurance, a mid-sized firm with a claims platform that most of its two thousand staff touch every day. The head of operations wants to push the next release back a fortnight because the last one caused a Saturday outage. The development manager wants to ship this week because three teams have finished features promised to customers. Both are certain they are right, and the meeting is drifting towards a decision by seniority and stamina.
 
-For most of the industry's history, that was the state of the art. Speed versus stability was treated as a tug-of-war, and every organisation picked a spot on the rope based on gut feel and recent trauma. The DORA research program is important because it replaced the tug-of-war with data.
+For much of the industry's history, that was the state of the argument. Speed and stability were treated as opposite ends of a rope, and organisations chose a position through instinct and recent trauma. The DORA research programme matters because it gave teams a way to test that story with delivery data. DORA's research and definitions continue to evolve, so use its current guidance rather than memorising a diagram from an old report. [@dora-research; @dora-metrics]
 
-## Where the metrics came from
+## From The Original Four Keys To Five Metrics
 
-DORA — DevOps Research and Assessment — was a research team led by Nicole Forsgren, Jez Humble and Gene Kim, whose multi-year study of software delivery is summarised in the course text *Accelerate*. Through the annual State of DevOps surveys they gathered responses from tens of thousands of practitioners across every industry and company size, then used statistical analysis to work out which practices actually distinguish high-performing technology organisations from the rest.
+DORA began as DevOps Research and Assessment, associated with researchers including Nicole Forsgren, Jez Humble and Gene Kim. Its long-running surveys examined software-delivery practices and organisational outcomes across industries. The original model became widely known through four key measures: deployment frequency, lead time for changes, change failure rate and time to restore service.
 
-Four metrics emerged as the core measures of delivery performance, and the headline finding is worth stating carefully: organisations that scored well on these four metrics were roughly twice as likely to exceed their own goals for profitability, market share and productivity. That is a correlation drawn from survey data, not a controlled experiment — you can't randomly assign companies to be bad at deployment — but it has been replicated across years of studies and remains the best evidence we have that delivery performance and organisational performance move together.
+The current model has five measures and more precise names. DORA explains that the model changed with the technology landscape: *failed deployment recovery time* replaced the broader MTTR label, and *deployment rework rate* became a separate measure. That history matters because dashboards, job interviews and older books still refer to “the four DORA metrics”. They are describing an earlier version, not an entirely different framework. [@dora-metrics]
 
-## The four metrics
+DORA organises the current measures under throughput and instability:
 
-Two of the metrics measure throughput — how fast work flows — and two measure stability — what happens when it lands.
+- **Change lead time** measures the time from a change being committed to version control until it is running in production. Lower is generally better.
+- **Deployment frequency** measures the number of deployments in a period, or the time between deployments. More frequent delivery can indicate smaller batches and a smoother path to production.
+- **Failed deployment recovery time** measures how long it takes to recover from a deployment failure that requires immediate intervention. Lower is better.
+- **Change fail rate** is the proportion of deployments that need immediate intervention, such as a rollback or hotfix. Lower is better.
+- **Deployment rework rate** is the proportion of unplanned deployments made because of a production incident. Lower is better.
 
-- **Deployment frequency** — how often you successfully release to production. Higher is better.
-- **Lead time for changes** — how long a change takes to travel from commit to running in production. Lower is better.
-- **Change failure rate** — what proportion of releases cause a problem needing a fix, a rollback or a patch. Lower is better.
-- **Mean time to recovery (MTTR)** — when something does break, how long it takes to restore service. Lower is better.
+The categories are not a management scorecard with one winning number. They describe how changes move and what instability follows. A team deploying daily but performing emergency rework after every third release has produced motion, not dependable delivery.
 
-The throughput pair tells you how smoothly work flows through your pipeline. If deployment frequency is monthly and lead time is measured in weeks, changes are queuing up somewhere — waiting for a release window, a manual test cycle, a change advisory board. The stability pair tells you what your speed is costing you. A team that ships daily but breaks production every third release hasn't achieved velocity; it has achieved motion.
+## Read Direction And Context, Not A Universal Pass Mark
 
-It helps to read each metric as a direction of travel rather than a pass mark. A typical organisation starting out deploys monthly; a strong target is daily or on demand. Lead time of weeks should be heading towards under a day. Frequent rework after releases should become rare, with problems caught early in the pipeline rather than discovered by customers. Recovery that takes hours or days should be heading towards under an hour. The DORA reports do publish yearly benchmark bands for "elite" through "low" performers, but the bands shift from year to year. What matters for your team is the trend line, not the trophy.
+Read each metric as a direction of travel for one application or service. A team with changes waiting weeks for a manual test cycle has a different constraint from a team that deploys quickly but spends every afternoon on hotfixes. The first team should investigate the path to production; the second should investigate why planned changes repeatedly create unplanned work.
 
-## The finding that changes the argument
+Do not combine unlike services into a single league table. A mobile consumer application, a safety-critical control system and a quarterly mainframe release operate under different risk, regulation and demand. DORA's current guidance warns that service context matters and that comparisons between unlike applications can mislead. Use the measures to compare a service with its own recent performance and to identify the next bottleneck. [@dora-metrics]
 
-Here is the result that should have ended the Meridian release meeting: in the DORA data, the teams with the highest deployment frequency also had the *lowest* change failure rates and the fastest recovery. Speed and stability were not trade-offs. They clustered together.
+The measurements are also indicators, not proof of causation. DORA reports that they predict organisational performance and team well-being, and its research repeatedly finds that speed and stability are not general trade-offs. Those findings support an improvement hypothesis; they do not prove that increasing a dashboard number will create profit. Delivery performance can improve because teams reduce batch size, automate tests, simplify architecture and learn from failures. Chasing the number while ignoring those capabilities reverses the logic.
 
-Once you see why, it stops being surprising. A team that deploys monthly is pushing a month of accumulated changes in one lump. When that release breaks, nobody knows which of two hundred commits is responsible, so diagnosis is slow and rollback is terrifying. A team that deploys ten times a day pushes tiny changes; when one misbehaves, the culprit is obvious and reverting it is trivial. Frequent deployment doesn't just coexist with stability — it is one of the mechanisms that produces it. The practices you'll meet in the rest of this part (automated pipelines, trunk-based development, fast rollback) are exactly the practices that let both numbers improve at once.
+## Why Small Changes Can Improve Speed And Stability
 
-## Using the metrics without weaponising them
+Return to Meridian's release argument. A monthly release accumulates many changes into one event. When it breaks, the team must search a large set of possible causes, rollback carries more business risk, and the next batch begins queuing while the incident is still being understood.
 
-Metrics only help if you use them the way the research intended: as a health check on your delivery process, tracked over time and interpreted together.
+A team that deploys small changes frequently has a narrower search space. A failed change is easier to identify, revert or repair; automation runs against each small increment; and recovery becomes a routine path rather than an improvised emergency. Frequent deployment is not automatically safe, but small batches, tested rollback and fast feedback can improve both throughput and stability. The pipeline, branching and error-budget practices in the rest of this part show how.
 
-Track trends, not snapshots. A single week's numbers are noise; the interesting question is whether lead time this quarter is shorter than last quarter, and what changed. Correlate the numbers with business outcomes: if deployment frequency doubled but customer-reported incidents doubled too, the process isn't maturing, it's fraying. And keep the four in balance. The stability metrics exist precisely to catch teams gaming the throughput ones — if deployment frequency climbs and change failure rate climbs with it, the correct response is to slow down and reinforce your automated testing, not to celebrate the first number and hide the second.
+This reframes the release meeting. The useful question is not “should operations or development win?” It is “what evidence shows that this service can move a smaller change safely, and which part of the delivery system currently prevents that?” The answer may still be to delay a release. The difference is that the delay addresses a named risk rather than preserving a habit.
 
-> A rule of thumb from Goodhart's law: when a measure becomes a target, it ceases to be a good measure. The moment a manager publishes a league table of teams ranked by deployment frequency, engineers will start splitting one deployment into five. Use DORA metrics to ask questions, never to allocate blame or bonuses.
+## Measure Without Weaponising
 
-That last point matters for how the numbers are gathered, too. The healthiest implementations pull the metrics automatically from the pipeline and the incident tracker, where they're hard to fudge, and review them in retrospectives where the team itself decides what to try next.
+Metrics help only when teams use them as evidence about a delivery system.
 
-## What you should be able to do now
+Track trends rather than isolated weeks. Correlate delivery data with user outcomes and incident records. Review the five measures together so that apparent throughput cannot hide instability. Pull data from version control, deployment tooling and incident systems where practical, but do not spend months building perfect integrations before holding the first improvement conversation.
 
-You should be able to define all four metrics without notes, explain why the throughput pair and stability pair must be read together, and — most usefully — make the evidence-based argument in the release meeting: shipping smaller changes more often is not reckless; in the aggregate data it is the *safer* strategy. In this part's hands-on exercise you'll build a small pipeline, deliberately break it, and record your own baseline lead time and recovery time. They will be modest numbers from a toy system, but the habit of measuring is the thing being practised. Teams that measure their delivery performance can improve it deliberately; teams that don't are just guessing, one release meeting at a time.
+Avoid incentives tied to a single measure. Once teams are ranked by deployment frequency, they can split one release into several without improving the service. Once recovery time becomes a target, they can close incidents early. DORA's own guidance warns against setting a metric as the goal, relying on one metric, comparing unlike systems and turning improvement into competition. [@dora-metrics]
+
+The healthier routine is:
+
+1. Choose one application or service and establish a transparent baseline.
+2. Map its delivery path and identify the largest source of waiting or instability.
+3. Agree on one improvement, an owner and a review date.
+4. Observe all five measures alongside user and operational outcomes.
+5. Keep, adapt or reverse the intervention based on the result.
+
+The team owns the interpretation. Managers can remove constraints and fund improvement, but the numbers should not become a device for allocating blame or bonuses.
+
+## Use The Current Model Precisely
+
+You should now be able to explain the original four-key model when it appears in older material and use the current five-metric model in new work. More importantly, you should be able to challenge two common errors: treating speed and stability as automatic enemies, and treating a metric as a lever that can be pulled without changing the delivery system underneath it.
+
+For Meridian, the next step is not another argument. It is a service-level baseline, a map of the release path, and a smaller release whose outcome can be observed. Teams that measure delivery performance can improve it deliberately. Teams that reward the appearance of performance teach people to improve the dashboard.

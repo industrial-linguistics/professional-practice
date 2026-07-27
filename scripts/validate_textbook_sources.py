@@ -15,6 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
+REFERENCES = CONTENT / "textbook-references.bib"
 
 BANNED_PHRASES = [
     "in today's fast-paced",
@@ -40,15 +41,28 @@ MIN_WORDS = 600
 MAX_WORDS = 2600
 
 
+def bibliography_keys() -> set[str]:
+    if not REFERENCES.exists():
+        return set()
+    text = REFERENCES.read_text(encoding="utf-8")
+    return set(re.findall(r"@\w+\s*\{\s*([^,\s]+)\s*,", text))
+
+
 def topic_dirs() -> list[Path]:
     return sorted(p.parent for p in CONTENT.glob("part-*/*/slides.html"))
 
 
-def check_file(path: Path, *, is_intro: bool = False) -> tuple[list[str], list[str]]:
+def check_file(
+    path: Path,
+    *,
+    is_intro: bool = False,
+    reference_keys: set[str] | None = None,
+) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
     text = path.read_text(encoding="utf-8")
     rel = path.relative_to(ROOT)
+    known_keys = reference_keys if reference_keys is not None else set()
 
     in_code = False
     for i, line in enumerate(text.splitlines(), start=1):
@@ -74,6 +88,16 @@ def check_file(path: Path, *, is_intro: bool = False) -> tuple[list[str], list[s
                     errors.append(f"{rel}:{i}: image path must be topic-relative: {target}")
                 elif not img.exists():
                     errors.append(f"{rel}:{i}: image does not exist: {target}")
+        for citation in re.findall(r"\[(@[^\]]+)\]", stripped):
+            if not re.fullmatch(
+                r"@[A-Za-z0-9:_-]+(?:\s*;\s*@[A-Za-z0-9:_-]+)*",
+                citation,
+            ):
+                errors.append(f"{rel}:{i}: unsupported citation syntax: [{citation}]")
+                continue
+            for key in re.findall(r"@([A-Za-z0-9:_-]+)", citation):
+                if key not in known_keys:
+                    errors.append(f"{rel}:{i}: unknown bibliography key: {key}")
         lower = stripped.lower()
         for phrase in BANNED_PHRASES:
             if phrase in lower:
@@ -100,6 +124,11 @@ def main() -> int:
     warnings: list[str] = []
     missing: list[str] = []
     authored = 0
+    reference_keys = bibliography_keys()
+    if not reference_keys:
+        errors.append(
+            f"{REFERENCES.relative_to(ROOT)}: missing or empty bibliography"
+        )
 
     for topic in topic_dirs():
         source = topic / "textbook.md"
@@ -107,12 +136,16 @@ def main() -> int:
             missing.append(str(source.relative_to(ROOT)))
             continue
         authored += 1
-        errs, warns = check_file(source)
+        errs, warns = check_file(source, reference_keys=reference_keys)
         errors.extend(errs)
         warnings.extend(warns)
 
     for intro in sorted(CONTENT.glob("part-*/textbook-intro.md")):
-        errs, warns = check_file(intro, is_intro=True)
+        errs, warns = check_file(
+            intro,
+            is_intro=True,
+            reference_keys=reference_keys,
+        )
         errors.extend(errs)
         warnings.extend(warns)
 

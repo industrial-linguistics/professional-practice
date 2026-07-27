@@ -1,6 +1,6 @@
 There's a predictable failure mode in pre-seed companies: the founder signs up for Asana, the designer wants Figma, the engineer prefers Jira, and three months in, nobody can find anything, none of it syncs, and the company is quietly burning $150 a month on tools that fight each other. Every new hire arrives with their own "game-changing" productivity app, and suddenly you're administering more tools than you have team members. Then a diligence call arrives, an investor asks "who administers access to your systems?", and the honest answer is "we'll get back to you."
 
-A curated pre-seed stack exists to prevent exactly that. It keeps the founding team focused on shipping product instead of chasing logins, it shows investors and early customers that basic governance exists, and it avoids the try-every-tool chaos that can quietly burn $500 or more a month. Just as importantly, it creates artefacts — templates, rituals, admin settings — that scale into Series A instead of needing to be rebuilt. Think of this section as handing Sarah a starter pack she can actually afford to run for six months.
+A curated pre-seed stack exists to prevent exactly that. It keeps the founding team focused on shipping product instead of chasing logins, it shows investors and early customers that basic governance exists, and it avoids the try-every-tool chaos that can quietly burn $500 or more a month. Just as importantly, it creates artefacts (templates, rituals, admin settings) that scale into Series A instead of needing to be rebuilt. Think of this section as handing Sarah a starter pack she can actually afford to run for six months.
 
 ## The guardrails
 
@@ -15,14 +15,14 @@ Here is the reference stack, with real monthly prices for a small team:
 - **Google Workspace Business Starter — $72.** Email, calendar and Drive with basic admin controls and entry-level data-loss prevention. This is the identity backbone as well as the productivity suite.
 - **Slack Pro — $54.** Async conversations, searchable history, and guest channels so partners can join without legal headaches.
 - **Notion Plus — $32.** The shared wiki, lightweight project tracking, and investor update templates. This is where standard operating procedures and onboarding playbooks live, so a new hire lands smoothly inside week one.
-- **Airtable Team — $20.** The structured layer: a CRM-lite, a partnership pipeline, lightweight inventory tracking — without buying a full Salesforce instance years early.
+- **Airtable Team ($20.** The structured layer: a CRM-lite, a partnership pipeline, lightweight inventory tracking) without buying a full Salesforce instance years early.
 - **1Password Teams Starter — $24.** Secrets management with a vault per function, onboarding checklists and emergency access.
 
-Total: around $202 a month. Every category a small company genuinely needs — collaboration, knowledge, structured data, security — is covered, and nothing else is.
+Total: around $202 a month. Every category a small company genuinely needs (collaboration, knowledge, structured data, security) is covered, and nothing else is.
 
-Each tool comes with a discipline attached. On the communication core, the decision cue is explicit: stay on the Starter and Pro tiers until customers actually demand SSO or message retention beyond 90 days — that demand *is* the upgrade trigger, and it hasn't arrived yet. On the knowledge tools, the discipline is resisting sprawl: build new workflows inside Notion and Airtable before swiping the card for a sixth niche app, and audit the editor list monthly, because many contributors only need free viewer seats. Notion in particular can become a black hole where documentation goes to die unless someone owns its structure. And capture the compliance basics early — GDPR and Australian Privacy Act considerations, where primary data resides, which regions host the backups — because retrofitting those answers is far harder than recording them now.
+Each tool comes with a discipline attached. On the communication core, the decision cue is explicit: stay on the Starter and Pro tiers until customers actually demand SSO or message retention beyond 90 days — that demand *is* the upgrade trigger, and it hasn't arrived yet. On the knowledge tools, the discipline is resisting sprawl: build new workflows inside Notion and Airtable before swiping the card for a sixth niche app, and audit the editor list monthly, because many contributors only need free viewer seats. Notion in particular can become a black hole where documentation goes to die unless someone owns its structure. And capture the compliance basics early (GDPR and Australian Privacy Act considerations, where primary data resides, which regions host the backups) because retrofitting those answers is far harder than recording them now.
 
-If someone insists on Microsoft 365 parity, don't argue; make them cost it. Document the total migration lift — identity mapping, data residency shifts, retraining, migration time — before agreeing. What looks like a $20-a-month subscription swap frequently turns out to be a $10K decision in disguise.
+If someone insists on Microsoft 365 parity, don't argue; make them cost it. Document the total migration lift (identity mapping, data residency shifts, retraining, migration time) before agreeing. What looks like a $20-a-month subscription swap frequently turns out to be a $10K decision in disguise.
 
 ## Security hygiene without security spend
 
@@ -38,7 +38,7 @@ Some additions are worth the money — but only when the pain point is measurabl
 - **Gusto or Rippling** for contractor payroll when payments outgrow a quarterly manual workflow and invoices arrive monthly.
 - **Freshdesk Growth** only when support volume genuinely surpasses shared-inbox discipline and customer deadlines start slipping.
 
-Before adding any of these, map the API and SSO integrations. A tool that doesn't hook into your identity and automation flows creates integration debt — manual syncing, duplicate records, orphaned accounts — that costs more than the subscription.
+Before adding any of these, map the API and SSO integrations. A tool that doesn't hook into your identity and automation flows creates integration debt (manual syncing, duplicate records, orphaned accounts) that costs more than the subscription.
 
 ## The art of "not yet"
 
@@ -56,6 +56,6 @@ Keep one source of truth listing domains, billing owners and renewal dates. And 
 
 ## Try it yourself
 
-The workshop exercise for this topic asks you to do what a founding IT generalist or fractional CTO does in week one: draft your own six-tool stack under $250 a month and justify each choice; identify the specific trigger that would force an upgrade or an extra tool; nominate who owns configuration and governance for each (founder, ops lead, fractional CTO); and present it back with a "stay lean" checklist for your peers to attack. Constructive pushback now is free — the same conversation in a boardroom, after real money has been spent, is not. The question you're rehearsing is the one every board eventually asks: *why this tool, why now, and what happens if it fails?*
+Apply the model as a founding IT generalist or fractional CTO would in the first week: draft a six-tool stack under $250 a month and justify each choice; identify the trigger that would force an upgrade or an extra tool; nominate who owns configuration and governance for each item (founder, operations lead or fractional CTO); and have a critical reviewer challenge the "stay lean" checklist. Constructive pushback now is free; the same conversation in a boardroom, after real money has been spent, is not. The question under rehearsal is the one every board eventually asks: *why this tool, why now, and what happens if it fails?*
 
 The takeaway: start with a deliberate, budget-conscious stack that covers collaboration, knowledge, security and customer touchpoints, and treat every tool purchase as an experiment with a runway impact statement, success criteria and an exit plan. That mindset protects cash, keeps audits boring, and leaves room to scale when product-market fit finally lands.

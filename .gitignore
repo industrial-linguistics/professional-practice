@@ -17,8 +17,15 @@ textbook/*.log
 textbook/*.out
 textbook/*.toc
 textbook/*.xdv
+textbook/*.bbl
+textbook/*.bcf
+textbook/*.blg
+textbook/*.run.xml
 textbook/missfont.log
 textbook/chapters/*.aux
+textbook/audit/kindle-previewer/KPF/
+textbook/kdp/*.svg
+textbook/kdp/ebook-cover.png
 
 # Video pipeline outputs
 .build-manifest.json

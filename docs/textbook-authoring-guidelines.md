@@ -57,8 +57,11 @@ The generator converts a deliberately small subset. Use only:
 - `> ` block quotes for short asides, definitions or war stories.
 - Images on their own line: `![Caption](images/file.png)` — only for files
   that actually exist in the topic's `images/` directory.
+- Parenthetical citations in Pandoc form: `[@reference-key]` or
+  `[@first-key; @second-key]`. Keys must exist in
+  `content/textbook-references.bib`.
 - The front-matter preface may use `{{course-map}}` on its own line to emit
-  the generated course-through-line diagram.
+  the generated book-through-line diagram.
 
 No tables, no HTML, no links (the book is print-first), no footnotes, no
 `#` top-level headings. Anything else will be silently mangled.

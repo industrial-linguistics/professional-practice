@@ -1,4 +1,4 @@
-Most companies are remote-friendly right up until a developer's laptop dies in Mumbai at 3am. Then "just bring it to IT" turns into a week of international couriers, a customs officer with questions, and a new hire who spent their first sprint watching a tracking page. Sarah's startup — fresh off a seed round, six weeks to hire fifteen people, most of them nowhere near an office — is about to discover that the distance between "remote allowed" and "remote-first" is measured in exactly these moments.
+Most companies are remote-friendly right up until a developer's laptop dies in Mumbai at 3am. Then "just bring it to IT" turns into a week of international couriers, a customs officer with questions, and a new hire who spent their first sprint watching a tracking page. Sarah's startup (fresh off a seed round, six weeks to hire fifteen people, most of them nowhere near an office) is about to discover that the distance between "remote allowed" and "remote-first" is measured in exactly these moments.
 
 ## What remote-first actually means
 
@@ -24,7 +24,7 @@ Sometimes bring-your-own-device is unavoidable — a contractor in a country you
 
 Access management is where trust either lives or dies, and the runbook has three verbs. Joiners: account creation fires automatically from the HR system or contract tracker, granting a least-privilege bundle per role — VPN, SSO, MFA and a password manager, all walked through in the welcome packet video. Movers: role changes trigger access changes, not access accumulation. Leavers: deprovision within two hours of notice, immediately for terminations.
 
-When Maria's three-month design contract ended, HR closed the ticket on Friday and automation revoked her Figma, Slack and VPN access within minutes. No heroics, no spreadsheet archaeology, no awkward email a month later asking whether anyone remembered to remove the ex-contractor from the production dashboard. That last part depends on keeping a live inventory of every third-party SaaS product in use, so that whoever handles offboarding — including an external MSP — can disable access without a scavenger hunt.
+When Maria's three-month design contract ended, HR closed the ticket on Friday and automation revoked her Figma, Slack and VPN access within minutes. No heroics, no spreadsheet archaeology, no awkward email a month later asking whether anyone remembered to remove the ex-contractor from the production dashboard. That last part depends on keeping a live inventory of every third-party SaaS product in use, so that whoever handles offboarding (including an external MSP) can disable access without a scavenger hunt.
 
 Speed matters in both directions, and here's the uncomfortable symmetry: if legitimate access takes hours to grant, shadow IT takes minutes to appear. People don't wait; they route around you.
 
@@ -36,7 +36,7 @@ The second sin is process friction. If expense approvals take six weeks, expect 
 
 ## Time zones and support that follows the sun
 
-Distributed teams don't suffer from time zones; they suffer from undesigned time zones. Publish a coverage map and core collaboration hours — say 2pm to 5pm UTC — with explicit escalation paths for everything outside them. Use follow-the-sun handover templates: when London finds a blocker at 6pm and Sydney won't wake for eight hours, an annotated screen recording and structured notes let Melbourne pick the thread up without pinging anyone at 2am. Record key meetings with timestamped notes, and be ruthless about the "quick sync" myth. A quick sync at 2am Melbourne time isn't quick for anyone. The right question for every recurring meeting is: which decisions genuinely require synchronous time, and who pays the sleep tax when they do?
+Distributed teams don't suffer from time zones; they suffer from undesigned time zones. Publish a coverage map and core collaboration hours (say 2pm to 5pm UTC) with explicit escalation paths for everything outside them. Use follow-the-sun handover templates: when London finds a blocker at 6pm and Sydney won't wake for eight hours, an annotated screen recording and structured notes let Melbourne pick the thread up without pinging anyone at 2am. Record key meetings with timestamped notes, and be ruthless about the "quick sync" myth. A quick sync at 2am Melbourne time isn't quick for anyone. The right question for every recurring meeting is: which decisions genuinely require synchronous time, and who pays the sleep tax when they do?
 
 Support operations follow the same logic. Run the help desk inside chat, where people already live — triage bots route the common laptop issues, knowledge-base links resolve the rest, and emoji reactions signal ticket status without ceremony. Offer video office hours for people who'd rather talk. Stock spares in regional lockers to hit 48-hour replacement targets, and put shipping SLAs, customs delays and ticket resolution times on the same dashboard as satisfaction scores, so logistics and support are judged as one system.
 
@@ -44,7 +44,7 @@ Support operations follow the same logic. Run the help desk inside chat, where p
 
 There's a bridge here that's easy to miss: logistical excellence is a culture programme. When equipment arrives ready and access just works, new hires feel trusted from hour one — and trusted people share context, ask questions and take risks. Strong runbooks free managers to focus on belonging instead of badge provisioning.
 
-On that runway you can build the deliberately human layer: a culture buddy outside the new hire's reporting line, so they hear the unwritten norms; a monthly operations show-and-tell that celebrates small experiments; regional micro-retreats once more than eight contributors cluster nearby, turning Slack handles into people without demanding relocation; and rotating facilitation of async updates so every voice — not just the loudest time zone — practises telling the company's story.
+On that runway you can build the deliberately human layer: a culture buddy outside the new hire's reporting line, so they hear the unwritten norms; a monthly operations show-and-tell that celebrates small experiments; regional micro-retreats once more than eight contributors cluster nearby, turning Slack handles into people without demanding relocation; and rotating facilitation of async updates so every voice (not just the loudest time zone) practises telling the company's story.
 
 ## Measuring it, and what failure looks like
 

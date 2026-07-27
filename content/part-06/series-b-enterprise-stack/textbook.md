@@ -1,10 +1,10 @@
-Two rounds ago, Sarah's tooling decisions were about stretching $200 a month across six seats. Now the company is pushing 200 people, it sells to banks and hospitals whose procurement teams read every appendix of the MSA, and the board expects spend forecast eighteen months out. The tooling budget has grown to roughly **$20,000 a month** — a hundred times the pre-seed figure — and the character of the decisions has changed with it. The question is no longer "can we afford this tool?" but "can we prove, to an auditor or a customer's CISO, that our tools enforce what our contracts promise?"
+Two rounds ago, Sarah's tooling decisions were about stretching $200 a month across six seats. Now the company is pushing 200 people, it sells to banks and hospitals whose procurement teams read every appendix of the MSA, and the board expects spend forecast eighteen months out. The tooling budget has grown to roughly **$20,000 a month** (a hundred times the pre-seed figure) and the character of the decisions has changed with it. The question is no longer "can we afford this tool?" but "can we prove, to an auditor or a customer's CISO, that our tools enforce what our contracts promise?"
 
 That's what Series B does to a stack. Regulated enterprise customers expect SOC 2 Type II evidence, 24/7 support coverage and contractual uptime remedies. Investors expect every SKU to carry a forecast line and a justification against an 18-month runway plan. Internally, the tooling now underpins pipeline audits, co-selling and customer onboarding. It has stopped being a patchwork of founder credit-card subscriptions and become the company's nervous system.
 
 ## Three layers, glued together by automation
 
-The reference architecture is easiest to hold in your head as three layers — revenue, service and trust — connected by automation rather than by people re-keying data.
+The reference architecture is easiest to hold in your head as three layers (revenue, service and trust) connected by automation rather than by people re-keying data.
 
 - **Revenue.** Salesforce Enterprise with CPQ anchors accounts, entitlements and renewals. When pricing changes, downstream systems inherit it instantly instead of waiting for someone to update a spreadsheet.
 - **Service.** ServiceNow ITSM and CSM own operational truth: incidents, changes and customer support cases, with audited hand-offs between them.
@@ -14,9 +14,9 @@ None of these choices is exotic. What's distinctive at Series B is that they are
 
 ## Where the $20K goes
 
-The monthly snapshot breaks into eight categories. Salesforce Enterprise for 60 seats plus CPQ and its Slack and MuleSoft connectors takes the lion's share at **$7,200**, because tying ARR, usage and renewals to a single source of truth is what makes every other number in the company trustworthy. ServiceNow ITSM and CSM for 30 agents, including the Virtual Agent, adds **$3,900** — expensive, but it is what keeps regulated customers out of the founders' inboxes and inside audited 24/7 workflows. Security and observability (Panther SIEM, SentinelOne Complete, Cribl for log ingestion) run **$2,400**; the integration fabric (Workato Enterprise with eight recipes, plus Segment) **$1,200**; contract lifecycle (Ironclad plus DocuSign CLM) **$1,600**; data and RevOps (Snowflake, Fivetran, Hightouch, Mode) **$1,150**; and compliance and risk (Drata Enterprise plus Whistic for vendor assessments) **$950**. The final **$1,600** — ten per cent — is a deliberate buffer for add-on SKUs, seat growth and implementation partners.
+The monthly snapshot breaks into eight categories. Salesforce Enterprise for 60 seats plus CPQ and its Slack and MuleSoft connectors takes the lion's share at **$7,200**, because tying ARR, usage and renewals to a single source of truth is what makes every other number in the company trustworthy. ServiceNow ITSM and CSM for 30 agents, including the Virtual Agent, adds **$3,900** — expensive, but it is what keeps regulated customers out of the founders' inboxes and inside audited 24/7 workflows. Security and observability (Panther SIEM, SentinelOne Complete, Cribl for log ingestion) run **$2,400**; the integration fabric (Workato Enterprise with eight recipes, plus Segment) **$1,200**; contract lifecycle (Ironclad plus DocuSign CLM) **$1,600**; data and RevOps (Snowflake, Fivetran, Hightouch, Mode) **$1,150**; and compliance and risk (Drata Enterprise plus Whistic for vendor assessments) **$950**. The final **$1,600** (ten per cent) is a deliberate buffer for add-on SKUs, seat growth and implementation partners.
 
-That buffer deserves a comment, because founders instinctively delete it. At this scale something *will* change mid-quarter — a new geography, a compliance-heavy customer, a surprise seat true-up — and a plan with no slack converts every change into an emergency budget request to the board. The buffer is not waste; it's the price of never having to say "we didn't model that".
+That buffer deserves a comment, because founders instinctively delete it. At this scale something *will* change mid-quarter (a new geography, a compliance-heavy customer, a surprise seat true-up) and a plan with no slack converts every change into an emergency budget request to the board. The buffer is not waste; it's the price of never having to say "we didn't model that".
 
 ## Integration is where the value lives
 
@@ -28,7 +28,7 @@ A $20K stack of unconnected platforms is just an expensive way to have the same 
 - ServiceNow audit logs stream into Panther, so the security team sees who touched what without logging into three consoles.
 - Okta's SCIM feeds provision and deprovision users in both platforms, keeping least privilege enforceable rather than aspirational.
 
-When you assess a Series B stack — yours or someone else's — start here. Missing integrations show up later as reconciliation spreadsheets, missed escalations and audit findings.
+When you assess a Series B stack (yours or someone else's) start here. Missing integrations show up later as reconciliation spreadsheets, missed escalations and audit findings.
 
 ## Contracts stop being email attachments
 
@@ -48,4 +48,4 @@ The levers tab is where the plan lives or dies, so it's built on concrete unit e
 
 ## Making it yours
 
-The workshop for this topic asks you to do what a platform owner or head of IT does in the first month of a Series B role: map the current stack against the reference architecture and mark the gaps, populate the worksheet with real owners, renewal dates and seat counts, then stress-test spend against best- and worst-case ARR with a 15% contingency. Identify the top three integration risks and the mitigation each buffer dollar funds. Close with a two-slide executive summary — one slide of spend, one of risk posture — because that, in the end, is the deliverable: a stack the board can read as easily as the engineers can run it.
+Apply the model as a platform owner or head of IT would in the first month of a Series B role: map the current stack against the reference architecture and mark the gaps, populate the worksheet with real owners, renewal dates and seat counts, then stress-test spend against best- and worst-case ARR with a 15% contingency. Identify the top three integration risks and the mitigation each buffer dollar funds. Close with a two-slide executive summary (one slide of spend and one of risk posture). The deliverable is a stack the board can read as easily as the engineers can run it.

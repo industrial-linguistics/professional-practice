@@ -1,4 +1,4 @@
-Ask a software founder what their company is worth and they won't quote profit, headcount or even total revenue. They'll quote **ARR** — annual recurring revenue — because that's the number investors, boards and acquirers actually price. Understanding why one kind of dollar is worth more than another is the economics that sits underneath everything else in this part: the sales roles, the customer success teams, the health scores, all of it exists because of how recurring revenue works.
+Ask a software founder what their company is worth and they won't quote profit, headcount or even total revenue. They'll quote **ARR** (annual recurring revenue) because that's the number investors, boards and acquirers actually price. Understanding why one kind of dollar is worth more than another is the economics that sits underneath everything else in this part: the sales roles, the customer success teams, the health scores, all of it exists because of how recurring revenue works.
 
 ## Recurring versus one-off revenue
 
@@ -15,7 +15,7 @@ None of which makes one-time deals wrong. Hardware is bought, not subscribed to;
 Within the recurring world, how you charge shapes how you grow.
 
 - **Per-seat licences** scale neatly with headcount and are easy to budget, but they cap expansion at the size of the customer's team — once everyone has a licence, the account stops growing.
-- **Usage-based fees** map cost directly to consumption — the standard model for fintech APIs and infrastructure — and grow automatically with adoption. The next topic dedicates itself to this model and its sharp edges.
+- **Usage-based fees** map cost directly to consumption (the standard model for fintech APIs and infrastructure) and grow automatically with adoption. The next topic dedicates itself to this model and its sharp edges.
 - **Tiered feature bundles** (starter, professional, enterprise) let customers graduate as their needs mature, building an upgrade path into the price list itself.
 
 Most vendors mix these, and the mix determines both the upsell paths available to sales and how predictable the revenue line looks to finance.
@@ -24,7 +24,7 @@ Contract structure is the other lever. Annual terms give frequent renewal checkp
 
 ## Land and expand
 
-We met land-and-expand earlier in this part as a sales strategy; here's the economic logic underneath it. Start with a small beachhead contract — Slack famously entered organisations through pilots of a hundred seats or so before spreading to thousands — prove value, then grow the account: more seats, more features, new divisions. The buyer's risk is low because the initial commitment is small; the vendor's payoff is a pathway to contracts they could never have closed on day one.
+We met land-and-expand earlier in this part as a sales strategy; here's the economic logic underneath it. Start with a small beachhead contract (Slack famously entered organisations through pilots of a hundred seats or so before spreading to thousands) prove value, then grow the account: more seats, more features, new divisions. The buyer's risk is low because the initial commitment is small; the vendor's payoff is a pathway to contracts they could never have closed on day one.
 
 The engine of the "expand" half is customer success. CSMs are the people positioned to notice that the marketing team has started using the product, that a new use case has appeared, that usage is straining the current tier — the expansion triggers. This is why the previous topic insisted customer success is a revenue function, not a support function: in a land-and-expand business, most of the lifetime value of an account is closed *after* the first sale.
 
@@ -46,6 +46,6 @@ Track churn and lifetime value together and you learn whether clients actually s
 
 ## Careers in revenue economics
 
-Fluency in these mechanics opens doors well beyond quota-carrying sales. **Revenue operations analysts** keep the machinery honest — in fintech or healthcare that means juggling usage spikes and compliance-driven churn. **Sales finance partners** build the models that justify headcount and pricing changes. **Customer success managers**, as we've seen, tie renewals and expansion to product adoption. Entry-level versions of these roles start unglamorously — CRM hygiene, deal desk support — and grow into strategic pricing and go-to-market leadership, because the person who genuinely understands where the revenue comes from tends to end up in the room where decisions are made.
+Fluency in these mechanics opens doors well beyond quota-carrying sales. **Revenue operations analysts** keep the machinery honest — in fintech or healthcare that means juggling usage spikes and compliance-driven churn. **Sales finance partners** build the models that justify headcount and pricing changes. **Customer success managers**, as we've seen, tie renewals and expansion to product adoption. Entry-level versions of these roles start unglamorously (CRM hygiene, deal desk support) and grow into strategic pricing and go-to-market leadership, because the person who genuinely understands where the revenue comes from tends to end up in the room where decisions are made.
 
 Whether you end up selling, supporting or building, knowing how the revenue flows sharpens your decisions. ARR provides stability, one-time deals provide spikes, and land-and-expand balances risk between buyer and vendor. When a vendor gives away a generous pilot, watches your login statistics obsessively, or sends a cheerful CSM to your quarterly review, none of it is random — it's all downstream of the same arithmetic. In tech, the economics is as much a part of the product as the features are.

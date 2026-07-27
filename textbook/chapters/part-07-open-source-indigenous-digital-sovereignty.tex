@@ -5,23 +5,18 @@
 \index{open source}
 
 \index{CARE principles}
+\index{community governance}
 \index{data sovereignty}
-\index{GPL}
 \index{Indigenous data sovereignty}
-\index{kaitiakitanga}
 \index{licence}
-\index{maintainer}
-\index{MIT License}
-\index{OCAP}
-\index{taonga}
-\index{Te Hiku Media}
-Open-source software and Indigenous data sovereignty look like an odd pairing for a single chapter, until you notice they are wrestling with the same questions. Who owns work made by many hands? Who decides how it can be used, and by whom? Who benefits when it succeeds, and who carries the load of keeping it alive? Open-source communities answer with licences and governance: MIT and GPL texts that turn community values into enforceable rules, and decision structures that grow from a single maintainer's judgement into core teams, steering committees and foundations. Indigenous communities answer with frameworks like CARE and OCAP®, with tikanga-led approval processes, and with instruments like Te Hiku Media's Kaitiakitanga licence — because language recordings, archives and community data are not raw material waiting to be scraped, but taonga held in trust.
-
-
-Both traditions reject the lazy default that whoever holds a copy of something gets to decide what happens to it. Both treat a licence as a social contract, not fine print. But they are not the same, and this part refuses to blur them: mainstream open source tends to treat openness as the default to be constrained, while Indigenous data sovereignty treats openness as one negotiated setting on a spectrum — open to whom, for what purpose, under whose authority. In the course map, this is where professional practice becomes stewardship: the technical worker has to ask who has authority, who benefits, and what obligations survive after the system ships.
-
-
 \index{Maori}
+\index{OCAP}
+Open-source software and Indigenous data sovereignty look like an odd pairing for a single chapter, until you notice that both make authority over digital material visible. Who decides how work or data may be used? Who benefits when it succeeds, and who carries the obligations of maintaining it? Open-source communities use copyright licences and governance structures to grant reuse rights and allocate decisions. Indigenous-led frameworks such as CARE, OCAP®, Māori data-sovereignty principles and Australian Indigenous data-sovereignty principles address rights and interests in data about Indigenous peoples, lands, resources and knowledge. \autocite{osi-definition,care,ocap,te-mana-raraunga,mnw-principles}
+
+
+The comparison has strict limits. Mainstream open source generally begins with copyright held by creators and uses public licences to grant permissions. Indigenous data sovereignty begins from Indigenous peoples' rights and interests, including collective authority that conventional intellectual-property law may not recognise. The Indigenous-led frameworks named here also arise from different peoples and contexts; none substitutes for local authority. In the book's through-line, this is where professional practice becomes stewardship: the technical worker has to ask who has authority, who benefits, and what obligations survive after the system ships.
+
+
 The chapter also refuses a second shortcut: no one Indigenous framework generalises everywhere. Māori, Aboriginal, Torres Strait Islander, First Nations and other Indigenous contexts differ in law, governance, history and protocol. Use the frameworks here as starting points for respectful professional questions, not as permission to proceed without local authority.
 
 
@@ -30,123 +25,145 @@ The chapter also refuses a second shortcut: no one Indigenous framework generali
 \index{FOSS}
 \index{Open Source Program Office}
 \index{te reo Maori}
-Across the sections that follow you will work through both toolkits: how to share data without surrendering guardianship, how projects govern themselves from solo stewardship to foundation backing, what a community tech-lead actually does all day, how FOSS licences allocate rights and obligations, and how Te Hiku Media built world-class speech technology while keeping te reo Māori under Māori control. Along the way, a running career thread — OSPO analysts, community managers, data kaitiaki, tech-leads — shows that stewarding the commons is not volunteer overflow work. It is a profession, and this part is your introduction to practising it well.
+\index{Te Hiku Media}
+Across the sections that follow you will work through both toolkits: how to share data without surrendering guardianship, how projects govern themselves from solo stewardship to foundation backing, what a community tech-lead actually does all day, how FOSS licences allocate rights and obligations, and how Te Hiku Media built world-class speech technology while keeping te reo Māori under Māori control. Along the way, a running career thread (OSPO analysts, community managers, data kaitiaki, tech-leads) shows that stewarding the commons is not volunteer overflow work. It is a profession, and this part is your introduction to practising it well.
 
 \section{Balancing Openness \& Cultural Safety}
 \index{cultural safety}
 \index{whakapapa}
-The request arrives politely, the way these requests usually do. A university NLP lab is assembling an open speech corpus and would like to include a community organisation's language audio — decades of recordings, many of elders who have since died. The email promises attribution, a citation, and the warm glow of contributing to science. To the researchers this is routine: open data is a public good, and more data means better models. To the community that made those recordings, the question looks entirely different. Those voices carry whakapapa and obligation. Some material was recorded on the understanding that it would stay close to home. ``Just put it online'' is not a neutral default; it is a decision about authority, made by whoever happens to hold the file.
+Consider a composite scenario. A university language-technology lab asks to include a community organisation's archive in an open speech corpus. The collection includes recordings of elders who have since died, and the original permissions did not contemplate public release or AI training. The researchers see an opportunity to improve tools for an under-resourced language. The people connected to the recordings may see whakapapa, responsibilities, material that should not leave the community, and a history of research benefits flowing elsewhere.
 
 
-\index{taonga}
-This section is about managing that tension on purpose. Communities want visibility for their stories. Research wants data. Platforms default to ``public''. Cultural safety requires respecting protocols, whakapapa and the community's right to say ``not now'' — which is not the same as ``never'', and treating the two as identical is how trust gets burned. The way through is to stop treating openness as a switch and start treating it as a spectrum with three axes: open to whom, for what purpose, and under whose authority. Underneath it all sits a reframing worth memorising: treat each dataset as taonga first, asset second.
+The scenario has no culturally neutral ``open by default'' answer. The first professional task is to identify the people and institutions with authority to decide. The second is to separate possible purposes, users and derivatives rather than treating access as one switch. The third is to ask what benefit, capability and continuing control remain with the community.
 
 
-None of this is anti-openness. It is a strategic position as much as an ethical one. Communities want impact from their language archives, climate observations and health studies; what they have also seen is extractive research hollow out trust, with data leaving and nothing coming back. Balancing openness with cultural safety means designing processes that answer ``who benefits?'' and ``who decides?'' before a single CSV moves.
+\index{CARE principles}
+\index{FAIR principles}
+This is not an argument against sharing. The CARE Principles were developed because open-data and FAIR approaches do not by themselves address power differences, historical contexts, Indigenous rights and collective benefit. CARE complements technical data-management principles by centring people and purpose. \autocite{care}
 
 
 
-\subsection{Principles you can point to}
+\subsection{Use Frameworks In Their Proper Context}
 
 
-When a project touches Indigenous data, you don't have to improvise the ethics from scratch. Three frameworks give teams shared language, and — just as usefully — give community representatives something concrete to cite in a negotiation.
+Several Indigenous-led sources can improve the questions a team asks, but they are not interchangeable:
 
 
 \begin{itemize}[leftmargin=*]
-\index{CARE principles}
-\index{FAIR principles}
-\item \textbf{CARE} — Collective benefit, Authority to control, Responsibility, Ethics — complements the better-known FAIR principles (findable, accessible, interoperable, reusable). FAIR asks whether people \emph{can} use the data; CARE asks whether they should, who retains the authority to say no, and what flows back to the community. Culturally grounded projects need both.
+\item \textbf{CARE} stands for Collective benefit, Authority to control, Responsibility and Ethics. It is a global framework for Indigenous data governance and explicitly complements FAIR. \autocite{care}
 \index{OCAP}
-\item \textbf{OCAP®} — Ownership, Control, Access, Possession — affirms First Nations governance across the entire data lifecycle, from collection to storage to disposal. Possession matters: it is hard to enforce ownership of data sitting on someone else's servers.
-\index{community tech lead}
-\index{UNDRIP}
-\item \textbf{UNDRIP Articles 18 and 31} underpin community decision-making over cultural expressions. Citing them in an agreement grounds the arrangement in international law rather than goodwill, and it gives a community tech-lead real standing to slow down an eager research partner and convene the appropriate discussions before anything is exported.
+\item \textbf{OCAP®} stands for Ownership, Control, Access and Possession. It is specifically an expression of First Nations jurisdiction over information in Canada, not a generic set of principles for every Indigenous people. FNIGC also stresses that each First Nation may express the principles according to its own worldview and protocols. \autocite{ocap}
+\index{data sovereignty}
+\index{Indigenous data sovereignty}
+\index{kaitiakitanga}
+\index{Maori}
+\item \textbf{Te Mana Raraunga's principles} articulate Māori data sovereignty through concepts including rangatiratanga, whakapapa, whanaungatanga, kotahitanga, manaakitanga and kaitiakitanga. \autocite{te-mana-raraunga}
+\item \textbf{Maiam nayri Wingara's principles} provide an Australian Indigenous data-sovereignty source and should direct practitioners towards Indigenous peoples' right to exercise control over data ecosystems and their development. \autocite{mnw-principles}
+\index{Traditional Knowledge}
+\item \textbf{The United Nations Declaration on the Rights of Indigenous Peoples} provides an international rights context, including participation in decisions and control of cultural heritage, traditional knowledge and cultural expressions. It does not replace the authority or protocols of the community concerned. \autocite{undrip}
 \end{itemize}
 
-The operational consequence is simple to state: apply tikanga-led approval processes before any data leaves community servers. Approval is a process with named participants, not a checkbox on an upload form.
+\index{tikanga}
+Using a framework well begins with naming whose framework it is. A project involving Māori data should not cite OCAP® as if ``Indigenous'' were one jurisdiction. A Canadian project should not import tikanga terminology as decoration. A team in Australia should not treat national principles as permission to bypass the specific Aboriginal or Torres Strait Islander peoples whose data is involved.
 
 
 
-\subsection{Consent that keeps working}
+\subsection{Consent Must Match The Proposed Use}
 \index{consent}
 
 
-Consent in this context is not a one-off signature; it is an ongoing conversation. A consent form signed in 2009 for an oral-history project says nothing about training a voice model in 2026, so agreements need explicit language about derivative uses and AI training — the uses nobody imagined when the recording light first went on.
+A permission recorded for an oral-history project does not automatically cover public release, commercial use, voice cloning or model training. The difference is not hidden legal fine print; it changes who can hear the material, what can be inferred from it, and whether a derivative can be copied beyond recall.
 
 
-Practical teams classify material into sensitivity tiers: open educational content, community-restricted material, and sacred or closed knowledge. The tiers exist so that the people with cultural authority can make real distinctions — a language-learning clip that can go to every school in the country sits in a different category from karakia that never leave the marae. Alongside the technical metadata, record provenance, the cultural narratives attached to the material, and explicit usage boundaries, so a future analyst understands the context and not just the sample rate. Where sharing could expose tapu knowledge, plan for redaction or data synthesis instead of publication.
+Map the proposed uses separately:
+
+
+\begin{itemize}[leftmargin=*]
+\item listening or viewing by community members;
+\item access by an approved researcher;
+\item publication of selected excerpts;
+\item creation of a searchable transcript;
+\item training of a model;
+\item release of model weights, embeddings or synthetic outputs;
+\item commercial licensing or integration into another service.
+\end{itemize}
+
+For each use, record the relevant authority, purpose, users, duration, benefit, review point and withdrawal or suspension process. If the people with authority distinguish public, community-restricted and closed material, the system must preserve those distinctions. The technical team does not invent the categories.
+
+
+Provenance must travel with the material. A future operator needs more than a file name and copyright field: they need to know which community or people are connected to it, the basis of authority, approved purposes, restrictions on derivatives, and who can answer questions. Local Contexts provides Traditional Knowledge and Biocultural Labels and related notices intended to make community protocols and provenance visible in collections and data systems. Teams should follow Local Contexts' process rather than assigning labels themselves. \autocite{local-contexts-labels}
 
 
 
-\begin{quote}\small
-If the only thing standing between sacred audio and someone's training run is a descriptive file name, you don't have governance. You have luck.
-\end{quote}
+\subsection{Turn Authority Into System Behaviour}
+
+
+Governance has to survive contact with software. The appropriate controls depend on decisions made by the relevant authority, but a technical design may need:
+
+
+\begin{itemize}[leftmargin=*]
+\item access groups that reflect approved roles and purposes;
+\item separate permissions for viewing, downloading and creating derivatives;
+\index{renewal}
+\item time-limited access with review before renewal;
+\item logs that community decision-makers can inspect and understand;
+\item encryption and key-management arrangements that do not leave control solely with an external partner;
+\item alerts and suspension paths for use outside an approved plan;
+\index{backups}
+\item metadata that remains attached through export and backup;
+\item documented deletion, return or preservation procedures when a partnership ends.
+\end{itemize}
+
+These are implementation options, not a universal cultural-safety checklist. A technically strict control can still be wrong if the wrong institution designed it or if it prevents the community from exercising its own rights. Conversely, a memorandum of understanding without enforceable access paths may express good intentions while leaving the platform's default permissions in charge.
 
 
 
-\subsection{Tiers, agreements and review boards}
+\subsection{Agreements Need Benefit, Review And Exit}
 
 
-Principles become practice through access design. A common pattern is a membership-based portal with whānau-first access and layered permissions for researchers — insiders see more, outsiders earn access progressively. Data-sharing agreements do the heavy lifting: they require reciprocity, cultural briefings before access is granted, and the return of insights to the community in a usable form. A community review board sits above the process with the power to veto or amend any release plan, and sunset reviews are scheduled from the start so that sharing levels can evolve as community comfort changes — in either direction.
+A data-sharing agreement should be specific enough to operate. It can identify approved purposes, decision-makers, prohibited uses, reporting obligations, benefit-sharing, cultural briefings, publication review, incident handling and dispute resolution. It should also explain what happens to copies and derivatives when approval expires or a project ends.
 
 
-\index{access control}
-\index{escalation path}
+Build review into the relationship. New model capabilities, a proposed commercial partner or a change in community priorities may make an earlier decision obsolete. The agreement should say who reconvenes, what evidence they receive and whether use pauses during review. A sunset date can force a decision that would otherwise drift into permanent access.
+
+
 \index{licence}
-\index{risk register}
-\index{Traditional Knowledge}
-The paperwork layer matters as much as the portal. Memoranda of understanding spell out kaitiaki roles, dispute resolution and benefit-sharing. Cultural licences or Traditional Knowledge labels are embedded so the terms travel with the dataset rather than living in a drawer. Institutional partners are required to appoint liaison staff who are accountable back to tribal councils, and escalation paths are documented in advance for the day a request breaches protocol or legal boundaries. None of this is exotic to an IT professional: it is access control, data classification and incident response, pointed at a different risk register.
+Labels, licences and contracts support governance; none creates authority by itself. The people making decisions need time, resources, technical explanations they can challenge, and the ability to say no without losing unrelated services or funding.
 
 
 
-\subsection{Technical safeguards}
+\subsection{A Defensible Outcome For The Scenario}
 
 
-\index{audit trail}
-\index{watermarking}
-People sometimes assume cultural safety is purely policy. The stack matters. Attribute-based access control lets permissions honour roles and protocols rather than a flat ``registered user'' tier, and audit trails show exactly who downloaded which file and when. Encrypt data at rest and in transit, with keys held by community stewards — that detail changes the power dynamic, because the community can revoke access rather than request revocation. Watermarking and data-usage dashboards surface secondary sharing attempts, and automated alerts fire when access patterns deviate from an approved research plan. If someone suddenly scrapes thousands of files, the licence can be paused while the parties convene — the source communities frame this as a restorative process, not just a contract termination. Configured this way, the technology acts as a guardian alongside the people.
+The lab in the opening scenario cannot design the outcome on the community's behalf. One possible process is to return with a plain-language proposal that separates research access, public release and model training; resource the community's review; and accept that some material may remain closed. The decision-making authority may approve a limited pilot, require changes, postpone it or decline it.
 
 
-
-\subsection{Who does this work}
-
-
-\index{data steward}
-\index{platform engineering}
-\index{workflow}
-Delivering all of the above takes a deliberate team: community tech-leads, Indigenous knowledge holders, data stewards, legal counsel and platform engineers. The staffing ratios that recur in practice are one cultural advisor per squad and one data steward per three to five data partnerships — enough coverage that cultural review is part of the workflow, not a bottleneck at the end.
+If a pilot proceeds, its conditions might include time-limited access, no redistribution, agreed outputs, benefit returned in a useful form, and review before derivatives are retained or released. Those terms are examples for negotiation, not recommendations that override local protocols.
 
 
-\index{iwi}
-\index{tikanga}
-The entry pathways are broader than a computer science degree. Interns come through iwi digital hubs; policy analysts move sideways into data governance; data analysts retrain in cultural frameworks. The trait that predicts success is relational: patient negotiators who can translate tikanga into platform features and platform constraints back into terms a community can weigh. Career progression runs from cultural data analyst to community tech-lead to Chief Data Steward, guiding practice across whole organisations — a reminder that this is a career track, not a compliance chore.
-
-
-\index{Maori}
-\index{te reo Maori}
-So how does the opening scenario end? Not with a flat refusal, and not with a quiet upload either. The community council requires a CARE-aligned impact statement and a co-design workshop before anything moves. Access is granted through a time-bound licence with obligations attached: the university funds digitisation work and reports back on outcomes in te reo Māori. Breaches trigger suspension, a restorative hui, and potentially the withdrawal of models derived from the data. The lab gets its corpus; the community gets resourcing, accountability and continuing authority.
-
-
-That is the takeaway worth carrying into your own projects: openness can honour Indigenous sovereignty when cultural governance sets the terms of sharing. The next time someone in a meeting says ``let's just make it open'', you should be able to ask the three questions that turn a slogan into a design: open to whom, for what purpose, and under whose authority?
+The professional habit is to replace ``can we make this open?'' with a set of accountable questions: who has authority, which use is proposed, who benefits, what obligations travel with the material, and how can the decision be changed? The answer may include openness, but openness is an outcome of governance rather than a default set by the person holding the file.
 
 \section{Governance Journeys}
+\index{maintainer}
 \index{open source}
-Most of the open-source infrastructure you rely on started with one person saying ``I'll just share this script.'' Then, quietly, hundreds of organisations came to depend on it. Daniel Stenberg has steered curl for twenty-five years; Sindre Sorhus shepherds more than a thousand npm packages essentially alone. Governance is what stands between that dependence and disaster: it is how a community decides who shows up, who has a vote, and how the money — if there is any — gets spent.
+Much open-source infrastructure begins with one person sharing a useful tool, then acquires users and organisational dependants faster than it acquires maintainers. Governance is how a community decides who may act, who has a vote, how conflict is handled and how money, if there is any, gets spent.
+
+
+The useful mental model is progressive scaffolding. You don't pour concrete foundations for a garden shed, but you also don't balance a skyscraper on a folding chair. Projects rarely jump from hobby repo to incorporated nonprofit overnight; healthy governance grows in layers. Early contributors document norms alongside code. Mid-stage teams add facilitation rituals. Mature foundations balance budgets, legal protection and public accountability. The test for each new layer is the same: it should lower the load on individuals and widen community agency, not calcify power around whoever got there first. And because contributors span cultures and time zones, governance is people-work — designing decision paths that are legible to newcomers, respectful of marginalised voices, and able to change when circumstances do.
 
 
 \index{Te Hiku Media}
-The useful mental model is progressive scaffolding. You don't pour concrete foundations for a garden shed, but you also don't balance a skyscraper on a folding chair. Projects rarely jump from hobby repo to incorporated nonprofit overnight; healthy governance grows in layers. Early contributors document norms alongside code. Mid-stage teams add facilitation rituals. Mature foundations balance budgets, legal protection and public accountability. The test for each new layer is the same: it should lower the load on individuals and widen community agency, not calcify power around whoever got there first. And because contributors span cultures and time zones, governance is people-work — designing decision paths that are legible to newcomers, respectful of marginalised voices, and able to change when circumstances do. (Where a project's community is grounded in its own cultural governance — like Te Hiku Media, the case study that closes this part — the structures look different again; treat what follows as the mainstream open-source toolkit, to compare rather than to universalise.)
+Where a project's community is grounded in its own cultural governance, the structures may look different. Te Hiku Media, examined later in this part, is one such case. Treat what follows as a mainstream open-source toolkit to compare with other systems, not as a universal model.
 
 
 
 \subsection{Solo stewardship}
 
 
-\index{maintainer}
 In the single-maintainer phase, governance is basically the maintainer's judgement plus whatever norms they capture in the README. Decisions are fast, vision is coherent, and the whole thing is one bad month from collapse. The jargon for this is the \emph{bus factor}: how many people can get hit by a bus before the project dies. Aim higher than one.
 
 
-Solo governance still deserves artefacts. A CONTRIBUTING.md that sets expectations, a regular issue-triage rhythm, and an explicit roadmap — including what will \emph{not} be built — let the community help instead of guess. The risks are predictable: burnout, security fixes that ship unreviewed because there is nobody to review them, and knowledge that lives in one head. The mitigations are equally predictable and routinely skipped. Recruit trusted lieutenants and give them triage or release permissions, even on a trial basis; the people to trust are the ones who already follow the contribution guidelines reliably, communicate edge cases, and respect boundaries. Delegate release tokens. Document the deployment passwords. Schedule real vacations before the 3am ``the server is down and only I know the password'' stress arrives, because it will.
+Solo governance still deserves artefacts. A CONTRIBUTING.md that sets expectations, a regular issue-triage rhythm, and an explicit roadmap (including what will \emph{not} be built) let the community help instead of guess. The risks are predictable: burnout, security fixes that ship unreviewed because there is nobody to review them, and knowledge that lives in one head. The mitigations are equally predictable and routinely skipped. Recruit trusted lieutenants and give them triage or release permissions, even on a trial basis; the people to trust are the ones who already follow the contribution guidelines reliably, communicate edge cases, and respect boundaries. Delegate release tokens. Document the deployment passwords. Schedule real vacations before the 3am ``the server is down and only I know the password'' stress arrives, because it will.
 
 
 
@@ -159,14 +176,14 @@ Once three to ten maintainers coordinate, clarity beats charisma. This is the st
 Mastodon is the instructive example. Before its restructure, founder Eugen Rochko was personally handling code reviews, harassment reports and server bills — no sustainable separation of duties, everything routed through late-night direct messages. The shift created squads for the iOS and Android clients, server administration and community moderation, each with two or three maintainers, plus shared decision logs in public forums.
 
 
-Two practices carry most of the weight at this stage. The first is \emph{lazy consensus}: a proposal passes unless someone objects within a set timeframe, with a fallback vote if objections can't be resolved. It keeps decisions moving without demanding a meeting for every change. The second is transparency: publish decision logs somewhere public — GitHub Discussions, an open Notion space — so contributors can follow the reasoning rather than reverse-engineer it. Pair both with mentorship cohorts aimed at underrepresented regions, so contributors in Latin America or South Asia know how to surface blockers despite the time zone gap.
+Two practices carry most of the weight at this stage. The first is \emph{lazy consensus}: a proposal passes unless someone objects within a set timeframe, with a fallback vote if objections can't be resolved. It keeps decisions moving without demanding a meeting for every change. The second is transparency: publish decision logs somewhere public (GitHub Discussions, an open Notion space) so contributors can follow the reasoning rather than reverse-engineer it. Pair both with mentorship cohorts aimed at underrepresented regions, so contributors in Latin America or South Asia know how to surface blockers despite the time zone gap.
 
 
 
 \subsection{Foundations and fiscal sponsors}
 
 
-When a project becomes critical infrastructure, a foundation adds legal, fiscal and reputational scaffolding. The Linux Foundation now stewards more than 750 projects on a US\$177 million annual budget, funding security audits, conformance programs and marketing. Apache hosts 350-plus volunteer-led projects, offering neutral trademark ownership and a proven meritocratic ladder. Umbrella groups like the CNCF and Software Freedom Conservancy provide insurance, contract staff and cross-project working groups on topics like accessibility and inclusive language.
+When a project becomes critical infrastructure, a foundation can add legal, fiscal and reputational scaffolding. Foundations and fiscal sponsors may hold trademarks, accept funds, contract staff, arrange insurance and support cross-project work. Those services and governance models change, so a project should compare current charters, fees and decision rights before choosing a home.
 
 
 \index{licence}
@@ -190,7 +207,7 @@ Formalising badly has its own catalogue of failure modes:
 \index{BDFL}
 \item \textbf{BDFL burnout.} A founder clings to every decision until they crack. Rotate authority and document delegation triggers before the crisis.
 \item \textbf{Committee paralysis.} Every choice needs consensus from a dozen people, so nothing ships. Set quorum rules, empower working groups, time-box debates.
-\item \textbf{Corporate capture.} One vendor funds more than roughly 40\% of the budget or staff and the roadmap starts bending. Diversify revenue, publish conflict-of-interest disclosures, and make board seats reflect community demographics.
+\item \textbf{Corporate capture.} One vendor supplies enough funding or staff to bend the roadmap. Diversify revenue, publish conflict-of-interest disclosures, and design board representation and voting rules before dependence becomes control.
 \item \textbf{Fork wars.} Communication breaks down and disagreement turns personal. Invest in mediation channels, transparent decision logs and cultural competency training so disputes stay technical.
 \end{itemize}
 
@@ -201,7 +218,7 @@ Run incident reviews on governance failures the way you would on outages: the po
 \subsection{The playbook, and the people who run it}
 
 
-Good governance is documented well enough that newcomers can self-serve. Concretely: a GOVERNANCE.md describing decision rights, a CODEOWNERS file routing reviews, and an RFC template that shows a proposal's stages. Add onboarding kits with buddy assignments, office hours in multiple languages, and primers on inclusive communication. Track community health like you'd track uptime — median PR review time, the ratio of first-time contributors whose work gets merged, moderation responses within twenty-four hours — and share the dashboards publicly. Match decision frameworks to the decision: consensus-seeking for technical design, majority vote for budget approvals, veto powers reserved for safety issues. Pair transparent funding reports with conflict-resolution channels facilitated by trained moderators or ombudspeople.
+Good governance is documented well enough that newcomers can self-serve. Concretely: a GOVERNANCE.md describing decision rights, a CODEOWNERS file routing reviews, and an RFC template that shows a proposal's stages. Add onboarding kits with buddy assignments, office hours in multiple languages, and primers on inclusive communication. Track community health like you'd track uptime (median PR review time, the ratio of first-time contributors whose work gets merged, moderation responses within twenty-four hours) and share the dashboards publicly. Match decision frameworks to the decision: consensus-seeking for technical design, majority vote for budget approvals, veto powers reserved for safety issues. Pair transparent funding reports with conflict-resolution channels facilitated by trained moderators or ombudspeople.
 
 
 \index{community manager}
@@ -217,7 +234,7 @@ Rule of thumb: if a governance question keeps getting answered in private messag
 \end{quote}
 
 
-The takeaway: governance is not paperwork bolted onto code, it is the mechanism by which a project scales participation without losing its values. Intentional structural choices — paired with documentation, mentorship and cultural humility — are what separate the projects that outlive their founders from the ones that burn them out.
+The takeaway: governance is not paperwork bolted onto code, it is the mechanism by which a project scales participation without losing its values. Intentional structural choices (paired with documentation, mentorship and cultural humility) are what separate the projects that outlive their founders from the ones that burn them out.
 
 \section{Community Tech-Leads}
 \index{community tech lead}
@@ -225,7 +242,7 @@ The takeaway: governance is not paperwork bolted onto code, it is the mechanism 
 \index{open source}
 \index{RFC}
 \index{RFC process}
-Sarah's startup — last seen hiring in Part 6 — builds on an open-source web framework, and one of her developers dutifully upstreamed a fix for a bug the team had hit in production. The pull request sat for five weeks. The RFC thread that might have made the fix unnecessary had two hundred comments and no decision. Nobody was being lazy; the project had simply grown past the point where a loose collection of maintainers could watch the whole ecosystem. Then the project's fiscal sponsor funded a community tech-lead role, and within a quarter the merge queue moved, RFCs had named facilitators, and Sarah's developer got actionable review feedback in three days instead of thirty-five. From the outside it looked like magic. From the inside it was a job — and this section is about that job.
+Sarah's startup (last seen hiring in Part 6) builds on an open-source web framework, and one of her developers dutifully upstreamed a fix for a bug the team had hit in production. The pull request sat for five weeks. The RFC thread that might have made the fix unnecessary had two hundred comments and no decision. Nobody was being lazy; the project had simply grown past the point where a loose collection of maintainers could watch the whole ecosystem. Then the project's fiscal sponsor funded a community tech-lead role, and within a quarter the merge queue moved, RFCs had named facilitators, and Sarah's developer got actionable review feedback in three days instead of thirty-five. From the outside it looked like magic. From the inside it was a job — and this section is about that job.
 
 
 
@@ -236,7 +253,7 @@ Sarah's startup — last seen hiring in Part 6 — builds on an open-source web 
 Community tech-leads are connective tissue: they sit between governance, engineering and contributor care, in the gap between maintainers, contributors and users that opens up once a project matures. Their core trick is translation — turning community values into technical direction and roadmap trade-offs, so the governance charter and the codebase don't drift apart. They also coordinate the work that no single maintainer can own: security response, accessibility, localisation.
 
 
-The benchmark worth memorising is one tech-lead per 150 to 250 active contributors, which is roughly what it takes to keep review turnaround under 72 hours. That ratio is genuinely useful ammunition: if you're a contributor watching reviews slip and escalations stall, it gives you a number to take to the foundation board when lobbying for the role to be funded. Without someone in the seat, the failure mode is predictable — RFCs stall, moderation escalations slip, governance documents describe a project that no longer exists, and contributor trust erodes one unanswered pull request at a time.
+There is no universal contributor-to-lead ratio. The evidence for funding the role should come from the project's own queue: review latency, unanswered proposals, moderation escalations, maintainer load and contributor departures. Without enough accountable leadership, RFCs stall, governance documents drift away from practice and trust erodes one unanswered contribution at a time.
 
 
 
@@ -249,7 +266,7 @@ The responsibilities split into facilitation and stewardship, and the facilitati
 
 \index{escalation path}
 \index{licence}
-Then there is the bridging work, which is the part most engineering roles never see. A tech-lead hosts contributor office hours across time zones and languages. They convert user research, localisation feedback and Indigenous data protocols — the kind covered earlier in this part — into actionable engineering issues, so cultural requirements land in the sprint rather than in a slide deck. They maintain the unglamorous tooling that keeps a community functioning: translation pipelines, documentation builds, contributor analytics. They negotiate with corporate stakeholders so funding aligns with the community roadmap instead of quietly redirecting it. And they act as the escalation path for moderation teams when a dispute turns out to have technical roots — a licence disagreement dressed up as a flame war, say.
+Then there is the bridging work, which is the part most engineering roles never see. A tech-lead hosts contributor office hours across time zones and languages. They convert user research, localisation feedback and Indigenous data protocols (the kind covered earlier in this part) into actionable engineering issues, so cultural requirements land in the sprint rather than in a slide deck. They maintain the unglamorous tooling that keeps a community functioning: translation pipelines, documentation builds, contributor analytics. They negotiate with corporate stakeholders so funding aligns with the community roadmap instead of quietly redirecting it. And they act as the escalation path for moderation teams when a dispute turns out to have technical roots — a licence disagreement dressed up as a flame war, say.
 
 
 
@@ -259,7 +276,7 @@ Then there is the bridging work, which is the part most engineering roles never 
 Because contributors are everywhere, the day is structured around time zones rather than a single office. Mornings go to async stand-up posts, merge-queue review and security patch triage — the things that block other people if they wait. Midday brings the roadmap sync with the governance committee, unblocking volunteer maintainers, and updating the mentoring roster. Evenings often hold a community livestream or a timezone-friendly pairing session, because ``the community'' includes the people for whom your morning is the middle of the night.
 
 
-Across a typical week the allocation runs about 35\% technical design, 30\% community facilitation, 20\% mentoring and 15\% reporting. Read that again if you're picturing a coding job: two-thirds of this role is orchestrating people. The success metric that captures the whole thing is simple — 90\% of pull requests receive actionable feedback within three business days. Not merged, necessarily; \emph{answered}. Contributors forgive ``no'' far more readily than silence.
+The allocation varies with the project's stage, but technical design is only one part of the job. Community facilitation, mentoring, moderation and reporting can occupy most of a week. A useful service-level measure is the proportion of contributions that receive actionable feedback within the published response window. They need not be merged; they do need an accountable answer.
 
 
 
@@ -300,13 +317,13 @@ The takeaway is the one Sarah's team learned from the outside: intentional inves
 
 \section{FOSS Licensing Choices}
 \index{FOSS}
-\index{GPL}
+\index{copyleft}
 \index{licence}
-Six weeks into the hiring spree we watched in Part 6, one of Sarah's new developers needs to parse dates in three formats. He finds a tidy JavaScript helper on someone's blog, pastes it into the product, and moves on. There's no licence file and no attribution — which does not mean the code is free to use. It means the opposite. With no licence, the author keeps all rights, and Sarah's company is now shipping code it has no permission to ship. Had the helper quietly carried a GPL notice instead, the risk changes shape: not a cease-and-desist, but a demand to publish the source of everything it was combined with. Either way, the discovery tends to happen at the worst possible moment — an automated scan during investor due diligence, eighteen months later.
+Six weeks into the hiring spree we watched in Part 6, one of Sarah's new developers needs to parse dates in three formats. He finds a tidy JavaScript helper on someone's blog, pastes it into the product, and moves on. There's no licence file and no attribution — which does not mean the code is free to use. With no permission, Sarah's company may be shipping code it has no right to reproduce or distribute. A copyleft notice would create a different analysis: the obligations depend on the licence, what has been modified or combined, and how the product is conveyed or made available. Either problem tends to surface at a bad moment, such as an automated scan during investor due diligence.
 
 
 \index{open source}
-Free and open-source software (FOSS) licences exist to prevent exactly this. A licence translates community values into legally enforceable rules: it defines how code can be used, shared and monetised, protects contributors and adopters from liability claims, and sets expectations for how the community collaborates. Without licences, open source would run on vague goodwill; with them, an organisation can adopt community-built code knowing precisely which obligations it is accepting, and a developer gets a real say in whether their work can be folded into proprietary platforms. Most licence disputes settle quietly, but the legal fees, disruption and damaged trust are real. Think of a licence as both a legal instrument and a social contract — like a relationship agreement, the point is to agree upfront so you're not lawyering up later.
+Free and open-source software (FOSS) licences make those permissions explicit. The Open Source Definition describes criteria including free redistribution, source-code availability and permission for derived works; individual licence texts then state the operative rights, conditions and disclaimers. Read the actual text and obtain legal advice for material risk. \autocite{osi-definition}
 
 
 
@@ -317,7 +334,7 @@ Free and open-source software (FOSS) licences exist to prevent exactly this. A l
 \index{permissive licence}
 
 
-Permissive licences grant broad rights to use, modify and redistribute code — including inside closed-source products — with minimal strings attached. The non-negotiables are small: preserve the copyright notice, include the licence text, and don't sue the authors when something breaks (every FOSS licence disclaims warranty).
+Permissive licences generally grant broad rights to use, modify and redistribute code, including in closed-source products, while requiring preservation of notices or licence text. They commonly disclaim warranty and liability; the exact conditions differ, so do not substitute a category label for the licence.
 
 
 MIT and BSD are the shortest and loosest. Apache 2.0 adds two things enterprise risk teams care about. First, an explicit patent grant: every contributor licenses any patents their contribution would otherwise infringe. Second, a retaliation clause: if you sue anyone claiming the project infringes your patents, your own patent licence to the project terminates. That combination is why large companies often prefer Apache 2.0 over MIT for anything patent-adjacent.
@@ -332,23 +349,21 @@ The trade-off is reciprocity. A permissive licence gives you no legal lever to f
 
 
 \subsection{Copyleft: the GPL family}
-\index{copyleft}
+\index{GPL}
 
 
 \index{AGPL}
 \index{LGPL}
-Copyleft licences — GPLv2, GPLv3, LGPL and AGPL — flip the deal. You get the same broad rights, but if you distribute a derivative work, it must be released under the same licence, source included. This ``share alike'' obligation is deliberate: it keeps improvements flowing back to the commons. The common metaphor is a viral clause — once your shipped product incorporates GPL code, the openness obligation spreads to the whole bundle you distribute.
+Copyleft licences (including GPLv2, GPLv3, LGPL and AGPL) attach source-code and licensing conditions to specified forms of copying, modification, conveying or network use. Whether those conditions extend to a combined work is a legal and technical question about the licence and the way components interact, not a rule that any nearby proprietary code automatically becomes open source. \autocite{gnu-licenses}
 
 
 The mechanics matter, so be precise about them:
 
 
 \begin{itemize}[leftmargin=*]
-\index{containers}
-\item Obligations trigger on \textbf{distribution}, not use. You can modify GPL code internally forever without publishing anything. Ship it to a customer — as a binary, a device, a container image — and the source obligation lands.
+\item GPL source obligations are generally tied to conveying covered or modified work rather than purely private use. The form of delivery and the work actually conveyed matter.
 \item \textbf{LGPL} is the softer variant for libraries: you may link it into a proprietary application without relicensing your own code, provided users can swap in and relink updated versions of the library.
-\index{SaaS}
-\item \textbf{AGPL} closes the software-as-a-service loophole: letting users interact with the software over a network counts as distribution, so a SaaS product built on AGPL code owes its users the source.
+\item \textbf{AGPL} adds a network-interaction provision: when users interact remotely with a modified covered programme, the licence requires an opportunity to receive the corresponding source. It does not simply redefine every network interaction as distribution.
 \end{itemize}
 
 The Linux kernel is GPLv2, which is why Android handset makers must publish their kernel modifications every time they release a firmware image — some learned this the hard way. Same story if you ship a router with modified GPL firmware: matching source must be made available. Copyleft rewards collaboration-heavy ecosystems — public-sector platforms, civic tech, and organisations like Signal, which keeps its core GPL precisely so its privacy claims stay independently inspectable.
@@ -365,29 +380,27 @@ Real products combine dozens of dependencies, and not all licences coexist happi
 \item \textbf{MIT/BSD} combines with almost anything; just preserve attribution.
 \item \textbf{Apache 2.0} combines with MIT, other Apache code and GPLv3 — but not GPLv2, whose terms clash with Apache's patent provisions. (GPLv3 was written partly to fix this.)
 \item \textbf{GPLv3} code can absorb permissive code, but the combined binary you distribute must be GPL.
-\item \textbf{AGPL} combines with AGPL, and remember: network use counts as distribution.
+\item \textbf{AGPL} requires special attention for modified covered programmes offered over a network; read the licence rather than relying on a compatibility slogan.
 \end{itemize}
 
-Keep a compatibility matrix handy so nobody discovers a GPLv2 dependency sitting inside an Apache 2.0 codebase at the eleventh hour.
+Use a maintained compatibility source and legal review for consequential combinations so nobody discovers a licence conflict at the eleventh hour.
 
 
 Some projects deliberately run two licence streams. MySQL and Qt offer their code under the GPL for the community and sell commercial licences to companies that want proprietary terms — a model that funds development while protecting openness goals. It only works if the steward holds the rights to relicense (more on that below) and is transparent about which features sit under which stream. MongoDB's shift to the Server Side Public License (SSPL) shows the same lever pulled defensively: a licence change designed to protect a business model from cloud providers reselling the product.
 
 
-At the other extreme, CC0 and the Unlicense attempt to place work in the public domain, which suits datasets, code snippets and government artefacts where even attribution requirements create friction. ``Attempt'' is the honest word: some jurisdictions restrict abandoning copyright — moral rights, in particular, often can't be waived — so CC0 includes a fallback licence for exactly that reason.
+At the other extreme, CC0 lets a rights-holder waive copyright and related rights to the extent legally possible and supplies a fallback public licence where the waiver is ineffective. That structure accounts for differences between jurisdictions; it is not a declaration that every kind of right can always be abandoned. \autocite{cc0}
 
 
-Which leads to the international wrinkle generally: copyright terms, moral rights and patent scope differ across jurisdictions. EU database rights and Australian Crown copyright can both complicate reuse in ways a US-centric licence summary won't mention. This is why global teams stick to OSI-approved licence texts — they've been examined across many legal systems — and document governing law in their NOTICE files.
+Copyright terms, moral rights, database rights, Crown copyright and patent scope differ across jurisdictions. Established licence texts reduce avoidable ambiguity, but OSI approval is not a substitute for jurisdiction-specific advice. Document the chosen licence, notices, provenance and any legal review.
 
 
 
 \subsection{Contributor agreements and choosing for your context}
 
 
-\index{audit trail}
-\index{CLA}
 \index{DCO}
-Once outsiders contribute, ownership fragments: every contributor holds copyright in their patch. Contributor Licence Agreements (CLAs) fix this by having contributors grant the maintainer rights to relicense, defend, or dual-license their contributions — which is what makes dual licensing and future licence changes legally possible at all. Distinguish individual from corporate CLAs, and check that the person signing a corporate CLA actually has authority to bind their employer. Many projects pair or replace CLAs with the lighter-weight Developer Certificate of Origin (DCO), a signed-off-by line certifying the contributor has the right to submit the code; either way, you want an audit trail.
+Once outsiders contribute, rights may be held by multiple people or employers. Contributor Licence Agreements can grant a project specified rights in contributions; their scope varies and should be read. Distinguish individual from corporate agreements, and check that the signatory has authority. Some projects instead use the Developer Certificate of Origin, under which contributors certify statements about the origin of a contribution by adding a \texttt{Signed-off-by} line. A DCO is a certification mechanism, not a copyright assignment. \autocite{dco}
 
 
 \index{Open Source Program Office}
@@ -398,8 +411,10 @@ Choosing a licence is a cross-functional decision, not a checkbox. Start from go
 \subsection{Staying compliant — and who gets paid to care}
 
 
+\index{containers}
+\index{SaaS}
 \index{SBOM}
-Compliance is a process, not an event. Maintain a software bill of materials (SBOM) so you can prove which licences are in your build, and wire licence scanners into CI so incompatible combinations fail fast rather than surface in an audit. Record every redistribution moment — shipped binaries, published container images, a SaaS endpoint incorporating AGPL code — and keep source archives, NOTICE files and third-party attributions ready to go. Tools like FOSSA, OSS Review Toolkit and GitHub's dependency review do the tedious parts once configured. Companies have paid real settlements for ignoring GPL notices, so treat ``we'll fix the licensing post-launch'' as the red flag it is.
+Compliance is a process, not an event. Maintain a software bill of materials (SBOM) so you can prove which licences are in your build, and wire licence scanners into CI so incompatible combinations fail fast rather than surface in an audit. Record every redistribution moment (shipped binaries, published container images, a SaaS endpoint incorporating AGPL code) and keep source archives, NOTICE files and third-party attributions ready to go. Tools like FOSSA, OSS Review Toolkit and GitHub's dependency review do the tedious parts once configured. Companies have paid real settlements for ignoring GPL notices, so treat ``we'll fix the licensing post-launch'' as the red flag it is.
 
 
 
@@ -408,96 +423,129 @@ Licence compliance is like flossing: tedious, easy to skip while everything seem
 \end{quote}
 
 
-This work is a genuine career path. OSPO analysts — typically one or two per 50–80 engineers in large organisations — usually arrive after five to seven years in software engineering, developer advocacy or technology law, which is what gives them credibility with both coders and lawyers. Entry routes include community contributors who've earned maintainer trust, compliance interns rotating through procurement, and dual STEM-law graduates hired into tech policy teams. The people who thrive are detail-obsessed, diplomatic and values-driven — able to translate legal nuance for technologists without flattening it. From analyst, the ladder runs to OSPO manager coordinating licence strategy across business units, then director or VP roles stewarding ecosystem partnerships.
+This work is a career path as well as a responsibility distributed across engineering, legal, security and procurement. OSPO analysts may arrive from software engineering, developer relations, compliance or technology law. The work rewards careful evidence, diplomacy and the ability to translate legal nuance for technologists without flattening it. Senior roles coordinate licence strategy, contribution policy and ecosystem relationships across business units.
 
 
 \index{data sovereignty}
 \index{Indigenous data sovereignty}
-The takeaway: licence selection is a strategic lever, not paperwork. It signals how you invite collaboration, how you protect contributors, and — when projects touch cultural knowledge, as later sections of this part explore — how you honour data sovereignty commitments. Teams that understand reciprocity obligations, international quirks, CLAs and dual licensing can design contribution models that sustain trust with communities, customers and partners for the long haul.
+The takeaway: licence selection is a strategic lever, not paperwork. It signals how you invite collaboration, how you protect contributors, and (when projects touch cultural knowledge, as later sections of this part explore) how you honour data sovereignty commitments. Teams that understand reciprocity obligations, international quirks, CLAs and dual licensing can design contribution models that sustain trust with communities, customers and partners for the long haul.
 
 \section{Te Hiku Media Case Study}
 \index{Te Hiku Media}
-The previous sections of this part have argued that openness is a spectrum and that governance decides who benefits. Te Hiku Media is the case study that shows what those ideas look like when a community actually builds on them — not as a data subject in someone else's research program, but as the owner and operator of its own machine-learning pipeline.
+\index{data sovereignty}
+\index{Indigenous data sovereignty}
+The previous sections argued that governance decides who benefits from digital resources. Te Hiku Media provides a public example of Māori-led media and language technology in which data sovereignty is part of the technical work rather than a policy added afterwards.
 
 
-\index{iwi}
-\index{mana motuhake}
-\index{Maori}
-\index{te reo Maori}
-Te Hiku Media is an iwi-owned broadcaster headquartered in Kaitaia, in Aotearoa's Far North, with a mission to revitalise te reo Māori through digital storytelling. It began as an iwi radio network, and that history turned out to be its greatest technical asset: decades of community archiving, including recordings of kaumātua voices, produced language archives that Silicon Valley cannot replicate at any price. When the big technology companies noticed — offering compute credits in exchange for access to the language corpora, essentially asking for the data for free — Te Hiku pushed back. They wanted partnership, not extraction. Rather than chase the fastest growth on offer, they prioritised mana motuhake — self-determination — and sought funding instead from Māori trusts and philanthropies aligned with language revitalisation. That funding choice is easy to skim past, but it is the hinge of the whole story: it let Te Hiku set the terms before anyone touched the corpus.
-
-
-\index{taonga}
-The case matters for this course because it demonstrates that ``open'' does not have to mean ``public domain''. Te Hiku uses openness strategically — sharing with whānau, iwi partners and trusted researchers — while still protecting taonga. It is a concrete example of cultural protocols shaping a modern machine-learning program, rather than being retrofitted onto one.
-
-
-
-\subsection{Kaupapa Māori foundations}
-\index{kaupapa Maori}
-
-
-\index{community governance}
-\index{consent}
-\index{cultural safety}
 \index{kaitiakitanga}
 \index{licence}
+\index{Maori}
+\index{te reo Maori}
+This case needs a stricter reading discipline than a fictional business scenario. Te Hiku Media speaks for its own work; this book should not fill gaps in that account with plausible-sounding details about governance boards, cloud regions, contracts or cultural practice. The public evidence establishes that Te Hiku operates media and technology initiatives for te reo Māori, presents Papa Reo as a language platform for a multilingual Aotearoa, publishes work on te reo Māori speech recognition and synthetic voice, and provides resources on data sovereignty and its Kaitiakitanga License. The organisation's site also states that its hosted content is protected under that licence. \autocite{te-hiku-tech,te-hiku-kaitiakitanga}
+
+
+Those facts are enough to make the professional point. A community can be the designer and operator of language technology, not merely a source of recordings for somebody else's system. It can also state terms for how language material is used rather than accepting ``open'' as the only legitimate technical default.
+
+
+
+\subsection{Read The Case Through Māori Data-Sovereignty Principles}
+
+
 \index{whakapapa}
-The governance model is anchored by guidance from Te Hiku's kaumātua and by the Kaitiakitanga licence, which states that the data is a treasure held in trust for present and future iwi members. Data is treated as taonga, and consent is grounded in whakapapa obligations — this is not a terms-of-service checkbox, but a relationship with responsibilities running in both directions. Any partner has to demonstrate reciprocity and cultural safety before touching the language assets.
+Te Mana Raraunga's Māori Data Sovereignty Principles provide a stronger frame than a generic privacy checklist. They address rangatiratanga, whakapapa, whanaungatanga, kotahitanga, manaakitanga and kaitiakitanga in relation to Māori data. The principles concern authority, relationships, collective benefit, care and stewardship; they cannot be reduced to where a server is located. \autocite{te-mana-raraunga}
 
 
-\index{tikanga}
-The structures backing that up are concrete. A governance board spans iwi leaders, technologists and legal advisors, so cultural authority, engineering judgement and legal capacity sit at the same table. Community hui confirm priorities before any technology is deployed: linguists, kaumātua and technologists review project proposals together, and if whānau are not convinced the outcomes will uplift communities, the project pauses until the concerns are resolved. Notice what that is, in project-management terms — a stakeholder veto that actually functions. The team describes the result as a blend of tikanga and agile delivery, and it is precisely that blend that keeps sovereignty intact while software still ships.
+That distinction changes project questions. A conventional technology assessment may ask:
 
 
+\begin{itemize}[leftmargin=*]
+\item Is the dataset lawfully collected?
+\item Is storage encrypted?
+\item Does the model meet an accuracy threshold?
+\item Can researchers reproduce the result?
+\end{itemize}
 
-\subsection{Building the corpus on community terms}
-
-
-Speech recognition needs data, and Te Hiku collected more than 300,000 sentences through community recording campaigns. The 2019 recording sprint has become legendary: community members lined up to donate sentences in kura, marae and community centres, and every session was paired with kai and cultural briefings so people understood exactly where their voices would go. Compare that with the industry norm, where the provenance of training data is a question the vendor hopes you won't ask.
-
-
-On top of the corpus the team built Papakupu (lexicon) resources and automated speech recognition models. Mainstream annotation platforms couldn't handle the dialect nuances, so the team built a custom labelling tool, and engineers co-designed prompts with linguists and cultural advisors to capture dialectal diversity rather than just a ``standard'' te reo. Two contractual details would be unheard of in most corporate datasets: contributors retain their rights, including moral rights, and can revoke their samples; and the licence explicitly restricts extractive reuse. Consent, in other words, is engineered into the dataset itself.
-
-
-
-\subsection{The stack, the safeguards and the roles}
+A data-sovereignty assessment must also ask:
 
 
-Technically, Te Hiku was pragmatic rather than purist. The team forked Mozilla Common Voice to jump-start its infrastructure, then stripped out anything that conflicted with Māori governance. Storage sits in region-limited, AWS-hosted S3 buckets in Auckland zones, with encryption keys controlled by Te Hiku, and every data access is logged for auditing by the board. Alongside conventional security reviews, the organisation runs regular tikanga audits, checking the system against cultural obligations, not just technical ones.
+\begin{itemize}[leftmargin=*]
+\item Who has authority to define the purpose of the work?
+\item What relationships and whakapapa attach to the material?
+\item Who controls later uses, including model training and commercial reuse?
+\item How does the work return benefit and capability to Māori?
+\item Who carries kaitiaki responsibilities through the system's life?
+\end{itemize}
 
-
-\index{data steward}
-The product team pairs ML engineers and data stewards with cultural advisors and privacy counsel. Most instructive for this course's career thread is the formalised ``data kaitiaki'' role: people fluent in te reo who also understand privacy law, who sign off on data queries and review model outputs for cultural harm. It is a genuine career path blending community leadership with product-management skills — and the pipeline is deliberate, with internships for rangatahi and upskilling programs that move iwi staff into data governance roles.
-
-
-
-\subsection{Negotiating with external partners}
-
-
-Sovereignty gets tested at the negotiating table. Te Hiku declined offers from major cloud vendors that lacked cultural safeguards — walking away from resources most startups would take without reading the fine print. When partnerships did proceed, they ran on memoranda of understanding that detailed reciprocity: commitments to fund language revitalisation, keep infrastructure in Aotearoa, share revenue, and give Te Hiku a veto over secondary uses of the data and models.
-
-
-The contracts also carried tikanga clauses with teeth. Partner staff had to attend cultural safety training, models could not be repurposed for surveillance, and Māori IP protections were written in. Every partnership was staged as a pilot with opt-out checkpoints and independent oversight, so the community could walk away if promises were broken. For anyone who has sat through vendor negotiations, the pattern is worth studying: these are ordinary contract mechanisms — MOUs, staged pilots, exit clauses — deployed in service of cultural authority.
+These questions do not supply a universal answer. They identify decisions that cannot be made by an external engineer merely because the engineer controls the infrastructure.
 
 
 
-\subsection{Outcomes, and what practitioners should copy}
+\subsection{A Licence Is One Part Of Governance}
 
 
-The results are tangible. Te Hiku delivered production-ready te reo speech-to-text with major reductions in word error rate — accuracy gains that came precisely because the models were trained on dialect-specific data the community had gathered on its own terms. Iwi radio partners now use the automation to archive oral histories, with transcription that takes hours instead of months, and whānau can search recordings for tīpuna names. The influence spread outwards: Te Mana Raraunga referenced Te Hiku's licensing approach when drafting national Māori data governance principles, setting a precedent for Indigenous data licences. And the people grew with the project — Māori technologists moved into senior data governance leadership, with alumni now working across government, iwi corporations and platform co-ops.
+Te Hiku's public material places its Kaitiakitanga License alongside its data-sovereignty work. That makes the licence an important artefact to examine, but not a magic label to copy into an unrelated project. A licence expresses permissions and obligations. Authority, relationships, decision forums, access processes and the capacity to enforce those terms still have to exist around it. \autocite{te-hiku-kaitiakitanga}
 
 
-For your own practice, the source material distils four lessons:
+\index{open source}
+This is where the comparison with open-source licensing becomes useful if kept narrow. An open-source licence answers questions about permissions attached to copyrighted software. A community-designed data or content licence can carry different purposes and relationships. Neither form tells an outsider that all material should be public, and neither eliminates the need to understand who had authority to issue it.
+
+
+For a technical team, the design implications may include:
+
+
+\begin{itemize}[leftmargin=*]
+\item recording provenance and authority alongside technical metadata;
+\item separating permission to access material from permission to create derivatives;
+\item making later model training or commercial use a new decision rather than an assumed extension;
+\item designing revocation, suspension and review paths before a breach;
+\item ensuring that community decision-makers can obtain meaningful audit evidence;
+\item budgeting for the people who exercise cultural and data authority.
+\end{itemize}
+
+The relevant community decides which controls fit. The engineer's role is to make those decisions enforceable and observable, not to invent cultural rules.
+
+
+
+\subsection{Community Capability Is A Technical Outcome}
+
+
+Te Hiku's public technology work includes tools for speech recognition, synthetic voice and participation in teaching computers te reo Māori. That makes capability itself part of the outcome: language technology is being developed within an organisation whose media, archives and community relationships give it a purpose beyond a benchmark score. \autocite{te-hiku-tech}
+
+
+This suggests a broader way to assess a language-technology project. Model quality still matters, but so do questions such as:
+
+
+\begin{itemize}[leftmargin=*]
+\item Can the organisation maintain and improve the system?
+\item Can it decide which future products or partners may use the work?
+\item Are language experts and community authorities resourced as core contributors?
+\item Does the project build durable technical capability or only extract a dataset?
+\item Can users understand the boundaries attached to the output?
+\end{itemize}
+
+A project that produces an accurate model while removing future control from the community may be technically impressive and institutionally harmful. A slower project that builds authority, skills and reusable infrastructure can create more durable value.
+
+
+
+\subsection{What Practitioners Can Carry Forward}
+
+
+Four lessons travel beyond this case without pretending to reproduce it:
 
 
 \begin{enumerate}[leftmargin=*]
-\item \textbf{Embed cultural authority in every technical milestone.} Kaumātua, elders or cultural experts should be leading alongside engineers, not consulted after the sprint review.
-\item \textbf{Budget for roles that bridge tech and tikanga} — and promote those people into product leadership, because bridging roles wither when they have no career path.
-\item \textbf{Use Indigenous-led licences to operationalise consent and reciprocity.} Treat the licence as a living document that expresses the relationship, not legal fine print to be minimised.
-\item \textbf{Measure success by community benefit and language vitality, not just model accuracy.} Optimise only the metrics engineers find comfortable and the technology drifts away from its purpose.
+\item \textbf{Begin with authority.} Identify who can decide the purpose, access and reuse of the material before choosing a platform.
+\item \textbf{Treat governance as architecture.} Approval, provenance, access, audit and revocation are system requirements, not a policy appendix.
+\item \textbf{Resource bridging work.} Language expertise, community relationships, legal understanding and technical implementation must meet inside the delivery process.
+\item \textbf{Measure continuing benefit and control.} Accuracy and throughput are incomplete if the organisation cannot sustain the system or govern its future use.
 \end{enumerate}
 
-The Te Hiku story closes this part deliberately. The licensing, governance and cultural-safety machinery in the earlier sections can read as constraint — process standing between you and shipping. Te Hiku demonstrates the opposite reading: a community that set its terms first, and got better technology because of it.
+\index{CARE principles}
+\index{OCAP}
+Do not copy Māori terms or Te Hiku's licence into another Indigenous context as a shortcut. CARE is a global Indigenous data-governance framework; OCAP® is specifically First Nations; Te Mana Raraunga articulates Māori data sovereignty; Maiam nayri Wingara articulates principles in Australia. Each points readers back to the authority of the peoples and communities concerned. \autocite{care,ocap,te-mana-raraunga,mnw-principles}
+
+
+The value of the Te Hiku example is not that it provides a universal template. It shows that language technology can be framed around community purpose, authority and stewardship from the start. The next professional step is to follow the organisation's own public material, seek the relevant expertise, and resist turning a short case study into claims the source has not made.
 
 \section{Practice Artefact}
 
