@@ -6,6 +6,8 @@ python3 scripts/report_narrative_mismatches.py
 python3 scripts/build_textbook.py
 python3 scripts/build_elearning.py
 python3 scripts/validate_html_course.py --check-output
+python3 scripts/build_scorm.py --skip-elearning-build
+python3 scripts/validate_scorm_package.py
 
 secret_file="state/secrets/image-review-basic-auth.env"
 if [[ -f "$secret_file" ]]; then

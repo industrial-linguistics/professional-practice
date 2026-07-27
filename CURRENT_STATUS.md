@@ -1,6 +1,6 @@
 # Current Status
 
-Last checked: 2026-07-08.
+Last checked: 2026-07-27.
 
 ## Executive Summary
 
@@ -8,7 +8,7 @@ The content phase is essentially finished. The bottleneck has moved from writing
 
 Parts 1-7 contain 81 complete learner topics with slides, narratives, and authored `textbook.md` files. The narrative mismatch audit currently reports 81 matched topics and 0 mismatched topics. The build pipeline has enough working pieces to generate the learner site, textbook, run sheets, and media assets.
 
-What is not yet finished is the product layer: audio coverage is sparse, video coverage is minimal, Part 8 is still a stub, quiz content is not deployed as a learner-facing engine, there is no SCORM package, there is no completion/certificate layer, and there is no explicit licence or terms statement.
+The focused product layer is now available for Part 1: Incident Triage Lab version 1.0.2 packages seven narrated lessons, a five-ticket assessed simulation, SCORM completion/score/resume reporting, a worksheet and a facilitator guide. The full eight-part product remains unfinished: audio and video coverage outside this release are sparse, Part 8 is still a stub, and there is no course-wide assessment or certificate layer.
 
 The main commercial implication is simple: the course is no longer blocked on more course writing. It is blocked on making a buyer-ready package.
 
@@ -32,8 +32,12 @@ The main commercial implication is simple: the course is no longer blocked on mo
 - There are 14 audio files in `content/`.
 - There is one MP4: `content/part-01/overview/final.mp4`.
 - Quiz source exists for Parts 1-7, but it is not yet a deployed course assessment layer.
-- No SCORM package or `imsmanifest.xml` is present under `output/`.
-- No top-level `LICENSE` or `TERMS` file is present.
+- `output/scorm/it-professional-practice-incident-triage.zip` is a validated
+  one-SCO SCORM 1.2 package for the focused Part 1 product.
+- Moodle 5.2.1 records launch, bookmark, resume, completion, a failed attempt,
+  retry, pass, raw score and grade for version 1.0.2.
+- The shopfront applies its purchase terms and one-organisation SCORM licence;
+  the wider course still has no separate top-level `LICENSE` or `TERMS` file.
 
 ## Product Finding
 
@@ -213,4 +217,3 @@ The broad positioning should lean into the 2026 problem:
 - Add `last-verified` metadata to volatile topics and market/pricing notes.
 - Add accessibility checks to the product definition: keyboard navigation, transcript availability, alt text, contrast, and non-dead audio controls when audio is missing.
 - Add an explicit licence/terms page before public commercial outreach.
-

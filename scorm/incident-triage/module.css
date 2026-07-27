@@ -1,0 +1,584 @@
+:root {
+  --ink: #15231f;
+  --muted: #5f6f68;
+  --paper: #f4efe4;
+  --paper-light: #fffdf7;
+  --green: #174a3a;
+  --green-bright: #2f765c;
+  --amber: #d79a37;
+  --red: #a3483d;
+  --line: #cfc7b7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Charter, Georgia, "Times New Roman", serif;
+}
+
+a {
+  color: var(--green);
+}
+
+button,
+select,
+textarea {
+  font: 700 0.95rem/1.25 Avenir, "Trebuchet MS", sans-serif;
+}
+
+button,
+.primary-action {
+  min-height: 44px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--green-bright);
+  font: 800 0.76rem/1.2 Avenir, "Trebuchet MS", sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.module-hero {
+  min-height: 68vh;
+  padding: clamp(2rem, 7vw, 6rem) max(1.4rem, calc((100vw - 1120px) / 2));
+  color: var(--paper-light);
+  background:
+    linear-gradient(110deg, rgba(11, 42, 32, 0.96), rgba(23, 74, 58, 0.82)),
+    repeating-linear-gradient(135deg, #173b30 0 22px, #1f5140 22px 44px);
+}
+
+.module-hero .eyebrow {
+  color: #f1c36e;
+}
+
+.module-hero h1 {
+  max-width: 850px;
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 6.7rem);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+
+.module-lead {
+  max-width: 720px;
+  margin: 2rem 0;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.38;
+}
+
+.module-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 2.2rem;
+}
+
+.module-facts span {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  font: 700 0.9rem/1 Avenir, "Trebuchet MS", sans-serif;
+}
+
+.primary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.15rem;
+  color: var(--green);
+  background: var(--amber);
+  border: 2px solid var(--amber);
+  border-radius: 4px;
+  text-decoration: none;
+  font: 800 0.95rem/1 Avenir, "Trebuchet MS", sans-serif;
+}
+
+.primary-action.inverse {
+  color: var(--paper-light);
+  background: transparent;
+  border-color: var(--paper-light);
+}
+
+.module-main {
+  width: min(1120px, calc(100% - 2.8rem));
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.module-intro,
+.section-heading,
+.resource-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.6fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.module-intro {
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.module-intro h2,
+.section-heading h2,
+.lab-callout h2,
+.resource-row h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 0.98;
+}
+
+.module-intro > p {
+  margin: 0;
+  font-size: 1.28rem;
+  line-height: 1.55;
+}
+
+.section-heading {
+  margin: 4rem 0 1.5rem;
+}
+
+.section-heading > p {
+  justify-self: end;
+  color: var(--muted);
+  font: 700 0.9rem/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.module-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  min-height: 92px;
+  padding: 1rem;
+  color: var(--ink);
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.module-card:hover {
+  border-color: var(--green-bright);
+  transform: translateY(-1px);
+}
+
+.module-number,
+.module-status {
+  font: 800 0.85rem/1 Avenir, "Trebuchet MS", sans-serif;
+}
+
+.module-number {
+  color: var(--green-bright);
+}
+
+.module-status {
+  color: var(--muted);
+  font-size: 1.3rem;
+}
+
+.module-card.complete .module-status {
+  color: var(--green-bright);
+}
+
+.module-card-copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.module-card-copy strong {
+  font-size: 1.2rem;
+}
+
+.module-card-copy small {
+  color: var(--muted);
+  font: 700 0.8rem/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+
+.lab-callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: end;
+  margin-top: 4rem;
+  padding: clamp(1.8rem, 5vw, 3.5rem);
+  color: var(--paper-light);
+  background: var(--green);
+}
+
+.lab-callout .eyebrow {
+  color: #f1c36e;
+}
+
+.lab-callout p:not(.eyebrow) {
+  max-width: 700px;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.resource-row {
+  margin-top: 3.5rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.resource-row > p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.resource-links {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.4rem;
+  font-weight: 700;
+}
+
+.module-disclaimer {
+  margin: 2rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.module-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  justify-content: space-between;
+  padding: 2rem max(1.4rem, calc((100vw - 1120px) / 2));
+  color: var(--paper-light);
+  background: #102d24;
+  font: 700 0.84rem/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+
+.module-footer a {
+  color: var(--paper-light);
+}
+
+.lab-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem max(1.2rem, calc((100vw - 1180px) / 2));
+  color: var(--paper-light);
+  background: var(--green);
+  font: 700 0.85rem/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+
+.lab-topbar a {
+  color: var(--paper-light);
+}
+
+.lab-shell {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.7fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  width: min(1180px, calc(100% - 2.4rem));
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 5rem) 0;
+}
+
+.lab-brief {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+}
+
+.lab-brief h1 {
+  margin: 0;
+  font-size: clamp(2.7rem, 6vw, 5.5rem);
+  line-height: 0.9;
+}
+
+.lab-brief > p:not(.eyebrow) {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.score-panel {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+  font: 700 0.85rem/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+
+.score-panel strong {
+  color: var(--green);
+  font-size: 1.4rem;
+}
+
+.case-stage,
+.result-panel {
+  padding: clamp(1.2rem, 4vw, 2.5rem);
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+  box-shadow: 10px 10px 0 rgba(23, 74, 58, 0.08);
+}
+
+.case-header {
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.case-header h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1;
+}
+
+.record-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1rem 0;
+}
+
+.record-meta span {
+  padding: 0.35rem 0.55rem;
+  color: var(--green);
+  background: #e6eee9;
+  font: 800 0.75rem/1 Avenir, "Trebuchet MS", sans-serif;
+}
+
+.record-copy {
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.decision-list {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.decision-field {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  background: #f8f4ea;
+  border-left: 4px solid var(--line);
+}
+
+.decision-field.correct {
+  border-left-color: var(--green-bright);
+}
+
+.decision-field.incorrect {
+  border-left-color: var(--red);
+}
+
+.decision-field label {
+  font-weight: 700;
+}
+
+.decision-field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem;
+  color: var(--ink);
+  background: white;
+  border: 1px solid var(--line);
+}
+
+.decision-feedback {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.case-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: flex-end;
+}
+
+.case-actions button {
+  padding: 0.75rem 1rem;
+  color: white;
+  background: var(--green);
+  border: 2px solid var(--green);
+  cursor: pointer;
+}
+
+.case-actions button.secondary {
+  color: var(--green);
+  background: transparent;
+}
+
+.case-actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.result-panel {
+  grid-column: 2;
+}
+
+.result-panel h2 {
+  margin-top: 0;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 0.95;
+}
+
+.result-score {
+  color: var(--green);
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 1;
+}
+
+.result-panel li {
+  margin-bottom: 0.6rem;
+}
+
+.worksheet-page {
+  background: white;
+}
+
+.worksheet-page main {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.worksheet-page h1 {
+  margin: 0;
+  font-size: 2.8rem;
+}
+
+.worksheet-page table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.worksheet-page th,
+.worksheet-page td {
+  height: 98px;
+  padding: 0.6rem;
+  border: 1px solid #555;
+  text-align: left;
+  vertical-align: top;
+}
+
+.worksheet-page thead th {
+  height: auto;
+  color: white;
+  background: var(--green);
+}
+
+.worksheet-page thead th:first-child,
+.worksheet-page tbody th {
+  width: 7%;
+}
+
+.worksheet-prompts {
+  padding: 1rem 1.4rem;
+  border: 2px solid var(--green);
+}
+
+.guide-page {
+  background: var(--paper-light);
+}
+
+.guide-page main {
+  width: min(920px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 5rem) 0;
+}
+
+.guide-page h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 0.92;
+}
+
+.guide-page h2 {
+  margin-top: 2.5rem;
+  color: var(--green);
+  font-size: 1.7rem;
+}
+
+.guide-page li,
+.guide-page p {
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.guide-lead {
+  margin: 1.8rem 0 3rem;
+  padding-left: 1.2rem;
+  border-left: 5px solid var(--amber);
+  font-size: 1.25rem !important;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 780px) {
+  .module-grid,
+  .module-intro,
+  .section-heading,
+  .resource-row,
+  .lab-callout,
+  .lab-shell,
+  .guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading > p {
+    justify-self: start;
+  }
+
+  .resource-links,
+  .result-panel {
+    grid-column: 1;
+  }
+
+  .lab-brief {
+    position: static;
+  }
+}
+
+@media print {
+  .worksheet-page a {
+    display: none;
+  }
+
+  .worksheet-page main {
+    width: 100%;
+    padding: 0;
+  }
+}

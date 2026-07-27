@@ -1,0 +1,310 @@
+{
+  "schema": "professional-practice-incident-triage-v1",
+  "scenarios": [
+    {
+      "id": "retail-outage",
+      "queue": "08:42 · Service desk queue",
+      "title": "Every store has stopped taking payments",
+      "meta": [
+        "27 locations affected",
+        "Revenue stopped",
+        "No workaround"
+      ],
+      "record": "Store managers report that the point-of-sale application returns “payment service unavailable”. The monitoring dashboard shows failures in all regions. Cash payments are possible at three stores, but most locations are card-only.",
+      "decisions": [
+        {
+          "id": "type",
+          "prompt": "What type of record is this?",
+          "correct": "incident",
+          "options": [
+            {"value": "incident", "label": "Incident"},
+            {"value": "request", "label": "Service request"},
+            {"value": "problem", "label": "Problem"},
+            {"value": "change", "label": "Change"}
+          ],
+          "explanation": "This is an unplanned interruption to a live service. A later problem record may investigate the cause, but the first record is an incident."
+        },
+        {
+          "id": "priority",
+          "prompt": "What is the defensible initial priority?",
+          "correct": "p1",
+          "options": [
+            {"value": "p1", "label": "P1 — critical"},
+            {"value": "p2", "label": "P2 — high"},
+            {"value": "p3", "label": "P3 — medium"},
+            {"value": "p4", "label": "P4 — low"}
+          ],
+          "explanation": "The impact is organisation-wide, revenue has stopped and there is no workable path for most locations. That supports a P1 initial priority."
+        },
+        {
+          "id": "owner",
+          "prompt": "Who should own the next step?",
+          "correct": "major-incident",
+          "options": [
+            {"value": "l1", "label": "Keep it with L1 until the cause is known"},
+            {"value": "major-incident", "label": "Activate the major-incident path and engage the service owner"},
+            {"value": "cab", "label": "Send it to the next scheduled CAB"},
+            {"value": "procurement", "label": "Send it to procurement"}
+          ],
+          "explanation": "L1 should preserve evidence and communicate, but the scale and urgency require a major-incident lead, technical responders and the accountable service owner."
+        },
+        {
+          "id": "update",
+          "prompt": "Choose the best first customer update.",
+          "correct": "acknowledge",
+          "options": [
+            {"value": "cause", "label": "“The payment vendor has failed. We will update you after they fix it.”"},
+            {"value": "acknowledge", "label": "“We are investigating a widespread payment outage affecting all stores. A major incident is active; next update at 09:00.”"},
+            {"value": "wait", "label": "“Please wait while we determine the root cause.”"},
+            {"value": "close", "label": "“Use cash and close this ticket if that works.”"}
+          ],
+          "explanation": "The best first update states confirmed impact, says what is happening now and gives a specific next-update time without inventing a cause."
+        }
+      ]
+    },
+    {
+      "id": "new-starter",
+      "queue": "09:05 · People operations request",
+      "title": "A new analyst starts next Monday",
+      "meta": [
+        "One person",
+        "Five business days",
+        "Standard onboarding"
+      ],
+      "record": "The hiring manager asks for a standard laptop, identity account, VPN access and the approved finance applications for a new analyst. The role and manager are confirmed in the HR system.",
+      "decisions": [
+        {
+          "id": "type",
+          "prompt": "What type of record is this?",
+          "correct": "request",
+          "options": [
+            {"value": "incident", "label": "Incident"},
+            {"value": "request", "label": "Service request"},
+            {"value": "problem", "label": "Problem"},
+            {"value": "change", "label": "Change"}
+          ],
+          "explanation": "This is a standard, pre-defined request for access and equipment, not a restoration of failed service."
+        },
+        {
+          "id": "priority",
+          "prompt": "What is the defensible initial priority?",
+          "correct": "p3",
+          "options": [
+            {"value": "p1", "label": "P1 — critical"},
+            {"value": "p2", "label": "P2 — high"},
+            {"value": "p3", "label": "P3 — medium / normal"},
+            {"value": "p4", "label": "P4 — low / backlog"}
+          ],
+          "explanation": "The request has a clear due date and normal business impact. It should enter the standard fulfilment queue rather than displacing urgent restoration work."
+        },
+        {
+          "id": "owner",
+          "prompt": "Who should own the next step?",
+          "correct": "request-team",
+          "options": [
+            {"value": "major-incident", "label": "Major-incident manager"},
+            {"value": "request-team", "label": "Service desk / onboarding fulfilment team"},
+            {"value": "problem-manager", "label": "Problem manager"},
+            {"value": "vendor", "label": "Laptop vendor only"}
+          ],
+          "explanation": "The service desk or onboarding fulfilment workflow should coordinate the request, including approvals and specialist fulfilment tasks."
+        },
+        {
+          "id": "update",
+          "prompt": "Choose the best first customer update.",
+          "correct": "confirm",
+          "options": [
+            {"value": "confirm", "label": "“Request received for Monday. We have the approved role profile and will confirm device and access readiness by Thursday.”"},
+            {"value": "escalate", "label": "“We have declared a major incident because the analyst cannot work yet.”"},
+            {"value": "promise", "label": "“Everything will definitely be ready before Monday.”"},
+            {"value": "reject", "label": "“Submit separate tickets to every technical team.”"}
+          ],
+          "explanation": "A useful update confirms scope, names the next checkpoint and avoids guaranteeing work before fulfilment teams have confirmed it."
+        }
+      ]
+    },
+    {
+      "id": "payroll-repeat",
+      "queue": "11:20 · Repeating incident",
+      "title": "Payroll slows down every Friday",
+      "meta": [
+        "120 users",
+        "Recurring weekly",
+        "Restart restores service"
+      ],
+      "record": "Payroll staff report severe delays between 11:00 and 13:00 every Friday. The application team restarts one service and performance returns to normal. The same pattern has occurred for six weeks.",
+      "decisions": [
+        {
+          "id": "type",
+          "prompt": "What is the best record strategy?",
+          "correct": "incident-plus-problem",
+          "options": [
+            {"value": "request", "label": "Treat it only as a service request"},
+            {"value": "incident-plus-problem", "label": "Restore through the incident, then link it to a problem record"},
+            {"value": "change", "label": "Treat the user report as an approved change"},
+            {"value": "close", "label": "Close each report because restart works"}
+          ],
+          "explanation": "The current degradation is an incident. The repeating pattern and temporary workaround justify a linked problem record for root-cause investigation."
+        },
+        {
+          "id": "priority",
+          "prompt": "What is the defensible initial priority for today's degradation?",
+          "correct": "p2",
+          "options": [
+            {"value": "p1", "label": "P1 — critical"},
+            {"value": "p2", "label": "P2 — high"},
+            {"value": "p3", "label": "P3 — medium"},
+            {"value": "p4", "label": "P4 — low"}
+          ],
+          "explanation": "A large business group is materially impaired during a time-sensitive process, but a known workaround restores service. P2 is a defensible starting point."
+        },
+        {
+          "id": "owner",
+          "prompt": "Who should own the next step after restoration?",
+          "correct": "problem-manager",
+          "options": [
+            {"value": "l1", "label": "L1 closes the record with no follow-up"},
+            {"value": "problem-manager", "label": "Problem manager with the application owner and evidence from linked incidents"},
+            {"value": "customer", "label": "Payroll users investigate the server"},
+            {"value": "procurement", "label": "Procurement renegotiates all software contracts"}
+          ],
+          "explanation": "A problem owner should coordinate evidence, trend analysis and corrective action with the technical service owner."
+        },
+        {
+          "id": "update",
+          "prompt": "Choose the best first customer update.",
+          "correct": "restore-and-link",
+          "options": [
+            {"value": "human-error", "label": "“A payroll user probably overloaded the service again.”"},
+            {"value": "restore-and-link", "label": "“We are restoring performance using the known workaround. This incident is linked to an active problem investigation into the Friday pattern.”"},
+            {"value": "fixed", "label": "“The restart permanently fixed the problem.”"},
+            {"value": "ignore", "label": "“Please avoid payroll between 11:00 and 13:00.”"}
+          ],
+          "explanation": "The update distinguishes restoration from root-cause work and tells users what is known without assigning blame."
+        }
+      ]
+    },
+    {
+      "id": "certificate-renewal",
+      "queue": "13:10 · Service-owner calendar",
+      "title": "The public certificate expires in 14 days",
+      "meta": [
+        "Planned work",
+        "Customer portal",
+        "Rollback available"
+      ],
+      "record": "Monitoring warns that the customer portal TLS certificate expires in fourteen days. The renewal procedure is documented and tested, but this production endpoint is not on the pre-approved standard-change list.",
+      "decisions": [
+        {
+          "id": "type",
+          "prompt": "What type of record should coordinate the work?",
+          "correct": "change",
+          "options": [
+            {"value": "incident", "label": "Incident"},
+            {"value": "request", "label": "Service request"},
+            {"value": "problem", "label": "Problem"},
+            {"value": "change", "label": "Change"}
+          ],
+          "explanation": "The service is still operating. This is planned modification of a production service and should be controlled through change enablement."
+        },
+        {
+          "id": "priority",
+          "prompt": "What is the defensible initial priority?",
+          "correct": "p2",
+          "options": [
+            {"value": "p1", "label": "P1 — production is already down"},
+            {"value": "p2", "label": "P2 — time-sensitive planned work"},
+            {"value": "p3", "label": "P3 — schedule whenever convenient"},
+            {"value": "p4", "label": "P4 — no action required"}
+          ],
+          "explanation": "The service is live, so this is not P1, but the fixed expiry date and public impact make timely coordination important."
+        },
+        {
+          "id": "owner",
+          "prompt": "Who should own the next step?",
+          "correct": "change-owner",
+          "options": [
+            {"value": "change-owner", "label": "Change owner with service owner approval and an expedited review"},
+            {"value": "major-incident", "label": "Major-incident manager immediately"},
+            {"value": "l1", "label": "L1 replaces the certificate without a record"},
+            {"value": "customer", "label": "Ask customers to accept the expired certificate"}
+          ],
+          "explanation": "A change owner should coordinate approval, test evidence, implementation timing, validation and rollback before the deadline."
+        },
+        {
+          "id": "update",
+          "prompt": "Choose the best stakeholder update.",
+          "correct": "planned",
+          "options": [
+            {"value": "outage", "label": "“The portal has suffered a certificate outage.”"},
+            {"value": "planned", "label": "“A controlled certificate renewal is being scheduled before expiry. The change record includes validation and rollback; timing will be confirmed today.”"},
+            {"value": "silent", "label": "No update is needed because the service still works."},
+            {"value": "guarantee", "label": "“There is zero risk because certificate renewal is routine.”"}
+          ],
+          "explanation": "The update frames this as planned risk control, identifies the decision point and avoids either alarm or false certainty."
+        }
+      ]
+    },
+    {
+      "id": "executive-password",
+      "queue": "16:35 · Priority request",
+      "title": "The CEO is locked out before a flight",
+      "meta": [
+        "One person",
+        "45 minutes",
+        "Identity risk"
+      ],
+      "record": "An assistant calls from an unrecognised number and asks for an immediate password reset for the CEO, who is about to board an international flight. The caller asks the analyst to bypass the usual identity check because the CEO is in a hurry.",
+      "decisions": [
+        {
+          "id": "type",
+          "prompt": "What type of record is this?",
+          "correct": "request",
+          "options": [
+            {"value": "incident", "label": "Major incident because the requester is the CEO"},
+            {"value": "request", "label": "Access / password service request"},
+            {"value": "problem", "label": "Problem record"},
+            {"value": "change", "label": "Emergency production change"}
+          ],
+          "explanation": "A password reset is a standard access request. The requester's seniority can affect business urgency, but it does not change the record type."
+        },
+        {
+          "id": "priority",
+          "prompt": "What is the defensible initial priority?",
+          "correct": "p2",
+          "options": [
+            {"value": "p1", "label": "P1 — organisation-wide critical outage"},
+            {"value": "p2", "label": "P2 — high urgency for one critical user"},
+            {"value": "p3", "label": "P3 — normal queue with no time sensitivity"},
+            {"value": "p4", "label": "P4 — low priority"}
+          ],
+          "explanation": "The impact is one user, but the urgency and role can justify expedited handling. It is not an organisation-wide P1."
+        },
+        {
+          "id": "owner",
+          "prompt": "Who should own the next step?",
+          "correct": "service-desk-verify",
+          "options": [
+            {"value": "bypass", "label": "Any analyst who can bypass identity checks"},
+            {"value": "service-desk-verify", "label": "Service desk using the approved identity-verification and reset path"},
+            {"value": "major-incident", "label": "Major-incident commander"},
+            {"value": "assistant", "label": "Give the assistant a temporary shared password"}
+          ],
+          "explanation": "Urgency never removes identity controls. The service desk should use the approved verification path and escalate only within that control."
+        },
+        {
+          "id": "update",
+          "prompt": "Choose the best first customer update.",
+          "correct": "secure",
+          "options": [
+            {"value": "secure", "label": "“We can expedite the reset once the approved identity check is complete. I am starting that verification now and will update you within ten minutes.”"},
+            {"value": "bypass", "label": "“Because this is the CEO, we will bypass the normal check.”"},
+            {"value": "refuse", "label": "“We cannot help senior staff outside the normal queue.”"},
+            {"value": "share", "label": "“Use the assistant’s account during the flight.”"}
+          ],
+          "explanation": "The response acknowledges urgency, preserves the security control and gives a near-term checkpoint."
+        }
+      ]
+    }
+  ]
+}

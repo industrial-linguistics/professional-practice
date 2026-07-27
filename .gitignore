@@ -35,6 +35,7 @@ content/**/temp/
 __pycache__/
 *.pyc
 *.pyo
+.playwright-cli/
 
 # Editor swap files
 *.swp
