@@ -1,6 +1,6 @@
 # Part 3 – High-Velocity Delivery
 
-This part introduces modern DevOps practices and SRE principles that enable organizations to deliver software rapidly while maintaining reliability and quality.
+DevOps and SRE for the people who will be measured by them. The four DORA metrics, trunk-based development, pipeline design in GitHub Actions, and error budgets as an allowance to spend rather than a score to protect.
 
 ## Objectives
 

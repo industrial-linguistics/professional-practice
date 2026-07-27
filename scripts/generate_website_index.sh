@@ -41,7 +41,7 @@ cat > "$INDEX_FILE" <<EOT
       <a href="run-script/part-01/">Run scripts</a>
     </nav>
     <h1>The missing professional-practice course for technical graduates</h1>
-    <p>IT Professional Practice is for students and early-career IT, data and software people learning how real digital services are operated, improved, bought, sold and stewarded. The run scripts below mirror the eight-part course while the generated e-learning and textbook surfaces mature.</p>
+    <p>IT Professional Practice is for students and early-career IT, data and software people learning how real digital services are operated, improved, bought, sold and stewarded. The run scripts below mirror the eight-part course; the e-learning lessons and the textbook are generated from the same source.</p>
     <div class="positioning">
       <div><strong>For</strong> Graduates, support analysts, junior developers, data workers and technical staff moving into customer or vendor-facing roles.</div>
       <div><strong>About</strong> ITIL service practice, delivery pipelines, incident learning, CRM handoffs, vendor risk, startup constraints and data authority.</div>
@@ -58,7 +58,9 @@ for outline in content/part-*/outline.md; do
   [ -f "$outline" ] || continue
   part_dir=$(dirname "$outline")
   part=$(basename "$part_dir")
-  title=$(sed -n 's/^# Part [0-9]*[[:space:]][–-][[:space:]]*//p' "$outline")
+  # The separator is an en-dash. Matching it via a bracket range breaks under a
+  # non-UTF-8 locale (it is multibyte), so match it as an opaque non-space token.
+  title=$(sed -n '1s/^# Part [0-9]* [^ ][^ ]* *//p' "$outline")
   summary=$(awk 'NR>1 && NF {print; exit}' "$outline")
   printf '    <li><a href="run-script/%s/">%s</a><p>%s</p></li>\n' "$part" "$title" "$summary" >> "$INDEX_FILE"
 done

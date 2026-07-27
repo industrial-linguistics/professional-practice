@@ -1,6 +1,6 @@
 # Part 6 – Start-ups & Small-Biz IT
 
-This part highlights how lean start-ups and small businesses bootstrap their IT stack, adopt lightweight tools, and scale processes as they grow.
+Sarah has closed her seed round and has six weeks to hire fifteen people. Her entire IT estate is Gmail, Slack and hope. Day-zero services, cloud trade-offs, security baselines on a shoestring, and what investors check during diligence.
 
 > **Opening hook:** "Sarah just closed her seed round and has six weeks to hire 15 people. Her entire IT estate is Gmail, Slack, and a hope. What could possibly go wrong?"
 

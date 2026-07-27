@@ -1,3 +1,3 @@
 # Part 8 – Project Studio and Presentations
 
-This capstone brings teams together to refine final projects and present their work, integrating lessons from across the course.
+The capstone. Teams refine their service design, rehearse it and present to the room, pulling together the practices from the previous seven parts.

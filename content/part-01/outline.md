@@ -1,6 +1,6 @@
 # Part 1 – ITIL 4 Foundations
 
-This part introduces the basic concepts of service management and the terminology used in enterprise IT operations.
+Where the vocabulary of enterprise IT operations comes from, and what it buys you. Covers the service value chain, the difference between an incident and a request, how L1 to L3 escalation works in practice, and a major incident drill in the ServiceNow sandbox.
 
 ## Objectives
 

@@ -1,6 +1,6 @@
 # Part 2 – ITIL Deep Dive
 
-This part builds on the foundations by examining how mature IT teams use ITIL processes to manage change and drive continual improvement.
+Beyond the foundations: how mature teams run change enablement, problem management and a configuration database without grinding delivery to a halt. Includes turning service level objectives into metrics somebody actually reports on.
 
 ## Objectives
 

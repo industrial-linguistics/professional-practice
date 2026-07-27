@@ -131,7 +131,7 @@ Prioritise cost visibility dashboards and phased security investments so leaders
 **Question:** A new hire in another country is delayed because customs held their laptop. What steps from the course can the IT team take to keep the onboarding on track?
 
 **Sample Answer:**
-Leverage the remote logistics playbook by shipping a backup device through a local vendor, granting temporary virtual desktop access with pre-provisioned accounts, and updating the access review checklist so credentials aren't activated until hardware is confirmed delivered.
+Follow the remote logistics playbook: ship a backup device through a local vendor, granting temporary virtual desktop access with pre-provisioned accounts, and updating the access review checklist so credentials aren't activated until hardware is confirmed delivered.
 
 ## Scenario-Based Questions
 
