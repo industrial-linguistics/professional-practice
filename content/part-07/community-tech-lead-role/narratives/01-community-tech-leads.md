@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Community Tech-Leads. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: Open-source projects at any scale need someone who sits between the code and the people writing it.
+
+Speaker 2: That role goes by different names, but community tech-lead captures it: part engineer, part facilitator, part translator between a corporate sponsor and a volunteer base.
+
+Speaker 1: It's also a genuine career path, and an under-advertised one, because the job description is hard to write.
+
+Speaker 2: So we'll look at what the role actually does day to day, and what funding it protects.

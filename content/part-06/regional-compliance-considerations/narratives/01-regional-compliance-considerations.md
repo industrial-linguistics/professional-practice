@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Regional Compliance Considerations. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: The moment you have a customer in another country, you have inherited that country's rules, whether or not anyone told you.
+
+Speaker 2: And it rarely arrives as a legal letter. It arrives as a procurement questionnaire asking where data is stored, and a deal stalling while you work out the answer.
+
+Speaker 1: So this topic is about designing policies that keep pace with where you're selling.
+
+Speaker 2: Map the obligations, then mature the practices deliberately, rather than discovering them one blocked deal at a time.

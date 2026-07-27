@@ -1,2 +1,9 @@
-Speaker 1: Template examples focuses attention on a concrete part of the work. Email: "Team, our post‑mortem identified three fixes. See the attached doc for details. Jane owns the first, due Friday.", Slack: "Heads up: database patch rolling out tonight. Track progress in #incident‑123.", and Dashboard update: Add a section summarizing closed and open items from recent incidents.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Slack: "Heads up: database patch rolling out tonight. Track progress in #incident‑123."; Dashboard update: Add a section summarizing closed and open items from recent incidents; Short, consistent templates make it easy for anyone to share updates without reinventing the wheel.
+Speaker 1: Templates save people from reinventing the wording under pressure. An email might read: our post-mortem identified three fixes, details attached, Jane owns the first and it's due Friday.
+
+Speaker 2: A Slack update is shorter. Heads up, database patch rolling out tonight, track progress in the incident channel.
+
+Speaker 1: For dashboards, add a section summarising closed and open items from recent incidents.
+
+Speaker 2: Underneath all of them sits the same table: item, owner, due date, status.
+
+Speaker 1: Using one structure across teams cuts confusion and speeds up handoffs, because nobody has to decode a new format mid-incident.

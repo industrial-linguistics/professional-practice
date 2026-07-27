@@ -1,2 +1,9 @@
-Speaker 1: MSP hand-over points focuses attention on a concrete part of the work. Managed service providers (MSPs) run day-to-day operations once the fancy sales talk ends. Handovers usually happen right after contracts are signed and the sales team retreats. During onboarding, internal staff document playbooks so routine tasks—say backing up an accounting firm's files to AWS—can shift to the MSP. The challenge is that MSPs promise to take the pain away, yet someone still has to manage the people managing the pain. If requirements are half-baked or communication is vague, tickets bounce around and costs spike. Clear transition meetings and shared runbooks keep everyone honest.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.
+Speaker 1: Managed service providers take over day-to-day operations once the sales conversation ends, usually right after the contract is signed.
+
+Speaker 2: During onboarding your own staff document the playbooks, so routine work, backing up an accounting firm's files to AWS, say, can shift across cleanly.
+
+Speaker 1: Here's the catch that surprises people. The MSP promises to take the pain away, but somebody still has to manage the people managing the pain.
+
+Speaker 2: If the requirements are half-baked or the communication is vague, tickets bounce between organisations and costs climb.
+
+Speaker 1: Clear transition meetings and genuinely shared runbooks are what keep both sides honest.

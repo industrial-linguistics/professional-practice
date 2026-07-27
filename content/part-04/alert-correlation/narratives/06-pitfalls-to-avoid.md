@@ -1,2 +1,9 @@
-Speaker 1: Pitfalls to avoid focuses attention on a concrete part of the work. Correlation isn't perfect. Over-zealous rules can link unrelated events, causing analysts to chase phantom problems instead of real outages. Tools may also miss connections if time zones drift or different servers report timestamps in their local format. Always sanity-check automated output against manual notes and keep an eye on data retention. Dropping logs too quickly erases context, while hoarding everything makes searches painfully slow. During busy periods, like a Black Friday sale, CPU spikes might just be customers, not attackers, so trust but verify. And remember the human factor: teams under stress might skip or mislabel alerts, so circle back after the incident to confirm the timeline still makes sense.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.
+Speaker 1: Correlation isn't perfect. Over-zealous rules link unrelated events, and analysts end up chasing a phantom instead of the outage.
+
+Speaker 2: Tools also miss real connections when clocks drift or servers report timestamps in local formats, so sanity-check the automated output against manual notes.
+
+Speaker 1: Watch retention too. Dropping logs quickly erases context, and keeping everything makes searches painfully slow.
+
+Speaker 2: And read the context. During a Black Friday sale, a CPU spike is probably customers rather than attackers.
+
+Speaker 1: Then there's the human factor. Stressed teams skip or mislabel alerts, so revisit the timeline afterwards and check it still makes sense.

@@ -1,2 +1,7 @@
-Speaker 1: Pricing models focuses attention on a concrete part of the work. Per-seat licences scale with headcount but can cap expansion, Usage-based fees map cost to consumption, common for fintech APIs, and Tiered feature bundles let customers graduate as needs grow.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Usage-based fees map cost to consumption, common for fintech APIs; Tiered feature bundles let customers graduate as needs grow; The pricing mix shapes upsell paths and revenue predictability.
+Speaker 1: Three common shapes. Per-seat licensing scales with headcount, which is simple to forecast but caps your expansion at the size of the customer.
+
+Speaker 2: Usage-based fees tie cost to consumption, which is why fintech APIs favour them. Revenue grows with the customer's success rather than their hiring.
+
+Speaker 1: And tiered feature bundles let customers graduate upwards as their needs grow.
+
+Speaker 2: The mix you choose shapes both the upsell path and how predictable revenue is, which is why finance and product argue about it so often.

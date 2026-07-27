@@ -1,2 +1,9 @@
-Speaker 1: Making audits survivable for small teams focuses attention on a concrete part of the work. Start with a single owner (often COO, security lead or fractional CISO) plus one project manager or chief of staff, Use lightweight tooling: ticket queue for control tasks, password manager exports, MDM screenshots and change logs, and Rehearse evidence pulls monthly so nothing lives only in someone's inbox or head.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Use lightweight tooling: ticket queue for control tasks, password manager exports, MDM screenshots and change logs; Rehearse evidence pulls monthly so nothing lives only in someone's inbox or head; Automate what you can early—cloud security posture tools, HRIS-to-IdP sync, log retention policies—before the audit gap list grows.
+Speaker 1: Start with one owner. Usually a COO, a security lead or a fractional CISO, plus a project manager or chief of staff to chase the detail.
+
+Speaker 2: The tooling can stay light. A ticket queue for control tasks, password manager exports, device management screenshots, change logs.
+
+Speaker 1: The habit that matters most is rehearsing evidence pulls monthly, so nothing important lives only in someone's inbox or head.
+
+Speaker 2: And automate early where you can: cloud posture tools, syncing your HR system to your identity provider, log retention policies.
+
+Speaker 1: Automate before the gap list grows, because retrofitting evidence is the expensive part.

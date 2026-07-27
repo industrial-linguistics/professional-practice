@@ -1,2 +1,7 @@
-Speaker 1: Practical playbook focuses attention on a concrete part of the work. Document governance so newcomers can self-serve. Create a GOVERNANCE.md describing decision rights, a CODEOWNERS file for reviews, and an RFC template outlining proposal stages. Provide onboarding kits with buddy assignments, office hours in multiple languages and primers on inclusive communication. Track community health metrics—median PR review time, ratio of first-time contributors merged, moderation response within 24 hours—and share dashboards publicly. Adopt decision frameworks that fit your culture: consensus-seeking for technical design, majority vote for budget approvals, and veto powers reserved for safety issues. Pair transparent funding reports with conflict resolution channels facilitated by trained moderators or ombudspeople.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.
+Speaker 1: Document governance so newcomers can serve themselves. A GOVERNANCE file describing decision rights, a CODEOWNERS file for reviews, and an RFC template setting out the proposal stages.
+
+Speaker 2: Then make joining tractable: onboarding kits, a buddy assignment, office hours in more than one language.
+
+Speaker 1: Track community health openly. Median pull request review time, the share of first-time contributors whose work gets merged, moderation response within twenty-four hours.
+
+Speaker 2: And match the decision framework to the decision. Consensus-seeking for technical design, majority vote for budgets, veto powers reserved for safety issues.

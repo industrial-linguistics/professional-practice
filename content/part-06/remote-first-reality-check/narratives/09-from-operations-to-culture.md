@@ -1,2 +1,7 @@
-Speaker 1: From operations to culture focuses attention on a concrete part of the work. Logistical excellence signals trust: people share context when devices arrive ready to work, Async rituals thrive when onboarding removes guesswork about tools and access, and Bridge statement: strong runbooks free managers to focus on belonging, not badge provisioning.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Async rituals thrive when onboarding removes guesswork about tools and access; Bridge statement: strong runbooks free managers to focus on belonging, not badge provisioning.
+Speaker 1: There's a link between logistics and trust that's easy to miss. When a device arrives ready to work, the message is that someone planned for you.
+
+Speaker 2: And people share context more readily when they aren't spending their first fortnight proving they should have access to things.
+
+Speaker 1: Asynchronous rituals only work when onboarding has removed the guesswork about which tool to use and who to ask.
+
+Speaker 2: Which is really the argument for strong runbooks. They free managers to spend their attention on whether people feel they belong, instead of on provisioning accounts.
