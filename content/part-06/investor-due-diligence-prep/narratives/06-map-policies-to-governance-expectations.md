@@ -1,2 +1,7 @@
-Speaker 1: Map policies to governance expectations focuses attention on a concrete part of the work. Tie each policy to the board committee or advisor who sponsors it (e.g. audit, risk, security), Summarise decision rights: who approves exceptions, how often reviews occur, what evidence is logged, and Highlight how legal, finance and engineering collaborate on compliance checkpoints.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Summarise decision rights: who approves exceptions, how often reviews occur, what evidence is logged; Highlight how legal, finance and engineering collaborate on compliance checkpoints; Share a governance calendar: Q1 risk committee + SOC 2 readiness review, Q2 audit committee + PCI scan, Q3 full board + cyber tabletop, Q4 certification renewals.
+Speaker 1: Every policy should name the board committee or advisor who sponsors it, whether that's audit, risk or security.
+
+Speaker 2: Then spell out decision rights. Who approves an exception, how often the policy gets reviewed, what evidence is logged when it does.
+
+Speaker 1: Show where legal, finance and engineering meet on compliance checkpoints, because investors are testing whether governance is a working habit or a document.
+
+Speaker 2: A calendar makes it concrete. Q1, risk committee and SOC 2 readiness review. Q2, audit committee and PCI scan. Q3, full board and a cyber tabletop. Q4, certification renewals.

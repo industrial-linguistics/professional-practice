@@ -1,2 +1,9 @@
-Speaker 1: Red flags hall of fame (and fixes) focuses attention on a concrete part of the work. "Security lead" is a contractor 5 hours/week → solution: interim virtual CISO backed by engineering manager accountable for controls, No incident response drill since founding → schedule tabletop within 30 days, document after-action and add to board pack, and Customer data stored in shared S3 bucket with ex-employee access → run access audit, enable object lock, revoke stale keys same week.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: No incident response drill since founding → schedule tabletop within 30 days, document after-action and add to board pack; Customer data stored in shared S3 bucket with ex-employee access → run access audit, enable object lock, revoke stale keys same week; Legal can't articulate data residency commitments → map contractual obligations, document sub-processors, update privacy notice.
+Speaker 1: Some findings turn up again and again. The security lead is a contractor doing five hours a week. The fix is an interim virtual CISO with an engineering manager accountable for the controls.
+
+Speaker 2: No incident response drill since founding. Schedule a tabletop inside thirty days, document the after-action, put it in the board pack.
+
+Speaker 1: Customer data in a shared S3 bucket an ex-employee can still reach. Run the access audit, enable object lock, revoke stale keys that same week.
+
+Speaker 2: Or legal who can't articulate your data residency commitments. Map the contractual obligations, document sub-processors, update the privacy notice.
+
+Speaker 1: None of these sink a round on their own. Hearing about them first from the investor might.

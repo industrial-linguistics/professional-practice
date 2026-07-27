@@ -1,2 +1,7 @@
-Speaker 1: Designing the scorecard focuses attention on a concrete part of the work. Blend SLAs/SLRs (uptime, response) with adoption and satisfaction signals, Track leading indicators: backlog age, staffing ratios, change failure rate, and Pull data from shared dashboards; freeze snapshots before each review.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Track leading indicators: backlog age, staffing ratios, change failure rate; Pull data from shared dashboards; freeze snapshots before each review; Use traffic-light status to trigger escalations and executive visibility.
+Speaker 1: A good scorecard blends the contractual numbers, uptime and response time, with adoption and satisfaction signals.
+
+Speaker 2: Add leading indicators too. Backlog age, staffing ratios, change failure rate. Those move before the SLA breaches, which gives you time to intervene.
+
+Speaker 1: Pull the data from shared dashboards, and freeze a snapshot before each review so both sides are arguing about the same numbers.
+
+Speaker 2: Traffic lights are worth the simplicity, because they trigger things. API response under two hundred milliseconds is green, two hundred to five hundred is yellow, above five hundred is red and someone senior hears about it.

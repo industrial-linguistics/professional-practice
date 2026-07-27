@@ -1,2 +1,7 @@
-Speaker 1: Scorecard template snapshot focuses attention on a concrete part of the work. Availability (SLA): Green ≥ 99.9%, Yellow 99.5–99.89%, Red < 99.5%, First-response time (SLR): Green <15m P1 / <1h P2, Yellow double the target, Red >4x target, and Change failure rate: Green <10%, Yellow 10–20%, Red >20%.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: First-response time (SLR): Green <15m P1 / <1h P2, Yellow double the target, Red >4x target; Change failure rate: Green <10%, Yellow 10–20%, Red >20%; Backlog age (critical tickets): Green <3 days, Yellow 3–5, Red >5.
+Speaker 1: Here's what those bands look like written down. Availability green at ninety-nine point nine per cent or better, yellow between ninety-nine point five and ninety-nine point eight nine, red below that.
+
+Speaker 2: First response, green is under fifteen minutes for a P1 and under an hour for a P2. Yellow is double the target, red is four times it.
+
+Speaker 1: Change failure rate under ten per cent is green, ten to twenty is yellow, above twenty is red.
+
+Speaker 2: Then backlog age on critical tickets, stakeholder satisfaction, and compliance status, where red simply means a gap has been identified and not yet closed.

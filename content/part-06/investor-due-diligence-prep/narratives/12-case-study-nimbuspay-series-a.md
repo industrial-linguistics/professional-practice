@@ -1,2 +1,9 @@
-Speaker 1: Case study: NimbusPay Series A focuses attention on a concrete part of the work. Day 0: pre-seeded data room with 120 curated artifacts, ownership tracker in Notion, Day 14: investors flagged MFA gaps; remediation plan committed to 100% hardware keys in 45 days with $15k budget, and Day 35: cross-border payroll expansion triggered GDPR transfer impact assessment and Canadian PIPEDA review.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Day 14: investors flagged MFA gaps; remediation plan committed to 100% hardware keys in 45 days with $15k budget; Day 35: cross-border payroll expansion triggered GDPR transfer impact assessment and Canadian PIPEDA review; Day 52: diligence closed after mock board review confirmed policy-to-governance alignment and incident drill readiness.
+Speaker 1: NimbusPay went in prepared. On day zero the data room already held a hundred and twenty curated artifacts with an ownership tracker in Notion.
+
+Speaker 2: Day fourteen, investors flagged gaps in MFA coverage. The response was a committed remediation plan: hardware keys for everyone within forty-five days, fifteen thousand dollars budgeted.
+
+Speaker 1: Not a defence of the gap. A date and a number.
+
+Speaker 2: Day thirty-five, a cross-border payroll expansion triggered a GDPR transfer impact assessment and a Canadian PIPEDA review.
+
+Speaker 1: And it closed on day fifty-two, after a mock board review confirmed the policies matched the governance and the incident drills were real.

@@ -1,2 +1,9 @@
-Speaker 1: Security questionnaire watch-outs focuses attention on a concrete part of the work. Identify common asks: MFA coverage, penetration test cadence, disaster recovery drills, privacy compliance, Expect specifics like "What percentage of privileged accounts enforce MFA?"—"82% today, moving to 100% by Q2 via YubiKeys" beats evasive answers, and Flag red signals early—shared admin accounts, missing asset inventory, stale incident response plans.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Expect specifics like "What percentage of privileged accounts enforce MFA?"—"82% today, moving to 100% by Q2 via YubiKeys" beats evasive answers; Flag red signals early—shared admin accounts, missing asset inventory, stale incident response plans; Draft honest mitigation plans instead of hand-waving; investors reward realism.
+Speaker 1: The questionnaires converge on the same asks: MFA coverage, penetration test cadence, disaster recovery drills, privacy compliance.
+
+Speaker 2: And they want percentages. What proportion of privileged accounts enforce MFA? The answer you want is eighty-two per cent today, moving to a hundred by Q2 with hardware keys.
+
+Speaker 1: Which beats anything evasive. The red signals are shared admin accounts, a missing asset inventory, an incident response plan nobody has opened since founding.
+
+Speaker 2: If you have one of those, say so and bring a mitigation plan. Investors reward realism, because they have seen the alternative.
+
+Speaker 1: Keep a plain-language FAQ for the control names too, so board members can follow along.

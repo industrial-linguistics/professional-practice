@@ -1,2 +1,7 @@
-Speaker 1: Cultural fit checkpoints focuses attention on a concrete part of the work. Observe vendor-team rituals: stand-ups, retros, documentation habits—do they match your pace?, Meet the delivery leads who will work day-to-day, not just the sales crew, and Align on communication norms (channels, response times, decision logs) before signing.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Meet the delivery leads who will work day-to-day, not just the sales crew; Align on communication norms (channels, response times, decision logs) before signing; Use pilot projects or trial sprints to test collaboration chemistry safely.
+Speaker 1: Watch how the vendor's team actually works. Their stand-ups, their retros, their documentation habits. If they run fortnightly and you ship daily, that gap will show up as friction every week.
+
+Speaker 2: Insist on meeting the delivery leads who will be on your account day to day, not just the sales crew who show up for the pitch.
+
+Speaker 1: Agree on communication norms before signing. Which channels, what response times, where decisions get logged.
+
+Speaker 2: And if you can, run a pilot project or a trial sprint first. Collaboration chemistry is much cheaper to test than to fix.

@@ -1,2 +1,5 @@
-Speaker 1: Core workstreams to coordinate focuses attention on a concrete part of the work. Financial & operational – cash runway, burn, vendor commitments, SOC 2 roadmap, Security & infrastructure – access controls, incident history, backup testing evidence, and Product & customers – roadmap dependencies, SLAs, churn and expansion metrics.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Security & infrastructure – access controls, incident history, backup testing evidence; Product & customers – roadmap dependencies, SLAs, churn and expansion metrics; Assign an owner per stream (CFO, CTO, RevOps) with a single program manager stitching updates together.
+Speaker 1: Diligence splits into three streams. Financial and operational covers cash runway, burn, vendor commitments and the SOC 2 roadmap. Security and infrastructure covers access controls, incident history and backup testing evidence. Product and customers covers roadmap dependencies, SLAs, churn and expansion.
+
+Speaker 2: And each stream gets a named owner, usually the CFO, the CTO and RevOps.
+
+Speaker 1: With a single program manager stitching the updates together. Without that person, three leaders answer the same investor question three different ways, and the inconsistency becomes the finding.

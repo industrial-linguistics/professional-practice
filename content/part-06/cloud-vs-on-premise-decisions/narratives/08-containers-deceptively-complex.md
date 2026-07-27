@@ -1,2 +1,7 @@
-Speaker 1: Containers: deceptively complex focuses attention on a concrete part of the work. Containers demand observability, image pipelines, security scanning and registry hygiene—skills many pre-Series A teams lack, Treat the platform as a product: budget time for cluster upgrades, policy automation and chaos testing, and It's like deciding to brew your own coffee when you haven't figured out how to work the office coffee machine yet.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Treat the platform as a product: budget time for cluster upgrades, policy automation and chaos testing; It's like deciding to brew your own coffee when you haven't figured out how to work the office coffee machine yet.
+Speaker 1: Containers look like a packaging decision and turn out to be an operating decision. You need observability, image pipelines, security scanning and registry hygiene.
+
+Speaker 2: Those are real skills, and most pre-Series A teams don't have them in-house yet.
+
+Speaker 1: If you go ahead anyway, treat the platform as a product with its own budget. Cluster upgrades, policy automation, chaos testing, all of it competing for the same engineers who are meant to be shipping features.
+
+Speaker 2: It's a bit like deciding to roast your own coffee beans when nobody has worked out how to use the office machine yet.

@@ -1,2 +1,7 @@
-Speaker 1: Questions before jumping to containers focuses attention on a concrete part of the work. Do we have repeatable CI/CD with automated tests and security scanning in place?, Can we monitor, patch and respond to incidents 24/7 without burning out a three-person engineering team?, and Are there regulatory or customer requirements that truly block managed services?.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Can we monitor, patch and respond to incidents 24/7 without burning out a three-person engineering team?; Are there regulatory or customer requirements that truly block managed services?; Spoiler alert: if your "on-call rotation" is just Sarah checking her phone during dinner, the answer is no.
+Speaker 1: Three questions to answer honestly before committing. Do you have repeatable continuous delivery, with automated tests and security scanning already working?
+
+Speaker 2: Can you monitor, patch and respond to incidents around the clock without burning out a three-person engineering team?
+
+Speaker 1: And are there regulatory or customer requirements that genuinely rule out managed services, as opposed to requirements someone assumes exist?
+
+Speaker 2: If your on-call rotation is really Sarah glancing at her phone during dinner, you have your answer. That's not a criticism of Sarah. It's just not a rotation.

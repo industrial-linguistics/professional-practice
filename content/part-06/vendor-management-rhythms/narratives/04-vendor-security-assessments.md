@@ -1,2 +1,7 @@
-Speaker 1: Vendor security assessments focuses attention on a concrete part of the work. Treat security reviews as recurring rituals, not a one-off procurement hurdle, Require up-to-date SOC 2 / ISO 27001 evidence and map controls to your data flows, and Run data-handling tabletop drills: breach notification timing, encryption practices, off-boarding.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Require up-to-date SOC 2 / ISO 27001 evidence and map controls to your data flows; Run data-handling tabletop drills: breach notification timing, encryption practices, off-boarding; Align vendor access reviews with your internal identity governance cadence.
+Speaker 1: Security review is a recurring ritual, not a hurdle you clear once during procurement.
+
+Speaker 2: Ask for current SOC 2 or ISO 27001 evidence, and map their controls onto your actual data flows. A certificate that covers a different product line tells you nothing.
+
+Speaker 1: Then run data-handling tabletop drills with them. How fast would they notify you of a breach? What's encrypted, and where? What happens to your data when you off-board?
+
+Speaker 2: And line their access reviews up with your own identity governance cadence, so vendor accounts get scrutinised on the same schedule as employee ones.

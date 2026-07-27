@@ -1,2 +1,7 @@
-Speaker 1: Self-managed infrastructure: read the fine print focuses attention on a concrete part of the work. Self-hosting can cut per-unit costs once workloads stabilise, but only if utilisation stays high and change frequency slows, Budget for redundant hardware, spares, remote hands at the data centre and compliance audits before declaring savings, and Document shared responsibility: your team now owns patching, access reviews, backups and capacity upgrades end-to-end.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Budget for redundant hardware, spares, remote hands at the data centre and compliance audits before declaring savings; Document shared responsibility: your team now owns patching, access reviews, backups and capacity upgrades end-to-end.
+Speaker 1: Self-hosting genuinely can cut per-unit costs, but only under conditions people forget to check: utilisation stays high and the rate of change slows down.
+
+Speaker 2: And before you claim the saving, budget for the rest of it. Redundant hardware, spares on a shelf, remote hands at the data centre, compliance audits.
+
+Speaker 1: The bigger shift is the responsibility boundary. Patching, access reviews, backups and capacity upgrades all become yours, end to end, at three in the morning included.
+
+Speaker 2: Write that shared responsibility down explicitly. Teams that skip this step discover the gaps during an incident rather than during planning.

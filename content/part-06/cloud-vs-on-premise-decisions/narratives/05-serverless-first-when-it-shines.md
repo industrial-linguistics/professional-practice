@@ -1,2 +1,7 @@
-Speaker 1: Serverless first: when it shines focuses attention on a concrete part of the work. No infrastructure patching, and scaling is automatic—perfect for small teams without SRE coverage, Pay-per-use keeps experimentation cheap while you iterate on product-market fit; a food delivery beta with ~100 users might run $50/month, and Lock-in risk is mitigated by designing around open APIs, exporting data regularly and scripting data replays into alternative services.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Pay-per-use keeps experimentation cheap while you iterate on product-market fit; a food delivery beta with ~100 users might run $50/month; Lock-in risk is mitigated by designing around open APIs, exporting data regularly and scripting data replays into alternative services.
+Speaker 1: Serverless removes two jobs nobody on a small team has time for: patching infrastructure and planning capacity. Scaling just happens.
+
+Speaker 2: And paying per use keeps experimentation genuinely cheap. A food delivery beta with a hundred or so users might run fifty dollars a month, which means a failed experiment costs almost nothing.
+
+Speaker 1: The usual objection is lock-in, and it's fair, but it's manageable. Design around open APIs, export your data on a schedule, and script the replay into an alternative service.
+
+Speaker 2: Test that replay occasionally. An escape route you've never used is a hope, not a plan.
