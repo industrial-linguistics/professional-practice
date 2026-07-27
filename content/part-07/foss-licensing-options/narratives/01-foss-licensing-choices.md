@@ -1,2 +1,7 @@
-Speaker 1: This section sets up FOSS Licensing Choices. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: Licences are the terms and conditions developers genuinely do need to read, which makes them unusual.
+
+Speaker 2: And the stakes are practical rather than abstract. The licence on a dependency decides whether you can ship your product the way you intend to.
+
+Speaker 1: We'll cover the main families and what they oblige you to do, how they combine, what dual licensing is for, and how projects stay compliant without it becoming a full-time job.
+
+Speaker 2: You don't need to be a lawyer. You do need to know when to call one.

@@ -1,2 +1,9 @@
-Speaker 1: When the alignment breaks focuses attention on a concrete part of the work. MegaCorp 2022 – deal closed without notifying change managers; go-live clashed with a data-centre freeze and cost 12 hours of downtime, HealthcareCo – missing renewal-to-incident review meant pricing ignored chronic SLA breaches and triggered legal escalation, and StartUp X – marketing promised premium support tier but CRM never updated, so incidents paged the wrong on-call crew.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: HealthcareCo – missing renewal-to-incident review meant pricing ignored chronic SLA breaches and triggered legal escalation; StartUp X – marketing promised premium support tier but CRM never updated, so incidents paged the wrong on-call crew; Debrief every miss to update required fields, automation owners and CAB checklists.
+Speaker 1: Three failures worth learning from. MegaCorp closed a deal without telling the change managers, and the go-live landed inside a data-centre freeze. Twelve hours of downtime.
+
+Speaker 2: At HealthcareCo, nobody reviewed incidents before the renewal, so pricing was agreed while chronic SLA breaches went unmentioned. That one ended in legal escalation.
+
+Speaker 1: And at StartUp X, marketing promised a premium support tier that never made it into the CRM, so incidents paged the wrong on-call crew.
+
+Speaker 2: The pattern is identical each time: a commitment made in one system that never reached another.
+
+Speaker 1: Debrief every miss, and update the required fields, the automation owners and the CAB checklist.

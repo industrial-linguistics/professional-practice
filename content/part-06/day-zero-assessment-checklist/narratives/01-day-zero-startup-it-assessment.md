@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Day-Zero Startup IT Assessment. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: The first forty-eight hours of a company's IT estate get set by accident. Someone signs up for something with a personal email, and five years later that account still owns the domain.
+
+Speaker 2: So the point of a day-zero assessment is to make those choices on purpose while there are only a handful of them.
+
+Speaker 1: We'll walk the checklist: what you own, where the workloads live, what you can afford to control now, and the traps that catch nearly everyone.
+
+Speaker 2: None of it is expensive at this stage. All of it is expensive later.

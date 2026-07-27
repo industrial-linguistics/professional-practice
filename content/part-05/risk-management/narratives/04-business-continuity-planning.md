@@ -1,2 +1,7 @@
-Speaker 1: Business continuity planning focuses attention on a concrete part of the work. Every vendor will claim they have backups, but have those backups ever been, restored in a real emergency? Ask to see test results or drills where the vendor, and simulated a failure and recovered systems. Business continuity also means.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: restored in a real emergency? Ask to see test results or drills where the vendor; simulated a failure and recovered systems. Business continuity also means; thinking beyond a single provider. Maintain a secondary supplier or at least a.
+Speaker 1: Every vendor claims they have backups. The useful question is whether those backups have ever been restored under pressure.
+
+Speaker 2: Ask to see test results, or notes from a drill where they simulated a failure and actually recovered. A backup nobody has restored is a hypothesis.
+
+Speaker 1: Continuity also means thinking past a single provider. Keep a secondary supplier in mind, or at minimum an exit clause that lets you move if the service goes dark.
+
+Speaker 2: And map escalation by severity. Who do you call when it's been down an hour, and who do you call when it's been down a day? Those are usually different people.

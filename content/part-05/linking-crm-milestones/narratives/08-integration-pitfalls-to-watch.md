@@ -1,2 +1,9 @@
-Speaker 1: Integration pitfalls to watch focuses attention on a concrete part of the work. API users without least-privilege scopes lead to audit findings—lock them down with dedicated roles, Mismatched picklists cause automation to fail silently; institute nightly sync checks, and Dual ownership of incident data (CRM vs ITSM) confuses escalation paths—publish a single-source-of-truth policy.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Mismatched picklists cause automation to fail silently; institute nightly sync checks; Dual ownership of incident data (CRM vs ITSM) confuses escalation paths—publish a single-source-of-truth policy; Forgetting sandbox-to-prod deployment plans leaves integrations broken after releases; pair DevOps and admins on change reviews.
+Speaker 1: Four things that break these integrations. API users without least-privilege scopes, which turn into audit findings. Give them dedicated roles.
+
+Speaker 2: Mismatched picklists between systems, which cause automation to fail silently. Nightly sync checks catch those.
+
+Speaker 1: Dual ownership of incident data across CRM and ITSM, so escalation paths get confusing. Publish a single-source-of-truth policy and stick to it.
+
+Speaker 2: And forgetting the sandbox-to-production deployment plan, which leaves integrations broken after a release.
+
+Speaker 1: Pair the DevOps engineers and the platform admins on change reviews, because neither group sees the whole path alone.

@@ -1,2 +1,9 @@
-Speaker 1: Metrics the board will back (with benchmarks) focuses attention on a concrete part of the work. Track MFA coverage above 95%, device compliance above 90% and mean time to patch critical updates within 24 hours—align these with SOC 2 and cyber insurance requirements, Compare cost per secure seat (<$50/user/month for sub-100 companies) against ARR impact from accelerated enterprise deals to prove ROI, and Report incidents contained internally versus escalated to the MSSP within four hours; highlight trend improvements quarter over quarter.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Compare cost per secure seat (<$50/user/month for sub-100 companies) against ARR impact from accelerated enterprise deals to prove ROI; Report incidents contained internally versus escalated to the MSSP within four hours; highlight trend improvements quarter over quarter; Show evidence of continuous improvement: updated baseline documentation, completed training, audit-ready logs and privacy impact assessments.
+Speaker 1: Three numbers a board will engage with. MFA coverage above ninety-five per cent, device compliance above ninety, and critical patches applied within twenty-four hours.
+
+Speaker 2: Those line up with SOC 2 and with what cyber insurers ask, so you're measuring once and reporting twice.
+
+Speaker 1: Then put cost per secure seat, under fifty dollars a user per month for a company below a hundred people, next to the revenue unlocked by faster enterprise deals.
+
+Speaker 2: Report incidents you contained internally versus those escalated to a provider, and show the quarterly trend.
+
+Speaker 1: And keep the evidence current: updated baselines, completed training, audit-ready logs.

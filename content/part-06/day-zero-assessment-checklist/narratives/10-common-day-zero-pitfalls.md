@@ -1,2 +1,11 @@
-Speaker 1: Common day-zero pitfalls focuses attention on a concrete part of the work. Relying on personal Gmail accounts for vendor contracts and Stripe access, Skipping device encryption because “it’s just a prototype laptop.”, and Assuming vendors manage backups, incident response or compliance obligations without written proof.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Skipping device encryption because “it’s just a prototype laptop.”; Assuming vendors manage backups, incident response or compliance obligations without written proof; Forgetting to offboard contractors, leaving privileged accounts active for months.
+Speaker 1: The recurring ones are almost boringly consistent. Personal Gmail accounts holding vendor contracts and Stripe access.
+
+Speaker 2: Skipping device encryption because it's just a prototype laptop, right up until the prototype laptop is stolen.
+
+Speaker 1: Assuming the vendor handles backups, incident response and compliance obligations, without anything in writing that says so.
+
+Speaker 2: Forgetting to offboard contractors, so privileged accounts stay live for months after the work ended.
+
+Speaker 1: And treating security work as best effort, which means it dies in the backlog the first week sales gets busy.
+
+Speaker 2: Each one is a five-minute fix on day zero and a project by year two.

@@ -1,2 +1,7 @@
-Speaker 1: Due diligence checklist focuses attention on a concrete part of the work. Evaluate financial stability and customer references, Review security certifications and audit reports, and Test data export options before signing.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Review security certifications and audit reports; Test data export options before signing.
+Speaker 1: Before signing, three checks that catch most problems. Look at financial stability, and actually call the customer references rather than reading the case study.
+
+Speaker 2: Ask the references what went wrong, not whether they're happy. Everyone is happy in a testimonial.
+
+Speaker 1: Second, review the security certifications and audit reports, and check what scope they cover. A SOC 2 for a different product line doesn't help you.
+
+Speaker 2: And third, test the data export before you sign, while you still have their attention. Finding out that export is a paid professional services engagement is a discovery best made early.

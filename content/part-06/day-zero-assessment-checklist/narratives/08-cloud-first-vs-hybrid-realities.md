@@ -1,2 +1,9 @@
-Speaker 1: Cloud-first vs. hybrid realities focuses attention on a concrete part of the work. Catalogue where workloads actually live: fully managed SaaS, cloud-native infrastructure or a closet server humming beside the coffee machine, Cloud-first startups lean on identity providers and vendor assurances—validate export options and incident SLAs, and Hybrid environments demand network diagrams, VPN policies and clear ownership for patching on-prem gear.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Cloud-first startups lean on identity providers and vendor assurances—validate export options and incident SLAs; Hybrid environments demand network diagrams, VPN policies and clear ownership for patching on-prem gear; Flag data residency constraints early; some investors or customers will demand proof of where data rests.
+Speaker 1: Start by cataloguing where workloads genuinely live. Fully managed SaaS, cloud-native infrastructure, or a server humming quietly next to the coffee machine.
+
+Speaker 2: That third category exists more often than founders admit, and it never appears on the architecture diagram.
+
+Speaker 1: Cloud-first companies lean heavily on an identity provider and on vendor assurances, so validate the export options and the incident response commitments rather than assuming them.
+
+Speaker 2: Hybrid setups need network diagrams, VPN policies, and a named owner for patching the on-premise gear.
+
+Speaker 1: And flag data residency early. Investors and enterprise customers will eventually ask you to prove where data rests.

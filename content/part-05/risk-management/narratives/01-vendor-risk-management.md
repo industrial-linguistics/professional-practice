@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Vendor Risk Management. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: Every vendor you sign becomes part of your service, whether or not your customers know their name.
+
+Speaker 2: Which means their outage is your outage, their breach is your breach, and their financial trouble eventually becomes your migration project.
+
+Speaker 1: So vendor risk management is really about two questions. What happens if they fail, and how quickly could you leave?
+
+Speaker 2: We'll work through continuity planning, financial exposure, the dependencies you may not have mapped, and what to check before you sign rather than after.

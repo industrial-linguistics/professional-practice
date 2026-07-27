@@ -1,2 +1,9 @@
-Speaker 1: Financial risk assessment focuses attention on a concrete part of the work. Analyse licensing models carefully: is pricing based on users, data volume or something else entirely?, Watch for per-seat pricing that looks cheap at 10 users but explodes to $50K at 500, and Factor in currency swings and automatic renewal clauses that increase fees annually.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Watch for per-seat pricing that looks cheap at 10 users but explodes to $50K at 500; Factor in currency swings and automatic renewal clauses that increase fees annually; Weigh the stability of startups versus established firms—one may cost less but carry higher risk.
+Speaker 1: Start with the licensing model. Is the price driven by users, by data volume, or by something you haven't measured yet?
+
+Speaker 2: Per-seat pricing is where this bites. It looks cheap at ten users and becomes fifty thousand dollars at five hundred, and nobody models that in advance.
+
+Speaker 1: Factor in currency movement and automatic renewal clauses that step the fee up every year.
+
+Speaker 2: Then weigh stability. A startup may quote less than an established firm while carrying more risk of disappearing.
+
+Speaker 1: One firm spent two hundred thousand migrating from Oracle to PostgreSQL after fees spiked. The migration was the cheap option by then.

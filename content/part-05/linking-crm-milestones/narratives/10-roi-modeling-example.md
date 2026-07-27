@@ -1,2 +1,7 @@
-Speaker 1: ROI modeling example focuses attention on a concrete part of the work. Input: $450k annual revenue at risk from change-related incidents, $120k integration project cost, Alignment reduces failed changes by 40%, cutting incident hours by 600 and avoiding $300k SLA penalties, and Automation saves 8 FTE hours per deal cycle; across 40 deals equals 320 hours (~$48k) back to the teams.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Alignment reduces failed changes by 40%, cutting incident hours by 600 and avoiding $300k SLA penalties; Automation saves 8 FTE hours per deal cycle; across 40 deals equals 320 hours (~$48k) back to the teams; Payback <12 months with $228k net benefit plus compliance posture improvements.
+Speaker 1: Worth seeing the business case written out. The inputs: four hundred and fifty thousand a year of revenue at risk from change-related incidents, against a hundred and twenty thousand for the integration project.
+
+Speaker 2: Alignment cuts failed changes by about forty per cent, which removes six hundred incident hours and avoids three hundred thousand in SLA penalties.
+
+Speaker 1: Automation gives back eight hours per deal cycle. Across forty deals that's three hundred and twenty hours, roughly forty-eight thousand dollars of capacity.
+
+Speaker 2: Payback inside twelve months, with a net benefit around two hundred and twenty-eight thousand, before you count the improved compliance position.

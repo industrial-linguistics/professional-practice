@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Lead Scoring & Renewal Signals. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: Sales teams have limited hours, and a pipeline full of leads that will never buy is a way to waste all of them.
+
+Speaker 2: Lead scoring is how a CRM tries to rank attention. And renewal alerts are the same idea pointed at customers you already have.
+
+Speaker 1: By the end of this topic you should understand how scoring improves sales efficiency, what makes renewal management work, and where the careers are in revenue operations.
+
+Speaker 2: Which is a field most graduates have never heard of and which is hiring steadily.

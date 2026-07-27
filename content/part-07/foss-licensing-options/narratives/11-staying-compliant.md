@@ -1,2 +1,9 @@
-Speaker 1: Staying compliant focuses attention on a concrete part of the work. Maintain a bill of materials (SBOM) and automate scans, Document when you redistribute binaries, SaaS services or containers, and Licence compliance is like flossing—tedious, but it avoids painful audits later.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Document when you redistribute binaries, SaaS services or containers; Licence compliance is like flossing—tedious, but it avoids painful audits later; Tooling: GitHub’s licence picker and choosealicense.com guide first-time maintainers.
+Speaker 1: Compliance in practice is two habits. Maintain a software bill of materials, and automate the scanning so it stays current.
+
+Speaker 2: And document the moments you redistribute: shipping binaries, running a SaaS product, publishing containers. Each of those can trigger obligations the source code alone wouldn't.
+
+Speaker 1: For first-time maintainers, GitHub's licence picker and choosealicense.com are the sensible starting points.
+
+Speaker 2: It's a bit like flossing. Tedious, easy to skip, and the consequences arrive much later.
+
+Speaker 1: Companies have paid settlements over ignored GPL notices. It's a survivable mistake, but an avoidable one.

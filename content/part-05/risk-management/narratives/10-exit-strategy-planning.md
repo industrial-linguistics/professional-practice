@@ -1,2 +1,7 @@
-Speaker 1: Exit strategy planning focuses attention on a concrete part of the work. Negotiate clear termination clauses and notice periods, Document data migration steps and associated costs, and Keep alternative vendors in mind in case you need to switch.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Document data migration steps and associated costs; Keep alternative vendors in mind in case you need to switch.
+Speaker 1: Plan the exit while you're still negotiating, because that is the only moment you have leverage.
+
+Speaker 2: Negotiate clear termination clauses and notice periods. A hundred and eighty days' notice sounds harmless until you're six months into a service you want to leave.
+
+Speaker 1: Document the migration steps and what they'd cost, in enough detail that someone could act on it. Data formats, integration rebuilds, retraining.
+
+Speaker 2: And keep a sense of who the alternatives are, even when things are going well. The point isn't distrust. It's that a company with somewhere else to go negotiates differently at renewal.

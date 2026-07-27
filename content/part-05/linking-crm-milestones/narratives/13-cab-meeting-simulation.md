@@ -1,2 +1,9 @@
-Speaker 1: CAB meeting simulation focuses attention on a concrete part of the work. Scenario: Opportunity at Proposal stage requests expedited deployment for a banking client, CRM change checklist auto-populates risk, revenue impact and customer communication plan for the CAB agenda, and Change manager quizzes sales on blackout dates; jointly agree to pilot in sandbox with staged rollout.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: CRM change checklist auto-populates risk, revenue impact and customer communication plan for the CAB agenda; Change manager quizzes sales on blackout dates; jointly agree to pilot in sandbox with staged rollout; Decision recorded in both CRM and ITSM, triggering follow-up tasks for documentation and customer briefing.
+Speaker 1: Picture the change advisory board in session. An opportunity at proposal stage wants an expedited deployment for a banking client.
+
+Speaker 2: The CRM change checklist has already populated the agenda with risk, revenue impact and the customer communication plan, so nobody starts by gathering context.
+
+Speaker 1: The change manager asks sales about blackout dates, which is the question sales never anticipates.
+
+Speaker 2: They agree jointly to pilot in a sandbox with a staged rollout.
+
+Speaker 1: And the decision gets recorded in both the CRM and the ITSM tool, triggering follow-up tasks for documentation and the customer briefing.
