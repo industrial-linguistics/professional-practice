@@ -4,4 +4,4 @@ Speaker 2: In Kaizen, everyone makes small daily improvements. A service desk ag
 
 Speaker 1: Formal improvement programs are bigger structured projects. Think of upgrading your monitoring system or redesigning your change approval process. These need dedicated resources and project management.
 
-Speaker 2: [enthusiastically] The magic happens when you combine both approaches. Kaizen keeps the improvement mindset alive day-to-day, while formal programs tackle the bigger transformations your organization needs.
+Speaker 2: [enthusiastically] The magic happens when you combine both approaches. Kaizen keeps the improvement mindset alive day-to-day, while formal programs tackle the bigger transformations your organisation needs.

@@ -1,6 +1,6 @@
 Speaker 1: ITIL 4 maturity assessment looks at four key dimensions. Think of them as the four legs of a table - you need all of them to be strong for the table to be stable.
 
-Speaker 2: Capabilities are what your organization can do. Can you resolve incidents quickly? Can you implement changes without breaking things? Can you plan capacity to meet future demand?
+Speaker 2: Capabilities are what your organisation can do. Can you resolve incidents quickly? Can you implement changes without breaking things? Can you plan capacity to meet future demand?
 
 Speaker 1: Practices are how work gets done. Are your processes documented and followed? Do you have standard operating procedures? Are your workflows efficient and effective?
 

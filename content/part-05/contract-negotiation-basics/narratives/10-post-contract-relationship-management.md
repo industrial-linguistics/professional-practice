@@ -12,4 +12,4 @@ Speaker 2: If problems pile up, escalate according to the contract and start pla
 
 Speaker 1: Document lessons learned and update playbooks so mistakes do not repeat.
 
-Speaker 2: Celebrate successes too; recognizing good performance builds trust.
+Speaker 2: Celebrate successes too; recognising good performance builds trust.

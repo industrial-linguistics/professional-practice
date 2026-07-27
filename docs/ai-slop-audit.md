@@ -1,5 +1,17 @@
 # AI Slop Audit — Website and Course Content
 
+> **Status: remediated.** Everything below has been fixed, except where this
+> document says a finding was deliberate and should be left alone. All 159
+> templated narratives were rewritten, the website blurbs were replaced, the
+> cliché tail was cleared, and `scripts/validate_narratives.py` now guards the
+> surfaces that had no checks. The findings are kept in full because the
+> "not slop — leave alone" list in section 3 is the part most likely to be
+> undone by a future pass.
+>
+> Two known warnings remain by choice, both in section 3's leave-alone list:
+> the quoted "seamless integration" vendor-speak in `fractional-cto-and-msps`,
+> and three Part 7 narratives that run long but are hand-written.
+
 Scan date: 2026-07-26. Surfaces checked: `website/`, `content/**/slides.html`,
 `content/**/narratives/*.md`, `content/**/textbook.md`, `content/**/outline.md`
 and `content/**/quiz.md`. Generated `textbook/chapters/*.tex` were excluded —
@@ -164,6 +176,15 @@ pass does not "fix" them:
   convention, applied consistently. Formulaic by design, not accidental.
 - **Em-dash density** — peaks at 4 per file; no file is an outlier. Not a
   problem here.
+
+### Follow-up not covered by this audit
+
+Two topics — `contract-negotiation-basics` and `legislation-and-sla-compliance`
+— keep their *script* in the slide body, as `<p>Speaker A: …</p>` paragraphs
+that the learner sees on screen. That is why they had no narrative files for
+the generator to preserve. The narration has been recovered from those slides,
+but the slides themselves still display a two-speaker dialogue where bullets
+belong. Reworking them is a content change beyond the scope of a slop pass.
 
 ## 4. Validator coverage gap
 

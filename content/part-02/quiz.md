@@ -69,7 +69,7 @@ d) Plan, Develop, Control, Analyze
 **Question:** In a maturity assessment, what typically characterizes a "managed" level of process maturity?
 a) Processes are ad-hoc and reactive
 b) Processes are documented and consistently followed
-c) Processes are optimized and continuously improved
+c) Processes are optimised and continuously improved
 d) Processes are just beginning to be defined
 
 **Answer:** b) Processes are documented and consistently followed
@@ -163,7 +163,7 @@ The CAB reviews and authorizes changes to reduce risk and ensure proper impact a
 - Identify trends: consistent timing suggests scheduled processes or peak usage
 - Investigate root causes: network capacity, switch configuration, specific applications
 - Implement monitoring during peak times to capture detailed performance data
-- Develop permanent solution: upgrade switch, optimize network configuration, or load balancing
+- Develop permanent solution: upgrade switch, optimise network configuration, or load balancing
 - Create preventive measures to avoid recurrence
 
 ## Job Role Questions
@@ -174,7 +174,7 @@ The CAB reviews and authorizes changes to reduce risk and ensure proper impact a
 **Sample Answer:**
 - **Service Desk Analyst**: Handles incidents and requests, follows ITIL processes, learns process fundamentals
 - **Process Analyst**: Designs and improves ITIL processes, analyzes metrics, supports process implementation
-- **Service Management Consultant**: Leads ITIL transformations, designs service strategies, advises on best practices across organizations
+- **Service Management Consultant**: Leads ITIL transformations, designs service strategies, advises on best practices across organisations
 
 ### 20. Skills Assessment
 **Question:** List five key skills that someone working in ITIL process management should develop and explain why each is important.
@@ -184,4 +184,4 @@ The CAB reviews and authorizes changes to reduce risk and ensure proper impact a
 - **Communication**: To explain complex processes to stakeholders at all levels
 - **Project management**: To lead process implementation and improvement initiatives
 - **Technical understanding**: To grasp how processes relate to underlying technology
-- **Change management**: To help organizations adopt new ways of working
+- **Change management**: To help organisations adopt new ways of working
