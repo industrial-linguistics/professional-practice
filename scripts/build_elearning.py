@@ -468,6 +468,9 @@ SITE_INDEX = """<!doctype html>
     </div>
   </section>
 </main>
+<footer class="site-footer">
+  <a href="https://professional-practice.industrial-linguistics.com/cgi-bin/image-review.cgi" rel="nofollow">Image review</a>
+</footer>
 </body>
 </html>
 """
@@ -692,6 +695,22 @@ main {
   color: var(--blue);
   font: 700 12px/1.2 Avenir, "Trebuchet MS", sans-serif;
   text-transform: uppercase;
+}
+.site-footer {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 0 auto;
+  padding: 8px 0 24px;
+  text-align: right;
+  font: 700 12px/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--green);
+  text-decoration: underline;
 }
 .lesson-topbar {
   display: flex;
