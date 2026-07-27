@@ -22,6 +22,11 @@ from report_narrative_mismatches import align
 
 ARCHIVE_DIR = "_source_before_alignment"
 
+# Generated narration is scaffolding, never a finished script. Every generated
+# file carries this marker so scripts/validate_narratives.py can fail the build
+# before a stub is recorded as audio and shipped to students.
+STUB_MARKER = "<!-- TODO(narrative): generated stub, rewrite before recording -->"
+
 
 def slug(value: str) -> str:
     text = value.lower()
@@ -72,30 +77,39 @@ def sentence_from_points(points: list[str]) -> str:
     return f"{points[0].rstrip('.')}, {points[1].rstrip('.')}, and {points[2].rstrip('.')}."
 
 
+def has_table(slide: Slide) -> bool:
+    return re.search(r"<table\b", slide.html, flags=re.IGNORECASE) is not None
+
+
 def generated_narrative(topic: Topic, slide: Slide) -> str:
+    """Emit a marked placeholder listing the slide's own points.
+
+    This deliberately does not attempt to write narration. Earlier versions
+    wrapped the slide text in stock sentences ("... focuses attention on a
+    concrete part of the work"), which read as finished scripts, were spoken
+    identically over more than a hundred slides, and reached students as audio.
+    A placeholder that is obviously unfinished is safer than filler that is not.
+    """
+    header = f"{STUB_MARKER}\n<!-- Slide {slide.n}: {slide.title} -->\n"
+
+    if has_table(slide):
+        # A table flattens into an unreadable run of cells. Point the author at
+        # the slide rather than pasting the wreckage into the script.
+        return header + (
+            "<!-- This slide is a table. Write narration that talks the learner "
+            "through the rows; do not read the table aloud cell by cell. -->\n"
+        )
+
     points = slide_points(slide)
-    first = sentence_from_points(points)
-    if slide.n == 1:
-        return (
-            f"Speaker 1: This section sets up {topic.title}. Treat it as the frame for the decisions, "
-            "handoffs, and evidence that appear in the next slides.\n"
-            "Speaker 2: The practical question is simple: by the end, what should a junior IT professional "
-            "be able to explain, check, or document in a real workplace?\n"
-        )
+    if not points:
+        return header + "<!-- No on-slide text to work from. Write from the slide image. -->\n"
 
-    if slide.title.lower().startswith("key takeaway"):
-        return (
-            f"Speaker 1: The key takeaway is this: {first}\n"
-            "Speaker 2: Use that takeaway to name the owner, evidence, and next action that should be visible after the work is done.\n"
-        )
+    body = "\n".join(f"  - {point.rstrip('.')}" for point in points)
+    return header + "<!-- Points to cover:\n" + body + "\n-->\n"
 
-    detail = "; ".join(point.rstrip(".") for point in points[1:4])
-    if detail:
-        detail = f" Use the supporting details as a checklist: {detail}."
-    return (
-        f"Speaker 1: {slide.title} focuses attention on a concrete part of the work. {first}\n"
-        f"Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.{detail}\n"
-    )
+
+def is_generated_stub(text: str) -> bool:
+    return STUB_MARKER in text
 
 
 def is_old_generated(text: str) -> bool:
@@ -104,6 +118,14 @@ def is_old_generated(text: str) -> bool:
         "This section introduces",
         "The detail to watch is",
         "The goal is not to memorise",
+        # Templates emitted by the previous version of generated_narrative().
+        "focuses attention on a concrete part of the work",
+        "In practice, ask who owns the work, what evidence proves it happened",
+        "Use the supporting details as a checklist",
+        "This section sets up",
+        "The practical question is simple: by the end, what should a junior IT professional",
+        "The key takeaway is this:",
+        "Use that takeaway to name the owner, evidence, and next action",
     ]
     return any(marker in text for marker in markers)
 
