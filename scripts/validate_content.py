@@ -11,6 +11,9 @@ from pathlib import Path
 from typing import List, Dict, Tuple
 import json
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from narrative_filler import find_generated_filler
+
 class ValidationResult:
     def __init__(self, passed: bool, message: str = "", warnings: List[str] = None):
         self.passed = passed
@@ -107,10 +110,20 @@ def validate_content_structure(topic_path: Path) -> ValidationResult:
             return md_result
         warnings.extend(md_result.warnings)
 
-        # Check word count
         with open(narrative_file, 'r', encoding='utf-8') as f:
             text = f.read()
 
+        # Hard stop: generated filler must never reach the TTS pipeline. This
+        # is the gate build_videos.sh and build_audio.sh run per topic before
+        # generation, so it is the last chance to catch an unwritten stub.
+        filler = find_generated_filler(text)
+        if filler:
+            return ValidationResult(
+                False,
+                f"{narrative_file.relative_to(topic_path)}: {filler[0]}"
+            )
+
+        # Check word count
         word_count = count_words(text)
 
         if word_count < 20:

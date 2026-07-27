@@ -1,2 +1,9 @@
-Speaker 1: Documentation + tooling focuses attention on a concrete part of the work. Centralise agendas, scorecards, and action logs in a shared workspace, Version notes and decisions to protect institutional memory through turnover, and Automate reminders via your ticketing or CRM to chase overdue items.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Version notes and decisions to protect institutional memory through turnover; Automate reminders via your ticketing or CRM to chase overdue items; Store vendor runbooks alongside incident response and onboarding guides.
+Speaker 1: Keep agendas, scorecards and action logs in one shared workspace rather than scattered across inboxes.
+
+Speaker 2: Version the notes and the decisions. Vendor relationships outlive the people managing them, and turnover is when institutional memory quietly disappears.
+
+Speaker 1: Automate the chasing through your ticketing system or CRM, so overdue items surface without someone remembering to check.
+
+Speaker 2: And store vendor runbooks next to your incident response and onboarding guides, because that's where someone will look at three in the morning.
+
+Speaker 1: Future you will be grateful. Future you is also much less patient with decisions nobody wrote down.

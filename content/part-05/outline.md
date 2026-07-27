@@ -1,6 +1,6 @@
 # Part 5 – Vendor/MSP & CRM Lifecycle
 
-This part demystifies how vendors and managed service providers handle the customer journey from first outreach to renewal. Students learn how CRM platforms coordinate sales commitments with ongoing service delivery.
+How vendors and managed service providers run the customer relationship, from first outreach through to renewal. Covers the SDR, account executive and customer success roles, contract and SLA negotiation, and where CRM commitments hand off to ITSM.
 
 **Why This Matters**
 

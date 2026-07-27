@@ -1,2 +1,7 @@
-Speaker 1: Timeline and critical path focuses attention on a concrete part of the work. Typical diligence cycles span 6–10 weeks from data room access to close; plan backward from your cash runway, Week 1–2: data room review and follow-up questions; Week 3–5: deep dives with functional leaders; Week 6–8: confirmatory audits and customer calls, and Highlight dependencies—SOC 2 Type II report delivery, customer reference availability, legal opinion drafting.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Week 1–2: data room review and follow-up questions; Week 3–5: deep dives with functional leaders; Week 6–8: confirmatory audits and customer calls; Highlight dependencies—SOC 2 Type II report delivery, customer reference availability, legal opinion drafting; Maintain a RAID log so risks, assumptions, issues and decisions stay visible to executives and investors.
+Speaker 1: A diligence cycle usually runs six to ten weeks from data room access to close, so plan backwards from your cash runway.
+
+Speaker 2: Weeks one and two are data room review and follow-up questions. Weeks three to five are deep dives with functional leaders. Weeks six to eight are confirmatory audits and customer calls.
+
+Speaker 1: The dependencies are what actually move the date. When the SOC 2 Type II report lands, whether your reference customers are available, how quickly legal opinions get drafted.
+
+Speaker 2: Keep a RAID log, risks, assumptions, issues and decisions, visible to executives and investors, so nothing gets rediscovered in week seven.

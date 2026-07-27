@@ -1,2 +1,7 @@
-Speaker 1: The key takeaway is this: You do not need a 40-person compliance department, but you do need intentional guardrails. Map obligations, mature practices deliberately, and make that Dropbox joke the turning point where governance finally catches up with global reach.
-Speaker 2: Use that takeaway to name the owner, evidence, and next action that should be visible after the work is done.
+Speaker 1: The takeaway is that you don't need a forty-person compliance department. You do need intentional guardrails.
+
+Speaker 2: Map your obligations, mature the practices on purpose rather than by accident, and keep the map current as you enter new markets.
+
+Speaker 1: Most companies get this backwards. They treat compliance as something that happens to them, then scramble.
+
+Speaker 2: The turning point is when governance catches up with your global reach on your schedule instead of a customer's.

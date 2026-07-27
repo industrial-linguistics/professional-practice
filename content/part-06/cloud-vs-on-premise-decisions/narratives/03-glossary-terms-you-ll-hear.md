@@ -1,2 +1,7 @@
-Speaker 1: Glossary: terms you'll hear focuses attention on a concrete part of the work. SaaS / PaaS / IaaS: Software, Platform and Infrastructure as a Service—progressively more control, but also more responsibility, SRE (Site Reliability Engineering): The discipline focused on keeping services available and reliable through automation and operations rigor, and Colocation vs on-premise: Colocation rents space and power in a professional data centre; on-premise means hardware lives in your own facility.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: SRE (Site Reliability Engineering): The discipline focused on keeping services available and reliable through automation and operations rigor; Colocation vs on-premise: Colocation rents space and power in a professional data centre; on-premise means hardware lives in your own facility; Reserved instances vs pay-as-you-go: Commit to long-term usage for discounts, or pay on-demand for flexibility.
+Speaker 1: A few terms first, because these get used loosely. SaaS, PaaS and IaaS are software, platform and infrastructure as a service. As you move along that line you gain control and take on responsibility in equal measure.
+
+Speaker 2: Site Reliability Engineering, or SRE, is the discipline of keeping services available through automation and operational rigour.
+
+Speaker 1: Colocation means renting space and power in someone else's data centre. On-premise means the hardware sits in your own building, and so does the air conditioning problem.
+
+Speaker 2: And reserved instances trade a long-term commitment for a discount, where pay-as-you-go buys flexibility instead.

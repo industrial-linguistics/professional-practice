@@ -1,2 +1,7 @@
-Speaker 1: Roles, traits and progression focuses attention on a concrete part of the work. Program manager / Chief of staff – orchestrates data room updates, keeps stakeholders aligned. Typical comp: $140k–$190k + equity at Series A/B, Security or compliance lead – translates questionnaires into actionable backlog items. Expect $160k–$210k, often paired with bonus tied to audit milestones, and Finance & RevOps partners – validate metrics and customer contract obligations; senior managers sit $130k–$170k with upside at close.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Security or compliance lead – translates questionnaires into actionable backlog items. Expect $160k–$210k, often paired with bonus tied to audit milestones; Finance & RevOps partners – validate metrics and customer contract obligations; senior managers sit $130k–$170k with upside at close; Thrives on diplomacy, attention to detail and appetite for structured storytelling.
+Speaker 1: A program manager or chief of staff orchestrates the data room and keeps stakeholders aligned, typically a hundred and forty thousand to a hundred and ninety thousand dollars, plus equity at Series A or B.
+
+Speaker 2: A security or compliance lead turns questionnaires into backlog items, usually a hundred and sixty thousand to two hundred and ten thousand dollars, often with a bonus tied to audit milestones.
+
+Speaker 1: Finance and RevOps partners validate the metrics and the customer contract obligations, with senior managers around a hundred and thirty thousand to a hundred and seventy thousand dollars.
+
+Speaker 2: The traits are diplomacy, attention to detail and a taste for structured storytelling. It leads towards VP Operations, Head of Trust and Safety, or advising a venture portfolio.

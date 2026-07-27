@@ -1,2 +1,7 @@
-Speaker 1: Tiered access strategies focuses attention on a concrete part of the work. Create membership-based portals with whānau-first access and layered researcher permissions, Use data sharing agreements that require reciprocity, cultural briefings and return of insights, and Establish community review boards that can veto or amend release plans.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Use data sharing agreements that require reciprocity, cultural briefings and return of insights; Establish community review boards that can veto or amend release plans; Schedule sunset reviews so sharing levels evolve with community comfort.
+Speaker 1: Tiered access is how that principle becomes machinery. Membership-based portals with whānau-first access, and layered permissions for researchers beyond that.
+
+Speaker 2: Data sharing agreements can require reciprocity: a cultural briefing before access, and insights returned to the community rather than only published.
+
+Speaker 1: Community review boards hold the authority to veto or amend a release plan, which is what makes the rest more than a courtesy.
+
+Speaker 2: And schedule sunset reviews, so sharing levels can change as community comfort changes rather than being set once and forgotten.

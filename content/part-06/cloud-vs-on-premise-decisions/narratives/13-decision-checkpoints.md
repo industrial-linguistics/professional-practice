@@ -1,2 +1,7 @@
-Speaker 1: Decision checkpoints focuses attention on a concrete part of the work. Reassess architecture at each funding milestone—seed, Series A, Series B—to confirm the stack matches burn rate and talent, Run total cost of ownership models that include people, tooling, vendor support and opportunity cost of slower delivery, and Prototype exit ramps: document how to move a workload between serverless, managed and self-hosted so switching is a deliberate move, not a panic.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Run total cost of ownership models that include people, tooling, vendor support and opportunity cost of slower delivery; Prototype exit ramps: document how to move a workload between serverless, managed and self-hosted so switching is a deliberate move, not a panic.
+Speaker 1: Tie the architecture review to funding milestones. At seed, at Series A, at Series B, check that the stack still matches your burn rate and the talent you actually have.
+
+Speaker 2: Run a total cost of ownership model that includes people, tooling and vendor support, and put a number on the opportunity cost of slower delivery.
+
+Speaker 1: That last one gets left out, and it's often the largest.
+
+Speaker 2: Then prototype the exit ramps. Document how you would move a workload between serverless, managed and self-hosted, so switching later is a deliberate choice rather than a panic.

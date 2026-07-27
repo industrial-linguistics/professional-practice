@@ -1,6 +1,6 @@
 # Part 4 – Blameless RCA & Continuous Improvement
 
-This part focuses on establishing a culture of learning from incidents without assigning blame, and using structured approaches to drive service improvements.
+Incidents are the cheapest teacher an organisation has, provided nobody is punished for the lesson. Five-whys and fishbone analysis, post-mortem agendas and attendee roles, and linking RCA records across ServiceNow and GitHub.
 
 ## Objectives
 

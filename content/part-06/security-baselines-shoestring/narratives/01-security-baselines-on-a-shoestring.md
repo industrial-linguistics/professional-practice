@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Security Baselines on a Shoestring. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: Security debt works like any other debt. It accrues interest, and the interest is paid later as a compliance project that costs far more than the original control would have.
+
+Speaker 2: And the deadlines aren't hypothetical. GDPR Article 32 and SOC 2 expect controls to exist at ten-person scale, not once you feel established.
+
+Speaker 1: Which matters commercially, because the first enterprise customer who sends a security questionnaire can stall your momentum for a quarter.
+
+Speaker 2: So the aim here is a baseline that protects the runway rather than consuming it.

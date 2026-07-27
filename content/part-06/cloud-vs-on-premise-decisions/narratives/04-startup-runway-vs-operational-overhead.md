@@ -1,2 +1,7 @@
-Speaker 1: Startup runway vs operational overhead focuses attention on a concrete part of the work. Months 0–12: Prioritise velocity, keep the team shipping features and leverage managed services with generous free tiers, Year 2: As usage grows, weigh predictable reserved cloud spend against the fixed costs of leased hardware and support staff, and Year 3+: Hybrid patterns emerge—latency-sensitive workloads or data residency demands may justify colocated gear, while the rest stays cloud-native.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Year 2: As usage grows, weigh predictable reserved cloud spend against the fixed costs of leased hardware and support staff; Year 3+: Hybrid patterns emerge—latency-sensitive workloads or data residency demands may justify colocated gear, while the rest stays cloud-native.
+Speaker 1: Think of it in phases. For the first year, velocity wins. Keep the team shipping features and lean on managed services with generous free tiers.
+
+Speaker 2: By year two the picture changes. Usage is more predictable, so you can weigh reserved cloud spend against the fixed cost of leased hardware and the people to look after it.
+
+Speaker 1: From year three, hybrid patterns tend to emerge. A latency-sensitive workload or a data residency requirement justifies colocated equipment, while everything else stays cloud-native.
+
+Speaker 2: The mistake is jumping to phase three early, and paying the operational overhead years before the savings arrive.

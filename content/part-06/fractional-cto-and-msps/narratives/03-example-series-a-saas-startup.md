@@ -1,2 +1,9 @@
-Speaker 1: Example: Series A SaaS Startup focuses attention on a concrete part of the work. Situation: 15-person team, scaling from 1K to 10K users in six months, Challenge: CTO departed mid-migration, roadmap slipped, board mandated security audit, and Solution: 6-month fractional CTO to stabilise architecture and hiring paired with co-managed MSP for compliance automation.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Challenge: CTO departed mid-migration, roadmap slipped, board mandated security audit; Solution: 6-month fractional CTO to stabilise architecture and hiring paired with co-managed MSP for compliance automation; Outcome: Permanent CTO hired, SOC 2 audit passed on schedule, roadmap velocity recovered without losing key customers.
+Speaker 1: A concrete case. Fifteen people, scaling from one thousand users to ten thousand in six months.
+
+Speaker 2: Then the CTO left mid-migration. The roadmap slipped, and the board mandated a security audit at exactly the wrong moment.
+
+Speaker 1: What they did was split the problem. A fractional CTO for six months to stabilise the architecture and run hiring, paired with a co-managed provider handling compliance automation.
+
+Speaker 2: Two different gaps, two different kinds of help.
+
+Speaker 1: They hired a permanent CTO, passed the SOC 2 audit on schedule, and got roadmap velocity back without losing key customers. The fractional arrangement was scaffolding, not a destination.

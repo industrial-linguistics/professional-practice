@@ -1,2 +1,9 @@
-Speaker 1: Monthly service review ritual focuses attention on a concrete part of the work. Walk through the scorecard trend lines, not just last month's value, Highlight incident learnings and verify action item closure, and Revisit capacity forecasts and staffing assumptions for the next 60 days.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Highlight incident learnings and verify action item closure; Revisit capacity forecasts and staffing assumptions for the next 60 days; Agree on 2-3 experiments or optimisations before the next review.
+Speaker 1: The monthly review walks the trend lines, not just last month's value. One bad month is noise. Three in a direction is a signal.
+
+Speaker 2: Go through incident learnings and actually verify that action items closed, rather than noting them again.
+
+Speaker 1: Revisit capacity forecasts and staffing assumptions for the next sixty days, because most vendor failures are really staffing failures that were visible in advance.
+
+Speaker 2: Agree two or three experiments before the next review, so the meeting produces changes rather than minutes.
+
+Speaker 1: And name the wins. Recognising the vendor's team costs nothing and buys goodwill you'll want during an incident.

@@ -1,2 +1,7 @@
-Speaker 1: Legal and regulatory readiness focuses attention on a concrete part of the work. Catalogue applicable regulations early: GDPR/UK GDPR, CCPA/CPRA, HIPAA or SOC 2 depending on vertical, Document lawful bases for processing, data retention standards and DPA coverage for every critical vendor, and Show international scaling awareness—data residency in the EU, onshore support SLAs for APAC, breach notification variations.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Document lawful bases for processing, data retention standards and DPA coverage for every critical vendor; Show international scaling awareness—data residency in the EU, onshore support SLAs for APAC, breach notification variations; Partner legal and security leads on a quarterly compliance checkpoint so surprises surface before term sheet negotiations.
+Speaker 1: Catalogue the regulations that apply early, whether that's GDPR and UK GDPR, CCPA and CPRA, HIPAA or SOC 2, depending on your vertical.
+
+Speaker 2: Then document the lawful basis for processing, your retention standards, and data processing agreement coverage for every critical vendor.
+
+Speaker 1: Investors also look for evidence you have thought past your current borders. Data residency in the EU, onshore support commitments for APAC, and the fact that breach notification deadlines vary by jurisdiction.
+
+Speaker 2: Put legal and security in the same quarterly checkpoint. Surprises found there are cheap. Surprises found during term sheet negotiation are not.

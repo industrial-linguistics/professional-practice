@@ -1,2 +1,9 @@
-Speaker 1: Security jargon decoder for new IT pros focuses attention on a concrete part of the work. MFA (multi-factor authentication): extra proofs like a YubiKey or authenticator app layered on top of passwords so stolen credentials alone fail, SOC (security operations centre): humans plus tooling watching telemetry to spot and respond to suspicious activity—think night-shift security guards with dashboards, and SIEM (security information and event management): the log brain collecting alerts from identity, endpoint and cloud systems for the SOC to interpret.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: SOC (security operations centre): humans plus tooling watching telemetry to spot and respond to suspicious activity—think night-shift security guards with dashboards; SIEM (security information and event management): the log brain collecting alerts from identity, endpoint and cloud systems for the SOC to interpret; MDM (mobile device management): software that enforces encryption, patching and remote wipe on laptops and phones—even from a beach Wi-Fi connection.
+Speaker 1: Some vocabulary first, because these acronyms get thrown around in vendor calls. MFA, multi-factor authentication, is the extra proof layered on a password, like a hardware key or an authenticator app, so stolen credentials alone aren't enough.
+
+Speaker 2: A SOC, a security operations centre, is people plus tooling watching telemetry for suspicious activity. Night-shift security guards with dashboards.
+
+Speaker 1: A SIEM is the log brain feeding them, collecting alerts from identity, endpoint and cloud systems.
+
+Speaker 2: MDM, mobile device management, enforces encryption, patching and remote wipe on laptops and phones.
+
+Speaker 1: And zero trust is the principle that every request proves itself, regardless of network or job title.

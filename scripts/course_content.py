@@ -71,6 +71,11 @@ class TextExtractor(HTMLParser):
             self.parts.append("\n")
         if tag == "li":
             self.parts.append("- ")
+        if tag in {"td", "th"}:
+            # Rows open a new line, but without a cell separator every cell in
+            # the row runs together ("MIT/BSDAlmost anythingPreserve
+            # attribution"). Reads acceptably both on screen and aloud.
+            self.parts.append(", ")
         if tag == "img":
             attr = dict(attrs)
             alt = attr.get("alt") or ""
@@ -92,6 +97,11 @@ class TextExtractor(HTMLParser):
         text = html.unescape("".join(self.parts))
         text = re.sub(r"[ \t\r\f\v]+", " ", text)
         text = re.sub(r" *\n *", "\n", text)
+        # Drop the cell separator where a row starts, and collapse runs left by
+        # empty cells, so rows read as "a, b, c" rather than ", a, , b".
+        text = re.sub(r"(?m)^(?:, )+", "", text)
+        text = re.sub(r"(?:, ){2,}", ", ", text)
+        text = re.sub(r"(?m), +$", "", text)
         text = re.sub(r"\n{3,}", "\n\n", text)
         return text.strip()
 

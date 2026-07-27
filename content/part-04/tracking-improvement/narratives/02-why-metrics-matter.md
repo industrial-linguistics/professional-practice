@@ -1,2 +1,7 @@
-Speaker 1: Why metrics matter focuses attention on a concrete part of the work. Show if fixes actually work, Reveal patterns in incidents, and Support business cases for resources.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Reveal patterns in incidents; Support business cases for resources; Stop endless debates by showing trends.
+Speaker 1: Metrics do four jobs here. They show whether a fix actually worked, which is otherwise a matter of opinion.
+
+Speaker 2: They reveal patterns across incidents that nobody notices one ticket at a time.
+
+Speaker 1: They support the business case when you need resources, because "it feels worse lately" is not a budget request.
+
+Speaker 2: And they end circular debates. Once there's a trend line on the wall, the argument moves on from whether there's a problem to what to do about it.

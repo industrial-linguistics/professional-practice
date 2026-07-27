@@ -16,7 +16,7 @@ Then define what good looks like: lightweight SLAs — critical in two hours, hi
 
 Here's the liberating part: a Trello board can run this process. If the intake, SLAs and escalation ladder are crisp, cheap tooling works; if they're not, ServiceNow won't save you.
 
-## The knowledge base as force multiplier
+## The knowledge base that stays alive
 
 Most startup knowledge bases are graveyards — written once in a burst of enthusiasm, never updated, quietly distrusted. The living alternative is tied to ticket closure: the agent drafts an article while the fix is fresh, before the ticket closes, and a subject-matter expert reviews it in a scheduled weekly hour. Run "seed, grow, prune" cycles — monthly SME review, quarterly archiving of stale pages — so the collection stays trustworthy.
 

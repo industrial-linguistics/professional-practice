@@ -1,2 +1,7 @@
-Speaker 1: Building a living data room focuses attention on a concrete part of the work. Centralise policies, architecture diagrams, vendor contracts and board minutes with version control, Include short context notes so outsiders understand why a document matters, and Track open actions with due dates—investors value visibility more than perfection.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Include short context notes so outsiders understand why a document matters; Track open actions with due dates—investors value visibility more than perfection; Keep sensitive exports (e.g. customer lists) in controlled folders with watermarking and access logs.
+Speaker 1: The data room is policies, architecture diagrams, vendor contracts and board minutes, all under version control in one place.
+
+Speaker 2: Add a short context note to each document. An outsider reading your incident response policy cold doesn't know why it's shaped that way, and the note saves a follow-up question.
+
+Speaker 1: Track open actions with due dates rather than hiding them. Investors value visibility more than perfection, and a known gap with an owner and a date reads far better than a suspiciously tidy folder.
+
+Speaker 2: Keep customer lists and other sensitive exports in controlled folders, watermarked, with access logs.

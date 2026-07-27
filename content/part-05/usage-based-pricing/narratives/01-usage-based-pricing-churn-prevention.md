@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Usage-Based Pricing & Churn Prevention. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: Usage-based pricing sounds fairer to everyone. The customer pays for what they consume, and revenue grows as they get more value.
+
+Speaker 2: It also makes revenue less predictable and gives customers a bill that changes every month, which is its own kind of anxiety.
+
+Speaker 1: So the design problem is aligning revenue with customer value without making the invoice feel like a surprise.
+
+Speaker 2: And that turns out to be closely tied to churn, which is why the two topics sit together here.

@@ -1,2 +1,9 @@
-Speaker 1: Budgeting for day-zero services focuses attention on a concrete part of the work. Reserve $200–500/month for productivity suite licensing, domain registration and DNS hosting, Allow 2–3 weeks for hardware procurement, imaging and inevitable shipping delays, and Line up $1,000–3,000 for incorporation legal fees plus trademark searches.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Allow 2–3 weeks for hardware procurement, imaging and inevitable shipping delays; Line up $1,000–3,000 for incorporation legal fees plus trademark searches; Pre-approve founder credit cards so vendor sign-ups are not stalled at payment screens.
+Speaker 1: Rough day-zero budget. Two to five hundred dollars a month covers the productivity suite licences, domain registration and DNS hosting.
+
+Speaker 2: Then allow two to three weeks for hardware, because procurement, imaging and shipping delays are not optional extras. They always happen.
+
+Speaker 1: Set aside one to three thousand for incorporation legal fees and trademark searches.
+
+Speaker 2: And a small thing that saves a surprising amount of time: pre-approve the founder credit cards, so vendor sign-ups don't stall at a payment screen at nine at night.
+
+Speaker 1: Most day-zero delays are administrative, not technical.

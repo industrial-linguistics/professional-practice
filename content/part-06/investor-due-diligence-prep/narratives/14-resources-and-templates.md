@@ -1,2 +1,7 @@
-Speaker 1: Resources and templates focuses attention on a concrete part of the work. Diligence tracker template: executive owner matrix + follow-up SLA checklist, Recommended tools: Tugboat Logic or Drata for control evidence, Notion/Confluence for playbooks, Vanta-style dashboards for KPIs, and Reading list: NIST CSF profiles for startups, AICPA SOC 2 implementation guide, "Secure SaaS" podcast episodes 12–15.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Recommended tools: Tugboat Logic or Drata for control evidence, Notion/Confluence for playbooks, Vanta-style dashboards for KPIs; Reading list: NIST CSF profiles for startups, AICPA SOC 2 implementation guide, "Secure SaaS" podcast episodes 12–15; Share a partner directory (fractional CFOs, privacy counsel, IR advisors) to scale support as demands grow.
+Speaker 1: Start from a diligence tracker template, which is really just an executive owner matrix and a follow-up checklist with response times attached.
+
+Speaker 2: For control evidence, tools like Tugboat Logic or Drata. Notion or Confluence for the playbooks, and a Vanta-style dashboard for the KPIs.
+
+Speaker 1: For reading, the NIST Cybersecurity Framework profiles for startups and the AICPA SOC 2 implementation guide are the two practical ones.
+
+Speaker 2: And keep a partner directory: fractional CFOs, privacy counsel, investor relations advisors. At this stage you aren't hiring those roles, you're renting them when the calendar demands it.

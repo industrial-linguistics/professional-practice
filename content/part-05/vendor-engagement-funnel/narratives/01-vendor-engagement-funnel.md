@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Vendor Engagement Funnel. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: Every vendor relationship has a moment where it changes hands. The sales team who made the promises steps back, and an operations team inherits them.
+
+Speaker 2: That handover is where a lot of value quietly leaks. Commitments made in the deal never reach the people who have to deliver them.
+
+Speaker 1: So we'll walk the funnel from first engagement through to steady-state operations, and look closely at the baton pass.
+
+Speaker 2: Knowing when to pass it, and what has to travel with it, is most of the skill.

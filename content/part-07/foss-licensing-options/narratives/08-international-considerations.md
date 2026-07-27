@@ -1,2 +1,7 @@
-Speaker 1: International considerations focuses attention on a concrete part of the work. Copyright terms, moral rights and patent scope differ across jurisdictions, EU database rights and Australian Crown copyright can complicate reuse, and Global teams rely on OSI-approved texts to minimise surprises—document governing law in NOTICE files.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: EU database rights and Australian Crown copyright can complicate reuse; Global teams rely on OSI-approved texts to minimise surprises—document governing law in NOTICE files.
+Speaker 1: Copyright terms, moral rights and patent scope all differ by jurisdiction, and open source is not exempt from that.
+
+Speaker 2: EU database rights can restrict reuse of a collection even when the individual records are free, and Australian Crown copyright has its own rules for government material.
+
+Speaker 1: Which is why global teams stick to OSI-approved licence texts rather than writing their own. The approved ones have been read by lawyers in a lot of countries.
+
+Speaker 2: And document the governing law in your NOTICE file. It costs one line and saves an argument later.

@@ -1,2 +1,9 @@
-Speaker 1: Budget reality check focuses attention on a concrete part of the work. Triage controls by risk and runway: what must be solved with $500/month versus what waits for a $5K allocation, Highlight quick wins—enforcing MFA, password managers, baseline device hardening—before pricier SIEMs or MDR contracts, and Map spend to milestones (Series A, first enterprise customer) so finance understands why costs jump.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Highlight quick wins—enforcing MFA, password managers, baseline device hardening—before pricier SIEMs or MDR contracts; Map spend to milestones (Series A, first enterprise customer) so finance understands why costs jump; Capture deferred items with explicit triggers: “Upgrade logging when monthly recurring revenue hits $250K.”.
+Speaker 1: Triage controls against risk and runway. What has to be solved on five hundred dollars a month, and what waits until there's a five thousand dollar allocation?
+
+Speaker 2: The quick wins come first, and they're cheap: enforcing MFA, a password manager, baseline device hardening. Those buy more risk reduction per dollar than anything else.
+
+Speaker 1: The expensive tooling, SIEM platforms, managed detection contracts, can wait for a real trigger.
+
+Speaker 2: Map the spend to milestones so finance understands why the cost steps up at Series A or at the first enterprise customer.
+
+Speaker 1: And record deferred items with explicit triggers. Upgrade logging when recurring revenue hits two hundred and fifty thousand.

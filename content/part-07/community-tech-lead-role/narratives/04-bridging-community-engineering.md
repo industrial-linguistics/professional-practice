@@ -1,2 +1,9 @@
-Speaker 1: Bridging community & engineering focuses attention on a concrete part of the work. Hosts contributor office hours across time zones and languages, Converts user research, localisation feedback and Indigenous data protocols into actionable issues, and Maintains tooling for translation, documentation builds and contributor analytics.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Converts user research, localisation feedback and Indigenous data protocols into actionable issues; Maintains tooling for translation, documentation builds and contributor analytics; Negotiates with corporate stakeholders to ensure funding aligns with community roadmap.
+Speaker 1: Day to day, the role runs contributor office hours across time zones and languages, which is unglamorous and load-bearing.
+
+Speaker 2: It converts user research, localisation feedback and Indigenous data protocols into issues an engineer can pick up, which is a translation job in both directions.
+
+Speaker 1: It maintains the tooling nobody else owns: translation pipelines, documentation builds, contributor analytics.
+
+Speaker 2: It negotiates with corporate stakeholders so funding follows the community roadmap rather than redirecting it.
+
+Speaker 1: And it's the escalation path when a moderation dispute turns out to have a technical cause underneath it.

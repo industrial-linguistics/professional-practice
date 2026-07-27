@@ -1,2 +1,9 @@
-Speaker 1: Typical Investment Levels focuses attention on a concrete part of the work. Fractional CTO: $8K–15K/month for 1–2 days per week, often with ramp-down clauses, Virtual CIO: $5K–10K/month covering governance, budgeting and board prep, and Co-managed MSP: $3K–8K/month plus per-incident fees for after-hours or specialised work.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Virtual CIO: $5K–10K/month covering governance, budgeting and board prep; Co-managed MSP: $3K–8K/month plus per-incident fees for after-hours or specialised work; Budget rule: Allocate 15–25% of the engineering/IT budget to external leadership to avoid starving internal capability.
+Speaker 1: Rough numbers, so you can sanity-check a quote. A fractional CTO runs eight to fifteen thousand a month for one or two days a week, usually with ramp-down clauses.
+
+Speaker 2: A virtual CIO is five to ten thousand, covering governance, budgeting and board preparation.
+
+Speaker 1: A co-managed provider is three to eight thousand, plus per-incident fees for after-hours or specialist work.
+
+Speaker 2: As a budgeting rule, fifteen to twenty-five per cent of the engineering and IT budget on external leadership. Beyond that you start starving the internal capability you're meant to be building.
+
+Speaker 1: Some leaders take a quarter to half a per cent in options instead of cash. Model the dilution before you agree.

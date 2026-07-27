@@ -2,6 +2,8 @@
 set -euo pipefail
 
 python3 scripts/validate_html_course.py
+python3 scripts/validate_textbook_sources.py
+python3 scripts/validate_narratives.py
 python3 scripts/report_narrative_mismatches.py
 python3 scripts/build_textbook.py
 python3 scripts/build_elearning.py

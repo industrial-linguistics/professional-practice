@@ -1,2 +1,7 @@
-Speaker 1: Budget justification toolkit focuses attention on a concrete part of the work. Build a one-page ROI summary: tickets deflected, hours saved, compliance risks reduced, Include a lightweight CapEx/OpEx model (licenses, headcount, contractors) with 3-year outlook, and Tie asks to business OKRs and upcoming audits; include "do nothing" risk column.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Include a lightweight CapEx/OpEx model (licenses, headcount, contractors) with 3-year outlook; Tie asks to business OKRs and upcoming audits; include "do nothing" risk column; Borrow customer quotes or incident anecdotes to humanize the spend.
+Speaker 1: Asking for support budget works better as one page than as a deck. Tickets deflected, hours saved, compliance risks reduced.
+
+Speaker 2: Add a simple capital and operating model covering licences, headcount and contractors, with a three-year view so finance can see where it goes.
+
+Speaker 1: Tie the request to business objectives and to audits already on the calendar, and include a column for the risk of doing nothing. That column does more persuading than the rest of the page.
+
+Speaker 2: Then borrow a customer quote or an incident anecdote. Numbers make the case; the anecdote is what gets repeated in the meeting you're not in.

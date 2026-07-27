@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Job Roles Across the Service Lifecycle. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: One of the more useful things you can take from ITIL is a map of who does what, because the job titles you'll meet are otherwise fairly opaque.
+
+Speaker 2: A service runs from someone requesting it to someone eventually retiring it, and different roles own different stretches of that.
+
+Speaker 1: We'll walk the lifecycle and name the roles at each stage, along with the seniority levels and the usual entry points.
+
+Speaker 2: Which is worth knowing before you apply for something, rather than after.

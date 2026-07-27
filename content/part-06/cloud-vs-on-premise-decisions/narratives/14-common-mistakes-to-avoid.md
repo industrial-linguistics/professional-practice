@@ -1,2 +1,7 @@
-Speaker 1: Common mistakes to avoid focuses attention on a concrete part of the work. Over-engineering early architecture with bespoke Kubernetes before validating demand, Ignoring data transfer and egress costs between regions or providers when forecasting spend, and Assuming "cloud = infinite scale" without designing guardrails, budgets and auto-scaling limits.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Ignoring data transfer and egress costs between regions or providers when forecasting spend; Assuming "cloud = infinite scale" without designing guardrails, budgets and auto-scaling limits.
+Speaker 1: Three failure modes worth naming. The first is over-engineering early, building bespoke Kubernetes before anyone has confirmed there's demand for the product.
+
+Speaker 2: The second is forecasting spend without data transfer and egress costs. Moving data between regions or providers is where cloud bills surprise people.
+
+Speaker 1: And the third is assuming cloud means infinite scale, which it does, right up to your credit limit.
+
+Speaker 2: Auto-scaling without a ceiling is a way to convert a traffic spike, or a bug, into a very large invoice. Set budgets and limits deliberately.

@@ -1,2 +1,7 @@
-Speaker 1: This section sets up Alert Correlation & Timelines. Treat it as the frame for the decisions, handoffs, and evidence that appear in the next slides.
-Speaker 2: The practical question is simple: by the end, what should a junior IT professional be able to explain, check, or document in a real workplace?
+Speaker 1: During a major incident the alerts arrive faster than anyone can read them, and most of them are describing the same thing.
+
+Speaker 2: Correlation is the work of collapsing that noise into a sequence: what failed, what failed because of it, and in what order.
+
+Speaker 1: The output is a timeline, and that timeline becomes the backbone of the root cause analysis and the basis for future runbooks.
+
+Speaker 2: It's also the part most often done from memory afterwards, which is exactly why it goes wrong.

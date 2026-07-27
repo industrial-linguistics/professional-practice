@@ -1,2 +1,7 @@
-Speaker 1: Dual & multi-licensing focuses attention on a concrete part of the work. Projects like MySQL or Qt offer GPL for community and commercial licences for proprietary users, Enables sustainable funding while protecting openness goals, and Be transparent about which features fall under each licence stream.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Enables sustainable funding while protecting openness goals; Be transparent about which features fall under each licence stream.
+Speaker 1: Some projects ship under two licences at once. MySQL and Qt are the well-known examples, offering GPL to the community and a commercial licence to companies who want to stay proprietary.
+
+Speaker 2: It's a funding model as much as a licensing one. The commercial stream pays for maintainers, and the open stream keeps the project genuinely open.
+
+Speaker 1: The thing to get right is transparency about which features sit in which stream.
+
+Speaker 2: Because when contributors discover that the work they donated is only available to paying customers, the resulting argument tends to outlive the revenue.

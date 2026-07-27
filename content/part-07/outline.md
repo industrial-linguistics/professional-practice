@@ -1,6 +1,6 @@
 # Part 7 – Open-Source & Indigenous Digital Sovereignty
 
-This part explores how open-source communities collaborate and how data sovereignty principles protect Indigenous rights. Students learn to contribute responsibly and evaluate open-source solutions through an ethical lens.
+Open-source communities and Indigenous data sovereignty, treated as two answers to one question: who holds authority over shared digital resources. Covers FOSS licensing obligations, governance from solo maintainer to foundation, and the Te Hiku Media case study.
 
 ## Objectives
 

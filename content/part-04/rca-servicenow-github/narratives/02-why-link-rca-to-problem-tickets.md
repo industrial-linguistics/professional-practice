@@ -1,2 +1,9 @@
-Speaker 1: Why link RCA to problem tickets? focuses attention on a concrete part of the work. Turns scattered post‑mortem notes into an actionable backlog, Tracks the root cause alongside related incidents and changes, and Keeps an audit trail for compliance reviews.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Tracks the root cause alongside related incidents and changes; Keeps an audit trail for compliance reviews; Helps prioritize improvements during planning sessions.
+Speaker 1: Linking root cause analysis to problem tickets turns scattered post-mortem notes into a backlog somebody can actually work.
+
+Speaker 2: It keeps the root cause sitting alongside the related incidents and changes, so the pattern is visible rather than reconstructed later.
+
+Speaker 1: It also leaves an audit trail, which compliance reviews will ask for eventually.
+
+Speaker 2: And it puts the improvements into planning sessions, competing for time like everything else, instead of living in a document nobody opens.
+
+Speaker 1: Two questions worth asking your own team. Where do past RCAs live, and who actually reads them?

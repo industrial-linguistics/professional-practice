@@ -1,2 +1,7 @@
-Speaker 1: Public domain & CC0 focuses attention on a concrete part of the work. CC0 and Unlicense place work in public domain where legally possible, Useful for data sets, code snippets and government artefacts, and Confirm local law recognition—some jurisdictions restrict abandoning copyright.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Useful for data sets, code snippets and government artefacts; Confirm local law recognition—some jurisdictions restrict abandoning copyright.
+Speaker 1: CC0 and the Unlicense try to place work in the public domain wherever the law allows it.
+
+Speaker 2: They suit things where attribution isn't the point: data sets, small code snippets, government artefacts meant for unrestricted reuse.
+
+Speaker 1: The catch is that not every jurisdiction lets you abandon copyright. Some recognise moral rights that can't be waived at all.
+
+Speaker 2: So check local recognition before relying on it, particularly for anything cross-border. CC0 includes a fallback licence for exactly this reason, which tells you how common the problem is.

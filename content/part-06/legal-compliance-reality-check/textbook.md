@@ -2,7 +2,7 @@
 
 The good news, and the actual content of this reality check: "good enough" compliance for a lean team is smaller, cheaper and faster than the folklore suggests.
 
-## The milestones, demystified
+## What the milestones actually involve
 
 SOC 2 in particular has acquired a mythology of years and rooms full of consultants. The real timeline for a focused small team looks like this:
 

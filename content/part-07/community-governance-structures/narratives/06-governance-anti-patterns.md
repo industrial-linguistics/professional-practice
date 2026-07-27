@@ -1,2 +1,7 @@
-Speaker 1: Governance anti-patterns focuses attention on a concrete part of the work. Watch for failure modes. BDFL burnout happens when a founder clings to every decision; rotate authority and document delegation triggers. Committee paralysis emerges when every choice requires consensus from a dozen people—set quorum rules, empower working groups and time-box debates. Corporate capture looms if a single vendor funds more than ~40% of budget or staff; diversify revenue, publish conflict-of-interest disclosures and ensure board seats reflect community demographics. Fork wars escalate when communication breaks; invest in mediation channels, transparent decision logs and cultural competency training so disagreements stay technical rather than personal. Use incident reviews to turn anti-patterns into learning moments instead of repeating cycles.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.
+Speaker 1: Four failure modes to watch for. Founder burnout, when a benevolent dictator clings to every decision. Rotate authority and document what triggers delegation.
+
+Speaker 2: Committee paralysis, when every choice needs consensus from a dozen people. Set quorum rules, give working groups real authority, and time-box debates.
+
+Speaker 1: Corporate capture, which looms once a single vendor funds more than about forty per cent of budget or staff. Diversify revenue, publish conflict-of-interest disclosures, and check the board reflects the community.
+
+Speaker 2: And fork wars, which escalate when communication breaks down. Invest in mediation channels and transparent decision logs so disagreements stay technical rather than personal.

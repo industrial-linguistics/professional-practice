@@ -1,2 +1,7 @@
-Speaker 1: Common failure patterns focuses attention on a concrete part of the work. Laptop arrives late; new hire spends week one chasing access while shadow IT blooms, Contractors keep local copies because shared storage lags and expense approvals take 6 weeks, and Leaders schedule 10pm status calls "just this once" until burnout arrives—people prefer sleep.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Contractors keep local copies because shared storage lags and expense approvals take 6 weeks; Leaders schedule 10pm status calls "just this once" until burnout arrives—people prefer sleep; How many projects have you seen derailed by a customs delay or a missing VPN token?.
+Speaker 1: The patterns repeat. The laptop arrives late, so the new hire spends week one chasing access, and shadow IT quietly blooms while they improvise.
+
+Speaker 2: Contractors keep local copies of everything because shared storage is slow and expense approvals take six weeks.
+
+Speaker 1: And leaders schedule a ten o'clock evening status call just this once, then again, until people burn out. Given the choice, staff prefer sleep.
+
+Speaker 2: How many projects have you seen derailed by a customs delay or a missing VPN token? It's rarely the strategy that fails first.

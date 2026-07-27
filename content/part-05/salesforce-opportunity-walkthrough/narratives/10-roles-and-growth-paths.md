@@ -1,2 +1,9 @@
-Speaker 1: Roles and growth paths focuses attention on a concrete part of the work. Account Executive orchestrates the opportunity and stakeholder management, Solution Engineer validates technical fit and risk mitigations, and Service Transition Manager ensures ITIL change preparation and onboarding readiness.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Solution Engineer validates technical fit and risk mitigations; Service Transition Manager ensures ITIL change preparation and onboarding readiness; Skills gained—Salesforce automation, mutual plans, compliance coordination—set up progression into enterprise sales leadership.
+Speaker 1: Three roles carry an opportunity like this. The account executive orchestrates it and manages the stakeholders.
+
+Speaker 2: The solution engineer validates technical fit and works through the risk mitigations, which is the natural landing spot for someone with a support or engineering background.
+
+Speaker 1: And the service transition manager makes sure ITIL change preparation and onboarding are ready before go-live.
+
+Speaker 2: The skills stack usefully: Salesforce automation, mutual close plans, compliance coordination.
+
+Speaker 1: A common ladder is Salesforce Administrator certification, then ITIL Foundation, then ServiceNow administration or sitting on a change advisory board for integration credibility.

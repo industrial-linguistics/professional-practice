@@ -1,2 +1,7 @@
-Speaker 1: Contract structures focuses attention on a concrete part of the work. Annual terms give frequent renewal checkpoints, Multi-year deals lock in revenue but may require discounts, and Up-front prepay boosts cash flow; quarterly payments ease budgets.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Multi-year deals lock in revenue but may require discounts; Up-front prepay boosts cash flow; quarterly payments ease budgets; Auto-renew clauses and payment terms influence churn risk.
+Speaker 1: Contract length is a trade. Annual terms give you frequent renewal checkpoints, which means frequent chances to fix a relationship or lose it.
+
+Speaker 2: Multi-year deals lock revenue in, but customers expect a discount for the commitment.
+
+Speaker 1: Payment timing matters separately. Prepaying up front helps cash flow, which for a young company can matter more than the total; quarterly payments are easier on the customer's budget.
+
+Speaker 2: And auto-renew clauses and payment terms both feed churn risk, so they belong in the same conversation rather than the fine print.

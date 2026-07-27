@@ -1,2 +1,9 @@
-Speaker 1: Early compliance and data residency focuses attention on a concrete part of the work. Confirm whether early contracts mandate specific data locations or certifications, Document which services store data in which regions (e.g. Slack US, email EU) to avoid surprises, and Draft a lightweight privacy policy before collecting any customer information.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: Document which services store data in which regions (e.g. Slack US, email EU) to avoid surprises; Draft a lightweight privacy policy before collecting any customer information; Flag GDPR, CCPA or industry rules that influence vendor shortlists and architecture choices.
+Speaker 1: Check whether your early contracts already commit you to specific data locations or certifications. Founders sign those clauses more often than they remember signing them.
+
+Speaker 2: Then write down which service stores data in which region. Slack in the US, email in the EU, whatever the mix is.
+
+Speaker 1: That document takes twenty minutes now and answers a question that would otherwise take a week during diligence.
+
+Speaker 2: Draft a lightweight privacy policy before you collect any customer information, not after.
+
+Speaker 1: And flag which rules genuinely apply, GDPR, CCPA, or something sector-specific, because those constrain your vendor shortlist and your architecture.

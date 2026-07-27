@@ -1,2 +1,9 @@
-Speaker 1: Workshop prompt for learners focuses attention on a concrete part of the work. 15 min: Map your current stack against the five categories and highlight gaps, 20 min: Draft a $2K/month budget with assumptions, credits and identified downgrade triggers, and 15 min: Identify the metric or risk that justifies each line item for the board memo—capture sample outputs.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next. Use the supporting details as a checklist: 20 min: Draft a $2K/month budget with assumptions, credits and identified downgrade triggers; 15 min: Identify the metric or risk that justifies each line item for the board memo—capture sample outputs; 20 min: Debate architecture choice with a cost table; assign a peer reviewer to challenge your numbers.
+Speaker 1: Here's the workshop. Fifteen minutes to map your current stack against the five categories and mark the gaps.
+
+Speaker 2: Then twenty minutes drafting a two-thousand-dollar monthly budget, with your assumptions written down, any credits you're counting on, and the triggers that would make you downgrade.
+
+Speaker 1: Fifteen minutes to identify the metric or the risk that justifies each line item for a board memo.
+
+Speaker 2: Twenty minutes debating the architecture with a cost table, and a peer reviewer whose job is to challenge your numbers.
+
+Speaker 1: Then present to another team, and record owners and review dates.

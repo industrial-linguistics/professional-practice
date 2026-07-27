@@ -1,2 +1,7 @@
-Speaker 1: Using Git blame constructively focuses attention on a concrete part of the work. When you do use blame, pair it with open dialogue. Suppose a function crashes on null inputs and you run git blame src/user-service.py -L 45,55 -w. Reach out to the contributor and ask what constraints they faced when writing that code. Maybe they were patching a production bug or following outdated requirements. Capture the lessons learned in commit messages or design docs so others won't repeat the mistake. Remember to respect privacy; if a blame trail uncovers systemic issues like unrealistic deadlines or missing reviews, escalate through your team's retrospective process rather than confronting individuals in public channels.
-Speaker 2: In practice, ask who owns the work, what evidence proves it happened, and what handoff comes next.
+Speaker 1: When you do reach for blame, pair it with conversation. Say a function crashes on null inputs and the history points at one commit.
+
+Speaker 2: Go and ask that contributor what constraints they were working under. Often they were patching a production bug at speed, or following requirements that have since changed.
+
+Speaker 1: Then capture what you learn in the commit message or a design doc, so the next person meets the reasoning instead of repeating the mistake.
+
+Speaker 2: And if the trail exposes something systemic, unrealistic deadlines or missing reviews, take it to the retrospective. Not to a public channel, and not to the individual.
