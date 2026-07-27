@@ -10,6 +10,7 @@ import os
 import re
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 from course_content import (
@@ -19,8 +20,10 @@ from course_content import (
     copy_if_exists,
     copy_topic_images,
     load_course,
+    narrative_files,
     titleize,
 )
+from narrative_filler import find_generated_filler
 
 
 OUTPUT = ROOT / "output"
@@ -323,6 +326,26 @@ def render_index(parts: list[Part]) -> None:
     (ELEARNING / "index.html").write_text(index, encoding="utf-8")
 
 
+def refuse_generated_filler(topics: list[Topic]) -> None:
+    """Stop the build if any narration is still an unwritten generator stub.
+
+    The deployed lesson build runs from .github/workflows/run_sheets.yml
+    without going through test_course.sh, so it needs its own gate. Narration
+    is shown to learners and fed to the recorder; filler must not reach either.
+    """
+    problems: list[str] = []
+    for topic in topics:
+        for path in narrative_files(topic.source_path):
+            for reason in find_generated_filler(path.read_text(encoding="utf-8")):
+                problems.append(f"{path.relative_to(ROOT)}: {reason}")
+    if problems:
+        for line in problems:
+            print(f"ERROR {line}", file=sys.stderr)
+        raise SystemExit(
+            f"Refusing to build: {len(problems)} narrative(s) still contain generated filler."
+        )
+
+
 def build_course_corpus(parts: list[Part]) -> None:
     topics = []
     slides = []
@@ -379,6 +402,7 @@ def build() -> None:
     write_assets()
     parts = load_course()
     topics = [topic for part in parts for topic in part.topics]
+    refuse_generated_filler(topics)
     for i, topic in enumerate(topics):
         next_topic = topics[i + 1] if i + 1 < len(topics) else None
         render_topic(topic, next_topic)

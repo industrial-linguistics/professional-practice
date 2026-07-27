@@ -17,15 +17,11 @@ import sys
 from pathlib import Path
 
 from course_content import ROOT, Slide, Topic, load_course, markdown_to_plain, narrative_files
+from narrative_filler import STUB_MARKER, find_generated_filler
 from report_narrative_mismatches import align
 
 
 ARCHIVE_DIR = "_source_before_alignment"
-
-# Generated narration is scaffolding, never a finished script. Every generated
-# file carries this marker so scripts/validate_narratives.py can fail the build
-# before a stub is recorded as audio and shipped to students.
-STUB_MARKER = "<!-- TODO(narrative): generated stub, rewrite before recording -->"
 
 
 def slug(value: str) -> str:
@@ -113,21 +109,8 @@ def is_generated_stub(text: str) -> bool:
 
 
 def is_old_generated(text: str) -> bool:
-    markers = [
-        "turns the topic into something observable",
-        "This section introduces",
-        "The detail to watch is",
-        "The goal is not to memorise",
-        # Templates emitted by the previous version of generated_narrative().
-        "focuses attention on a concrete part of the work",
-        "In practice, ask who owns the work, what evidence proves it happened",
-        "Use the supporting details as a checklist",
-        "This section sets up",
-        "The practical question is simple: by the end, what should a junior IT professional",
-        "The key takeaway is this:",
-        "Use that takeaway to name the owner, evidence, and next action",
-    ]
-    return any(marker in text for marker in markers)
+    # "This section introduces" predates the shared list and is kept here.
+    return bool(find_generated_filler(text)) or "This section introduces" in text
 
 
 def map_existing_narratives(topic: Topic, files: list[Path]) -> dict[int, list[str]]:

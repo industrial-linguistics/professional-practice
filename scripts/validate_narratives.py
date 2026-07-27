@@ -36,27 +36,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from repair_narrative_alignment import STUB_MARKER
+from narrative_filler import find_generated_filler
 from validate_textbook_sources import BANNED_PHRASES
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 ARCHIVE_DIR = "_source_before_alignment"
-
-# Sentence frames emitted by earlier versions of generated_narrative(). They
-# carry no marker, so they have to be matched by their text.
-GENERATOR_TEMPLATES = [
-    "focuses attention on a concrete part of the work",
-    "In practice, ask who owns the work, what evidence proves it happened",
-    "Use the supporting details as a checklist",
-    "This section sets up",
-    "The practical question is simple: by the end, what should a junior IT professional",
-    "The key takeaway is this:",
-    "Use that takeaway to name the owner, evidence, and next action",
-    "turns the topic into something observable",
-    "The detail to watch is",
-    "The goal is not to memorise",
-]
 
 # Phrases beyond the textbook list, each evidenced by a real hit in this repo.
 EXTRA_BANNED_PHRASES = [
@@ -119,13 +104,8 @@ def check_narrative(path: Path) -> tuple[list[str], list[str]]:
     text = path.read_text(encoding="utf-8")
     rel = path.relative_to(ROOT)
 
-    if STUB_MARKER in text:
-        errors.append(f"{rel}: unwritten generator stub; write the narration before recording")
-        return errors, warnings
-
-    for template in GENERATOR_TEMPLATES:
-        if template in text:
-            errors.append(f"{rel}: generated filler: {template!r}")
+    for reason in find_generated_filler(text):
+        errors.append(f"{rel}: {reason}")
 
     words = len(re.findall(r"\S+", text))
     if words > MAX_NARRATIVE_WORDS:
