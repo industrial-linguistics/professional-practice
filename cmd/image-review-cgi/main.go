@@ -212,9 +212,19 @@ func (a *app) handleReview(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(
 		w,
 		r,
-		"?candidate="+url.QueryEscape(id)+"&saved="+url.QueryEscape(status)+"&from="+url.QueryEscape(from),
+		reviewPath(r)+"?candidate="+url.QueryEscape(id)+"&saved="+url.QueryEscape(status)+"&from="+url.QueryEscape(from),
 		http.StatusSeeOther,
 	)
+}
+
+func reviewPath(r *http.Request) string {
+	if scriptName := strings.TrimSpace(os.Getenv("SCRIPT_NAME")); strings.HasPrefix(scriptName, "/") {
+		return scriptName
+	}
+	if r.URL != nil && strings.HasPrefix(r.URL.Path, "/") && r.URL.Path != "" {
+		return r.URL.Path
+	}
+	return "/"
 }
 
 func (a *app) renderIndex(w http.ResponseWriter, r *http.Request) {

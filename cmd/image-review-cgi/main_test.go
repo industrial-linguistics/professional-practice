@@ -195,6 +195,41 @@ func TestReviewRedirectsBackToTheCandidateDetail(t *testing.T) {
 	}
 }
 
+func TestReviewRedirectRetainsTheCGIScriptPath(t *testing.T) {
+	for _, action := range []string{"reject", "comment"} {
+		t.Run(action, func(t *testing.T) {
+			application := testApp(t)
+			form := url.Values{
+				"id":      {"pending-one"},
+				"action":  {action},
+				"comment": {"Needs another pass"},
+				"from":    {"unapproved"},
+			}
+			request := httptest.NewRequest(
+				http.MethodPost,
+				"https://professional-practice.industrial-linguistics.com/cgi-bin/image-review.cgi?candidate=pending-one",
+				strings.NewReader(form.Encode()),
+			)
+			request.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+			response := httptest.NewRecorder()
+
+			application.ServeHTTP(response, request)
+
+			if response.Code != http.StatusSeeOther {
+				t.Fatalf("review status = %d, want %d", response.Code, http.StatusSeeOther)
+			}
+			location := response.Header().Get("Location")
+			wantPrefix := "/cgi-bin/image-review.cgi?candidate=pending-one"
+			if !strings.HasPrefix(location, wantPrefix) {
+				t.Errorf("redirect = %q, want prefix %q", location, wantPrefix)
+			}
+			if strings.HasPrefix(location, "/cgi-bin/?") {
+				t.Errorf("redirect drops the CGI script name: %q", location)
+			}
+		})
+	}
+}
+
 func TestUnknownCandidateReturnsNotFound(t *testing.T) {
 	server := httptest.NewServer(testApp(t))
 	defer server.Close()
