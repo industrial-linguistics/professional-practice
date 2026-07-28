@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/cgi"
+	"net/url"
 	"os"
 	"strings"
 
@@ -120,7 +121,11 @@ func openDB(path string) (*sql.DB, error) {
 func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
-		a.renderList(w, r)
+		if strings.TrimSpace(r.URL.Query().Get("candidate")) != "" {
+			a.renderDetail(w, r)
+			return
+		}
+		a.renderIndex(w, r)
 	case http.MethodPost:
 		a.handleReview(w, r)
 	default:
@@ -137,6 +142,7 @@ func (a *app) handleReview(w http.ResponseWriter, r *http.Request) {
 	id := strings.TrimSpace(r.FormValue("id"))
 	action := strings.TrimSpace(r.FormValue("action"))
 	comment := strings.TrimSpace(r.FormValue("comment"))
+	from := normaliseFilter(r.FormValue("from"))
 	if id == "" {
 		http.Error(w, "missing candidate id", http.StatusBadRequest)
 		return
@@ -203,10 +209,15 @@ func (a *app) handleReview(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, "./image-review.cgi#"+urlFragment(id), http.StatusSeeOther)
+	http.Redirect(
+		w,
+		r,
+		"?candidate="+url.QueryEscape(id)+"&saved="+url.QueryEscape(status)+"&from="+url.QueryEscape(from),
+		http.StatusSeeOther,
+	)
 }
 
-func (a *app) renderList(w http.ResponseWriter, _ *http.Request) {
+func (a *app) renderIndex(w http.ResponseWriter, r *http.Request) {
 	items, err := a.loadCandidates()
 	if err != nil {
 		http.Error(w, "database error", http.StatusInternalServerError)
@@ -214,97 +225,443 @@ func (a *app) renderList(w http.ResponseWriter, _ *http.Request) {
 		return
 	}
 
+	filter := normaliseFilter(r.URL.Query().Get("status"))
+	visibleItems := filterCandidates(items, filter)
+
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	renderPageStart(
+		w,
+		"Image review",
+		"Choose a suggested update to inspect its image, slide comparison and review controls.",
+	)
+	fmt.Fprint(w, `<main class="page index-page">`)
+	renderSummary(w, items)
+	renderFilters(w, items, filter)
+
+	if len(visibleItems) == 0 {
+		fmt.Fprintf(
+			w,
+			`<div class="empty-state"><h2>No %s items</h2><p>There are no image updates in this view.</p><a class="button-link" href="?status=all">Show all updates</a></div>`,
+			h(filterLabel(filter)),
+		)
+	} else {
+		fmt.Fprintf(w, `<div class="list-heading"><h2>%s</h2><span>%d %s</span></div>`, h(filterLabel(filter)), len(visibleItems), plural(len(visibleItems), "item", "items"))
+		fmt.Fprint(w, `<ol class="review-list">`)
+		for _, item := range visibleItems {
+			renderIndexItem(w, item, filter)
+		}
+		fmt.Fprint(w, `</ol>`)
+	}
+
+	renderPageEnd(w)
+}
+
+func (a *app) renderDetail(w http.ResponseWriter, r *http.Request) {
+	id := strings.TrimSpace(r.URL.Query().Get("candidate"))
+	item, found, err := a.loadCandidate(id)
+	if err != nil {
+		http.Error(w, "database error", http.StatusInternalServerError)
+		log.Printf("load candidate %s: %v", id, err)
+		return
+	}
+	if !found {
+		http.Error(w, "candidate not found", http.StatusNotFound)
+		return
+	}
+
+	from := normaliseFilter(r.URL.Query().Get("from"))
+	saved := strings.TrimSpace(r.URL.Query().Get("saved"))
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	renderPageStart(w, "Review suggested update", "Compare the current slide with the proposed image treatment, then record a decision.")
+
+	fmt.Fprint(w, `<main class="page detail-page">`)
+	fmt.Fprintf(w, `<a class="back-link" href="?status=%s">← Back to %s</a>`, h(from), h(strings.ToLower(filterLabel(from))))
+	if saved != "" {
+		fmt.Fprintf(w, `<div class="saved-notice" role="status">Review saved as <strong>%s</strong>.</div>`, h(statusLabel(saved)))
+	}
+
+	fmt.Fprint(w, `<article class="candidate-detail">`)
+	fmt.Fprint(w, `<header class="detail-header">`)
+	fmt.Fprint(w, `<div>`)
+	fmt.Fprintf(w, `<div class="eyebrow">%s · %s</div>`, h(item.BatchID), h(item.SlideRef))
+	fmt.Fprintf(w, `<h1>%s</h1>`, h(item.Brief))
+	fmt.Fprintf(w, `<div class="candidate-id">%s</div>`, h(item.ID))
+	fmt.Fprint(w, `</div>`)
+	renderStatus(w, item.Status)
+	fmt.Fprint(w, `</header>`)
+
+	fmt.Fprint(w, `<dl class="metadata">`)
+	metadata(w, "Target", item.TargetPath)
+	metadata(w, "Topic", item.TopicPath)
+	metadata(w, "Batch", item.BatchID)
+	metadata(w, "Slide", item.SlideRef)
+	if item.ReviewedBy.Valid || item.ReviewedAt.Valid {
+		metadata(w, "Last reviewed", strings.TrimSpace(item.ReviewedBy.String+" "+item.ReviewedAt.String))
+	}
+	fmt.Fprint(w, `</dl>`)
+
+	if strings.TrimSpace(item.Prompt) != "" {
+		fmt.Fprintf(w, `<section class="note"><h2>Image brief</h2><p>%s</p></section>`, h(item.Prompt))
+	}
+	if strings.TrimSpace(item.ReviewComment) != "" {
+		fmt.Fprintf(w, `<section class="note review-comment"><h2>Review comment</h2><p>%s</p></section>`, h(item.ReviewComment))
+	}
+
+	fmt.Fprint(w, `<section class="visual-review" aria-labelledby="visual-review-heading">`)
+	fmt.Fprint(w, `<div class="section-heading"><div><div class="eyebrow">Suggested update</div><h2 id="visual-review-heading">Generated image</h2></div></div>`)
+	imageFigure(w, "Generated image", item.CandidateURL, "hero-figure")
+	fmt.Fprint(w, `<div class="section-heading comparison-heading"><div><div class="eyebrow">In context</div><h2>Slide comparison</h2></div></div>`)
+	fmt.Fprint(w, `<div class="slide-comparison">`)
+	imageFigure(w, "Current slide", item.CurrentSlideURL, "")
+	imageFigure(w, "Proposed slide", item.ProposedSlideURL, "proposed")
+	fmt.Fprint(w, `</div></section>`)
+
+	fmt.Fprintf(w, `<form class="review-panel" method="post" action="?candidate=%s">`, h(url.QueryEscape(item.ID)))
+	fmt.Fprint(w, `<div><div class="eyebrow">Your decision</div><h2>Review this update</h2><p>Comments are retained with the candidate for the next image pass.</p></div>`)
+	fmt.Fprintf(w, `<input type="hidden" name="id" value="%s">`, h(item.ID))
+	fmt.Fprintf(w, `<input type="hidden" name="from" value="%s">`, h(from))
+	fmt.Fprintf(w, `<label for="review-comment">Comment <span>(optional)</span></label><textarea id="review-comment" name="comment" placeholder="What should change in the next version?">%s</textarea>`, h(item.ReviewComment))
+	fmt.Fprint(w, `<div class="actions">`)
+	fmt.Fprint(w, `<button type="submit" name="action" value="approve">Approve</button>`)
+	fmt.Fprint(w, `<button type="submit" name="action" value="reject">Reject</button>`)
+	fmt.Fprint(w, `<button type="submit" name="action" value="comment">Save comment</button>`)
+	fmt.Fprint(w, `</div></form>`)
+	fmt.Fprint(w, `</article>`)
+
+	renderPageEnd(w)
+}
+
+func renderPageStart(w http.ResponseWriter, title string, subtitle string) {
 	fmt.Fprint(w, `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Professional Practice Image Review</title>
+<meta name="theme-color" content="#182d46">
+<title>`)
+	fmt.Fprint(w, h(title))
+	fmt.Fprint(w, ` · Professional Practice</title>
 <style>
 :root {
   color-scheme: light;
-  --ink: #1d2430;
-  --muted: #667085;
-  --line: #d8dde6;
-  --panel: #f7f8fb;
-  --accent: #2456a6;
-  --ok: #126b3a;
-  --bad: #9d2424;
+  --ink: #152132;
+  --muted: #667386;
+  --line: #d9e0e8;
+  --panel: #f4f7fa;
+  --paper: #ffffff;
+  --navy: #182d46;
+  --accent: #1f62a4;
+  --accent-soft: #eaf3fb;
+  --ok: #147044;
+  --ok-soft: #e9f6ef;
+  --bad: #a33a36;
+  --bad-soft: #fbedeb;
+  --warn: #8a5a0a;
+  --warn-soft: #fff5dc;
+  --shadow: 0 12px 36px rgba(21, 33, 50, .08);
 }
+* { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
-  background: #fff;
+  background: #f8fafc;
+  line-height: 1.5;
 }
-header {
-  border-bottom: 1px solid var(--line);
-  padding: 20px max(24px, calc((100vw - 1220px) / 2));
+a {
+  color: var(--accent);
 }
-main {
-  max-width: 1220px;
-  margin: 0 auto;
-  padding: 24px;
+.site-header {
+  background: var(--navy);
+  color: #fff;
+  padding: 20px max(20px, calc((100vw - 1120px) / 2));
 }
-h1 {
-  font-size: 24px;
-  margin: 0 0 6px;
+.site-header .brand {
+  color: #fff;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+  text-decoration: none;
+  text-transform: uppercase;
 }
-.meta, .empty, .small {
-  color: var(--muted);
-  font-size: 14px;
-}
-.candidate {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  margin: 0 0 24px;
-  overflow: hidden;
-}
-.candidate-header {
-  background: var(--panel);
-  border-bottom: 1px solid var(--line);
-  display: grid;
-  gap: 8px;
-  grid-template-columns: 1fr auto;
-  padding: 14px 16px;
-}
-.candidate h2 {
-  font-size: 18px;
+.site-header h1 {
+  font-size: clamp(24px, 5vw, 34px);
+  letter-spacing: -.02em;
   margin: 0;
 }
-.status {
-  align-self: start;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 4px 10px;
-  text-transform: uppercase;
+.site-header p {
+  color: #d5e1ed;
+  margin: 5px 0 0;
+  max-width: 720px;
 }
-.status-approved { color: var(--ok); }
-.status-rejected { color: var(--bad); }
-.details {
-  display: grid;
-  gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  padding: 14px 16px;
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 20px 64px;
 }
-.detail {
-  font-size: 14px;
-}
-.detail strong {
-  display: block;
-  font-size: 12px;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.images {
+.summary {
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  padding: 0 16px 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 24px;
+}
+.summary-item {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+}
+.summary-item strong {
+  display: block;
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 7px;
+}
+.summary-item span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 650;
+}
+.filters {
+  display: flex;
+  gap: 8px;
+  margin: 0 -20px 24px;
+  overflow-x: auto;
+  padding: 0 20px 4px;
+  scrollbar-width: thin;
+}
+.filter {
+  align-items: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 650;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 15px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.filter span {
+  background: var(--panel);
+  border-radius: 999px;
+  font-size: 12px;
+  min-width: 24px;
+  padding: 2px 7px;
+  text-align: center;
+}
+.filter.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.filter.active span {
+  background: rgba(255,255,255,.17);
+}
+.list-heading {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 10px;
+}
+.list-heading h2 {
+  font-size: 17px;
+  margin: 0;
+}
+.list-heading span {
+  color: var(--muted);
+  font-size: 13px;
+}
+.review-list {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+.review-list li + li {
+  border-top: 1px solid var(--line);
+}
+.review-row {
+  align-items: center;
+  color: inherit;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: 92px;
+  padding: 15px 18px;
+  text-decoration: none;
+}
+.review-row:hover {
+  background: #f8fbfd;
+}
+.review-row h3 {
+  font-size: 16px;
+  line-height: 1.35;
+  margin: 0 0 5px;
+}
+.row-meta, .target, .candidate-id {
+  color: var(--muted);
+  font-size: 14px;
+}
+.target {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+.status {
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1;
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+.status-pending { background: var(--warn-soft); color: var(--warn); }
+.status-approved { background: var(--ok-soft); color: var(--ok); }
+.status-rejected { background: var(--bad-soft); color: var(--bad); }
+.status-commented { background: var(--accent-soft); color: var(--accent); }
+.status-processed { background: #edf0f4; color: #516072; }
+.empty-state {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 36px 24px;
+  text-align: center;
+}
+.empty-state h2 {
+  margin: 0 0 4px;
+}
+.empty-state p {
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+.button-link {
+  background: var(--navy);
+  border-radius: 8px;
+  color: #fff;
+  display: inline-flex;
+  font-weight: 650;
+  min-height: 44px;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+.back-link {
+  align-items: center;
+  display: inline-flex;
+  font-weight: 650;
+  min-height: 44px;
+  text-decoration: none;
+}
+.saved-notice {
+  background: var(--ok-soft);
+  border: 1px solid #b8dfca;
+  border-radius: 10px;
+  color: var(--ok);
+  margin: 10px 0 18px;
+  padding: 12px 14px;
+}
+.candidate-detail {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.detail-header {
+  align-items: start;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: clamp(20px, 4vw, 32px);
+}
+.detail-header h1 {
+  font-size: clamp(23px, 4vw, 34px);
+  letter-spacing: -.025em;
+  line-height: 1.18;
+  margin: 5px 0 7px;
+}
+.eyebrow {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.candidate-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.metadata {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 22px clamp(20px, 4vw, 32px);
+}
+.metadata div {
+  min-width: 0;
+}
+.metadata dt {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .06em;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+.metadata dd {
+  font-size: 14px;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.note {
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  padding: 18px clamp(20px, 4vw, 32px);
+}
+.note h2 {
+  font-size: 14px;
+  margin: 0 0 5px;
+}
+.note p {
+  font-size: 14px;
+  margin: 0;
+  white-space: pre-wrap;
+}
+.review-comment {
+  background: var(--warn-soft);
+}
+.visual-review {
+  border-top: 1px solid var(--line);
+  padding: clamp(20px, 4vw, 32px);
+}
+.section-heading {
+  align-items: end;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.section-heading h2 {
+  font-size: 20px;
+  margin: 2px 0 0;
+}
+.comparison-heading {
+  border-top: 1px solid var(--line);
+  margin-top: 32px;
+  padding-top: 26px;
 }
 figure {
   margin: 0;
@@ -312,134 +669,312 @@ figure {
 figcaption {
   color: var(--muted);
   font-size: 13px;
-  margin: 0 0 6px;
+  font-weight: 650;
+  margin: 0 0 7px;
 }
 img {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 6px;
-  box-sizing: border-box;
+  border-radius: 10px;
   display: block;
   height: auto;
   max-width: 100%;
   width: 100%;
 }
-.review {
+.hero-figure {
+  max-width: 820px;
+}
+.slide-comparison {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.slide-comparison .proposed img {
+  border-color: #83add4;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.missing-preview {
+  align-items: center;
+  aspect-ratio: 16 / 9;
+  background: var(--panel);
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  color: var(--muted);
+  display: flex;
+  justify-content: center;
+}
+.review-panel {
+  background: #f2f7fb;
   border-top: 1px solid var(--line);
   display: grid;
-  gap: 10px;
-  padding: 14px 16px 16px;
+  gap: 12px;
+  padding: clamp(20px, 4vw, 32px);
+}
+.review-panel h2 {
+  font-size: 21px;
+  margin: 2px 0;
+}
+.review-panel p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+.review-panel label {
+  font-size: 14px;
+  font-weight: 700;
+}
+.review-panel label span {
+  color: var(--muted);
+  font-weight: 400;
 }
 textarea {
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  box-sizing: border-box;
+  border: 1px solid #bfcad6;
+  border-radius: 8px;
   font: inherit;
-  min-height: 74px;
-  padding: 8px;
+  min-height: 96px;
+  padding: 11px 12px;
+  resize: vertical;
   width: 100%;
 }
 .actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 button {
-  border: 1px solid var(--line);
-  border-radius: 6px;
+  border: 1px solid transparent;
+  border-radius: 8px;
   cursor: pointer;
   font: inherit;
-  font-weight: 600;
-  padding: 8px 12px;
+  font-weight: 700;
+  min-height: 48px;
+  padding: 10px 14px;
 }
 button[value="approve"] {
-  background: #e8f5ee;
-  border-color: #9fd5b9;
-  color: var(--ok);
+  background: var(--ok);
+  color: #fff;
 }
 button[value="reject"] {
-  background: #faecec;
-  border-color: #ebb2b2;
+  background: var(--paper);
+  border-color: #d9aaa7;
   color: var(--bad);
 }
 button[value="comment"] {
-  background: #eef3fb;
-  border-color: #afc2e4;
+  background: var(--paper);
+  border-color: #a9bfd5;
   color: var(--accent);
 }
-.comment {
-  background: #fffdf4;
-  border: 1px solid #eadf9f;
-  border-radius: 6px;
-  font-size: 14px;
-  margin: 0 16px 14px;
-  padding: 10px;
+:focus-visible {
+  outline: 3px solid #6eb3f2;
+  outline-offset: 2px;
 }
-@media (max-width: 900px) {
-  .images { grid-template-columns: 1fr; }
-  .candidate-header { grid-template-columns: 1fr; }
+@media (max-width: 720px) {
+  .summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .site-header {
+    padding-bottom: 18px;
+    padding-top: 18px;
+  }
+  .page {
+    padding-top: 20px;
+  }
+  .detail-header {
+    grid-template-columns: 1fr;
+  }
+  .detail-header .status {
+    justify-self: start;
+  }
+  .metadata {
+    grid-template-columns: 1fr;
+  }
+  .slide-comparison {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .review-row {
+    align-items: start;
+    gap: 10px;
+    min-height: 104px;
+    padding: 15px;
+  }
+  .review-row .status {
+    margin-top: 1px;
+  }
+  .row-meta {
+    font-size: 13px;
+  }
+  .target {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
 }
 </style>
 </head>
 <body>
-<header>
-<h1>Professional Practice Image Review</h1>
-<div class="meta">Approve final images, reject unsuitable candidates, or leave comments for the next generation pass.</div>
+<header class="site-header">
+<a class="brand" href="?">IT Professional Practice</a>
+<h1>`)
+	fmt.Fprint(w, h(title))
+	fmt.Fprint(w, `</h1>
+<p>`)
+	fmt.Fprint(w, h(subtitle))
+	fmt.Fprint(w, `</p>
 </header>
-<main>
 `)
+}
 
-	if len(items) == 0 {
-		fmt.Fprint(w, `<p class="empty">No image candidates have been registered yet.</p>`)
-	}
-
-	for _, item := range items {
-		a.renderCandidate(w, item)
-	}
-
+func renderPageEnd(w http.ResponseWriter) {
 	fmt.Fprint(w, `</main></body></html>`)
 }
 
-func (a *app) renderCandidate(w http.ResponseWriter, item candidate) {
-	statusClass := "status-" + strings.ToLower(item.Status)
-	fmt.Fprintf(w, `<section class="candidate" id="%s">`, html.EscapeString(urlFragment(item.ID)))
-	fmt.Fprint(w, `<div class="candidate-header">`)
-	fmt.Fprintf(w, `<div><h2>%s</h2><div class="small">%s</div></div>`, h(item.Brief), h(item.ID))
-	fmt.Fprintf(w, `<div class="status %s">%s</div>`, h(statusClass), h(item.Status))
-	fmt.Fprint(w, `</div>`)
-
-	fmt.Fprint(w, `<div class="details">`)
-	detail(w, "Target", item.TargetPath)
-	detail(w, "Topic", item.TopicPath)
-	detail(w, "Slide", item.SlideRef)
-	detail(w, "Batch", item.BatchID)
-	if item.ReviewedBy.Valid || item.ReviewedAt.Valid {
-		detail(w, "Reviewed", strings.TrimSpace(item.ReviewedBy.String+" "+item.ReviewedAt.String))
-	}
-	fmt.Fprint(w, `</div>`)
-
-	if strings.TrimSpace(item.Prompt) != "" {
-		fmt.Fprintf(w, `<div class="comment"><strong>Prompt/spec:</strong> %s</div>`, h(item.Prompt))
-	}
-	if strings.TrimSpace(item.ReviewComment) != "" {
-		fmt.Fprintf(w, `<div class="comment"><strong>Review comment:</strong> %s</div>`, h(item.ReviewComment))
-	}
-
-	fmt.Fprint(w, `<div class="images">`)
-	imageFigure(w, "Generated image", item.CandidateURL)
-	imageFigure(w, "Current slide", item.CurrentSlideURL)
-	imageFigure(w, "Proposed slide", item.ProposedSlideURL)
-	fmt.Fprint(w, `</div>`)
-
-	fmt.Fprintf(w, `<form class="review" method="post" action="./image-review.cgi#%s">`, html.EscapeString(urlFragment(item.ID)))
-	fmt.Fprintf(w, `<input type="hidden" name="id" value="%s">`, h(item.ID))
-	fmt.Fprintf(w, `<textarea name="comment" placeholder="Comment for a regeneration pass">%s</textarea>`, h(item.ReviewComment))
-	fmt.Fprint(w, `<div class="actions">`)
-	fmt.Fprint(w, `<button type="submit" name="action" value="approve">Approve</button>`)
-	fmt.Fprint(w, `<button type="submit" name="action" value="reject">Reject</button>`)
-	fmt.Fprint(w, `<button type="submit" name="action" value="comment">Comment</button>`)
-	fmt.Fprint(w, `</div></form>`)
+func renderSummary(w http.ResponseWriter, items []candidate) {
+	fmt.Fprint(w, `<section class="summary" aria-label="Review totals">`)
+	summaryItem(w, countFilter(items, "unapproved"), "Unapproved")
+	summaryItem(w, countStatus(items, "approved"), "Approved")
+	summaryItem(w, countStatus(items, "processed"), "Published")
+	summaryItem(w, len(items), "All updates")
 	fmt.Fprint(w, `</section>`)
+}
+
+func summaryItem(w http.ResponseWriter, count int, label string) {
+	fmt.Fprintf(w, `<div class="summary-item"><strong>%d</strong><span>%s</span></div>`, count, h(label))
+}
+
+func renderFilters(w http.ResponseWriter, items []candidate, active string) {
+	filters := []struct {
+		value string
+		label string
+		count int
+	}{
+		{"unapproved", "Unapproved", countFilter(items, "unapproved")},
+		{"approved", "Approved", countStatus(items, "approved")},
+		{"processed", "Published", countStatus(items, "processed")},
+		{"all", "All", len(items)},
+	}
+	fmt.Fprint(w, `<nav class="filters" aria-label="Filter image updates">`)
+	for _, filter := range filters {
+		className := "filter"
+		current := ""
+		if filter.value == active {
+			className += " active"
+			current = ` aria-current="page"`
+		}
+		fmt.Fprintf(w, `<a class="%s" href="?status=%s"%s>%s <span>%d</span></a>`, className, h(filter.value), current, h(filter.label), filter.count)
+	}
+	fmt.Fprint(w, `</nav>`)
+}
+
+func renderIndexItem(w http.ResponseWriter, item candidate, filter string) {
+	fmt.Fprint(w, `<li>`)
+	fmt.Fprintf(w, `<a class="review-row" href="?candidate=%s&amp;from=%s">`, h(url.QueryEscape(item.ID)), h(filter))
+	fmt.Fprint(w, `<div>`)
+	fmt.Fprintf(w, `<h3>%s</h3>`, h(item.Brief))
+	fmt.Fprintf(w, `<div class="row-meta">%s · %s</div>`, h(item.BatchID), h(valueOrDash(item.SlideRef)))
+	fmt.Fprintf(w, `<div class="target">%s</div>`, h(item.TargetPath))
+	fmt.Fprint(w, `</div>`)
+	renderStatus(w, item.Status)
+	fmt.Fprint(w, `</a></li>`)
+}
+
+func renderStatus(w http.ResponseWriter, status string) {
+	fmt.Fprintf(w, `<span class="status status-%s">%s</span>`, h(status), h(statusLabel(status)))
+}
+
+func statusLabel(status string) string {
+	switch strings.ToLower(strings.TrimSpace(status)) {
+	case "pending":
+		return "Awaiting review"
+	case "approved":
+		return "Approved"
+	case "rejected":
+		return "Rejected"
+	case "commented":
+		return "Commented"
+	case "processed":
+		return "Published"
+	default:
+		return status
+	}
+}
+
+func normaliseFilter(filter string) string {
+	switch strings.ToLower(strings.TrimSpace(filter)) {
+	case "approved":
+		return "approved"
+	case "processed":
+		return "processed"
+	case "all":
+		return "all"
+	default:
+		return "unapproved"
+	}
+}
+
+func filterLabel(filter string) string {
+	switch filter {
+	case "approved":
+		return "Approved"
+	case "processed":
+		return "Published"
+	case "all":
+		return "All updates"
+	default:
+		return "Unapproved"
+	}
+}
+
+func filterCandidates(items []candidate, filter string) []candidate {
+	if filter == "all" {
+		return items
+	}
+	filtered := make([]candidate, 0, len(items))
+	for _, item := range items {
+		if filter == "unapproved" {
+			if item.Status != "approved" && item.Status != "processed" {
+				filtered = append(filtered, item)
+			}
+			continue
+		}
+		if item.Status == filter {
+			filtered = append(filtered, item)
+		}
+	}
+	return filtered
+}
+
+func countFilter(items []candidate, filter string) int {
+	return len(filterCandidates(items, filter))
+}
+
+func countStatus(items []candidate, status string) int {
+	count := 0
+	for _, item := range items {
+		if item.Status == status {
+			count++
+		}
+	}
+	return count
+}
+
+func plural(count int, singular string, plural string) string {
+	if count == 1 {
+		return singular
+	}
+	return plural
+}
+
+func valueOrDash(value string) string {
+	if strings.TrimSpace(value) == "" {
+		return "-"
+	}
+	return value
 }
 
 func (a *app) loadCandidates() ([]candidate, error) {
@@ -496,19 +1031,61 @@ func (a *app) loadCandidates() ([]candidate, error) {
 	return items, rows.Err()
 }
 
-func detail(w http.ResponseWriter, label string, value string) {
-	if strings.TrimSpace(value) == "" {
-		value = "-"
+func (a *app) loadCandidate(id string) (candidate, bool, error) {
+	var item candidate
+	err := a.db.QueryRow(`
+		SELECT id, batch_id, target_path, topic_path, slide_ref, brief, prompt,
+		       candidate_url, current_slide_url, proposed_slide_url, candidate_rel_path,
+		       status, review_comment, reviewed_by, reviewed_at, processed_at, requeued_at,
+		       created_at, updated_at
+		FROM candidates
+		WHERE id = ?`,
+		id,
+	).Scan(
+		&item.ID,
+		&item.BatchID,
+		&item.TargetPath,
+		&item.TopicPath,
+		&item.SlideRef,
+		&item.Brief,
+		&item.Prompt,
+		&item.CandidateURL,
+		&item.CurrentSlideURL,
+		&item.ProposedSlideURL,
+		&item.CandidateRelPath,
+		&item.Status,
+		&item.ReviewComment,
+		&item.ReviewedBy,
+		&item.ReviewedAt,
+		&item.ProcessedAt,
+		&item.RequeuedAt,
+		&item.CreatedAt,
+		&item.UpdatedAt,
+	)
+	if err == sql.ErrNoRows {
+		return candidate{}, false, nil
 	}
-	fmt.Fprintf(w, `<div class="detail"><strong>%s</strong>%s</div>`, h(label), h(value))
+	if err != nil {
+		return candidate{}, false, err
+	}
+	return item, true, nil
 }
 
-func imageFigure(w http.ResponseWriter, label string, src string) {
+func metadata(w http.ResponseWriter, label string, value string) {
+	fmt.Fprintf(w, `<div><dt>%s</dt><dd>%s</dd></div>`, h(label), h(valueOrDash(value)))
+}
+
+func imageFigure(w http.ResponseWriter, label string, src string, className string) {
+	figureClass := ""
+	if strings.TrimSpace(className) != "" {
+		figureClass = fmt.Sprintf(` class="%s"`, h(className))
+	}
+	fmt.Fprintf(w, `<figure%s><figcaption>%s</figcaption>`, figureClass, h(label))
 	if strings.TrimSpace(src) == "" {
-		fmt.Fprintf(w, `<figure><figcaption>%s</figcaption><div class="empty">Missing preview</div></figure>`, h(label))
+		fmt.Fprint(w, `<div class="missing-preview">Preview unavailable</div></figure>`)
 		return
 	}
-	fmt.Fprintf(w, `<figure><figcaption>%s</figcaption><img src="%s" alt="%s"></figure>`, h(label), h(src), h(label))
+	fmt.Fprintf(w, `<img src="%s" alt="%s" loading="lazy"></figure>`, h(src), h(label))
 }
 
 func remoteUser() string {
@@ -521,17 +1098,6 @@ func remoteUser() string {
 
 func h(value string) string {
 	return html.EscapeString(value)
-}
-
-func urlFragment(value string) string {
-	replacer := strings.NewReplacer(
-		" ", "-",
-		"/", "-",
-		".", "-",
-		"_", "-",
-		":", "-",
-	)
-	return replacer.Replace(value)
 }
 
 const schemaSQL = `
