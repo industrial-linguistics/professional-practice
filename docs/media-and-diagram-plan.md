@@ -1,6 +1,6 @@
 # Media and Diagram Plan
 
-Last checked: 2026-07-27.
+Last checked: 2026-08-03.
 
 ## Current media state
 

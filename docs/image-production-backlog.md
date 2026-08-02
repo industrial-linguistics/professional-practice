@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-07-27.
+Last checked: 2026-08-03.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -43,7 +43,7 @@ These are the best first candidates because they either support early course con
 | --- | --- | --- | --- | --- | --- |
 | 1 | superseded-html | `content/part-01/incident-vs-request/images/incident-request-decision.png` | diagram | Incident/request/problem/change decision tree. | Implemented as HTML decision guide on slide 4 (2026-07-06). |
 | 1 | superseded-html | `content/part-01/escalation-tiers/images/support-tier-swimlane.png` | diagram | L1/L2/L3 support handoff swimlane. | Implemented as HTML lane diagram on slide 4 (2026-07-06). |
-| 1 | candidate-generated | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | 2026-07-20 deterministic HTML/SVG candidate pending review; supports an aligned topic with generated audio. |
+| 1 | candidate-generated | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | 2026-08-03 deterministic rework pending review; replaces the rejected abstract subtitle and footer with direct operational labels. |
 | 1 | candidate-generated | `content/part-01/servicenow-visual-guide/images/servicenow-ticket-lifecycle.png` | mockup | Clean ServiceNow-style ticket lifecycle mockup. | 2026-07-27 fictional ITSM lifecycle candidate pending review; shows the SLA pause, resolution/closure handoff and attributed activity log without copying a live product UI. |
 | 1 | accepted | `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png` | diagram | Contract SLA, internal OLA and operational KPI stack. | Approved 2026-07-06; referenced from slide 2. |
 | 1 | candidate-generated | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | 2026-07-13 HTML/SVG rework candidate pending review; distinct owner-metadata link and fitted labels address the 2026-07-06 comments. |
@@ -52,7 +52,7 @@ These are the best first candidates because they either support early course con
 | 1 | superseded-html | `content/part-03/cicd-pipeline-design/images/cicd-flow.png` | diagram | Commit, build, test, package, deploy, observe, rollback. | Implemented as HTML flow on slide 4 (2026-07-06). |
 | 1 | candidate-generated | `content/part-03/github-actions-workflows/images/workflow-dag.png` | diagram | GitHub Actions jobs, matrix, artifacts and approval gate. | 2026-07-27 deterministic HTML/SVG candidate pending review; distinguishes clean matrix runners, the promoted artifact, environment ordering and the production gate. |
 | 1 | superseded-html | `content/part-04/post-mortem-agenda/images/review-agenda-timeline.png` | diagram | Post-incident review timeline. | Implemented as HTML timeline on slide 2 (2026-07-06). |
-| 1 | ready | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | diagram | Five whys versus fishbone comparison. | Needs compact labels. |
+| 1 | candidate-generated | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | diagram | Five whys versus fishbone comparison. | 2026-08-03 deterministic HTML/SVG candidate pending review; uses the topic's website-outage chain and keeps evidence sources separate from causes. |
 | 1 | ready | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | diagram | Vendor lifecycle funnel with IT, finance, legal and MSP swimlanes. | Strong commercial asset. |
 | 1 | ready | `content/part-05/salesforce-opportunity-walkthrough/images/salesforce-opportunity-map.png` | mockup | Salesforce-style object/process map. | Avoid copying Salesforce UI too closely. |
 | 1 | ready | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | diagram | Anatomy of SLA clause: uptime, exclusions, credits, reporting, exit. | Topic currently lacks narratives. |
@@ -63,7 +63,7 @@ These are the best first candidates because they either support early course con
 | 1 | ready | `content/part-07/maori-case-study/images/te-hiku-data-governance-map.png` | diagram | Community control, consent, vendors, storage and audit loops. | Needs cultural review sensitivity. |
 | 2 | backlog | `content/part-02/continual-improvement/images/pdca-csi-loop.png` | diagram | PDCA/continual-service-improvement loop. | Lower priority because existing value-chain image covers adjacent idea. |
 | 2 | superseded-html | `content/part-03/sre-error-budgets/images/error-budget-burn.png` | diagram | Error-budget burn chart linked to release freeze decision. | Implemented as inline SVG on slide 4 (2026-07-06). |
-| 2 | ready | `content/part-03/trunk-vs-feature-branching/images/branching-comparison.png` | diagram | Trunk versus feature branch integration delay. | Supports validated topic. |
+| 2 | candidate-generated | `content/part-03/trunk-vs-feature-branching/images/branching-comparison.png` | diagram | Trunk versus feature branch integration delay. | 2026-08-03 deterministic HTML/SVG candidate pending review; compares daily integration with a ten-day branch on one time scale. |
 | 2 | backlog | `content/part-04/alert-correlation/images/alert-correlation-timeline.png` | diagram | Alert correlation timeline. | Needs topic slide alignment check. |
 | 2 | backlog | `content/part-04/communicating-outcomes/images/stakeholder-update-template.png` | mockup | Outcome report sections for executives, customers and technical teams. | Could become worksheet. |
 | 2 | backlog | `content/part-05/multi-stakeholder-buying-committees/images/buying-committee-map.png` | diagram | Buying committee map. | Hold until Part 5 narrative alignment improves. |
@@ -81,6 +81,15 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-08-03 review sweep
+
+Selected one live reviewer-requested rework and two ready items. All three support aligned topics with generated audio and use deterministic HTML/SVG sources rather than generative-image quota:
+
+- `2026-08-03-p1-incident-timeline-rework-1` responds to the merah rejection of the July 20 candidate by replacing its abstract subtitle and footer with statements that name who sets timing, what each role does and what the incident record contains.
+- `2026-08-03-five-whys-fishbone` compares an evidence-backed Five Whys chain from the topic's website-outage example with a branching contributor map, without drawing connectors through labels.
+- `2026-08-03-branching-comparison` distinguishes short review branches from a ten-day feature branch while main continues to change, making integration delay and merge size visible on a shared scale.
+- The repository rework queue had not yet received the P1 rejection from the daily processor, so this run used the current protected merah database before registering the new batch. The July 13 reworks and the July 20 startup architecture remain pending.
 
 ### 2026-07-27 review sweep
 
