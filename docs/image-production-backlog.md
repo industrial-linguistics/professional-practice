@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-08-03.
+Last checked: 2026-08-10.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -53,11 +53,11 @@ These are the best first candidates because they either support early course con
 | 1 | candidate-generated | `content/part-03/github-actions-workflows/images/workflow-dag.png` | diagram | GitHub Actions jobs, matrix, artifacts and approval gate. | 2026-07-27 deterministic HTML/SVG candidate pending review; distinguishes clean matrix runners, the promoted artifact, environment ordering and the production gate. |
 | 1 | superseded-html | `content/part-04/post-mortem-agenda/images/review-agenda-timeline.png` | diagram | Post-incident review timeline. | Implemented as HTML timeline on slide 2 (2026-07-06). |
 | 1 | candidate-generated | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | diagram | Five whys versus fishbone comparison. | 2026-08-03 deterministic HTML/SVG candidate pending review; uses the topic's website-outage chain and keeps evidence sources separate from causes. |
-| 1 | ready | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | diagram | Vendor lifecycle funnel with IT, finance, legal and MSP swimlanes. | Strong commercial asset. |
+| 1 | candidate-generated | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | diagram | Vendor lifecycle funnel with IT, finance, legal and MSP swimlanes. | 2026-08-10 deterministic HTML/SVG candidate pending review; names the owner action and output at every stage and makes the contract-to-operations handover explicit. |
 | 1 | ready | `content/part-05/salesforce-opportunity-walkthrough/images/salesforce-opportunity-map.png` | mockup | Salesforce-style object/process map. | Avoid copying Salesforce UI too closely. |
 | 1 | ready | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | diagram | Anatomy of SLA clause: uptime, exclusions, credits, reporting, exit. | Topic currently lacks narratives. |
-| 1 | ready | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Day-zero startup IT architecture. | First batch. |
-| 1 | ready | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | diagram | Low-cost controls grid for MFA, password manager, MDM-lite, backups and logging. | Good for worksheet reuse. |
+| 1 | candidate-generated | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Day-zero startup IT architecture. | 2026-07-20 deterministic HTML/SVG candidate pending review; maps identity, communication, devices, recovery and support ownership. |
+| 1 | candidate-generated | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | diagram | Low-cost controls grid for MFA, password manager, MDM-lite, backups and logging. | 2026-08-10 deterministic HTML/SVG candidate pending review; gives each of six controls one concrete action and one evidence check. |
 | 1 | ready | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | diagram | Pre-seed, Series A and Series B stack cost step-up chart. | Use illustrative, labelled ranges. |
 | 1 | candidate-generated | `content/part-06/capstone-remediation-roadmap/images/roadmap-30-60-90.png` | diagram | 30/60/90 remediation roadmap. | 2026-07-27 deterministic HTML/SVG candidate pending review; pairs each action with an owner, evidence of done and an executive review gate. |
 | 1 | ready | `content/part-07/maori-case-study/images/te-hiku-data-governance-map.png` | diagram | Community control, consent, vendors, storage and audit loops. | Needs cultural review sensitivity. |
@@ -69,7 +69,7 @@ These are the best first candidates because they either support early course con
 | 2 | backlog | `content/part-05/multi-stakeholder-buying-committees/images/buying-committee-map.png` | diagram | Buying committee map. | Hold until Part 5 narrative alignment improves. |
 | 2 | backlog | `content/part-05/lead-scoring-opportunity-progression-renewal-alerts/images/lead-renewal-timeline.png` | diagram | CRM lifecycle timeline. | Hold until Part 5 narrative alignment improves. |
 | 2 | backlog | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | mockup | POC scorecard. | Potential worksheet asset. |
-| 2 | ready | `content/part-06/remote-first-reality-check/images/remote-onboarding-flow.png` | diagram | Remote onboarding/offboarding flow. | Strong operations asset. |
+| 2 | candidate-generated | `content/part-06/remote-first-reality-check/images/remote-onboarding-flow.png` | diagram | Remote onboarding/offboarding flow. | 2026-08-10 deterministic HTML/SVG candidate pending review; uses the HR or contract record to drive identity, device and payroll work for both joiners and leavers. |
 | 2 | accepted | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | diagram | Weekly/monthly/quarterly vendor cadence and scorecard. | Approved 2026-07-06; referenced from slide 7. |
 | 2 | candidate-generated | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | diagram | Evidence map for policy, logs, access reviews, backups and board reporting. | 2026-07-13 HTML/SVG rework candidate pending review; contained labels and separated badge/caption address the 2026-07-06 comments. |
 | 2 | ready | `content/part-06/capstone-red-team-exercise/images/startup-maturity-radar.png` | diagram | Startup maturity radar. | Good visual for group exercise. |
@@ -81,6 +81,15 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-08-10 review sweep
+
+No new reviewer-requested rework was ready: the local and protected merah review records matched before registration, and all 2026-08-03 candidates remained pending. Selected three ready operational diagrams whose labels and evidence checks benefit from deterministic HTML/SVG rather than generative-image quota:
+
+- `2026-08-10-vendor-funnel-swimlanes` maps the buyer-side funnel across business, IT and security, finance and legal, and vendor or MSP lanes, ending each stage with an output and spelling out the handover into operations.
+- `2026-08-10-security-baseline-grid` groups six low-cost controls into a practical order and pairs every control with an action and evidence that it works, while stating that the grid is a minimum baseline rather than a complete security program.
+- `2026-08-10-remote-onboarding-flow` uses one source record to trigger parallel identity, device and payroll work for joiners and leavers, then closes each path with evidence and a follow-up access check.
+- These topics do not yet have local audio; they were chosen because the current slides are especially text-heavy and the diagrams are reusable in course and worksheet contexts. Existing audio-backed ready items have already been covered by earlier review batches.
 
 ### 2026-08-03 review sweep
 
