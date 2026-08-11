@@ -2,6 +2,21 @@
 
 Rejected and commented image candidates are appended here by the raksasa review processor.
 
+## 2026-08-11-composition-follow-ups
+
+- Requeued: 2026-08-11T13:00:00+00:00
+- Status: reviewer-directed source follow-up
+- Reviewer: Greg
+- Comment: Revisit three approved compositions without discarding either the accepted visual content or useful source-slide content.
+
+Required follow-ups:
+
+1. `2026-08-10-vendor-funnel-swimlanes`: the buyer-side funnel and the MSP handover gate are both useful but are distinct learning jobs. Propose two adjacent slides, one for the buyer-stage funnel with owned outputs and one for the MSP handover gate.
+2. `2026-08-03-five-whys-fishbone`: the proposed image slide lost useful information from the slide it replaced. Preserve the original information and use the comparison visual as a supplement, normally on a second slide, unless a clearer single-slide composition retains all useful content.
+3. `2026-08-10-security-baseline-grid`: assess a two-slide treatment: a lean security-baseline overview followed by the action-and-evidence grid. Preserve key visible information or confirm that any removed detail is adequately covered by the corresponding narratives.
+
+For all three, apply `docs/image-review-quality-gates.md`, update narratives when learner-visible slide count or content allocation changes, and render the complete affected topic before committing.
+
 ## 2026-06-22-dora-current-target-radar
 
 - Requeued: 2026-07-06T12:46:25+00:00
@@ -139,4 +154,3 @@ Original prompt/spec:
 ```text
 Diagram spec: create a 16:9 evidence map for startup investor diligence with a central data room linked to policies, control evidence, customer or vendor proof, and governance artifacts. Make it feel executive-ready, use no brand logos, and keep labels readable enough for classroom projection.
 ```
-
