@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -139,7 +140,7 @@ func TestDetailShowsOneCandidateAndResponsiveReviewControls(t *testing.T) {
 		`name="action" value="comment"`,
 		`name="from" value="unapproved"`,
 		`href="?status=unapproved"`,
-		"@media (max-width: 720px)",
+		`rel="stylesheet" href="/image-review/review.css"`,
 	} {
 		if !strings.Contains(body, want) {
 			t.Errorf("detail does not contain %q", want)
@@ -150,6 +151,34 @@ func TestDetailShowsOneCandidateAndResponsiveReviewControls(t *testing.T) {
 	}
 	if strings.Contains(body, "Approved service map") {
 		t.Error("detail includes another candidate")
+	}
+}
+
+func TestStylesheetIsExternalAndResponsive(t *testing.T) {
+	server := httptest.NewServer(testApp(t))
+	defer server.Close()
+
+	response, err := http.Get(server.URL + "/")
+	if err != nil {
+		t.Fatalf("get index: %v", err)
+	}
+	body := responseBody(t, response)
+	if strings.Contains(body, "<style>") {
+		t.Error("index contains inline CSS that is blocked by the live Content Security Policy")
+	}
+	if !strings.Contains(body, `rel="stylesheet" href="/image-review/review.css"`) {
+		t.Error("index does not link the protected external stylesheet")
+	}
+
+	cssPath := filepath.Join("..", "..", "image-review", "review.css")
+	css, err := os.ReadFile(cssPath)
+	if err != nil {
+		t.Fatalf("read %s: %v", cssPath, err)
+	}
+	for _, want := range []string{".site-header", ".review-list", "@media (max-width: 720px)"} {
+		if !strings.Contains(string(css), want) {
+			t.Errorf("stylesheet does not contain %q", want)
+		}
 	}
 }
 
