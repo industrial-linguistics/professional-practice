@@ -1,0 +1,37 @@
+name: Deploy image-review CGI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "cmd/image-review-cgi/**"
+      - "scripts/deploy_image_review_cgi.sh"
+      - "go.mod"
+      - "go.sum"
+      - ".github/workflows/deploy-image-review-cgi.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Configure SSH
+        env:
+          DEPLOYMENT_SSH_KEY_VALUE: ${{ secrets.DEPLOYMENT_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOYMENT_SSH_KEY_VALUE"
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$DEPLOYMENT_SSH_KEY_VALUE" > "$RUNNER_TEMP/merah-deploy-key"
+          chmod 600 "$RUNNER_TEMP/merah-deploy-key"
+          ssh-keyscan -H merah.cassia.ifost.org.au >> "$HOME/.ssh/known_hosts"
+          printf 'DEPLOYMENT_SSH_KEY=%s\n' "$RUNNER_TEMP/merah-deploy-key" >> "$GITHUB_ENV"
+
+      - name: Build and deploy on merah
+        run: sh scripts/deploy_image_review_cgi.sh
