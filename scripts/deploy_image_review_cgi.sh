@@ -9,20 +9,21 @@ REMOTE_GO="${REMOTE_GO:-/usr/local/go1.26.5/bin/go}"
 SSH_KEY="${IMAGE_REVIEW_SSH_KEY:-${DEPLOYMENT_SSH_KEY:-}}"
 
 if [ -n "$SSH_KEY" ]; then
-  ssh -i "$SSH_KEY" -o BatchMode=yes "$REMOTE" "mkdir -p '$REMOTE_BUILD/cmd/image-review-cgi'"
-  rsync -a --delete -e "ssh -i $SSH_KEY -o BatchMode=yes" \
+  ssh -i "$SSH_KEY" -o BatchMode=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=20 "$REMOTE" "mkdir -p '$REMOTE_BUILD/cmd/image-review-cgi'"
+  rsync -a --delete -e "ssh -i $SSH_KEY -o BatchMode=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=20" \
     "$ROOT/cmd/image-review-cgi/" \
     "$REMOTE:$REMOTE_BUILD/cmd/image-review-cgi/"
-  rsync -a -e "ssh -i $SSH_KEY -o BatchMode=yes" \
+  rsync -a -e "ssh -i $SSH_KEY -o BatchMode=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=20" \
     "$ROOT/go.mod" "$ROOT/go.sum" "$REMOTE:$REMOTE_BUILD/"
-  SSH_ARGS="-i $SSH_KEY -o BatchMode=yes"
+  SSH_ARGS="-i $SSH_KEY -o BatchMode=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=20"
 else
-  ssh "$REMOTE" "mkdir -p '$REMOTE_BUILD/cmd/image-review-cgi'"
-  rsync -a --delete \
+  ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=20 "$REMOTE" "mkdir -p '$REMOTE_BUILD/cmd/image-review-cgi'"
+  rsync -a --delete -e "ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=20" \
     "$ROOT/cmd/image-review-cgi/" \
     "$REMOTE:$REMOTE_BUILD/cmd/image-review-cgi/"
-  rsync -a "$ROOT/go.mod" "$ROOT/go.sum" "$REMOTE:$REMOTE_BUILD/"
-  SSH_ARGS=""
+  rsync -a -e "ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=20" \
+    "$ROOT/go.mod" "$ROOT/go.sum" "$REMOTE:$REMOTE_BUILD/"
+  SSH_ARGS="-o ServerAliveInterval=30 -o ServerAliveCountMax=20"
 fi
 
 # Intentional word splitting: SSH_ARGS is either empty or a fixed set of ssh options.
