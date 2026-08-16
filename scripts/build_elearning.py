@@ -1110,6 +1110,218 @@ main {
   background: var(--blue);
   box-shadow: 0 0 0 3px var(--soft);
 }
+/* Stage gates: compact semantic cards with an owner, duration and output. */
+.slide .diagram-stage-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .55em;
+}
+.slide .diagram-stage-grid .dg-stage {
+  display: grid;
+  align-content: start;
+  gap: .42em;
+  min-width: 0;
+  padding: .75em;
+  background: white;
+  border: 2px solid var(--line);
+  border-top: .42em solid var(--blue);
+  border-radius: 12px;
+}
+.slide .diagram-stage-grid .dg-stage:nth-child(2n) {
+  border-top-color: var(--green);
+}
+.slide .diagram-stage-grid .dg-stage:nth-child(3) {
+  border-top-color: var(--gold);
+}
+.slide .diagram-stage-grid .dg-number,
+.slide .diagram-controls .dg-number {
+  display: inline-grid;
+  place-items: center;
+  width: 2em;
+  height: 2em;
+  color: white;
+  background: var(--slate);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: .78em;
+}
+.slide .diagram-stage-grid .dg-time {
+  color: var(--muted);
+  font-weight: 800;
+  font-size: .78em;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.slide .diagram-stage-grid .dg-owner {
+  min-height: 3.2em;
+  color: var(--ink);
+  font-size: .86em;
+}
+.slide .diagram-stage-grid .dg-output {
+  margin-top: auto;
+  padding-top: .45em;
+  border-top: 1px solid var(--line);
+  color: var(--green);
+  font-weight: 800;
+  font-size: .82em;
+}
+/* Operational handover gate: every condition must be evidenced. */
+.slide .diagram-gate {
+  display: grid;
+  gap: .65em;
+}
+.slide .diagram-gate .dg-gate-lead {
+  padding: .65em .9em;
+  color: white;
+  background: var(--slate);
+  border-radius: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+.slide .diagram-gate .dg-check-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .55em;
+}
+.slide .diagram-gate .dg-card {
+  min-width: 0;
+  border-color: var(--line);
+}
+.slide .diagram-gate .dg-risk {
+  padding: .55em .8em;
+  color: #8a3b38;
+  background: #fdf1f0;
+  border: 2px solid #c0504d;
+  border-radius: 10px;
+  font-weight: 800;
+  text-align: center;
+}
+/* RCA comparison: one evidence chain versus several contributor categories. */
+.slide .diagram-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75em;
+}
+.slide .diagram-compare .dg-panel {
+  min-width: 0;
+  padding: .75em;
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+}
+.slide .diagram-compare .dg-panel-title {
+  display: flex;
+  justify-content: space-between;
+  gap: .5em;
+  margin-bottom: .55em;
+  font-weight: 800;
+}
+.slide .diagram-compare .dg-mode {
+  align-self: center;
+  padding: .18em .55em;
+  color: white;
+  background: var(--blue);
+  border-radius: 999px;
+  font-size: .68em;
+  white-space: nowrap;
+}
+.slide .diagram-chain {
+  display: grid;
+  gap: .28em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: why-step;
+}
+.slide .diagram-chain li {
+  position: relative;
+  margin: 0;
+  padding: .42em .55em .42em 2.25em;
+  background: var(--soft);
+  border-radius: 8px;
+  font-size: .8em;
+}
+.slide .diagram-chain li::before {
+  counter-increment: why-step;
+  content: counter(why-step);
+  position: absolute;
+  left: .55em;
+  top: .42em;
+  display: grid;
+  place-items: center;
+  width: 1.35em;
+  height: 1.35em;
+  color: white;
+  background: var(--blue);
+  border-radius: 999px;
+  font-weight: 800;
+}
+.slide .diagram-chain .dg-evidence {
+  display: block;
+  color: var(--muted);
+  font-size: .82em;
+}
+.slide .diagram-contributors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .45em;
+}
+.slide .diagram-contributors .dg-card {
+  border-color: var(--green);
+  font-size: .82em;
+}
+.slide .diagram-contributors .dg-outcome {
+  grid-column: 1 / -1;
+  padding: .5em .7em;
+  color: #8a3b38;
+  background: #fdf1f0;
+  border: 2px solid #c0504d;
+  border-radius: 10px;
+  font-weight: 800;
+  text-align: center;
+}
+/* Action/evidence grid: six lean controls without rasterised text. */
+.slide .diagram-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .55em;
+}
+.slide .diagram-controls .dg-control {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .35em .55em;
+  min-width: 0;
+  padding: .65em;
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+}
+.slide .diagram-controls .dg-control:nth-child(-n+2) {
+  border-color: var(--blue);
+}
+.slide .diagram-controls .dg-control:nth-child(n+3):nth-child(-n+4) {
+  border-color: var(--green);
+}
+.slide .diagram-controls .dg-control:nth-child(n+5) {
+  border-color: var(--gold);
+}
+.slide .diagram-controls .dg-title {
+  align-self: center;
+  font-size: .9em;
+}
+.slide .diagram-controls .dg-action,
+.slide .diagram-controls .dg-proof {
+  grid-column: 1 / -1;
+  padding-top: .25em;
+  font-size: .77em;
+}
+.slide .diagram-controls .dg-proof {
+  padding: .4em .55em;
+  color: var(--green);
+  background: #e7f4ef;
+  border-radius: 8px;
+  font-weight: 800;
+}
 .slide-copy {
   padding: 22px;
 }
@@ -1241,6 +1453,15 @@ summary {
   }
   .slide {
     min-height: 380px;
+  }
+  .slide .diagram-stage-grid,
+  .slide .diagram-gate .dg-check-grid,
+  .slide .diagram-compare,
+  .slide .diagram-controls {
+    grid-template-columns: 1fr;
+  }
+  .slide .diagram-stage-grid .dg-owner {
+    min-height: 0;
   }
 }
 """

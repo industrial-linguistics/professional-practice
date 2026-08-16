@@ -64,12 +64,31 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="6" data-kind="content" data-title="Key takeaway">
-<h2>Key takeaway</h2>
-<ul>
-<li>Structured analysis methods reveal true causes so improvements target the real problem.
-</li>
-<li>They support team learning and lasting improvements.
-</li>
-</ul>
+<section class="slide" data-slide="6" data-kind="content" data-title="One chain or several contributors?">
+<h2>One chain or several contributors?</h2>
+<div class="diagram">
+<div class="diagram-compare">
+<div class="dg-panel">
+<div class="dg-panel-title"><span>Five Whys</span><span class="dg-mode">One evidence chain</span></div>
+<ol class="diagram-chain">
+<li>Website offline<span class="dg-evidence">Monitoring alert</span></li>
+<li>Database unreachable<span class="dg-evidence">Connection logs</span></li>
+<li>Network setting changed<span class="dg-evidence">Configuration diff</span></li>
+<li>Deploy skipped peer review<span class="dg-evidence">Commit history</span></li>
+<li>Pipeline lacks approval gate<span class="dg-evidence">Workflow file</span></li>
+</ol>
+</div>
+<div class="dg-panel">
+<div class="dg-panel-title"><span>Fishbone</span><span class="dg-mode">Several contributors</span></div>
+<div class="diagram-contributors">
+<div class="dg-card"><span class="dg-title">People</span><span class="dg-note">On-call handover missed context</span></div>
+<div class="dg-card"><span class="dg-title">Process</span><span class="dg-note">Change review was not required</span></div>
+<div class="dg-card"><span class="dg-title">Technology</span><span class="dg-note">Network configuration drift</span></div>
+<div class="dg-card"><span class="dg-title">Environment</span><span class="dg-note">Monitoring missed a dependency</span></div>
+<div class="dg-outcome">Shared outcome: service unavailable</div>
+</div>
+</div>
+</div>
+<div class="dg-caption">Combine the tools when useful. Structured analysis focuses improvement on the real problem and supports team learning.</div>
+</div>
 </section>

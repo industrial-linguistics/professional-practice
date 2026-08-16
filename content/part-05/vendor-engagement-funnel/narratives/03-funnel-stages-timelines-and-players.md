@@ -1,5 +1,7 @@
-Speaker 1: Picture this—finance wants a new expense system by next month.
-Speaker 2: Without a funnel, IT gets an email saying "We signed with Vendor X, they're calling you tomorrow."
-Speaker 1: And suddenly the "simple" app has to talk to payroll, reporting and that mystery server under someone's desk.
-Speaker 2: A structured funnel would have asked the right questions, pulled in finance, legal and end users, and maybe spotted that Microsoft 365 already had the feature.
-Speaker 1: Plus it flags when an MSP should own rollout so half the team doesn't think the cloud is weather.
+Speaker 1: The buyer-side funnel has five gates. Need takes days: business and IT name the pain, intended outcome and owner. Qualification takes weeks while users test fit and finance checks the budget.
+
+Speaker 2: Due diligence usually needs another one to three weeks. IT, security and legal test the data model, service implications and contract terms before anyone signs.
+
+Speaker 1: Contracting and onboarding can then take several weeks as procurement and the delivery lead assign responsibilities and prepare runbooks.
+
+Speaker 2: Operation is ongoing. Account and service owners watch service levels and satisfaction, then decide whether to renew or replace. SaaS vendors, consultants and MSPs pass the same gates.

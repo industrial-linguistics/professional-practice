@@ -1,12 +1,12 @@
 # Media and Diagram Plan
 
-Last checked: 2026-08-10.
+Last checked: 2026-08-17.
 
 ## Current media state
 
 - Slide decks found: 81.
-- Slide count across decks: 715.
-- Narrative files found: 715.
+- Slide count across decks: 716.
+- Narrative files found: 716.
 - Current generated media: 30 topics have a local `audio.mp3` or `audio.wav`; topic-level `audio.wav` files are generated outside source control as audio masters, and the e-learning build transcodes those masters to `audio.mp3` for browser delivery. One optional MP4 is present; MP4s are not part of the default learner-facing course surface.
 - Source images currently committed:
   - `content/part-01/value-chain/images/service-value-chain-continual-improvement.png`

@@ -5,7 +5,7 @@ Rejected and commented image candidates are appended here by the raksasa review 
 ## 2026-08-11-composition-follow-ups
 
 - Requeued: 2026-08-11T13:00:00+00:00
-- Status: reviewer-directed source follow-up
+- Status: completed as source-level HTML/CSS rework on 2026-08-17
 - Reviewer: Greg
 - Comment: Revisit three approved compositions without discarding either the accepted visual content or useful source-slide content.
 
@@ -16,6 +16,14 @@ Required follow-ups:
 3. `2026-08-10-security-baseline-grid`: assess a two-slide treatment: a lean security-baseline overview followed by the action-and-evidence grid. Preserve key visible information or confirm that any removed detail is adequately covered by the corresponding narratives.
 
 For all three, apply `docs/image-review-quality-gates.md`, update narratives when learner-visible slide count or content allocation changes, and render the complete affected topic before committing.
+
+Completion record:
+
+1. `2026-08-10-vendor-funnel-swimlanes`: slide 3 is now the buyer-stage funnel and slide 4 is the MSP handover gate. Narratives 3–6 were aligned to their actual slides.
+2. `2026-08-03-five-whys-fishbone`: slide 5 retains every original method-selection item; slide 6 carries the comparison and both original takeaway claims.
+3. `2026-08-10-security-baseline-grid`: slide 5 remains the four-anchor overview; new slide 6 carries six action/evidence cards and a matching narrative.
+
+All three use native slide HTML/CSS. The 28 affected slides were rendered at 1920×1080, inspected at 100% and as complete topics, and passed browser-computed text containment, sibling overlap, external-text occlusion, slide-fit and page-overflow checks. The new compositions have no connectors. No image candidate was registered and no asset was installed under `content/**/images/`.
 
 ## 2026-06-22-dora-current-target-radar
 

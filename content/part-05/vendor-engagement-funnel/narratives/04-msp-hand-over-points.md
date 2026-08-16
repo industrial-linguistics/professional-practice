@@ -1,9 +1,7 @@
-Speaker 1: Managed service providers take over day-to-day operations once the sales conversation ends, usually right after the contract is signed.
+Speaker 1: Signing the contract does not complete the handover. Day-to-day work moves only after four conditions are visible.
 
-Speaker 2: During onboarding your own staff document the playbooks, so routine work, backing up an accounting firm's files to AWS, say, can shift across cleanly.
+Speaker 2: First, responsibilities are signed and both the internal service owner and MSP delivery lead remain named. Second, the two teams test usable runbooks, access and escalation paths together.
 
-Speaker 1: Here's the catch that surprises people. The MSP promises to take the pain away, but somebody still has to manage the people managing the pain.
+Speaker 1: Third, a joint transition meeting proves that tickets route correctly. Fourth, the first service review already has a date, measures and an owner.
 
-Speaker 2: If the requirements are half-baked or the communication is vague, tickets bounce between organisations and costs climb.
-
-Speaker 1: Clear transition meetings and genuinely shared runbooks are what keep both sides honest.
+Speaker 2: Routine work, such as managing cloud backups, can move to the MSP. Accountability for requirements and outcomes cannot. Skip the gate and vague requirements become bouncing tickets, billable guesses and rising cost.

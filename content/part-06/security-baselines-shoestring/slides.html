@@ -78,7 +78,22 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="6" data-kind="content" data-title="Identity and access on a lean budget">
+<section class="slide" data-slide="6" data-kind="content" data-title="Controls need evidence, not promises">
+<h2>Controls need evidence, not promises</h2>
+<div class="diagram">
+<div class="diagram-controls">
+<div class="dg-control"><span class="dg-number">1</span><span class="dg-title">Multi-factor authentication</span><span class="dg-action"><strong>Action:</strong> require phishing-resistant MFA for admins, then enrol every staff account.</span><span class="dg-proof">Evidence: coverage report with no admin gaps</span></div>
+<div class="dg-control"><span class="dg-number">2</span><span class="dg-title">Team password manager</span><span class="dg-action"><strong>Action:</strong> move shared credentials and recovery codes out of documents and chat.</span><span class="dg-proof">Evidence: vault membership and sharing audit</span></div>
+<div class="dg-control"><span class="dg-number">3</span><span class="dg-title">Device baseline</span><span class="dg-action"><strong>Action:</strong> enforce encryption, screen lock, updates and remote wipe.</span><span class="dg-proof">Evidence: compliance report and exception list</span></div>
+<div class="dg-control"><span class="dg-number">4</span><span class="dg-title">Recoverable backups</span><span class="dg-action"><strong>Action:</strong> keep separate copies and restore-test critical data.</span><span class="dg-proof">Evidence: restore record with duration</span></div>
+<div class="dg-control"><span class="dg-number">5</span><span class="dg-title">Useful logging</span><span class="dg-action"><strong>Action:</strong> collect identity, device and cloud alerts someone will review.</span><span class="dg-proof">Evidence: weekly review and closed actions</span></div>
+<div class="dg-control"><span class="dg-number">6</span><span class="dg-title">Incident communications</span><span class="dg-action"><strong>Action:</strong> write a two-page guide with roles, contacts and approved messages.</span><span class="dg-proof">Evidence: tabletop record and current contact list</span></div>
+</div>
+<div class="dg-caption">This is a minimum working baseline. Assign an owner and review the evidence as the company changes.</div>
+</div>
+</section>
+
+<section class="slide" data-slide="7" data-kind="content" data-title="Identity and access on a lean budget">
 <h2>Identity and access on a lean budget</h2>
 <ul>
 <li>Use Google Workspace or Entra ID as the identity backbone, enforcing zero-trust defaults like blocking legacy IMAP and requiring device compliance for sensitive apps.
@@ -94,7 +109,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="7" data-kind="content" data-title="Device security without a full IT team">
+<section class="slide" data-slide="8" data-kind="content" data-title="Device security without a full IT team">
 <h2>Device security without a full IT team</h2>
 <ul>
 <li>Adopt lightweight MDM such as Kandji, JumpCloud or Intune Business Premium for &lt;$10 per user; they handle encryption enforcement, firewall, screen-lock timers and lost-device wipes.
@@ -110,7 +125,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="8" data-kind="content" data-title="SaaS and network hygiene (with a wink)">
+<section class="slide" data-slide="9" data-kind="content" data-title="SaaS and network hygiene (with a wink)">
 <h2>SaaS and network hygiene (with a wink)</h2>
 <ul>
 <li>Centralise SaaS discovery using finance exports, browser extensions and SSO logs to expose the "don’t tell mom" shadow IT apps before compliance teams do.
@@ -126,7 +141,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="9" data-kind="content" data-title="Outsourced detection and monitoring options">
+<section class="slide" data-slide="10" data-kind="content" data-title="Outsourced detection and monitoring options">
 <h2>Outsourced detection and monitoring options</h2>
 <ul>
 <li>Virtual SOC subscriptions such as Arctic Wolf, Huntress or Defendify start near $1,000/month for sub-50 seat companies—cheaper than even a part-time analyst.
@@ -142,7 +157,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="10" data-kind="content" data-title="Lightweight telemetry stack (aka digital breadcrumbs)">
+<section class="slide" data-slide="11" data-kind="content" data-title="Lightweight telemetry stack (aka digital breadcrumbs)">
 <h2>Lightweight telemetry stack (aka digital breadcrumbs)</h2>
 <ul>
 <li>Telemetry is your flight recorder: aggregated logs that reconstruct who did what, when, and from where when something smells off.
@@ -158,7 +173,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="11" data-kind="content" data-title="Everyday hygiene culture (keep it human)">
+<section class="slide" data-slide="12" data-kind="content" data-title="Everyday hygiene culture (keep it human)">
 <h2>Everyday hygiene culture (keep it human)</h2>
 <ul>
 <li>Embed the "have you tried turning it off and on again?" meme into operations hours to normalize quick patch restarts instead of procrastination.
@@ -174,7 +189,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="12" data-kind="content" data-title="Incident readiness without big spend">
+<section class="slide" data-slide="13" data-kind="content" data-title="Incident readiness without big spend">
 <h2>Incident readiness without big spend</h2>
 <ul>
 <li>Draft two-page runbooks for ransomware, account takeover and lost devices, mapping decision trees, evidence collection and external counsel contacts.
@@ -190,7 +205,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="13" data-kind="content" data-title="Real-world failure stories (and recoveries)">
+<section class="slide" data-slide="14" data-kind="content" data-title="Real-world failure stories (and recoveries)">
 <h2>Real-world failure stories (and recoveries)</h2>
 <ul>
 <li>Case 1: A Series A fintech lost six months of revenue when ransomware encrypted production and backups stored in the same cloud zone—3-2-1 backups would have cut downtime to hours.
@@ -206,7 +221,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="14" data-kind="content" data-title="30/60/90-day implementation roadmap">
+<section class="slide" data-slide="15" data-kind="content" data-title="30/60/90-day implementation roadmap">
 <h2>30/60/90-day implementation roadmap</h2>
 <ul>
 <li><strong>Day 0–15:</strong> Inventory devices and SaaS apps; roll out password manager and MFA, so when the CFO can’t log in on day 15 the reset takes 30 seconds instead of a 30-minute IT fire drill.
@@ -222,7 +237,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="15" data-kind="content" data-title="Metrics the board will back (with benchmarks)">
+<section class="slide" data-slide="16" data-kind="content" data-title="Metrics the board will back (with benchmarks)">
 <h2>Metrics the board will back (with benchmarks)</h2>
 <ul>
 <li>Track MFA coverage above 95%, device compliance above 90% and mean time to patch critical updates within 24 hours—align these with SOC 2 and cyber insurance requirements.

@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-08-10.
+Last checked: 2026-08-17.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -35,7 +35,7 @@ These are the best first candidates because they either support early course con
 | 1 | superseded-html | `content/part-01/escalation-tiers/images/support-tier-swimlane.png` | diagram | Swimlane for L1 triage, L2 specialist support, L3 engineering/vendor escalation and feedback to knowledge base. | Shows handoffs and closure loop; not a generic org chart. |
 | 1 | superseded-html | `content/part-03/dora-metrics/images/dora-current-target-radar.png` | diagram | Radar or quadrant showing deployment frequency, lead time, change failure rate and MTTR for current vs target state. | Uses directional labels clearly; avoids fake precision; works in greyscale. |
 | 1 | superseded-html | `content/part-04/post-mortem-agenda/images/review-agenda-timeline.png` | diagram | Timeline of alert, acknowledge, restore, review, action ownership and follow-up verification. | Makes blameless review sequence obvious; includes business impact and action tracking. |
-| 1 | candidate-generated | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Startup day-zero map covering domain, DNS, identity, email, chat, docs, devices, backups and support owner. | 2026-07-20 deterministic HTML/SVG candidate pending review; uses Sarah/startup framing and distinguishes dependencies, recovery and ownership. |
+| 1 | backlog | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Startup day-zero map covering domain, DNS, identity, email, chat, docs, devices, backups and support owner. | Rejected 2026-08-11 for widespread text overflow. Reconsider as a source-level semantic split or an automatically routed dependency map after a fresh content inventory. |
 
 ## Backlog
 
@@ -43,21 +43,21 @@ These are the best first candidates because they either support early course con
 | --- | --- | --- | --- | --- | --- |
 | 1 | superseded-html | `content/part-01/incident-vs-request/images/incident-request-decision.png` | diagram | Incident/request/problem/change decision tree. | Implemented as HTML decision guide on slide 4 (2026-07-06). |
 | 1 | superseded-html | `content/part-01/escalation-tiers/images/support-tier-swimlane.png` | diagram | L1/L2/L3 support handoff swimlane. | Implemented as HTML lane diagram on slide 4 (2026-07-06). |
-| 1 | candidate-generated | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | 2026-08-03 deterministic rework pending review; replaces the rejected abstract subtitle and footer with direct operational labels. |
+| 1 | backlog | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | Rework rejected 2026-08-11 because the Communications lead label still escaped its box. Reconsider as native timeline HTML with shorter role labels. |
 | 1 | candidate-generated | `content/part-01/servicenow-visual-guide/images/servicenow-ticket-lifecycle.png` | mockup | Clean ServiceNow-style ticket lifecycle mockup. | 2026-07-27 fictional ITSM lifecycle candidate pending review; shows the SLA pause, resolution/closure handoff and attributed activity log without copying a live product UI. |
 | 1 | accepted | `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png` | diagram | Contract SLA, internal OLA and operational KPI stack. | Approved 2026-07-06; referenced from slide 2. |
-| 1 | candidate-generated | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | 2026-07-13 HTML/SVG rework candidate pending review; distinct owner-metadata link and fitted labels address the 2026-07-06 comments. |
+| 1 | backlog | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | Rework rejected 2026-08-11 for obscured arrowheads. Prefer Graphviz automatic routing if this dependency map is attempted again. |
 | 1 | candidate-generated | `content/part-02/metrics-reporting-dashboards/images/itil-dashboard-mockup.png` | mockup | Operational dashboard mockup for ITIL metrics. | 2026-07-20 deterministic HTML/SVG candidate pending review; uses fictional rounded values and connects measures to an owned action. |
 | 1 | superseded-html | `content/part-03/dora-metrics/images/dora-current-target-radar.png` | diagram | DORA current vs target performance visual. | Implemented as HTML shift table on slide 2 (2026-07-06); radar form rejected. |
 | 1 | superseded-html | `content/part-03/cicd-pipeline-design/images/cicd-flow.png` | diagram | Commit, build, test, package, deploy, observe, rollback. | Implemented as HTML flow on slide 4 (2026-07-06). |
 | 1 | candidate-generated | `content/part-03/github-actions-workflows/images/workflow-dag.png` | diagram | GitHub Actions jobs, matrix, artifacts and approval gate. | 2026-07-27 deterministic HTML/SVG candidate pending review; distinguishes clean matrix runners, the promoted artifact, environment ordering and the production gate. |
 | 1 | superseded-html | `content/part-04/post-mortem-agenda/images/review-agenda-timeline.png` | diagram | Post-incident review timeline. | Implemented as HTML timeline on slide 2 (2026-07-06). |
-| 1 | candidate-generated | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | diagram | Five whys versus fishbone comparison. | 2026-08-03 deterministic HTML/SVG candidate pending review; uses the topic's website-outage chain and keeps evidence sources separate from causes. |
-| 1 | candidate-generated | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | diagram | Vendor lifecycle funnel with IT, finance, legal and MSP swimlanes. | 2026-08-10 deterministic HTML/SVG candidate pending review; names the owner action and output at every stage and makes the contract-to-operations handover explicit. |
+| 1 | superseded-html | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | diagram | Five whys versus fishbone comparison. | Completed as native HTML/CSS on slide 6 (2026-08-17). Slide 5 retains the original selection rules; slide 6 adds the evidence-chain/contributor comparison and preserves the takeaway. |
+| 1 | superseded-html | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | diagram | Vendor lifecycle funnel with IT, finance, legal and MSP swimlanes. | Completed as two adjacent native HTML/CSS slides (2026-08-17): buyer-stage funnel with owned outputs, then the MSP handover gate. |
 | 1 | ready | `content/part-05/salesforce-opportunity-walkthrough/images/salesforce-opportunity-map.png` | mockup | Salesforce-style object/process map. | Avoid copying Salesforce UI too closely. |
-| 1 | ready | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | diagram | Anatomy of SLA clause: uptime, exclusions, credits, reporting, exit. | Topic currently lacks narratives. |
-| 1 | candidate-generated | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Day-zero startup IT architecture. | 2026-07-20 deterministic HTML/SVG candidate pending review; maps identity, communication, devices, recovery and support ownership. |
-| 1 | candidate-generated | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | diagram | Low-cost controls grid for MFA, password manager, MDM-lite, backups and logging. | 2026-08-10 deterministic HTML/SVG candidate pending review; gives each of six controls one concrete action and one evidence check. |
+| 1 | ready | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | diagram | Anatomy of SLA clause: uptime, exclusions, credits, reporting, exit. | Narratives are aligned; prefer a source-level HTML/CSS clause anatomy because the learning job is text in labelled regions. |
+| 1 | backlog | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Day-zero startup IT architecture. | Rejected 2026-08-11 for widespread text overflow. Reconsider as a source-level semantic split or Graphviz dependency map rather than another fixed SVG layout. |
+| 1 | superseded-html | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | diagram | Low-cost controls grid for MFA, password manager, MDM-lite, backups and logging. | Completed as adjacent native HTML/CSS slides (2026-08-17): the original four-anchor overview remains on slide 5 and a six-control action/evidence grid follows on slide 6. |
 | 1 | ready | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | diagram | Pre-seed, Series A and Series B stack cost step-up chart. | Use illustrative, labelled ranges. |
 | 1 | candidate-generated | `content/part-06/capstone-remediation-roadmap/images/roadmap-30-60-90.png` | diagram | 30/60/90 remediation roadmap. | 2026-07-27 deterministic HTML/SVG candidate pending review; pairs each action with an owner, evidence of done and an executive review gate. |
 | 1 | ready | `content/part-07/maori-case-study/images/te-hiku-data-governance-map.png` | diagram | Community control, consent, vendors, storage and audit loops. | Needs cultural review sensitivity. |
@@ -81,6 +81,15 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-08-17 review sweep
+
+Synchronized a consistent copy of the protected review database before editing. It passed SQLite integrity checking and contained 10 processed and 14 rejected candidates. Selected the three reviewer-directed composition follow-ups as source-level reworks; no image candidate was created or registered and no generative-image quota was used.
+
+- `2026-08-10-vendor-funnel-swimlanes` is now two adjacent native HTML/CSS learning jobs: the buyer-stage funnel with owners, durations and outputs, followed by an explicit MSP handover gate. Narratives 3–6 were aligned to the resulting slide sequence.
+- `2026-08-03-five-whys-fishbone` keeps the original method-selection slide and uses the following slide for a native comparison of one evidence chain with several contributor categories. The original takeaway remains visible in the comparison caption and covered by the existing narrative.
+- `2026-08-10-security-baseline-grid` keeps the original essential-controls overview on slide 5 and adds a native six-control action/evidence grid on slide 6. A matching narrative was added and later slides/narratives were renumbered without losing content.
+- All 28 slides in the three topics were rendered at 1920×1080, visually inspected at 100% and as whole-topic contact sheets, and passed browser-computed containment, overlap and overflow checks with `scripts/check_slide_geometry.py`.
 
 ### 2026-08-10 review sweep
 
