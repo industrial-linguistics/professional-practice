@@ -1,6 +1,6 @@
 # SCORM Product Plan
 
-Last checked: 2026-07-27.
+Last checked: 2026-08-24.
 
 ## Product decision
 
@@ -20,7 +20,7 @@ review remain incomplete.
 ## Included in version 1.0
 
 - Seven Part 1 lessons in a deliberate learning order.
-- 34 learner-visible slides and seven existing narration tracks.
+- 35 learner-visible slides and seven existing narration tracks.
 - Slide transcripts and plain-text transcripts.
 - Five workplace ticket scenarios with 20 scored decisions:
   - record classification;
@@ -76,7 +76,9 @@ External release means:
 5. Deploy the protected bundle and shopfront, then complete a paid-download smoke
    purchase.
 
-Moodle 5.2.1 verification is complete for package version 1.0.2. A disposable
+Moodle 5.2.1 verification is complete for package version 1.0.2. The current
+source package is version 1.0.3 after adding the P1 role-responsibility slide;
+it must be re-imported before replacing the externally verified package. A disposable
 Moodle instance imported the ZIP as SCORM 1.2 with one launchable SCO. It
 recorded an initial `incomplete` state without a premature score, lesson
 bookmark `part-01/overview/index.html#4`, all seven lesson-completion records,

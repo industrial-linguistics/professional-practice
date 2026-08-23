@@ -2,6 +2,19 @@
 
 Rejected and commented image candidates are appended here by the raksasa review processor.
 
+## 2026-08-24-source-level-reworks
+
+- Requeued candidates: `2026-08-03-p1-incident-timeline-rework-1`, `2026-07-20-startup-day-zero-architecture`
+- Status: completed as source-level HTML/CSS rework on 2026-08-24
+- Reviewer comments addressed: “Communications lead” did not fit its box; the day-zero map had extensive text outside boxes.
+
+Completion record:
+
+1. The P1 material is split into adjacent learning jobs: slide 6 shows the response cadence and slide 7 gives commander, communications, resolver and scribe responsibilities. The original drill instructions and full specialist roster remain visible or in matching narratives.
+2. The day-zero overview is now a five-stage semantic dependency order with a named purpose, owner context and completion evidence for every stage. It retains incorporation, domains, devices, baseline tooling, first-week ownership, identity, communications, knowledge systems and the decision trail, while making backups and support explicit.
+
+Both topics were rendered in full at 1920×1080. The three changed slides were inspected at 100%, both complete topics were inspected as contact sheets, and browser-computed QA passed all 22 slides with no text-containment, sibling-overlap, external-text-occlusion, slide-overflow or page-overflow defects. The timeline track is fully visible behind its milestones; neither composition uses arrow connectors. No image candidate was registered and no asset was installed under `content/**/images/`.
+
 ## 2026-08-11-composition-follow-ups
 
 - Requeued: 2026-08-11T13:00:00+00:00

@@ -1,6 +1,6 @@
 # Current Status
 
-Last checked: 2026-07-27.
+Last checked: 2026-08-24.
 
 ## Executive Summary
 
@@ -8,7 +8,7 @@ The content phase is essentially finished. The bottleneck has moved from writing
 
 Parts 1-7 contain 81 complete learner topics with slides, narratives, and authored `textbook.md` files. The narrative mismatch audit currently reports 81 matched topics and 0 mismatched topics. The build pipeline has enough working pieces to generate the learner site, textbook, run sheets, and media assets.
 
-The focused product layer is now available for Part 1: Incident Triage Lab version 1.0.2 packages seven narrated lessons, a five-ticket assessed simulation, SCORM completion/score/resume reporting, a worksheet and a facilitator guide. The full eight-part product remains unfinished: audio and video coverage outside this release are sparse, Part 8 is still a stub, and there is no course-wide assessment or certificate layer.
+The focused product layer is now available for Part 1: Incident Triage Lab version 1.0.3 packages seven narrated lessons, 35 learner slides, a five-ticket assessed simulation, SCORM completion/score/resume reporting, a worksheet and a facilitator guide. Version 1.0.2 passed the external Moodle check; version 1.0.3 still needs re-import verification before it replaces that package. The full eight-part product remains unfinished: audio and video coverage outside this release are sparse, Part 8 is still a stub, and there is no course-wide assessment or certificate layer.
 
 The main commercial implication is simple: the course is no longer blocked on more course writing. It is blocked on making a buyer-ready package.
 
@@ -33,9 +33,10 @@ The main commercial implication is simple: the course is no longer blocked on mo
 - There is one MP4: `content/part-01/overview/final.mp4`.
 - Quiz source exists for Parts 1-7, but it is not yet a deployed course assessment layer.
 - `output/scorm/it-professional-practice-incident-triage.zip` is a validated
-  one-SCO SCORM 1.2 package for the focused Part 1 product.
+  one-SCO SCORM 1.2 package for the focused Part 1 product at version 1.0.3.
 - Moodle 5.2.1 records launch, bookmark, resume, completion, a failed attempt,
-  retry, pass, raw score and grade for version 1.0.2.
+  retry, pass, raw score and grade for version 1.0.2; version 1.0.3 has not yet
+  repeated that external LMS check.
 - The shopfront applies its purchase terms and one-organisation SCORM licence;
   the wider course still has no separate top-level `LICENSE` or `TERMS` file.
 

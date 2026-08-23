@@ -1,4 +1,7 @@
-Speaker 1: What's actually included in this "day-zero" checklist?
-Speaker 2: Anything that makes the company real—legal filings, domains, baseline tooling and who owns each task.
-Speaker 1: So it's not just IT running off to configure email.
-Speaker 2: Right, it's a cross-functional sprint with evidence you can show an MSP, investor or auditor.
+Speaker 1: Read day zero from left to right. Legal registration and shared control of the domain come first because identity and email depend on them.
+
+Speaker 2: Next, establish the identity provider and roster. That gives you controlled access to email, chat, documents and shared workspaces instead of a collection of founders’ personal accounts.
+
+Speaker 1: Enrol devices and configure backups before customer work begins, then name the people who own support and escalation.
+
+Speaker 2: Every stage needs proof: registrations, access reports, shared templates, an asset list, a restore test and a decision trail. In the first five business days, that evidence is what makes the plan usable by an MSP, investor or auditor.

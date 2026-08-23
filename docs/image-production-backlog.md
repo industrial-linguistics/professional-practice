@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-08-17.
+Last checked: 2026-08-24.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -35,7 +35,7 @@ These are the best first candidates because they either support early course con
 | 1 | superseded-html | `content/part-01/escalation-tiers/images/support-tier-swimlane.png` | diagram | Swimlane for L1 triage, L2 specialist support, L3 engineering/vendor escalation and feedback to knowledge base. | Shows handoffs and closure loop; not a generic org chart. |
 | 1 | superseded-html | `content/part-03/dora-metrics/images/dora-current-target-radar.png` | diagram | Radar or quadrant showing deployment frequency, lead time, change failure rate and MTTR for current vs target state. | Uses directional labels clearly; avoids fake precision; works in greyscale. |
 | 1 | superseded-html | `content/part-04/post-mortem-agenda/images/review-agenda-timeline.png` | diagram | Timeline of alert, acknowledge, restore, review, action ownership and follow-up verification. | Makes blameless review sequence obvious; includes business impact and action tracking. |
-| 1 | backlog | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Startup day-zero map covering domain, DNS, identity, email, chat, docs, devices, backups and support owner. | Rejected 2026-08-11 for widespread text overflow. Reconsider as a source-level semantic split or an automatically routed dependency map after a fresh content inventory. |
+| 1 | superseded-html | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Startup day-zero map covering domain, DNS, identity, email, chat, docs, devices, backups and support owner. | Implemented as a five-stage native HTML/CSS dependency order on slide 2 (2026-08-24), with ownership and completion evidence kept visible. |
 
 ## Backlog
 
@@ -43,7 +43,7 @@ These are the best first candidates because they either support early course con
 | --- | --- | --- | --- | --- | --- |
 | 1 | superseded-html | `content/part-01/incident-vs-request/images/incident-request-decision.png` | diagram | Incident/request/problem/change decision tree. | Implemented as HTML decision guide on slide 4 (2026-07-06). |
 | 1 | superseded-html | `content/part-01/escalation-tiers/images/support-tier-swimlane.png` | diagram | L1/L2/L3 support handoff swimlane. | Implemented as HTML lane diagram on slide 4 (2026-07-06). |
-| 1 | backlog | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | Rework rejected 2026-08-11 because the Communications lead label still escaped its box. Reconsider as native timeline HTML with shorter role labels. |
+| 1 | superseded-html | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | Completed as adjacent native HTML/CSS slides (2026-08-24): response cadence on slide 6 and four core roles on slide 7, with matching narratives. |
 | 1 | candidate-generated | `content/part-01/servicenow-visual-guide/images/servicenow-ticket-lifecycle.png` | mockup | Clean ServiceNow-style ticket lifecycle mockup. | 2026-07-27 fictional ITSM lifecycle candidate pending review; shows the SLA pause, resolution/closure handoff and attributed activity log without copying a live product UI. |
 | 1 | accepted | `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png` | diagram | Contract SLA, internal OLA and operational KPI stack. | Approved 2026-07-06; referenced from slide 2. |
 | 1 | backlog | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | Rework rejected 2026-08-11 for obscured arrowheads. Prefer Graphviz automatic routing if this dependency map is attempted again. |
@@ -55,8 +55,8 @@ These are the best first candidates because they either support early course con
 | 1 | superseded-html | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | diagram | Five whys versus fishbone comparison. | Completed as native HTML/CSS on slide 6 (2026-08-17). Slide 5 retains the original selection rules; slide 6 adds the evidence-chain/contributor comparison and preserves the takeaway. |
 | 1 | superseded-html | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | diagram | Vendor lifecycle funnel with IT, finance, legal and MSP swimlanes. | Completed as two adjacent native HTML/CSS slides (2026-08-17): buyer-stage funnel with owned outputs, then the MSP handover gate. |
 | 1 | ready | `content/part-05/salesforce-opportunity-walkthrough/images/salesforce-opportunity-map.png` | mockup | Salesforce-style object/process map. | Avoid copying Salesforce UI too closely. |
-| 1 | ready | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | diagram | Anatomy of SLA clause: uptime, exclusions, credits, reporting, exit. | Narratives are aligned; prefer a source-level HTML/CSS clause anatomy because the learning job is text in labelled regions. |
-| 1 | backlog | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Day-zero startup IT architecture. | Rejected 2026-08-11 for widespread text overflow. Reconsider as a source-level semantic split or Graphviz dependency map rather than another fixed SVG layout. |
+| 1 | ready | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | diagram | Anatomy of SLA clause: uptime, exclusions, credits, reporting, exit. | Prefer source-level HTML/CSS, but first recompose the 12 other overflowing text slides found by complete-topic QA on 2026-08-24; no partial rework was retained. |
+| 1 | superseded-html | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Day-zero startup IT architecture. | Completed as a five-stage native HTML/CSS dependency order on slide 2 (2026-08-24); no fixed SVG or raster is needed. |
 | 1 | superseded-html | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | diagram | Low-cost controls grid for MFA, password manager, MDM-lite, backups and logging. | Completed as adjacent native HTML/CSS slides (2026-08-17): the original four-anchor overview remains on slide 5 and a six-control action/evidence grid follows on slide 6. |
 | 1 | ready | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | diagram | Pre-seed, Series A and Series B stack cost step-up chart. | Use illustrative, labelled ranges. |
 | 1 | candidate-generated | `content/part-06/capstone-remediation-roadmap/images/roadmap-30-60-90.png` | diagram | 30/60/90 remediation roadmap. | 2026-07-27 deterministic HTML/SVG candidate pending review; pairs each action with an owner, evidence of done and an executive review gate. |
@@ -81,6 +81,15 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-08-24 review sweep
+
+Synchronized a consistent copy of the protected review database before editing. It passed SQLite integrity checking, remained byte-identical after synchronization, and contained 10 processed and 14 rejected candidates with no pending reviewer action.
+
+- `2026-08-03-p1-incident-timeline-rework-1` is superseded by two adjacent native HTML/CSS slides: a five-stop response cadence followed by four core role cards. The original drill instructions, full specialist roster and after-action content remain visible or in their matching narratives.
+- `2026-07-20-startup-day-zero-architecture` is superseded by a native five-stage dependency order covering legal/domain foundations, identity, work hubs, devices/recovery, and support/evidence. All original overview content remains visible, and the narrative now follows the dependency order.
+- A semantic SLA clause anatomy was drafted, but complete-topic geometry QA found 12 pre-existing overflowing slides in that 14-slide topic. The draft was removed rather than retaining a partial rework; the backlog item remains ready for a whole-topic composition pass.
+- The 22 slides in the two retained topics were rendered at 1920×1080, inspected at 100% and as whole-topic contact sheets, and passed browser-computed containment, overlap and overflow checks with `scripts/check_slide_geometry.py`. No image candidate was registered, no review state was changed, and no generative-image quota was used.
 
 ### 2026-08-17 review sweep
 
