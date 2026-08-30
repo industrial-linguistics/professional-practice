@@ -1,6 +1,6 @@
 # Media and Diagram Plan
 
-Last checked: 2026-08-24.
+Last checked: 2026-08-31.
 
 ## Current media state
 
@@ -13,6 +13,7 @@ Last checked: 2026-08-24.
   - `content/part-02/change-vs-release/images/itil-minor-change.png`
   - `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png`
   - `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png`
+- The SLA/OLA/KPI and vendor-scorecard PNGs above are retained for provenance but are no longer learner-referenced after semantic source rework on 2026-08-31.
 - Topics with matching slide and narrative counts: 81.
 
 Slide/narrative alignment is now complete across all 81 topics. The next media constraint is generating and verifying audio for the remaining topics; image work should continue in small reviewable batches rather than blocking audio coverage.
@@ -77,7 +78,10 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 
 ## Production notes
 
-- Prefer SVG or Mermaid for abstract process diagrams that need labels and revision.
-- Prefer PNG screenshots or realistic UI mockups for ServiceNow, Salesforce, GitHub Actions and dashboards.
+- Prefer native slide HTML/CSS for tables, grids, checklists, comparisons, timelines and text in boxes.
+- Prefer Graphviz for arrow-heavy dependency or network diagrams where automatic routing helps; reserve Mermaid for small, simple flows whose SVG can be inspected reliably.
+- Use a charting library for quantitative charts and TikZ only for genuinely mathematical or technical geometry suited to TeX.
+- Prefer generated raster imagery only for illustrative or realistic visuals, never for essential instructional text.
+- Prefer PNG screenshots or realistic UI mockups for ServiceNow, Salesforce, GitHub Actions and dashboards when semantic HTML would not teach the tool interaction as clearly.
 - Avoid using real vendor screenshots if licensing or login state is unclear; clean mockups are usually safer and easier to localise.
 - Store per-topic images under `content/part-XX/topic-name/images/` and reference them with relative `<img src="images/...">` paths from `slides.html`.

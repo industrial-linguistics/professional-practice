@@ -24,7 +24,7 @@ QA_SCRIPT = r"""
   const boxSelector = [
     '.dg-card', '.dg-stage', '.dg-control', '.dg-proof', '.dg-panel',
     '.dg-gate-lead', '.dg-risk', '.dg-outcome', '.dg-question',
-    '.dg-current', '.dg-target', '.dg-return-path'
+    '.dg-current', '.dg-target', '.dg-return-path', '.dg-layer'
   ].join(',');
   const boxes = Array.from(document.querySelectorAll(boxSelector));
   const label = (element) => {

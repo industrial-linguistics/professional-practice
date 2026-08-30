@@ -979,6 +979,39 @@ main {
   font-weight: 800;
   font-size: .88em;
 }
+/* SLA/OLA/KPI hierarchy: essential layer text remains semantic HTML. */
+.slide .diagram-stack {
+  display: grid;
+  justify-items: center;
+  gap: .55em;
+}
+.slide .diagram-stack .dg-layer {
+  display: grid;
+  grid-template-columns: 5.4em minmax(0, 1fr);
+  gap: .25em .8em;
+  width: 100%;
+  min-width: 0;
+  padding: .7em .9em;
+  background: white;
+  border: 2px solid var(--blue);
+  border-radius: 12px;
+}
+.slide .diagram-stack .dg-layer-ola {
+  width: 91%;
+  border-color: var(--green);
+}
+.slide .diagram-stack .dg-layer-kpi {
+  width: 82%;
+  border-color: var(--gold);
+}
+.slide .diagram-stack .dg-layer-name {
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--slate);
+  font-size: 1.3em;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
 /* Decision guide: question rows routing to outcome cards. */
 .slide .diagram-decision {
   display: grid;

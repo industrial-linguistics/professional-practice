@@ -2,6 +2,20 @@
 
 Rejected and commented image candidates are appended here by the raksasa review processor.
 
+## 2026-08-31-rework-batch
+
+- Requeued concepts: `2026-07-13-cmdb-service-map-rework-1`, `2026-06-29-sla-ola-kpi-stack`, `2026-06-29-vendor-scorecard-calendar`
+- Status: CMDB rework prepared as protected candidate `2026-08-31-cmdb-service-map-graphviz-rework-2`; SLA and vendor items completed as source-level semantic reworks on 2026-08-31.
+- Reviewer comments addressed: CMDB arrowheads were obscured; SLA and vendor text escaped boxes.
+
+Completion record:
+
+1. The CMDB concept now uses Graphviz for node sizing and edge routing, with browser-attached SVG markers at all five target borders. The candidate and proposed slide preserve the current definition, examples, tracked attributes and ITIL purpose. It remains pending reviewer approval and is not installed in course content.
+2. The SLA/OLA/KPI image is no longer referenced. Slide 2 now contains a native three-layer semantic stack with all original SLA commitments, the OLA handoff role and KPI evidence role. Slides 3–4 and all narratives remain unchanged.
+3. The vendor image is no longer referenced. Its cadence content remains on slide 3, while its measures and thresholds remain on slides 7–8 and their narratives; no duplicate visual is added.
+
+All 27 current slides across the three topics were rendered at 1920×1080 and inspected as complete-topic contact sheets; the changed semantic slides and CMDB review previews were also inspected at 100%. Browser-computed geometry passed the 27 course slides, and candidate-specific geometry passed six nodes and five edges with no containment, endpoint, crossing or overflow defect. No generated-raster capacity was used and no candidate was installed under `content/**/images/`.
+
 ## 2026-08-24-source-level-reworks
 
 - Requeued candidates: `2026-08-03-p1-incident-timeline-rework-1`, `2026-07-20-startup-day-zero-architecture`

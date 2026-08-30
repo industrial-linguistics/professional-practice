@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-08-24.
+Last checked: 2026-08-31.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -45,8 +45,8 @@ These are the best first candidates because they either support early course con
 | 1 | superseded-html | `content/part-01/escalation-tiers/images/support-tier-swimlane.png` | diagram | L1/L2/L3 support handoff swimlane. | Implemented as HTML lane diagram on slide 4 (2026-07-06). |
 | 1 | superseded-html | `content/part-01/major-incident-drill/images/p1-incident-timeline.png` | diagram | P1 incident timeline with commander, comms, resolver and scribe. | Completed as adjacent native HTML/CSS slides (2026-08-24): response cadence on slide 6 and four core roles on slide 7, with matching narratives. |
 | 1 | candidate-generated | `content/part-01/servicenow-visual-guide/images/servicenow-ticket-lifecycle.png` | mockup | Clean ServiceNow-style ticket lifecycle mockup. | 2026-07-27 fictional ITSM lifecycle candidate pending review; shows the SLA pause, resolution/closure handoff and attributed activity log without copying a live product UI. |
-| 1 | accepted | `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png` | diagram | Contract SLA, internal OLA and operational KPI stack. | Approved 2026-07-06; referenced from slide 2. |
-| 1 | backlog | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | Rework rejected 2026-08-11 for obscured arrowheads. Prefer Graphviz automatic routing if this dependency map is attempted again. |
+| 1 | superseded-html | `content/part-02/slas-olas-kpis/images/sla-ola-kpi-stack.png` | diagram | Contract SLA, internal OLA and operational KPI stack. | The installed raster was later rejected for text outside boxes. Slide 2 now uses a native semantic three-layer stack (2026-08-31); the legacy PNG is no longer referenced. |
+| 1 | candidate-generated | `content/part-02/cmdb/images/cmdb-service-map.png` | diagram | CMDB dependency map across app, database, network, vendor, owner and service. | `2026-08-31-cmdb-service-map-graphviz-rework-2` uses Graphviz routing plus browser-checked target markers to correct the twice-rejected connector geometry; pending protected review. |
 | 1 | candidate-generated | `content/part-02/metrics-reporting-dashboards/images/itil-dashboard-mockup.png` | mockup | Operational dashboard mockup for ITIL metrics. | 2026-07-20 deterministic HTML/SVG candidate pending review; uses fictional rounded values and connects measures to an owned action. |
 | 1 | superseded-html | `content/part-03/dora-metrics/images/dora-current-target-radar.png` | diagram | DORA current vs target performance visual. | Implemented as HTML shift table on slide 2 (2026-07-06); radar form rejected. |
 | 1 | superseded-html | `content/part-03/cicd-pipeline-design/images/cicd-flow.png` | diagram | Commit, build, test, package, deploy, observe, rollback. | Implemented as HTML flow on slide 4 (2026-07-06). |
@@ -70,7 +70,7 @@ These are the best first candidates because they either support early course con
 | 2 | backlog | `content/part-05/lead-scoring-opportunity-progression-renewal-alerts/images/lead-renewal-timeline.png` | diagram | CRM lifecycle timeline. | Hold until Part 5 narrative alignment improves. |
 | 2 | backlog | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | mockup | POC scorecard. | Potential worksheet asset. |
 | 2 | candidate-generated | `content/part-06/remote-first-reality-check/images/remote-onboarding-flow.png` | diagram | Remote onboarding/offboarding flow. | 2026-08-10 deterministic HTML/SVG candidate pending review; uses the HR or contract record to drive identity, device and payroll work for both joiners and leavers. |
-| 2 | accepted | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | diagram | Weekly/monthly/quarterly vendor cadence and scorecard. | Approved 2026-07-06; referenced from slide 7. |
+| 2 | superseded-html | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | diagram | Weekly/monthly/quarterly vendor cadence and scorecard. | The installed raster was later rejected for text outside boxes. It is no longer referenced: cadence remains on slide 3 and scorecard design and thresholds remain on slides 7–8 (2026-08-31). |
 | 2 | candidate-generated | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | diagram | Evidence map for policy, logs, access reviews, backups and board reporting. | 2026-07-13 HTML/SVG rework candidate pending review; contained labels and separated badge/caption address the 2026-07-06 comments. |
 | 2 | ready | `content/part-06/capstone-red-team-exercise/images/startup-maturity-radar.png` | diagram | Startup maturity radar. | Good visual for group exercise. |
 | 2 | backlog | `content/part-07/foss-licensing-options/images/license-decision-tree.png` | diagram | License choice decision tree. | Needs legal wording caution. |
@@ -81,6 +81,15 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-08-31 review sweep
+
+Synchronized a consistent copy of the protected review database before editing. It passed SQLite integrity checking, was byte-identical to the previous local copy, and contained 10 processed and 14 rejected candidates with no pending reviewer action.
+
+- `2026-08-31-cmdb-service-map-graphviz-rework-2` is a new editable Graphviz candidate. A browser check covers six node boxes, five routed connectors, target attachment, unrelated-node crossings and page overflow; full-size review covers the candidate and both slide previews.
+- The rejected SLA/OLA/KPI PNG is replaced in slide 2 by a native semantic stack that retains all customer-promise, internal-handoff and measurement-evidence content.
+- The rejected vendor cadence/scorecard PNG is removed from slide 7 without replacement because slide 3 already teaches cadence and slides 7–8 retain every useful scorecard measure and threshold.
+- All 27 slides in the three topics were rendered at 1920×1080, inspected at 100% where changed and as complete-topic contact sheets, and passed browser-computed containment, overlap and overflow checks. No generated-raster capacity was used and no candidate asset was installed into course content.
 
 ### 2026-08-24 review sweep
 
