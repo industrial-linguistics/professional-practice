@@ -1,6 +1,6 @@
 # Media and Diagram Plan
 
-Last checked: 2026-08-31.
+Last checked: 2026-09-07.
 
 ## Current media state
 
@@ -15,6 +15,8 @@ Last checked: 2026-08-31.
   - `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png`
 - The SLA/OLA/KPI and vendor-scorecard PNGs above are retained for provenance but are no longer learner-referenced after semantic source rework on 2026-08-31.
 - Topics with matching slide and narrative counts: 81.
+
+The protected database records 11 processed and 14 rejected candidates on 2026-09-07, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
 
 Slide/narrative alignment is now complete across all 81 topics. The next media constraint is generating and verifying audio for the remaining topics; image work should continue in small reviewable batches rather than blocking audio coverage.
 
@@ -52,7 +54,7 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 | 1 | `content/part-04/post-mortem-agenda/images/review-agenda-timeline.png` | Post-incident review timeline | Show the order of facts, impact, causes, actions and comms. |
 | 1 | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | RCA comparison | Show when to use five whys versus fishbone analysis. |
 | 1 | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | Funnel with IT/legal/finance/MSP swimlanes | Make the vendor lifecycle cross-functional. |
-| 1 | `content/part-05/salesforce-opportunity-walkthrough/images/salesforce-opportunity-map.png` | Salesforce object/process mockup | Show lead, account, contact, opportunity, quote and renewal links. |
+| 1 | `content/part-05/salesforce-opportunity-walkthrough/images/salesforce-opportunity-map.png` | Semantic CRM records and stages | Native conversion cards on slide 4; capture, quote, handoff and renewal remain on slides 3–9. |
 | 1 | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | Contract clause anatomy | Show uptime, exclusions, credits, reporting and exit terms. |
 | 1 | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | Day-zero startup IT map | Show domain, identity, devices, comms, docs, backups and support. |
 | 1 | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | Low-cost control grid | Prioritise MFA, password manager, MDM-lite, backups, logging and incident comms. |
@@ -70,7 +72,7 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 | 2 | `content/part-06/remote-first-reality-check/images/remote-onboarding-flow.png` | Remote onboarding/offboarding flow | Show HRIS, device logistics, IAM, payroll and access review. |
 | 2 | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | Cadence and scorecard diagram | Show weekly, monthly and quarterly vendor management rhythms. |
 | 2 | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | Evidence map | Link policy, logs, access reviews, backups and board reporting. |
-| 2 | `content/part-06/capstone-red-team-exercise/images/startup-maturity-radar.png` | Maturity radar | Give red-team findings a simple visual structure. |
+| 2 | `content/part-06/capstone-red-team-exercise/images/startup-maturity-radar.png` | Semantic maturity rubric | Five evidence levels on slide 8; score the four domains separately on slide 7. |
 | 2 | `content/part-07/foss-licensing-options/images/license-decision-tree.png` | License decision tree | Guide MIT/Apache/GPL/dual-license decisions. |
 | 2 | `content/part-07/community-governance-structures/images/oss-governance-spectrum.png` | Governance spectrum | Show maintainer, core team, foundation and commercial steward models. |
 | 2 | `content/part-07/balancing-openness-cultural-safety/images/cultural-safety-access-matrix.png` | Access matrix | Show open, restricted, community-approved and embargoed data states. |

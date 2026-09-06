@@ -2,6 +2,14 @@
 
 Rejected and commented image candidates are appended here by the raksasa review processor.
 
+## 2026-09-07 review-state reconciliation
+
+- Synchronized the protected database before source work: 11 processed, 14 rejected, zero pending/approved/commented candidates.
+- The CMDB Graphviz rework was reviewed on 2026-08-31 and processed at 17:17:10 UTC that day. Its target PNG is absent from this checkout. The earlier pending statement below describes the August 31 batch, not current status.
+- Eight processed concepts need a delivery audit: CMDB, due diligence, dashboard, ServiceNow lifecycle, workflow DAG, remediation roadmap, branching comparison and remote onboarding. The backlog now marks them `delivery-pending`; do not regenerate them merely because their assets are absent here.
+- Read-only raksasa audit found the processor checkout on `64e4fb0` (August 10), with installed PNGs untracked and the rework queue modified. Its CMDB PNG matches the approved candidate SHA-256 `7c21cd636b8d47622aa6c522e34c4b6cafa67573246f34001a6b18d450f82e6d`. Installation occurred there, but the files never reached the current Git checkout or learner references. Preserve that checkout for a separate delivery repair.
+- This batch adds two ready-item source compositions (Salesforce conversion records and capstone maturity levels); neither creates an image candidate or changes a review decision.
+
 ## 2026-08-31-rework-batch
 
 - Requeued concepts: `2026-07-13-cmdb-service-map-rework-1`, `2026-06-29-sla-ola-kpi-stack`, `2026-06-29-vendor-scorecard-calendar`

@@ -1,3 +1,5 @@
-Speaker 1: During the first call we confirm BANT—budget, authority, need, and timeline. Priya wants to cut incident-related change failures in half before year-end.
+Speaker 1: During the discovery call we confirm budget, authority, need and timeline: BANT. Priya wants to halve incident-related change failures before year-end. We mark the lead Qualified and keep those pain points in the notes.
 
-Speaker 2: Once qualified, we convert the lead. Salesforce creates the account, contact and opportunity records in one move. We also assign our solution engineer Sarah—she speaks fluent compliance—and our customer success partner Mike, who has yet to meet a regulatory framework he couldn't charm, so discovery is collaborative from day one.
+Speaker 2: In this scenario, conversion creates three records: RiverBank is the account, Priya Shah is the contact, and RiverBank DevOps Platform is the opportunity. We can reuse matching records, and creating an opportunity is optional.
+
+Speaker 1: We also assign solution engineer Sarah, who brings compliance expertise, and customer success partner Mike. That brings delivery knowledge into discovery before we make commitments to the customer.

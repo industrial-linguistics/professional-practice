@@ -979,6 +979,37 @@ main {
   font-weight: 800;
   font-size: .88em;
 }
+/* Lead conversion: semantic company/person/deal records, not a vendor screenshot. */
+.slide .diagram-conversion {
+  display: grid;
+  gap: .65em;
+}
+.slide .diagram-conversion .dg-card {
+  padding: .75em .9em;
+}
+.slide .diagram-conversion .dg-note + .dg-title,
+.slide .diagram-conversion .dg-title + .dg-note {
+  margin-top: .35em;
+}
+.slide .diagram-conversion .dg-records {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65em;
+}
+.slide .diagram-conversion .dg-records .dg-card {
+  min-width: 0;
+  border-color: var(--blue);
+}
+.slide .diagram-conversion .dg-qualified {
+  background: #eef4fb;
+}
+.slide .diagram-conversion .dg-assignment {
+  border-color: var(--green);
+  background: #e7f4ef;
+}
+.slide .diagram-conversion .dg-caption {
+  margin-top: 0;
+}
 /* SLA/OLA/KPI hierarchy: essential layer text remains semantic HTML. */
 .slide .diagram-stack {
   display: grid;
@@ -1490,6 +1521,9 @@ summary {
   .slide .diagram-stage-grid,
   .slide .diagram-gate .dg-check-grid,
   .slide .diagram-compare,
+  .slide .diagram-conversion .dg-records {
+    grid-template-columns: 1fr;
+  }
   .slide .diagram-controls {
     grid-template-columns: 1fr;
   }
