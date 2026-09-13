@@ -1552,6 +1552,21 @@ summary {
   .slide {
     min-height: 380px;
   }
+  .slide .diagram-finops table,
+  .slide .diagram-finops thead,
+  .slide .diagram-finops tbody {
+    display: block;
+  }
+  .slide .diagram-finops tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .slide .diagram-finops tr > :first-child {
+    grid-column: 1 / -1;
+  }
+  .slide .diagram-finops tr > :last-child {
+    white-space: nowrap;
+  }
   .slide .diagram-stage-grid,
   .slide .diagram-gate .dg-check-grid,
   .slide .diagram-compare,
