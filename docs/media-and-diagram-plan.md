@@ -1,12 +1,12 @@
 # Media and Diagram Plan
 
-Last checked: 2026-09-07.
+Last checked: 2026-09-14.
 
 ## Current media state
 
 - Slide decks found: 81.
-- Slide count across decks: 717.
-- Narrative files found: 717.
+- Slide count across decks: 718.
+- Narrative files found: 718.
 - Current generated media: 30 topics have a local `audio.mp3` or `audio.wav`; topic-level `audio.wav` files are generated outside source control as audio masters, and the e-learning build transcodes those masters to `audio.mp3` for browser delivery. One optional MP4 is present; MP4s are not part of the default learner-facing course surface.
 - Source images currently committed:
   - `content/part-01/value-chain/images/service-value-chain-continual-improvement.png`
@@ -16,7 +16,7 @@ Last checked: 2026-09-07.
 - The SLA/OLA/KPI and vendor-scorecard PNGs above are retained for provenance but are no longer learner-referenced after semantic source rework on 2026-08-31.
 - Topics with matching slide and narrative counts: 81.
 
-The protected database records 11 processed and 14 rejected candidates on 2026-09-07, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
+The protected database records 11 processed and 14 rejected candidates on 2026-09-14, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
 
 Slide/narrative alignment is now complete across all 81 topics. The next media constraint is generating and verifying audio for the remaining topics; image work should continue in small reviewable batches rather than blocking audio coverage.
 
@@ -58,7 +58,7 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 | 1 | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | Contract clause anatomy | Show uptime, exclusions, credits, reporting and exit terms. |
 | 1 | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | Day-zero startup IT map | Show domain, identity, devices, comms, docs, backups and support. |
 | 1 | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | Low-cost control grid | Prioritise MFA, password manager, MDM-lite, backups, logging and incident comms. |
-| 1 | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | SaaS/cloud spend chart | Show pre-seed, Series A and Series B cost step-ups. |
+| 1 | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | Semantic cost table and credit comparison | Slides 7–8 show invoice assumptions, a separate reserve and the cash increase when credits expire. |
 | 1 | `content/part-06/capstone-remediation-roadmap/images/roadmap-30-60-90.png` | 30/60/90 remediation roadmap | Give the capstone an executive-ready output shape. |
 | 1 | `content/part-07/maori-case-study/images/te-hiku-data-governance-map.png` | Data governance and access map | Show community control, consent, vendors, storage and audit loops. |
 | 2 | `content/part-02/continual-improvement/images/pdca-csi-loop.png` | PDCA/continual improvement loop | Reinforce improvement as a cycle, not a one-off. |

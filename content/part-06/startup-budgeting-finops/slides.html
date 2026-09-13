@@ -76,10 +76,47 @@
 
 <section class="slide" data-slide="7" data-kind="content" data-title="Monthly stack spend drill">
 <h2>Monthly stack spend drill</h2>
-<table><thead><tr><th>Tool / Service</th><th>Seat or usage assumption</th><th>Monthly cost (AUD)</th></tr></thead><tbody><tr><td>Google Workspace Business Standard</td><td>12 seats @ $11</td><td>$132</td></tr><tr><td>AWS compute &amp; storage</td><td>Forecast 450 credits, 70% burn</td><td>$0 (credit drawdown)</td></tr><tr><td>Datadog monitoring</td><td>3 engineer seats @ $27</td><td>$81</td></tr><tr><td>Customer support platform</td><td>6 agents @ $20</td><td>$120</td></tr><tr><td>Contingency / experiment buffer</td><td>10% of baseline</td><td>$33</td></tr><tr><td><strong>Total cash outlay</strong></td><td></td><td><strong>$366 (credits cover $150 value)</strong></td></tr></tbody></table>
+<div class="diagram diagram-finops" aria-label="Fictional monthly tooling invoices in Australian dollars">
+<p class="dg-caption">Fictional exercise rates · AUD per month · no tax or currency changes assumed</p>
+<table>
+<thead><tr><th scope="col">Tool / service</th><th scope="col">Exercise assumption</th><th scope="col">Cash invoice</th></tr></thead>
+<tbody>
+<tr><th scope="row">Collaboration</th><td>12 seats × $11</td><td>$132.00</td></tr>
+<tr><th scope="row">Cloud compute &amp; storage</th><td>$150 charge covered by $150 credits</td><td>$0.00</td></tr>
+<tr><th scope="row">Monitoring</th><td>3 engineer seats × $27</td><td>$81.00</td></tr>
+<tr><th scope="row">Customer support</th><td>6 agents × $20</td><td>$120.00</td></tr>
+</tbody>
+</table>
+<p class="dg-caption">Cash invoices: $132 + $81 + $120 = $333. Add the reserve and test credit expiry next.</p>
+</div>
 </section>
 
-<section class="slide" data-slide="8" data-kind="content" data-title="Workshop instructions">
+<section class="slide" data-slide="8" data-kind="content" data-title="When the cloud credits expire">
+<h2>When the cloud credits expire</h2>
+<div class="diagram diagram-finops" aria-label="Monthly cash budget with and without cloud credits">
+<p class="dg-caption">Same usage and rates as slide 7. Keep the reserve fixed to isolate the credit change.</p>
+<div class="diagram-compare">
+<div class="dg-panel">
+<p class="dg-panel-title">With credits</p>
+<p>Cash invoices: $333.00</p>
+<p>Contingency / experiments: $33.30</p>
+<p class="dg-cash">$366.30</p>
+<p>Monthly cash budget</p>
+</div>
+<div class="dg-panel">
+<p class="dg-panel-title">After credits expire</p>
+<p>Cash invoices: $483.00</p>
+<p>Contingency / experiments: $33.30</p>
+<p class="dg-cash">$516.30</p>
+<p>Monthly cash budget</p>
+</div>
+</div>
+<p class="dg-caption">Reserve = 10% × $333 non-cloud baseline = $33.30; it is set aside, not already spent.</p>
+<p class="dg-caption">Credit expiry adds $150 per month. Put the expiry date and extra cash into the runway forecast.</p>
+</div>
+</section>
+
+<section class="slide" data-slide="9" data-kind="content" data-title="Workshop instructions">
 <h2>Workshop instructions</h2>
 <ol>
 <li>Duplicate the drill with your own stack and contract terms.
@@ -91,7 +128,7 @@
 </ol>
 </section>
 
-<section class="slide" data-slide="9" data-kind="content" data-title="Guardrails &amp; red flags">
+<section class="slide" data-slide="10" data-kind="content" data-title="Guardrails &amp; red flags">
 <h2>Guardrails &amp; red flags</h2>
 <ul>
 <li>Vendor pushes multi-year deal before product-market fit—counter with quarterly.
@@ -105,7 +142,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="10" data-kind="content" data-title="Linking to investor conversations">
+<section class="slide" data-slide="11" data-kind="content" data-title="Linking to investor conversations">
 <h2>Linking to investor conversations</h2>
 <ul>
 <li>Share FinOps scorecard in monthly updates: spend vs. forecast, credits remaining.
@@ -119,7 +156,7 @@
 </ul>
 </section>
 
-<section class="slide" data-slide="11" data-kind="content" data-title="Action plan for Sarah">
+<section class="slide" data-slide="12" data-kind="content" data-title="Action plan for Sarah">
 <h2>Action plan for Sarah</h2>
 <ul>
 <li>Stand up a weekly cost review ritual with engineering and finance partners.

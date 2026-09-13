@@ -1010,6 +1010,40 @@ main {
 .slide .diagram-conversion .dg-caption {
   margin-top: 0;
 }
+/* FinOps: invoice assumptions and cash scenarios stay selectable and readable. */
+.slide .diagram-finops {
+  display: grid;
+  gap: .7em;
+}
+.slide .diagram-finops p {
+  margin: 0;
+  font-size: 1em;
+}
+.slide .diagram-finops th,
+.slide .diagram-finops td {
+  font-size: 1.15em;
+  padding: .55em .65em;
+  overflow-wrap: anywhere;
+}
+.slide .diagram-finops tbody th {
+  color: var(--slate);
+  background: var(--soft);
+}
+.slide .diagram-finops .dg-panel {
+  display: grid;
+  gap: .5em;
+}
+.slide .diagram-finops .dg-panel-title {
+  font-size: 1.2em;
+}
+.slide .diagram-finops .dg-cash {
+  color: var(--blue);
+  font-size: 2.2em;
+  font-weight: 800;
+}
+.slide .diagram-finops .dg-caption {
+  margin: 0;
+}
 /* SLA/OLA/KPI hierarchy: essential layer text remains semantic HTML. */
 .slide .diagram-stack {
   display: grid;

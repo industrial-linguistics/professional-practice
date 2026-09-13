@@ -1,6 +1,6 @@
 # Textbook Open Issues
 
-- Generated from 8 parts, 81 topics and 715 slides.
+- Generated from 8 parts, 81 topics and 718 slides.
 - 81 of 81 topics have authored `textbook.md` prose.
 - 0 slide/narrative count mismatches remain in the course media source; they do not trigger prose fallback in this fully authored book.
 - Front matter is sourced from `content/textbook-preface.md` when that file exists.

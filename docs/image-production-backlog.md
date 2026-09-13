@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-09-07.
+Last checked: 2026-09-14.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -59,7 +59,7 @@ These are the best first candidates because they either support early course con
 | 1 | ready | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | diagram | Anatomy of SLA clause: uptime, exclusions, credits, reporting, exit. | Prefer source-level HTML/CSS, but first recompose the 12 other overflowing text slides found by complete-topic QA on 2026-08-24; no partial rework was retained. |
 | 1 | superseded-html | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Day-zero startup IT architecture. | Completed as a five-stage native HTML/CSS dependency order on slide 2 (2026-08-24); no fixed SVG or raster is needed. |
 | 1 | superseded-html | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | diagram | Low-cost controls grid for MFA, password manager, MDM-lite, backups and logging. | Completed as adjacent native HTML/CSS slides (2026-08-17): the original four-anchor overview remains on slide 5 and a six-control action/evidence grid follows on slide 6. |
-| 1 | ready | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | diagram | Pre-seed, Series A and Series B stack cost step-up chart. | Use illustrative, labelled ranges. |
+| 1 | superseded-html | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | diagram | Monthly tooling costs and the cash impact of credit expiry. | Native invoice table on slide 7 and credit-expiry comparison on adjacent slide 8 (2026-09-14). Rates are explicitly fictional; no funding-stage data exists, so no stage chart was invented. |
 | 1 | delivery-pending | `content/part-06/capstone-remediation-roadmap/images/roadmap-30-60-90.png` | diagram | 30/60/90 remediation roadmap. | Protected database records `2026-07-27-roadmap-30-60-90` as processed; target PNG is absent from this checkout (2026-09-07). Audit delivery; do not regenerate or mark accepted. |
 | 1 | ready | `content/part-07/maori-case-study/images/te-hiku-data-governance-map.png` | diagram | Community control, consent, vendors, storage and audit loops. | Needs cultural review sensitivity. |
 | 2 | backlog | `content/part-02/continual-improvement/images/pdca-csi-loop.png` | diagram | PDCA/continual-service-improvement loop. | Lower priority because existing value-chain image covers adjacent idea. |

@@ -2179,19 +2179,21 @@ The monitoring toolkit is deliberately unheroic. Centralise billing exports into
 \subsection{The monthly spend drill}
 
 
-Use this spend drill with any company you join. The worked example, in Australian dollars, looks like this:
+\index{Google Workspace}
+Use this spend drill with any company you join. Sarah's original examples were Google Workspace, AWS and Datadog alongside a customer support platform; the rates below are fictional teaching assumptions, not current vendor quotes or their actual billing models. All amounts are monthly Australian dollars, with no tax or currency changes assumed.
 
 
 \begin{itemize}[leftmargin=*]
-\index{Google Workspace}
-\item Google Workspace Business Standard, 12 seats at \$11 — \textbf{\$132}
-\item AWS compute and storage — \textbf{\$0 cash} (drawing down a 450-credit balance at about 70\% burn)
-\item Datadog monitoring, 3 engineer seats at \$27 — \textbf{\$81}
+\item Collaboration, 12 seats at \$11 — \textbf{\$132}
+\item Cloud compute and storage, a \$150 charge fully covered by eligible credits — \textbf{\$0 cash}
+\item Monitoring, 3 engineer seats at \$27 — \textbf{\$81}
 \item Customer support platform, 6 agents at \$20 — \textbf{\$120}
-\item Contingency and experiment buffer, 10\% of baseline — \textbf{\$33}
 \end{itemize}
 
-Total cash outlay: \textbf{\$366 a month}, with credits covering roughly \$150 of additional value. Two design choices in that little table matter. The contingency line normalises setting aside 10 per cent for surprises instead of hoping they never happen. And the total is expressed as \emph{cash outlay}, not accrual value, because runway is a cash concept — the credits offsetting AWS are real value, but they are also a cliff to plan for.
+The cash invoices total \textbf{\$333}. Set aside 10 per cent of that non-cloud baseline for contingency and experiments: \textbf{\$33.30}. The resulting monthly cash budget is \textbf{\$366.30}, including the reserve. Keeping the reserve separate matters: it is available cash, not an invoice already paid.
+
+
+Now hold usage, rates and that reserve constant, and let the credits expire. The same \$150 cloud charge becomes payable. Cash invoices rise to \textbf{\$483}, and the monthly budget becomes \textbf{\$516.30}. Nothing has grown, yet Sarah needs an extra \textbf{\$150 a month}. Record the credit expiry date and put that increase into the runway forecast. This exercise compares cash requirements, not accrual profit; it also makes setting aside money for surprises part of the calculation.
 
 
 To run the drill yourself: duplicate the table with your own stack and contract terms, adjust the assumptions until the cash outlay fits your guardrails, and (the step that produces the actual value) identify one optimisation lever per tool: renegotiate, downgrade, or automate. Done honestly, the drill forces real trade-offs (``keep the monitoring tool or fund a contractor?'') and leaves you with next quarter's action list.
