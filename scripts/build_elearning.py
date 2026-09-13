@@ -62,6 +62,10 @@ def asset_version() -> str:
     return hashlib.sha256((COURSE_CSS + COURSE_JS).encode("utf-8")).hexdigest()[:12]
 
 
+def textbook_version() -> str:
+    return hashlib.sha256((TEXTBOOK / "main.pdf").read_bytes()).hexdigest()[:12]
+
+
 def write_assets() -> None:
     (ELEARNING / "assets" / "course.css").write_text(COURSE_CSS, encoding="utf-8")
     (ELEARNING / "assets" / "course.js").write_text(COURSE_JS, encoding="utf-8")
@@ -322,7 +326,11 @@ def render_index(parts: list[Part]) -> None:
             f'<div class="topic-grid">{"".join(topic_cards)}</div>'
             "</section>"
         )
-    index = INDEX_PAGE.format(parts="\n".join(part_cards), asset_version=asset_version())
+    index = INDEX_PAGE.format(
+        parts="\n".join(part_cards),
+        asset_version=asset_version(),
+        textbook_version=textbook_version(),
+    )
     (ELEARNING / "index.html").write_text(index, encoding="utf-8")
 
 
@@ -394,7 +402,10 @@ def copy_textbook_assets(dest: Path) -> None:
 def assemble_site() -> None:
     shutil.copytree(ELEARNING, SITE / "elearning")
     copy_textbook_assets(SITE / "textbook")
-    (SITE / "index.html").write_text(SITE_INDEX.format(asset_version=asset_version()), encoding="utf-8")
+    (SITE / "index.html").write_text(
+        SITE_INDEX.format(asset_version=asset_version(), textbook_version=textbook_version()),
+        encoding="utf-8",
+    )
 
 
 def build() -> None:
@@ -428,7 +439,7 @@ INDEX_PAGE = """<!doctype html>
 <body class="course-index">
 <header class="site-hero">
   <nav>
-    <a href="textbook/main.pdf">Textbook A4 PDF</a>
+    <a href="textbook/main.pdf?v={textbook_version}">Textbook A4 PDF</a>
   </nav>
   <p>IT Professional Practice</p>
   <h1>The missing professional-practice course for technical graduates</h1>
@@ -460,7 +471,7 @@ SITE_INDEX = """<!doctype html>
 <header class="site-hero">
   <nav>
     <a href="elearning/">Interactive course</a>
-    <a href="textbook/main.pdf">Textbook A4 PDF</a>
+    <a href="textbook/main.pdf?v={textbook_version}">Textbook A4 PDF</a>
   </nav>
   <p>IT Professional Practice</p>
   <h1>The missing professional-practice course for technical graduates</h1>
@@ -484,7 +495,7 @@ SITE_INDEX = """<!doctype html>
         <span>Browse all topics as HTML e-learning pages.</span>
         <small>Open course</small>
       </a>
-      <a class="topic-card" href="textbook/main.pdf">
+      <a class="topic-card" href="textbook/main.pdf?v={textbook_version}">
         <strong>A4 textbook PDF</strong>
         <span>Student-printable LaTeX textbook generated from the same course source.</span>
         <small>Download PDF</small>
