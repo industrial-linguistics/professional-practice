@@ -18,7 +18,15 @@
 
 <section class="slide" data-slide="4" data-kind="content" data-title="Reconstructing the incident">
 <h2>Reconstructing the incident</h2>
-<p>Once the dust settles, pull together alerts, logs, ticket comments, and chat transcripts. Normalize timestamps to a single time zone so you can see the true sequence of events—even if teams span continents. Start by lining up the first alert, then note every action responders took, from restarting services to updating the status page. If you hit inconsistent times, check for misconfigured clocks and call out missing data that might hide crucial context. A clear play-by-play shows how the outage unfolded and which steps made things better or worse. This timeline becomes the backbone for root cause analysis and a template for future runbooks.</p>
+<div class="diagram diagram-evidence">
+<ol class="dg-evidence-steps">
+<li class="dg-card"><strong>Gather evidence</strong><span>Bring together alerts, logs, ticket comments and chat transcripts.</span></li>
+<li class="dg-card"><strong>Align times</strong><span>Use one time zone. Check inconsistent timestamps against server clocks and flag missing data.</span></li>
+<li class="dg-card"><strong>Build the timeline</strong><span>Start with the first alert. Record each responder action, including service restarts and status-page updates.</span></li>
+<li class="dg-card"><strong>Explain the outcome</strong><span>Show how the outage unfolded and which actions made it better or worse.</span></li>
+</ol>
+<p class="dg-caption">Use the evidence timeline for root cause analysis and future runbooks.</p>
+</div>
 </section>
 
 <section class="slide" data-slide="5" data-kind="content" data-title="Tools and techniques">

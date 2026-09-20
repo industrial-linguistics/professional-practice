@@ -990,6 +990,54 @@ main {
   font-weight: 800;
   font-size: .88em;
 }
+/* Evidence collection: ordered reconstruction steps and a trial scorecard. */
+.slide .diagram-evidence {
+  display: grid;
+  gap: .7em;
+  font-size: clamp(16px, 1.5vw, 20px);
+}
+.slide .diagram-evidence p,
+.slide .diagram-evidence .dg-caption {
+  margin: 0;
+}
+.slide .diagram-evidence .dg-evidence-steps {
+  display: grid;
+  gap: .55em;
+  padding-left: 1.4em;
+}
+.slide .diagram-evidence .dg-evidence-steps li {
+  margin: 0;
+  padding: .6em .8em;
+  font-size: 1em;
+}
+.slide .diagram-evidence .dg-evidence-steps strong {
+  color: var(--green);
+  margin-right: .45em;
+}
+.slide .diagram-evidence th,
+.slide .diagram-evidence td {
+  padding: .55em .65em;
+  font-size: 1em;
+  overflow-wrap: anywhere;
+}
+.slide .diagram-evidence th:first-child { width: 32%; }
+.slide .diagram-evidence tbody th {
+  color: var(--ink);
+  background: var(--soft);
+}
+@media (max-width: 600px) {
+  .slide .diagram-evidence table,
+  .slide .diagram-evidence thead,
+  .slide .diagram-evidence tbody,
+  .slide .diagram-evidence tr,
+  .slide .diagram-evidence th,
+  .slide .diagram-evidence td {
+    display: block;
+    width: 100%;
+  }
+  .slide .diagram-evidence th:first-child { width: 100%; }
+  .slide .diagram-evidence tbody th { border-bottom: 0; }
+}
 /* Lead conversion: semantic company/person/deal records, not a vendor screenshot. */
 .slide .diagram-conversion {
   display: grid;

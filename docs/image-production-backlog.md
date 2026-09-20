@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-09-14.
+Last checked: 2026-09-21.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -65,11 +65,11 @@ These are the best first candidates because they either support early course con
 | 2 | backlog | `content/part-02/continual-improvement/images/pdca-csi-loop.png` | diagram | PDCA/continual-service-improvement loop. | Lower priority because existing value-chain image covers adjacent idea. |
 | 2 | superseded-html | `content/part-03/sre-error-budgets/images/error-budget-burn.png` | diagram | Error-budget burn chart linked to release freeze decision. | Implemented as inline SVG on slide 4 (2026-07-06). |
 | 2 | delivery-pending | `content/part-03/trunk-vs-feature-branching/images/branching-comparison.png` | diagram | Trunk versus feature branch integration delay. | Protected database records `2026-08-03-branching-comparison` as processed; target PNG is absent from this checkout (2026-09-07). Audit delivery; do not regenerate or mark accepted. |
-| 2 | backlog | `content/part-04/alert-correlation/images/alert-correlation-timeline.png` | diagram | Alert correlation timeline. | Needs topic slide alignment check. |
+| 2 | superseded-html | `content/part-04/alert-correlation/images/alert-correlation-timeline.png` | diagram | Alert correlation timeline. | Alignment checked (7/7). Slide 4 now uses native ordered evidence rows to teach timeline reconstruction (2026-09-21); no fictional timestamps or causal arrows were needed. |
 | 2 | backlog | `content/part-04/communicating-outcomes/images/stakeholder-update-template.png` | mockup | Outcome report sections for executives, customers and technical teams. | Could become worksheet. |
 | 2 | backlog | `content/part-05/multi-stakeholder-buying-committees/images/buying-committee-map.png` | diagram | Buying committee map. | Hold until Part 5 narrative alignment improves. |
 | 2 | backlog | `content/part-05/lead-scoring-opportunity-progression-renewal-alerts/images/lead-renewal-timeline.png` | diagram | CRM lifecycle timeline. | Hold until Part 5 narrative alignment improves. |
-| 2 | backlog | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | mockup | POC scorecard. | Potential worksheet asset. |
+| 2 | superseded-html | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | mockup | POC scorecard. | Alignment checked (9/9). Slide 5 now uses a semantic criterion/evidence table (2026-09-21); success thresholds and baseline remain on slide 3, with no invented trial scores. |
 | 2 | delivery-pending | `content/part-06/remote-first-reality-check/images/remote-onboarding-flow.png` | diagram | Remote onboarding/offboarding flow. | Protected database records `2026-08-10-remote-onboarding-flow` as processed; target PNG is absent from this checkout (2026-09-07). Audit delivery; do not regenerate or mark accepted. |
 | 2 | superseded-html | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | diagram | Weekly/monthly/quarterly vendor cadence and scorecard. | The installed raster was later rejected for text outside boxes. It is no longer referenced: cadence remains on slide 3 and scorecard design and thresholds remain on slides 7–8 (2026-08-31). |
 | 2 | delivery-pending | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | diagram | Evidence map for policy, logs, access reviews, backups and board reporting. | Protected database records `2026-07-13-due-diligence-evidence-map-rework-1` as processed; target PNG is absent from this checkout (2026-09-07). Audit delivery; do not regenerate or mark accepted. |
@@ -82,6 +82,15 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-09-21 review sweep
+
+Synchronized a consistent protected database backup before work: 11 processed, 14 rejected, no pending/approved/commented items. The remaining ready contract concept needs a whole-topic layout pass; the Māori concept needs cultural review. Instead, cleared the alignment/readiness checks for two small operational templates and completed them as semantic source compositions.
+
+- Alert-correlation slide 4 now groups the original reconstruction instructions into four ordered evidence rows. All useful sources, timing checks, responder-action examples, outcome analysis and RCA/runbook uses remain visible or in the unchanged matching narrative.
+- Proof-of-concept slide 5 now pairs the original cost, integration and training criteria with evidence prompts in a native table. End-of-trial feedback, original criteria, vendor schedule, decision options and leadership follow-up remain visible. No observed results or scores are invented.
+- Both topics keep their slide counts (7 and 9) and all narratives. No raster generation, candidate registration, review decision or image installation is required. Evidence and full QA are recorded in `image-review/batches/2026-09-21.md`.
+- A fresh read-only raksasa check still finds the processor checkout at `64e4fb0`, with installed images untracked and its rework queue modified. The eight `delivery-pending` concepts remain a separate delivery repair.
 
 ### 2026-09-07 review sweep
 

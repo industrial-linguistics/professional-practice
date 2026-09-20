@@ -1,6 +1,6 @@
 # Media and Diagram Plan
 
-Last checked: 2026-09-14.
+Last checked: 2026-09-21.
 
 ## Current media state
 
@@ -16,7 +16,7 @@ Last checked: 2026-09-14.
 - The SLA/OLA/KPI and vendor-scorecard PNGs above are retained for provenance but are no longer learner-referenced after semantic source rework on 2026-08-31.
 - Topics with matching slide and narrative counts: 81.
 
-The protected database records 11 processed and 14 rejected candidates on 2026-09-14, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
+The protected database records 11 processed and 14 rejected candidates on 2026-09-21, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
 
 Slide/narrative alignment is now complete across all 81 topics. The next media constraint is generating and verifying audio for the remaining topics; image work should continue in small reviewable batches rather than blocking audio coverage.
 
@@ -64,11 +64,11 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 | 2 | `content/part-02/continual-improvement/images/pdca-csi-loop.png` | PDCA/continual improvement loop | Reinforce improvement as a cycle, not a one-off. |
 | 2 | `content/part-03/sre-error-budgets/images/error-budget-burn.png` | Error-budget burn chart | Connect SLOs to release decisions. |
 | 2 | `content/part-03/trunk-vs-feature-branching/images/branching-comparison.png` | Branching comparison | Show integration delay and merge risk visually. |
-| 2 | `content/part-04/alert-correlation/images/alert-correlation-timeline.png` | Alert-to-incident timeline | Show how duplicate alerts become one incident story. |
+| 2 | `content/part-04/alert-correlation/images/alert-correlation-timeline.png` | Semantic reconstruction checklist | Slide 4 groups evidence, timestamp checks, responder actions and outcome analysis into four ordered rows. |
 | 2 | `content/part-04/communicating-outcomes/images/stakeholder-update-template.png` | Outcome report mockup | Model executive, customer and technical update sections. |
 | 2 | `content/part-05/multi-stakeholder-buying-committees/images/buying-committee-map.png` | Stakeholder map | Show champion, blocker, economic buyer, security and legal. |
 | 2 | `content/part-05/lead-scoring-opportunity-progression-renewal-alerts/images/lead-renewal-timeline.png` | CRM lifecycle timeline | Connect lead scoring, stage movement, health score and renewal alert. |
-| 2 | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | POC success scorecard | Make acceptance criteria concrete. |
+| 2 | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | Semantic POC evidence scorecard | Slide 5 pairs cost, integration and training criteria with evidence prompts; slide 3 retains success thresholds and baseline. |
 | 2 | `content/part-06/remote-first-reality-check/images/remote-onboarding-flow.png` | Remote onboarding/offboarding flow | Show HRIS, device logistics, IAM, payroll and access review. |
 | 2 | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | Cadence and scorecard diagram | Show weekly, monthly and quarterly vendor management rhythms. |
 | 2 | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | Evidence map | Link policy, logs, access reviews, backups and board reporting. |
