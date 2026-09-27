@@ -1,0 +1,24 @@
+Composition decision
+Source-level native HTML/CSS. Recompose all 13 overflowing dialogue slides as short semantic lists; use a semantic SLA clause table on slide 3 for the five requested contract elements. The source is text and a comparison of clause fields, so raster generation, Graphviz, Mermaid, charting and TikZ would add no instructional value. Keep the existing 14-slide order and matching narratives. The clause table is the sole new focal visual. No PNG installer or candidate registration applies.
+
+Content preservation
+The pre-edit exact paragraph inventory is content-inventory.json, with each matching narrative path and SHA-256. Every original dialogue paragraph on slides 2-14 occurs verbatim in that slide's existing narrative (after only Speaker A/B to Speaker 1/2 prefix normalization). Thus all original examples, numbers, claims, cautions and metaphors remain in the matching narrative. The slide 1 title and subtitle remain visible. Each revised slide keeps the following useful points visible:
+- 2: uptime/service level, response and remedy, exit, pricing; the Black Friday example remains in narrative 02.
+- 3: availability and measurement, exclusions, incident reporting/escalation, credits/remedies, exit/data return. The 99.9/99.99 calculation, peak-season impact and security/data handling remain in narrative 03; exit detail is also visible on slide 5.
+- 4: flat/per-user/usage pricing, volume and annual increases, onboarding/support/training, best/worst-case comparison. The $500/$5,000/$2,000 example remains in narrative 04.
+- 5: notice, portability, renewal and exit drill. The 180-day and three-month-data-loss examples remain in narrative 05.
+- 6: financial, security, structured questionnaire, threshold, annual reassessment. The NIST/SIG examples remain in narrative 06.
+- 7: early counsel, sector rules, cross-border data, jurisdiction, IP and liability. The original named regulatory examples remain in narrative 07.
+- 8: customer references, security evidence, financial health, support test, RFP-to-contract mapping, scoring and disputes. The detailed questions remain in narrative 08.
+- 9: vague prices, proprietary lock-in, expiring discounts, unilateral changes and weak support. The $50-to-$100 example remains in narrative 09.
+- 10: reviews, training/documentation, SLA reports, escalation/exit, lessons and positive performance. Detail remains in narrative 10.
+- 11: outsourced/hybrid/multi-vendor models, explicit responsibility and future scale. The CRM/analytics example remains in narrative 11.
+- 12: APIs, formats/authentication, custom work and licenses, real-time data, test milestones. The CSV example remains in narrative 12.
+- 13: scale up/down, capacity/users/tiers, data-growth charges, forecasts and seasonal burst. Detail remains in narrative 13.
+- 14: uptime/pricing/exit/growth, risk/legal diligence, reviews/training and the holiday-outage lesson. Detail remains in narrative 14.
+No original item moves to a new slide, and no narrative is edited or renumbered. The current topic has 14 slides and 14 matching narratives.
+
+Layout QA
+Candidate, current-slide and proposed-slide PNGs are 1920 x 1080, with a 1760 x 990 slide frame. Candidate and proposed PNGs are byte-identical full semantic slide previews. Inspected both at 100 percent and as whole slides; inspected the 14-slide contact sheet. The current-slide PNG documents the clipped dialogue layout being replaced. The final candidate has readable spelling and no clipping.
+
+The full topic passed scripts/check_slide_geometry.py: all 14 slide frames fit, with no computed containment, sibling-overlap, external-text-occlusion, slide-overflow or page-overflow defects at 1920 x 1080. The actual generated learner page passed 42 browser checks (14 slides at 1920, 1440 and 390 px) in browser-geometry.json: zero issues, zero console/page errors, zero connectors, no horizontal page overflow and no inner-slide overflow. Twelve SLA table cells have at least 9 px measured text clearance at each width; every text run remains inside its cell with computed padding. Table cells do not overlap each other or external text. Connector endpoint and crossing checks are vacuous because this composition has no connectors. The 390 px screenshot shows full words, legible table headers and ordinary page scrolling without inner-slide scrolling.

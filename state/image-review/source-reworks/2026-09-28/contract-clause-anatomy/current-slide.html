@@ -1,0 +1,1111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+:root {
+  --ink: #18212f;
+  --muted: #667085;
+  --line: #d9e0ea;
+  --surface: #ffffff;
+  --soft: #f5f7f9;
+  --green: #0f766e;
+  --red: #b42318;
+  --gold: #b7791f;
+  --blue: #2f5f98;
+  --slate: #243447;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(15, 118, 110, .16), transparent 34rem),
+    linear-gradient(180deg, #eef2f5, #f8fafc 55%, #eef2f5);
+  font-family: Charter, Georgia, "Times New Roman", serif;
+}
+a { color: var(--green); }
+button, textarea {
+  font: 700 14px/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+.site-hero {
+  background:
+    linear-gradient(90deg, rgba(24,33,47,.9), rgba(15,118,110,.7)),
+    repeating-linear-gradient(135deg, #17202d 0 18px, #1d2a38 18px 36px);
+  color: white;
+  min-height: 44vh;
+  padding: 34px max(28px, calc((100vw - 1180px) / 2)) 88px;
+}
+.site-hero nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 46px;
+}
+.site-hero nav a {
+  color: white;
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: 999px;
+  padding: 8px 13px;
+  text-decoration: none;
+  font: 700 13px/1 Avenir, "Trebuchet MS", sans-serif;
+}
+.site-hero p,
+.lesson-rail > p {
+  margin: 0 0 12px;
+  font: 700 13px/1.2 Avenir, "Trebuchet MS", sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.site-hero h1 {
+  font-size: clamp(40px, 7vw, 84px);
+  line-height: .98;
+  max-width: 920px;
+  margin: 0 0 24px;
+}
+.site-hero span {
+  display: block;
+  max-width: 760px;
+  font: 22px/1.45 Avenir, "Trebuchet MS", sans-serif;
+}
+.site-hero .hero-summary {
+  max-width: 890px;
+}
+.hero-briefs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1080px;
+  margin-top: 30px;
+}
+.hero-briefs span {
+  max-width: none;
+  min-height: 128px;
+  padding: 16px;
+  color: rgba(255,255,255,.92);
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 8px;
+  font: 15px/1.45 Avenir, "Trebuchet MS", sans-serif;
+}
+.hero-briefs strong {
+  display: block;
+  margin-bottom: 8px;
+  color: white;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+main {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 0 auto;
+}
+.part-band {
+  display: grid;
+  grid-template-columns: minmax(220px, 310px) 1fr;
+  gap: 28px;
+  padding: 34px 0;
+  border-bottom: 1px solid var(--line);
+}
+.part-copy h2 {
+  margin: 0 0 10px;
+  font-size: 30px;
+}
+.part-copy span,
+.topic-card span,
+.lesson-rail span {
+  color: var(--muted);
+  line-height: 1.45;
+}
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+.topic-card {
+  display: grid;
+  gap: 8px;
+  min-height: 160px;
+  padding: 18px;
+  background: rgba(255,255,255,.9);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(36, 52, 71, .08);
+}
+.topic-card strong { font-size: 18px; }
+.topic-card small {
+  align-self: end;
+  color: var(--blue);
+  font: 700 12px/1.2 Avenir, "Trebuchet MS", sans-serif;
+  text-transform: uppercase;
+}
+.site-footer {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 0 auto;
+  padding: 8px 0 24px;
+  text-align: right;
+  font: 700 12px/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--green);
+  text-decoration: underline;
+}
+.lesson-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px max(20px, calc((100vw - 1320px) / 2));
+  color: white;
+  background: var(--slate);
+  font: 700 13px/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+.lesson-topbar a { color: white; text-decoration: none; }
+.lesson-shell {
+  width: min(1320px, calc(100vw - 28px));
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  gap: 20px;
+  padding: 20px 0 42px;
+}
+.lesson-rail {
+  position: sticky;
+  top: 16px;
+  align-self: start;
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 36px rgba(36, 52, 71, .1);
+}
+.lesson-rail h1 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  line-height: 1.05;
+}
+.lesson-meta {
+  display: grid;
+  gap: 9px;
+  margin: 20px 0;
+  padding: 14px;
+  background: var(--soft);
+  border-radius: 12px;
+  font: 700 13px/1.25 Avenir, "Trebuchet MS", sans-serif;
+}
+.lesson-meta audio {
+  width: 100%;
+}
+.pending { color: var(--muted); }
+.slide-list {
+  display: grid;
+  gap: 8px;
+}
+.slide-jump {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  padding: 11px 12px;
+  color: var(--ink);
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.slide-jump.active {
+  color: white;
+  background: var(--green);
+  border-color: var(--green);
+}
+.slide-jump span {
+  color: inherit;
+  font-family: Avenir, "Trebuchet MS", sans-serif;
+}
+.lesson-main {
+  min-width: 0;
+}
+.progress-track {
+  height: 9px;
+  overflow: hidden;
+  background: #d9e0ea;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+#progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  transition: width .25s ease;
+}
+.lesson-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+.slide-frame,
+.slide-copy,
+.media-card,
+.qa-card,
+.transcript-slide {
+  background: rgba(255,255,255,.96);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 18px 42px rgba(36, 52, 71, .1);
+}
+.slide-frame {
+  min-height: clamp(560px, calc(100vh - 220px), 760px);
+  display: grid;
+  place-items: center;
+  padding: clamp(18px, 3vw, 44px);
+  overflow: auto;
+}
+.slide {
+  width: min(100%, 1040px);
+  min-height: 560px;
+  display: grid;
+  align-content: center;
+  gap: 24px;
+  padding: clamp(24px, 5vw, 70px);
+  color: #101828;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.97), rgba(247,250,252,.98)),
+    radial-gradient(circle at bottom right, rgba(15, 118, 110, .13), transparent 18rem);
+  border: 1px solid #e5eaf0;
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.75);
+}
+.slide h1,
+.slide h2 {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: .98;
+}
+.slide h3 {
+  margin: 0;
+  font-size: 28px;
+}
+.slide p,
+.slide li,
+.slide td,
+.slide th {
+  font-size: clamp(18px, 2vw, 25px);
+  line-height: 1.35;
+}
+.slide ul,
+.slide ol {
+  margin: 0;
+  padding-left: 1.25em;
+}
+.slide li + li { margin-top: .45em; }
+.slide table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Avenir, "Trebuchet MS", sans-serif;
+}
+.slide th,
+.slide td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.slide th {
+  color: white;
+  background: var(--slate);
+}
+.slide pre {
+  white-space: pre-wrap;
+  overflow: auto;
+  padding: 18px;
+  color: #e6edf3;
+  background: #17202d;
+  border-radius: 12px;
+}
+.slide code {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: .82em;
+}
+.slide-figure {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  gap: 12px;
+}
+.slide-figure img,
+.slide img {
+  max-width: 100%;
+  max-height: 390px;
+  object-fit: contain;
+}
+.slide-figure figcaption {
+  color: var(--muted);
+  font: 700 14px/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+/* In-slide diagrams: pure HTML/CSS replacements for generated raster art. */
+.slide .diagram {
+  width: 100%;
+  font-family: Avenir, "Trebuchet MS", sans-serif;
+  font-size: clamp(13px, 1.5vw, 16px);
+  line-height: 1.3;
+}
+.slide .diagram-split {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: 24px;
+  align-items: center;
+}
+.slide .diagram .dg-card {
+  padding: .55em .8em;
+  background: white;
+  border: 2px solid var(--slate);
+  border-radius: 10px;
+}
+.slide .diagram .dg-title {
+  display: block;
+  font-weight: 800;
+}
+.slide .diagram .dg-note {
+  display: block;
+  color: var(--muted);
+  font-size: .88em;
+}
+.slide .diagram .dg-arrow {
+  align-self: center;
+  color: var(--slate);
+  font-weight: 800;
+  white-space: nowrap;
+}
+.slide .diagram .dg-caption {
+  margin-top: .9em;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: .92em;
+}
+.slide .diagram .dg-badge {
+  display: inline-block;
+  margin-right: .6em;
+  padding: .2em .7em;
+  color: white;
+  background: var(--slate);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: .88em;
+}
+/* Evidence collection: ordered reconstruction steps and a trial scorecard. */
+.slide .diagram-evidence {
+  display: grid;
+  gap: .7em;
+  font-size: clamp(16px, 1.5vw, 20px);
+}
+.slide .diagram-evidence p,
+.slide .diagram-evidence .dg-caption {
+  margin: 0;
+}
+.slide .diagram-evidence .dg-evidence-steps {
+  display: grid;
+  gap: .55em;
+  padding-left: 1.4em;
+}
+.slide .diagram-evidence .dg-evidence-steps li {
+  margin: 0;
+  padding: .6em .8em;
+  font-size: 1em;
+}
+.slide .diagram-evidence .dg-evidence-steps strong {
+  color: var(--green);
+  margin-right: .45em;
+}
+.slide .diagram-evidence th,
+.slide .diagram-evidence td {
+  padding: .55em .65em;
+  font-size: 1em;
+  overflow-wrap: anywhere;
+}
+.slide .diagram-evidence th:first-child { width: 32%; }
+.slide .diagram-evidence tbody th {
+  color: var(--ink);
+  background: var(--soft);
+}
+@media (max-width: 600px) {
+  .slide .diagram-evidence table,
+  .slide .diagram-evidence thead,
+  .slide .diagram-evidence tbody,
+  .slide .diagram-evidence tr,
+  .slide .diagram-evidence th,
+  .slide .diagram-evidence td {
+    display: block;
+    width: 100%;
+  }
+  .slide .diagram-evidence th:first-child { width: 100%; }
+  .slide .diagram-evidence tbody th { border-bottom: 0; }
+}
+/* Lead conversion: semantic company/person/deal records, not a vendor screenshot. */
+.slide .diagram-conversion {
+  display: grid;
+  gap: .65em;
+}
+.slide .diagram-conversion .dg-card {
+  padding: .75em .9em;
+}
+.slide .diagram-conversion .dg-note + .dg-title,
+.slide .diagram-conversion .dg-title + .dg-note {
+  margin-top: .35em;
+}
+.slide .diagram-conversion .dg-records {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65em;
+}
+.slide .diagram-conversion .dg-records .dg-card {
+  min-width: 0;
+  border-color: var(--blue);
+}
+.slide .diagram-conversion .dg-qualified {
+  background: #eef4fb;
+}
+.slide .diagram-conversion .dg-assignment {
+  border-color: var(--green);
+  background: #e7f4ef;
+}
+.slide .diagram-conversion .dg-caption {
+  margin-top: 0;
+}
+/* FinOps: invoice assumptions and cash scenarios stay selectable and readable. */
+.slide .diagram-finops {
+  display: grid;
+  gap: .7em;
+}
+.slide .diagram-finops p {
+  margin: 0;
+  font-size: 1em;
+}
+.slide .diagram-finops th,
+.slide .diagram-finops td {
+  font-size: 1.15em;
+  padding: .55em .65em;
+  overflow-wrap: anywhere;
+}
+.slide .diagram-finops tbody th {
+  color: var(--slate);
+  background: var(--soft);
+}
+.slide .diagram-finops .dg-panel {
+  display: grid;
+  gap: .5em;
+}
+.slide .diagram-finops .dg-panel-title {
+  font-size: 1.2em;
+}
+.slide .diagram-finops .dg-cash {
+  color: var(--blue);
+  font-size: 2.2em;
+  font-weight: 800;
+}
+.slide .diagram-finops .dg-caption {
+  margin: 0;
+}
+/* SLA/OLA/KPI hierarchy: essential layer text remains semantic HTML. */
+.slide .diagram-stack {
+  display: grid;
+  justify-items: center;
+  gap: .55em;
+}
+.slide .diagram-stack .dg-layer {
+  display: grid;
+  grid-template-columns: 5.4em minmax(0, 1fr);
+  gap: .25em .8em;
+  width: 100%;
+  min-width: 0;
+  padding: .7em .9em;
+  background: white;
+  border: 2px solid var(--blue);
+  border-radius: 12px;
+}
+.slide .diagram-stack .dg-layer-ola {
+  width: 91%;
+  border-color: var(--green);
+}
+.slide .diagram-stack .dg-layer-kpi {
+  width: 82%;
+  border-color: var(--gold);
+}
+.slide .diagram-stack .dg-layer-name {
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--slate);
+  font-size: 1.3em;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+/* Decision guide: question rows routing to outcome cards. */
+.slide .diagram-decision {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) auto minmax(0, 1fr);
+  gap: .55em .7em;
+  align-items: center;
+}
+.slide .diagram-decision .dg-question {
+  padding: .5em .8em;
+  background: var(--soft);
+  border: 2px solid var(--blue);
+  border-radius: 10px;
+  font-weight: 700;
+}
+.slide .diagram-decision .dg-no {
+  grid-column: 1;
+  justify-self: center;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: .85em;
+}
+/* Escalation staircase with lanes. */
+.slide .diagram-lanes {
+  display: grid;
+  grid-template-columns: 7.5em repeat(3, minmax(0, 1fr));
+  gap: .5em .6em;
+  align-items: center;
+}
+.slide .diagram-lanes .dg-lane {
+  font-weight: 800;
+  color: var(--slate);
+  text-align: right;
+  padding-right: .4em;
+}
+.slide .diagram-lanes .dg-arrow {
+  text-align: right;
+}
+.slide .diagram-lanes .dg-return {
+  grid-column: 2 / -1;
+  padding: .45em .8em;
+  background: var(--soft);
+  border: 2px dashed var(--green);
+  border-radius: 10px;
+  font-weight: 700;
+}
+/* Metric shift rows: current state, arrow, target state. */
+.slide .diagram-shift {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: .5em .7em;
+  align-items: center;
+}
+.slide .diagram-shift .dg-metric {
+  font-weight: 800;
+}
+.slide .diagram-shift .dg-metric .dg-note {
+  font-weight: 400;
+}
+.slide .diagram-shift .dg-current {
+  padding: .4em .8em;
+  text-align: center;
+  background: #fdeaea;
+  border: 2px solid #c0504d;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.slide .diagram-shift .dg-target {
+  padding: .4em .8em;
+  text-align: center;
+  background: #e7f4ef;
+  border: 2px solid var(--green);
+  border-radius: 999px;
+  font-weight: 700;
+}
+/* Pipeline flow: stages joined by arrows, with an optional return path. */
+.slide .diagram-flow {
+  display: flex;
+  align-items: stretch;
+  gap: .45em;
+}
+.slide .diagram-flow .dg-card {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.slide .diagram-flow + .dg-return-path,
+.slide .diagram .dg-return-path {
+  margin-top: .6em;
+  padding: .45em .8em;
+  text-align: right;
+  color: #8a3b38;
+  background: #fdf1f0;
+  border: 2px dashed #c0504d;
+  border-radius: 10px;
+  font-weight: 700;
+}
+/* Milestone timeline: dots along a track with compact labels. */
+.slide .diagram-timeline {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: .4em;
+  text-align: center;
+}
+.slide .diagram-timeline::before {
+  content: "";
+  position: absolute;
+  top: .4em;
+  left: 4%;
+  right: 4%;
+  height: 4px;
+  background: var(--line);
+  border-radius: 999px;
+}
+.slide .diagram-timeline .dg-stop {
+  display: grid;
+  gap: .3em;
+  justify-items: center;
+}
+.slide .diagram-timeline .dg-dot {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #e7f4ef;
+}
+.slide .diagram-timeline .dg-stop:nth-child(even) .dg-dot {
+  background: var(--blue);
+  box-shadow: 0 0 0 3px var(--soft);
+}
+/* Stage gates: compact semantic cards with an owner, duration and output. */
+.slide .diagram-stage-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .55em;
+}
+.slide .diagram-stage-grid .dg-stage {
+  display: grid;
+  align-content: start;
+  gap: .42em;
+  min-width: 0;
+  padding: .75em;
+  background: white;
+  border: 2px solid var(--line);
+  border-top: .42em solid var(--blue);
+  border-radius: 12px;
+}
+.slide .diagram-stage-grid .dg-stage:nth-child(2n) {
+  border-top-color: var(--green);
+}
+.slide .diagram-stage-grid .dg-stage:nth-child(3) {
+  border-top-color: var(--gold);
+}
+.slide .diagram-stage-grid .dg-number,
+.slide .diagram-controls .dg-number {
+  display: inline-grid;
+  place-items: center;
+  width: 2em;
+  height: 2em;
+  color: white;
+  background: var(--slate);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: .78em;
+}
+.slide .diagram-stage-grid .dg-time {
+  color: var(--muted);
+  font-weight: 800;
+  font-size: .78em;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.slide .diagram-stage-grid .dg-owner {
+  min-height: 3.2em;
+  color: var(--ink);
+  font-size: .86em;
+}
+.slide .diagram-stage-grid .dg-output {
+  margin-top: auto;
+  padding-top: .45em;
+  border-top: 1px solid var(--line);
+  color: var(--green);
+  font-weight: 800;
+  font-size: .82em;
+}
+/* Operational handover gate: every condition must be evidenced. */
+.slide .diagram-gate {
+  display: grid;
+  gap: .65em;
+}
+.slide .diagram-gate .dg-gate-lead {
+  padding: .65em .9em;
+  color: white;
+  background: var(--slate);
+  border-radius: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+.slide .diagram-gate .dg-check-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .55em;
+}
+.slide .diagram-gate .dg-card {
+  min-width: 0;
+  border-color: var(--line);
+}
+.slide .diagram-gate .dg-risk {
+  padding: .55em .8em;
+  color: #8a3b38;
+  background: #fdf1f0;
+  border: 2px solid #c0504d;
+  border-radius: 10px;
+  font-weight: 800;
+  text-align: center;
+}
+/* RCA comparison: one evidence chain versus several contributor categories. */
+.slide .diagram-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75em;
+}
+.slide .diagram-compare .dg-panel {
+  min-width: 0;
+  padding: .75em;
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+}
+.slide .diagram-compare .dg-panel-title {
+  display: flex;
+  justify-content: space-between;
+  gap: .5em;
+  margin-bottom: .55em;
+  font-weight: 800;
+}
+.slide .diagram-compare .dg-mode {
+  align-self: center;
+  padding: .18em .55em;
+  color: white;
+  background: var(--blue);
+  border-radius: 999px;
+  font-size: .68em;
+  white-space: nowrap;
+}
+.slide .diagram-chain {
+  display: grid;
+  gap: .28em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: why-step;
+}
+.slide .diagram-chain li {
+  position: relative;
+  margin: 0;
+  padding: .42em .55em .42em 2.25em;
+  background: var(--soft);
+  border-radius: 8px;
+  font-size: .8em;
+}
+.slide .diagram-chain li::before {
+  counter-increment: why-step;
+  content: counter(why-step);
+  position: absolute;
+  left: .55em;
+  top: .42em;
+  display: grid;
+  place-items: center;
+  width: 1.35em;
+  height: 1.35em;
+  color: white;
+  background: var(--blue);
+  border-radius: 999px;
+  font-weight: 800;
+}
+.slide .diagram-chain .dg-evidence {
+  display: block;
+  color: var(--muted);
+  font-size: .82em;
+}
+.slide .diagram-contributors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .45em;
+}
+.slide .diagram-contributors .dg-card {
+  border-color: var(--green);
+  font-size: .82em;
+}
+.slide .diagram-contributors .dg-outcome {
+  grid-column: 1 / -1;
+  padding: .5em .7em;
+  color: #8a3b38;
+  background: #fdf1f0;
+  border: 2px solid #c0504d;
+  border-radius: 10px;
+  font-weight: 800;
+  text-align: center;
+}
+/* Action/evidence grid: six lean controls without rasterised text. */
+.slide .diagram-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .55em;
+}
+.slide .diagram-controls .dg-control {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .35em .55em;
+  min-width: 0;
+  padding: .65em;
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+}
+.slide .diagram-controls .dg-control:nth-child(-n+2) {
+  border-color: var(--blue);
+}
+.slide .diagram-controls .dg-control:nth-child(n+3):nth-child(-n+4) {
+  border-color: var(--green);
+}
+.slide .diagram-controls .dg-control:nth-child(n+5) {
+  border-color: var(--gold);
+}
+.slide .diagram-controls .dg-title {
+  align-self: center;
+  font-size: .9em;
+}
+.slide .diagram-controls .dg-action,
+.slide .diagram-controls .dg-proof {
+  grid-column: 1 / -1;
+  padding-top: .25em;
+  font-size: .77em;
+}
+.slide .diagram-controls .dg-proof {
+  padding: .4em .55em;
+  color: var(--green);
+  background: #e7f4ef;
+  border-radius: 8px;
+  font-weight: 800;
+}
+.slide-copy {
+  padding: 22px;
+}
+#slide-counter {
+  margin: 0 0 8px;
+  color: var(--blue);
+  font: 700 13px/1 Avenir, "Trebuchet MS", sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.slide-copy h2 {
+  margin: 0 0 18px;
+  font-size: 30px;
+  line-height: 1.1;
+}
+details {
+  margin-top: 13px;
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+}
+summary {
+  cursor: pointer;
+  font: 700 14px/1.2 Avenir, "Trebuchet MS", sans-serif;
+}
+.lesson-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+.lesson-controls button,
+.lesson-controls .next-topic-button,
+.qa-card button {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 16px;
+  color: white;
+  background: var(--slate);
+  cursor: pointer;
+}
+.lesson-controls .next-topic-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  background: var(--green);
+  text-decoration: none;
+}
+.lesson-controls .next-topic-button[hidden] {
+  display: none;
+}
+.lesson-controls button:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+}
+.lesson-controls button[aria-pressed="true"] {
+  background: var(--green);
+}
+#subtitle-box {
+  position: sticky;
+  bottom: 18px;
+  z-index: 2;
+  margin: 0 auto 14px;
+  width: min(900px, 92%);
+  padding: 14px 18px;
+  color: white;
+  background: rgba(24, 33, 47, .92);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(24,33,47,.28);
+  font: 18px/1.45 Avenir, "Trebuchet MS", sans-serif;
+}
+.media-card,
+.qa-card {
+  margin-top: 18px;
+  padding: 20px;
+}
+.qa-card textarea {
+  width: 100%;
+  margin: 8px 0 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.qa-card pre {
+  white-space: pre-wrap;
+  font-family: Avenir, "Trebuchet MS", sans-serif;
+}
+.transcript-page main {
+  max-width: 1120px;
+  padding: 32px 0 60px;
+}
+.transcript-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, .7fr);
+  gap: 18px;
+}
+.transcript-slide {
+  margin: 18px 0;
+  padding: 20px;
+}
+.static-slide .slide {
+  min-height: 320px;
+  transform-origin: top left;
+}
+.site-forward main {
+  padding: 48px 0;
+}
+@media (max-width: 980px) {
+  .hero-briefs {
+    grid-template-columns: 1fr;
+  }
+  .hero-briefs span {
+    min-height: 0;
+  }
+  .part-band,
+  .lesson-shell,
+  .lesson-stage,
+  .transcript-grid {
+    grid-template-columns: 1fr;
+  }
+  .lesson-rail {
+    position: static;
+    max-height: none;
+  }
+  .slide-frame {
+    min-height: 420px;
+    padding: 12px;
+  }
+  .slide {
+    min-height: 380px;
+  }
+  .slide .diagram-finops table,
+  .slide .diagram-finops thead,
+  .slide .diagram-finops tbody {
+    display: block;
+  }
+  .slide .diagram-finops tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .slide .diagram-finops tr > :first-child {
+    grid-column: 1 / -1;
+  }
+  .slide .diagram-finops tr > :last-child {
+    white-space: nowrap;
+  }
+  .slide .diagram-stage-grid,
+  .slide .diagram-gate .dg-check-grid,
+  .slide .diagram-compare,
+  .slide .diagram-conversion .dg-records {
+    grid-template-columns: 1fr;
+  }
+  .slide .diagram-controls {
+    grid-template-columns: 1fr;
+  }
+  .slide .diagram-stage-grid .dg-owner {
+    min-height: 0;
+  }
+}
+
+html, body {
+  width: 1920px;
+  height: 1080px;
+  margin: 0;
+  overflow: hidden;
+  background: #101828;
+}
+body {
+  display: grid;
+  place-items: center;
+}
+.slide {
+  width: 1760px;
+  height: 990px;
+  min-height: 990px;
+  max-height: 990px;
+  overflow: hidden;
+  box-shadow: none;
+}
+.slide h1,
+.slide h2 {
+  font-size: 72px;
+}
+.slide p,
+.slide li,
+.slide td,
+.slide th {
+  font-size: 34px;
+}
+.slide table {
+  table-layout: fixed;
+}
+.slide pre {
+  font-size: 30px;
+}
+.slide-figure img,
+.slide img {
+  max-height: 690px;
+}
+.slide .diagram {
+  font-size: 28px;
+}
+</style>
+</head>
+<body>
+<section class="slide" data-slide="3" data-kind="content" data-title="Typical SLA terms">
+<h2>Typical SLA terms</h2>
+<p>Speaker A: Uptime numbers look impressive, but let's translate them into real impact. 99.9% uptime allows about 8.7 hours of downtime a year; 99.99% cuts that to under an hour.</p>
+<p>Speaker B: Picture your ecommerce store offline for a full business day during peak season. That's more than an inconvenience—it's lost revenue.</p>
+<p>Speaker A: Good SLAs also clarify incident notification and escalation paths.</p>
+<p>Speaker B: Plus, penalties or credits if the vendor misses targets. "Best effort" or "reasonable attempts" is code for "we'll try, maybe."</p>
+<p>Speaker A: Security and data handling should meet your compliance needs. If customer information leaks, you may face fines before the vendor even apologizes.</p>
+<p>Speaker B: Strong SLAs keep daily operations running smoothly and give you leverage when they don't.</p>
+</section>
+</body>
+</html>

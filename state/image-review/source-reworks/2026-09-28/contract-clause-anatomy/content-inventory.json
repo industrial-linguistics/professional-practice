@@ -1,0 +1,217 @@
+[
+  {
+    "slide": 1,
+    "title": "Contract Negotiation Basics",
+    "original_paragraphs": [
+      "<em>Setting terms that protect everyone</em>"
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/01-contract-negotiation-basics.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "706bc711576156af22aeb83198b4761614e6951e8ffcaebacdd9f1e47aa79f85"
+  },
+  {
+    "slide": 2,
+    "title": "Why negotiate carefully",
+    "original_paragraphs": [
+      "We have all seen boilerplate vendor contracts. Why not just accept them?",
+      "Remember the Black Friday payment system outage we mentioned earlier? If you sign standard terms, you might find those \"industry standard\" uptime guarantees are worthless.",
+      "So we press for clear uptime commitments, detailed service levels, and the ability to exit if things go south.",
+      "Exactly. A well-negotiated contract tells the vendor how quickly they must respond, how they'll compensate you, and what recourse you have if service fails.",
+      "It also locks in pricing so you don't face huge renewal hikes.",
+      "Negotiation sounds tedious, but think of it as building a safety net before you walk the tightrope."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/02-why-negotiate-carefully.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "d963922757a0b0e353a83dc0f434fc51885dc627a52bb4c901df49d102c272c5"
+  },
+  {
+    "slide": 3,
+    "title": "Typical SLA terms",
+    "original_paragraphs": [
+      "Uptime numbers look impressive, but let's translate them into real impact. 99.9% uptime allows about 8.7 hours of downtime a year; 99.99% cuts that to under an hour.",
+      "Picture your ecommerce store offline for a full business day during peak season. That's more than an inconvenience—it's lost revenue.",
+      "Good SLAs also clarify incident notification and escalation paths.",
+      "Plus, penalties or credits if the vendor misses targets. \"Best effort\" or \"reasonable attempts\" is code for \"we'll try, maybe.\"",
+      "Security and data handling should meet your compliance needs. If customer information leaks, you may face fines before the vendor even apologizes.",
+      "Strong SLAs keep daily operations running smoothly and give you leverage when they don't."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/03-typical-sla-terms.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "a3fcaf183b98d369dc5d1504316de03a042c78105331a3f058c9b2f3e755abc3"
+  },
+  {
+    "slide": 4,
+    "title": "Pricing models",
+    "original_paragraphs": [
+      "Let's talk money. Vendors offer flat fees, per-user pricing, or pay-as-you-go models.",
+      "The last one can be surprising. One startup projected $500 a month on AWS but got a $5,000 bill during a holiday rush.",
+      "Compare that with a fixed $2,000 a month hosting plan—expensive on quiet days, but stable during busy times.",
+      "Ask about volume discounts, yearly increases, and onboarding fees.",
+      "And watch out for seemingly minor charges, like mandatory training or premium support.",
+      "It's like buying a cheap printer and discovering the ink costs a fortune. Do the math for best and worst-case scenarios so you know what you're signing up for."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/04-pricing-models.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "5a5f6ed484c33cd8a8d67013c9d760555661ca420ce67e0630b5c793a4f50914"
+  },
+  {
+    "slide": 5,
+    "title": "Exit and renewal options",
+    "original_paragraphs": [
+      "Ever heard of a company stuck in a contract for six months after service went downhill?",
+      "Unfortunately yes, because they needed 180 days' notice to terminate. Always read the exit clause.",
+      "Look for data portability promises too. When vendor X went bankrupt, company Y lost three months of data because extraction wasn't covered.",
+      "Renewal terms deserve equal attention. Automatic price increases can sneak up on you if you don't have time to renegotiate.",
+      "Treat the exit plan like a fire drill. You hope you never need it, but you'll be glad it's there in a crisis.",
+      "A clear renewal calendar and exit path keep you in control rather than locked in."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/05-exit-and-renewal-options.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "383114676e37bf656d6bfff57fb579711e5242883c615d3064649b6097d8f666"
+  },
+  {
+    "slide": 6,
+    "title": "Risk assessment frameworks",
+    "original_paragraphs": [
+      "How do you know if a vendor is risky? Start by checking financial stability—are they profitable or bleeding cash?",
+      "Then examine security posture. When was their last penetration test and how quickly do they patch?",
+      "Frameworks like NIST's vendor risk assessment or the SIG questionnaire provide structured questions.",
+      "Score areas such as finance, security, and support history. If they fall below your threshold, reconsider.",
+      "This process isn't just bureaucracy. Think of it as weather forecasting before a hike; you want to know if a storm is coming.",
+      "Document the results and revisit them annually. Circumstances change, and so should your risk profile."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/06-risk-assessment-frameworks.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "8578f78e6e085b9882a231bbd2bc7da9668720bfdb3cb01d905cf30164798904"
+  },
+  {
+    "slide": 7,
+    "title": "Regulatory and legal considerations",
+    "original_paragraphs": [
+      "When should lawyers join the negotiation?",
+      "Early—especially for industries like healthcare or finance.",
+      "Violating HIPAA can cost over $50,000 per incident, while ignoring PCI-DSS might halt your ability to process payments.",
+      "International deals complicate matters further. Data sovereignty laws may forbid storing customer data outside certain regions.",
+      "Also consider time zones and jurisdiction in case of disputes. Which court will hear them?",
+      "Legal review clarifies intellectual property rights and liability caps so you don't pay for the vendor's mistakes. It might feel tedious, but skipping it could be expensive."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/07-regulatory-and-legal-considerations.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "b6e68f487d9e3ec6db3fcdf22ef055bdcc1407fdc5d0b0b2c3a8d987b66601fd"
+  },
+  {
+    "slide": 8,
+    "title": "Vendor evaluation checklist",
+    "original_paragraphs": [
+      "Before signing, what questions should we ask?",
+      "Start with references—call current customers and ask what went wrong and how issues were handled.",
+      "Verify security certifications such as SOC 2, then check financial health via credit ratings or public statements.",
+      "Try the support line before signing to measure response time. If they ignore a prospective client, imagine their attitude once you're locked in.",
+      "Finally, map requirements from your RFP directly to contract terms so sales promises don't vanish.",
+      "This checklist prevents nasty surprises after the ink dries.",
+      "Some teams even create a weighted scoring rubric so every vendor is judged fairly.",
+      "A quick search for past legal disputes also helps reveal hidden issues."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/08-vendor-evaluation-checklist.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "8a6afe9ecfbea314c55d315473cafd46203c5a594a4b7fd230176cb3f3482d44"
+  },
+  {
+    "slide": 9,
+    "title": "Red flags and hidden costs",
+    "original_paragraphs": [
+      "What warning signs should make you think twice?",
+      "Watch for vague language like \"industry-standard pricing\" with no actual numbers. That's often sales talk for \"expensive.\"",
+      "Beware heavy reliance on proprietary tools that don't play nicely with others. If you can't move data or integrate systems, you're trapped.",
+      "Discounts that vanish after year one are another trap. I've seen a $50 per-user software fee jump to $100 once \"promotional pricing\" expired.",
+      "And check for unilateral change clauses where the vendor can update terms whenever they like.",
+      "If support levels are worse than what the sales team promised, push back. Otherwise you're locked into a bad deal."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/09-red-flags-and-hidden-costs.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "24aecec215e33e16ab81bb777001f7878f18676a6c67e90c8843a931e8395f9a"
+  },
+  {
+    "slide": 10,
+    "title": "Post-contract relationship management",
+    "original_paragraphs": [
+      "Negotiation doesn't end when the contract is signed.",
+      "Schedule quarterly service reviews to discuss performance metrics and upcoming changes.",
+      "Include training and documentation requirements so your team isn't left guessing how to use the platform.",
+      "Ongoing knowledge transfer keeps you independent rather than reliant on expensive vendor consultants.",
+      "Treat the relationship as a partnership, using SLA reports to justify renewals or call out issues early.",
+      "If problems pile up, escalate according to the contract and start planning that exit path.",
+      "Document lessons learned and update playbooks so mistakes do not repeat.",
+      "Celebrate successes too; recognising good performance builds trust."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/10-post-contract-relationship-management.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "a300ce83562db8dbf3035ac9f370975c0aecd9c6e7f85fa222f9f05641bef8b0"
+  },
+  {
+    "slide": 11,
+    "title": "Service delivery models",
+    "original_paragraphs": [
+      "Not all services are delivered the same way. Are you outsourcing everything or sharing responsibilities?",
+      "You might use a hybrid model where some services stay in-house while others go to a managed provider.",
+      "Multi-vendor setups add complexity. If your CRM is hosted by one provider and your analytics by another, who takes the blame when integrations break?",
+      "Clear contracts specify responsibilities so you avoid finger-pointing later.",
+      "Matching the delivery model to your business needs ensures you get the right support without paying for unnecessary extras.",
+      "Consider how these models will evolve as the business scales."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/11-service-delivery-models.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "778d47d2149179df64204e8eebc7738c2dd23554416b89dc3586fcdbcb73ca53"
+  },
+  {
+    "slide": 12,
+    "title": "Integration requirements",
+    "original_paragraphs": [
+      "Have you confirmed the vendor's system actually works with your existing tools?",
+      "Check API access, data exchange formats, and authentication methods.",
+      "A vendor might claim \"it integrates with everything\" only for you to learn that \"everything\" means their other paid products.",
+      "Clarify upfront whether you'll need custom development, middleware, or extra licenses.",
+      "Poor integration can turn a simple project into a costly headache, especially if data needs to flow in real time.",
+      "Document these requirements in the contract so there's no dispute later.",
+      "Don't forget about data format quirks; mismatched CSV headers can derail a migration.",
+      "Add integration testing milestones so problems surface well before go-live."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/12-integration-requirements.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "3d847bd95d966eda6222d72d5852a6ce74e0c12e22295e7b653c70d85f980a42"
+  },
+  {
+    "slide": 13,
+    "title": "Scalability and growth planning",
+    "original_paragraphs": [
+      "What happens when your business triples in size?",
+      "Make sure the contract allows for scaling up—or down—without punitive fees.",
+      "Include options for additional capacity, more users, or even moving to a larger service tier.",
+      "I've seen companies caught off guard by data growth charges that skyrocketed after a successful marketing campaign.",
+      "Also plan for shrinking usage if business slows; you shouldn't pay for unused capacity.",
+      "Scalability clauses protect you from outgrowing the vendor or wasting money when demand drops.",
+      "Build forecast models to estimate resource needs and confirm pricing scales sensibly.",
+      "Some vendors offer burst capacity on demand—handy during seasonal spikes."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/13-scalability-and-growth-planning.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "aed3eafe18841a8141bcaf85b11d78d42a463e523fc5185d23f8605f3cf9b4e7"
+  },
+  {
+    "slide": 14,
+    "title": "Key takeaway",
+    "original_paragraphs": [
+      "Negotiating a contract is about more than price.",
+      "A well-crafted agreement covers uptime, pricing, exit strategies, and how the service will grow with you.",
+      "Use structured risk assessments and thorough checklists to evaluate vendors.",
+      "Bring in legal expertise early, especially for international or regulated industries.",
+      "Keep the relationship healthy with regular reviews and training, and be ready to pivot if performance slides.",
+      "Good contracts form partnerships that survive growth, change, and the occasional curveball.",
+      "Remember the holiday outage scenario? Strong SLAs and careful integration planning could have prevented it.",
+      "Invest the time now for fewer sleepless nights later."
+    ],
+    "narrative_path": "content/part-05/contract-negotiation-basics/narratives/14-key-takeaway.md",
+    "all_dialogue_in_narrative": true,
+    "narrative_sha256": "706be193ee5ae0ae63b6509246995dc37b8be7cde4d8e987b0a736ad254e2d66"
+  }
+]

@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-09-21.
+Last checked: 2026-09-28.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -56,7 +56,7 @@ These are the best first candidates because they either support early course con
 | 1 | superseded-html | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | diagram | Five whys versus fishbone comparison. | Completed as native HTML/CSS on slide 6 (2026-08-17). Slide 5 retains the original selection rules; slide 6 adds the evidence-chain/contributor comparison and preserves the takeaway. |
 | 1 | superseded-html | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | diagram | Vendor lifecycle funnel with IT, finance, legal and MSP swimlanes. | Completed as two adjacent native HTML/CSS slides (2026-08-17): buyer-stage funnel with owned outputs, then the MSP handover gate. |
 | 1 | superseded-html | `content/part-05/salesforce-opportunity-walkthrough/images/salesforce-opportunity-map.png` | mockup | Salesforce-style object/process map. | Native record cards on slide 4 explain company/person/deal conversion (2026-09-07); existing slides 3–9 retain capture, quote, handoff and renewal progression. |
-| 1 | ready | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | diagram | Anatomy of SLA clause: uptime, exclusions, credits, reporting, exit. | Prefer source-level HTML/CSS, but first recompose the 12 other overflowing text slides found by complete-topic QA on 2026-08-24; no partial rework was retained. |
+| 1 | superseded-html | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | diagram | Anatomy of SLA clause: uptime, exclusions, credits, reporting, exit. | Completed as a semantic table on slide 3 (2026-09-28). The full 14-slide topic was recomposed and checked because all 13 former dialogue slides overflowed. Original dialogue remains verbatim in matching narratives; no PNG is needed. |
 | 1 | superseded-html | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | diagram | Day-zero startup IT architecture. | Completed as a five-stage native HTML/CSS dependency order on slide 2 (2026-08-24); no fixed SVG or raster is needed. |
 | 1 | superseded-html | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | diagram | Low-cost controls grid for MFA, password manager, MDM-lite, backups and logging. | Completed as adjacent native HTML/CSS slides (2026-08-17): the original four-anchor overview remains on slide 5 and a six-control action/evidence grid follows on slide 6. |
 | 1 | superseded-html | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | diagram | Monthly tooling costs and the cash impact of credit expiry. | Native invoice table on slide 7 and credit-expiry comparison on adjacent slide 8 (2026-09-14). Rates are explicitly fictional; no funding-stage data exists, so no stage chart was invented. |

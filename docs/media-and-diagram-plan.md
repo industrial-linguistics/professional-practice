@@ -1,6 +1,6 @@
 # Media and Diagram Plan
 
-Last checked: 2026-09-21.
+Last checked: 2026-09-28.
 
 ## Current media state
 
@@ -16,7 +16,7 @@ Last checked: 2026-09-21.
 - The SLA/OLA/KPI and vendor-scorecard PNGs above are retained for provenance but are no longer learner-referenced after semantic source rework on 2026-08-31.
 - Topics with matching slide and narrative counts: 81.
 
-The protected database records 11 processed and 14 rejected candidates on 2026-09-21, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
+The protected database records 11 processed and 14 rejected candidates on 2026-09-28, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
 
 Slide/narrative alignment is now complete across all 81 topics. The next media constraint is generating and verifying audio for the remaining topics; image work should continue in small reviewable batches rather than blocking audio coverage.
 
@@ -55,7 +55,7 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 | 1 | `content/part-04/rca-frameworks/images/five-whys-fishbone.png` | RCA comparison | Show when to use five whys versus fishbone analysis. |
 | 1 | `content/part-05/vendor-engagement-funnel/images/vendor-funnel-swimlanes.png` | Funnel with IT/legal/finance/MSP swimlanes | Make the vendor lifecycle cross-functional. |
 | 1 | `content/part-05/salesforce-opportunity-walkthrough/images/salesforce-opportunity-map.png` | Semantic CRM records and stages | Native conversion cards on slide 4; capture, quote, handoff and renewal remain on slides 3–9. |
-| 1 | `content/part-05/contract-negotiation-basics/images/sla-clause-anatomy.png` | Contract clause anatomy | Show uptime, exclusions, credits, reporting and exit terms. |
+| 1 | `content/part-05/contract-negotiation-basics/slides.html` | Semantic SLA clause table | Slide 3 asks about availability, exclusions, reporting, remedies and exit; the other 13 slides and all matching narratives retain the surrounding lesson. |
 | 1 | `content/part-06/day-zero-core-services/images/startup-day-zero-architecture.png` | Day-zero startup IT map | Show domain, identity, devices, comms, docs, backups and support. |
 | 1 | `content/part-06/security-baselines-shoestring/images/security-baseline-grid.png` | Low-cost control grid | Prioritise MFA, password manager, MDM-lite, backups, logging and incident comms. |
 | 1 | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | Semantic cost table and credit comparison | Slides 7–8 show invoice assumptions, a separate reserve and the cash increase when credits expire. |
