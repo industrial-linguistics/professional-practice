@@ -1025,6 +1025,40 @@ main {
   color: var(--ink);
   background: var(--soft);
 }
+/* Continual improvement: four ordered semantic stages with an explicit repeat cue. */
+.slide .diagram-pdca .dg-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .55em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.slide .diagram-pdca .dg-card {
+  min-width: 0;
+  min-height: 4.2em;
+}
+/* Incident outcomes: one record reused across delivery channels. */
+.slide .diagram-updates .dg-channels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .7em;
+}
+.slide .diagram-updates .dg-card {
+  min-width: 0;
+}
+.slide .diagram-updates .dg-card p,
+.slide .diagram-updates .dg-panel p {
+  margin: .4em 0 0;
+  font-size: .9em;
+}
+.slide .diagram-updates .dg-panel {
+  margin-top: .7em;
+  padding: .55em .8em;
+  background: var(--soft);
+  border: 2px solid var(--slate);
+  border-radius: 10px;
+}
 @media (max-width: 600px) {
   .slide .diagram-evidence table,
   .slide .diagram-evidence thead,
@@ -1037,6 +1071,9 @@ main {
   }
   .slide .diagram-evidence th:first-child { width: 100%; }
   .slide .diagram-evidence tbody th { border-bottom: 0; }
+  .slide .diagram-pdca .dg-steps,
+  .slide .diagram-updates .dg-channels { grid-template-columns: 1fr; }
+  .slide .diagram-pdca .dg-card { min-height: 0; }
 }
 /* Lead conversion: semantic company/person/deal records, not a vendor screenshot. */
 .slide .diagram-conversion {

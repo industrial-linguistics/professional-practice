@@ -76,26 +76,15 @@
 
 <section class="slide" data-slide="5" data-kind="content" data-title="Template examples">
 <h2>Template examples</h2>
-<ul>
-<li><strong>Email:</strong> "Team, our post‑mortem identified three fixes. See the attached doc for details. Jane owns the first, due Friday."
-</li>
-<li><strong>Slack:</strong> "Heads up: database patch rolling out tonight. Track progress in #incident‑123."
-</li>
-<li><strong>Dashboard update:</strong> Add a section summarizing closed and open items from recent incidents
-</li>
-<li>Short, consistent templates make it easy for anyone to share updates without reinventing the wheel
-</li>
-<li>A one-page summary template captures the incident, root cause, owners and due dates
-</li>
-<li>Use a Slack snippet like <code>/incident update</code> to auto-fill your status channel
-</li>
-<li>Maintain a wiki page with a table of updates for longer-running work
-</li>
-<li>A simple table of item, owner, due date and status makes progress clear at a glance
-</li>
-<li>Using the same structure across teams reduces confusion and speeds up handoffs
-</li>
-</ul>
+<div class="diagram diagram-updates" role="group" aria-label="One incident update structure across three channels">
+<div class="dg-channels">
+<article class="dg-card"><strong class="dg-title">Email</strong><p>“Team, our post-mortem identified three fixes. See the attached doc for details. Jane owns the first, due Friday.”</p></article>
+<article class="dg-card"><strong class="dg-title">Slack / chat</strong><p>“Heads up: database patch rolling out tonight. Track progress in #incident-123.”</p></article>
+<article class="dg-card"><strong class="dg-title">Dashboard</strong><p>Summarise closed and open items from recent incidents.</p></article>
+</div>
+<div class="dg-panel"><strong class="dg-title">Shared one-page record</strong><p>Incident and root cause · Each item, owner, due date and status</p></div>
+<p class="dg-caption">Keep a wiki update table for longer work. A <code>/incident update</code> snippet can prefill chat. Short, consistent templates reduce confusion and speed handoffs.</p>
+</div>
 </section>
 
 <section class="slide" data-slide="6" data-kind="content" data-title="Close the loop">

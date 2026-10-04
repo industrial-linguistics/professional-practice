@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-09-28.
+Last checked: 2026-10-05.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -62,11 +62,11 @@ These are the best first candidates because they either support early course con
 | 1 | superseded-html | `content/part-06/startup-budgeting-finops/images/tool-stack-cost-chart.png` | diagram | Monthly tooling costs and the cash impact of credit expiry. | Native invoice table on slide 7 and credit-expiry comparison on adjacent slide 8 (2026-09-14). Rates are explicitly fictional; no funding-stage data exists, so no stage chart was invented. |
 | 1 | delivery-pending | `content/part-06/capstone-remediation-roadmap/images/roadmap-30-60-90.png` | diagram | 30/60/90 remediation roadmap. | Protected database records `2026-07-27-roadmap-30-60-90` as processed; target PNG is absent from this checkout (2026-09-07). Audit delivery; do not regenerate or mark accepted. |
 | 1 | ready | `content/part-07/maori-case-study/images/te-hiku-data-governance-map.png` | diagram | Community control, consent, vendors, storage and audit loops. | Needs cultural review sensitivity. |
-| 2 | backlog | `content/part-02/continual-improvement/images/pdca-csi-loop.png` | diagram | PDCA/continual-service-improvement loop. | Lower priority because existing value-chain image covers adjacent idea. |
+| 2 | superseded-html | `content/part-02/continual-improvement/images/pdca-csi-loop.png` | diagram | PDCA/continual-service-improvement loop. | Slide 4 now has four ordered native HTML/CSS stages and an explicit return-to-Plan cue (2026-10-05); the existing value-chain image remains in its separate topic. |
 | 2 | superseded-html | `content/part-03/sre-error-budgets/images/error-budget-burn.png` | diagram | Error-budget burn chart linked to release freeze decision. | Implemented as inline SVG on slide 4 (2026-07-06). |
 | 2 | delivery-pending | `content/part-03/trunk-vs-feature-branching/images/branching-comparison.png` | diagram | Trunk versus feature branch integration delay. | Protected database records `2026-08-03-branching-comparison` as processed; target PNG is absent from this checkout (2026-09-07). Audit delivery; do not regenerate or mark accepted. |
 | 2 | superseded-html | `content/part-04/alert-correlation/images/alert-correlation-timeline.png` | diagram | Alert correlation timeline. | Alignment checked (7/7). Slide 4 now uses native ordered evidence rows to teach timeline reconstruction (2026-09-21); no fictional timestamps or causal arrows were needed. |
-| 2 | backlog | `content/part-04/communicating-outcomes/images/stakeholder-update-template.png` | mockup | Outcome report sections for executives, customers and technical teams. | Could become worksheet. |
+| 2 | superseded-html | `content/part-04/communicating-outcomes/images/stakeholder-update-template.png` | mockup | Outcome report sections for executives, customers and technical teams. | Slide 5 now compares email, Slack/chat and dashboard updates around one shared accountability record (2026-10-05); the audience distinction remains on slide 3. |
 | 2 | backlog | `content/part-05/multi-stakeholder-buying-committees/images/buying-committee-map.png` | diagram | Buying committee map. | Hold until Part 5 narrative alignment improves. |
 | 2 | backlog | `content/part-05/lead-scoring-opportunity-progression-renewal-alerts/images/lead-renewal-timeline.png` | diagram | CRM lifecycle timeline. | Hold until Part 5 narrative alignment improves. |
 | 2 | superseded-html | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | mockup | POC scorecard. | Alignment checked (9/9). Slide 5 now uses a semantic criterion/evidence table (2026-09-21); success thresholds and baseline remain on slide 3, with no invented trial scores. |
@@ -82,6 +82,14 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-10-05 review sweep
+
+Synchronized the protected SQLite database before editing: integrity `ok`, 11 processed, 14 rejected, 86 events and no pending reviewer action. The Māori governance item remains held for cultural review; eight processed `delivery-pending` concepts need their existing assets delivered rather than regenerated. After checking slide and narrative alignment, two lower-priority items were ready for cheap semantic source compositions.
+
+- Continual-improvement slide 4 now shows the four Plan-Do-Check-Act stages as editable, numbered HTML cards. The original four claims remain visible and narrative 04 retains the pilot example, measurement and repeat decision.
+- Communicating-outcomes slide 5 now shows email, Slack/chat and dashboard updates sharing a one-page record. Its nine original items remain visible in the composition, with all narrative 05 examples retained. The intended audience distinction stays on slide 3.
+- No raster was generated or installed, no candidate was registered, and no review decision was changed. Source and layout evidence are recorded in `image-review/batches/2026-10-05.md`.
 
 ### 2026-09-21 review sweep
 
