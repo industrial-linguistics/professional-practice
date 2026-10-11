@@ -1,6 +1,6 @@
 # Media and Diagram Plan
 
-Last checked: 2026-10-05.
+Last checked: 2026-10-12.
 
 ## Current media state
 
@@ -66,7 +66,7 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 | 2 | `content/part-03/trunk-vs-feature-branching/images/branching-comparison.png` | Branching comparison | Show integration delay and merge risk visually. |
 | 2 | `content/part-04/alert-correlation/images/alert-correlation-timeline.png` | Semantic reconstruction checklist | Slide 4 groups evidence, timestamp checks, responder actions and outcome analysis into four ordered rows. |
 | 2 | `content/part-04/communicating-outcomes/slides.html` | Semantic outcome update template | Slide 5 pairs three delivery channels with one shared accountability record; slide 3 retains audience tailoring. |
-| 2 | `content/part-05/multi-stakeholder-buying-committees/images/buying-committee-map.png` | Stakeholder map | Show champion, blocker, economic buyer, security and legal. |
+| 2 | `content/part-05/multi-stakeholder-buying-committees/slides.html` | Semantic stakeholder map | Slide 3 names the wider committee; slide 5 maps hospital roles to concerns and evidence in native HTML/CSS. |
 | 2 | `content/part-05/lead-scoring-opportunity-progression-renewal-alerts/images/lead-renewal-timeline.png` | CRM lifecycle timeline | Connect lead scoring, stage movement, health score and renewal alert. |
 | 2 | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | Semantic POC evidence scorecard | Slide 5 pairs cost, integration and training criteria with evidence prompts; slide 3 retains success thresholds and baseline. |
 | 2 | `content/part-06/remote-first-reality-check/images/remote-onboarding-flow.png` | Remote onboarding/offboarding flow | Show HRIS, device logistics, IAM, payroll and access review. |

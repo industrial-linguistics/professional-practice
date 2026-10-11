@@ -1059,6 +1059,20 @@ main {
   border: 2px solid var(--slate);
   border-radius: 10px;
 }
+/* Buying committees: map each hospital stakeholder to a concern and evidence. */
+.slide .diagram-buying-committee .dg-stakeholders {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .65em;
+  margin-top: .6em;
+}
+.slide .diagram-buying-committee .dg-card {
+  min-width: 0;
+}
+.slide .diagram-buying-committee .dg-card p {
+  margin: .35em 0 0;
+  font-size: .9em;
+}
 @media (max-width: 600px) {
   .slide .diagram-evidence table,
   .slide .diagram-evidence thead,
@@ -1072,7 +1086,8 @@ main {
   .slide .diagram-evidence th:first-child { width: 100%; }
   .slide .diagram-evidence tbody th { border-bottom: 0; }
   .slide .diagram-pdca .dg-steps,
-  .slide .diagram-updates .dg-channels { grid-template-columns: 1fr; }
+  .slide .diagram-updates .dg-channels,
+  .slide .diagram-buying-committee .dg-stakeholders { grid-template-columns: 1fr; }
   .slide .diagram-pdca .dg-card { min-height: 0; }
 }
 /* Lead conversion: semantic company/person/deal records, not a vendor screenshot. */
