@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-10-12.
+Last checked: 2026-10-19.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -68,7 +68,7 @@ These are the best first candidates because they either support early course con
 | 2 | superseded-html | `content/part-04/alert-correlation/images/alert-correlation-timeline.png` | diagram | Alert correlation timeline. | Alignment checked (7/7). Slide 4 now uses native ordered evidence rows to teach timeline reconstruction (2026-09-21); no fictional timestamps or causal arrows were needed. |
 | 2 | superseded-html | `content/part-04/communicating-outcomes/images/stakeholder-update-template.png` | mockup | Outcome report sections for executives, customers and technical teams. | Slide 5 now compares email, Slack/chat and dashboard updates around one shared accountability record (2026-10-05); the audience distinction remains on slide 3. |
 | 2 | superseded-html | `content/part-05/multi-stakeholder-buying-committees/images/buying-committee-map.png` | diagram | Buying committee map. | Narrative alignment is complete; slide 5 now maps doctors, IT ops, finance and compliance to decision concerns and evidence in native HTML/CSS (2026-10-12). Slide 3 retains the wider committee roles. |
-| 2 | backlog | `content/part-05/lead-scoring-opportunity-progression-renewal-alerts/images/lead-renewal-timeline.png` | diagram | CRM lifecycle timeline. | Narrative alignment is complete, but the 15-slide text-heavy topic needs a layout and content-preservation pass before a timeline can be placed well. |
+| 2 | superseded-html | `content/part-05/lead-scoring-opportunity-progression-renewal-alerts/images/lead-renewal-timeline.png` | diagram | CRM lifecycle timeline. | Slide 15 now connects lead scoring, opportunity progression and renewal follow-up as a three-stage semantic sequence (2026-10-19). All 15 slides and narratives remain aligned; no PNG is needed. |
 | 2 | superseded-html | `content/part-05/proof-of-concept-management/images/poc-scorecard.png` | mockup | POC scorecard. | Alignment checked (9/9). Slide 5 now uses a semantic criterion/evidence table (2026-09-21); success thresholds and baseline remain on slide 3, with no invented trial scores. |
 | 2 | delivery-pending | `content/part-06/remote-first-reality-check/images/remote-onboarding-flow.png` | diagram | Remote onboarding/offboarding flow. | Protected database records `2026-08-10-remote-onboarding-flow` as processed; target PNG is absent from this checkout (2026-09-07). Audit delivery; do not regenerate or mark accepted. |
 | 2 | superseded-html | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | diagram | Weekly/monthly/quarterly vendor cadence and scorecard. | The installed raster was later rejected for text outside boxes. It is no longer referenced: cadence remains on slide 3 and scorecard design and thresholds remain on slides 7–8 (2026-08-31). |
@@ -82,6 +82,14 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-10-19 review sweep
+
+Synchronized the protected review database before selection: integrity `ok`, 11 processed and 14 rejected candidates, with no pending reviewer action. The Māori governance diagram still needs cultural review; eight processed `delivery-pending` concepts should not be regenerated. The lead-to-renewal timeline became a small source-level rework after a content-preservation and 15-slide layout pass.
+
+- CRM slide 15 now uses three ordered native HTML/CSS cards for scoring leads, progressing opportunities and protecting renewals. Its original five takeaway claims remain visible in the cards and closing cue; narrative 15 is unchanged. Slides 10–11 retain the detailed renewal lists and health-score explanation.
+- The topic's 15 slides passed 1920 × 1080 geometry QA. Full-size candidate/current/proposed previews, the whole-topic sheet and phone slide were inspected. Browser bounds at 1920, 1440 and 390 px found no card containment, overlap or overflow issues. Details are in `image-review/batches/2026-10-19.md`.
+- No raster was generated or installed, no candidate was registered, and no reviewer status was changed.
 
 ### 2026-10-12 review sweep
 
