@@ -1093,6 +1093,22 @@ main {
 .slide .diagram-revenue-lifecycle .dg-caption {
   font-size: max(14px, .92em);
 }
+/* Open-source governance: compare structures without implying a required path. */
+.slide .diagram-governance .dg-models {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65em;
+}
+.slide .diagram-governance .dg-card { min-width: 0; }
+.slide .diagram-governance .dg-card p { margin: .4em 0 0; font-size: .88em; }
+.slide .diagram-governance .dg-caution {
+  margin: .7em 0 0;
+  padding: .45em .65em;
+  border-left: 5px solid var(--blue);
+  background: var(--soft);
+  font-size: .9em;
+}
+.slide .diagram-governance .dg-caption { font-size: max(14px, .9em); }
 @media (max-width: 600px) {
   .slide .diagram-evidence table,
   .slide .diagram-evidence thead,
@@ -1108,7 +1124,8 @@ main {
   .slide .diagram-pdca .dg-steps,
   .slide .diagram-updates .dg-channels,
   .slide .diagram-buying-committee .dg-stakeholders,
-  .slide .diagram-revenue-lifecycle .dg-stages { grid-template-columns: 1fr; }
+  .slide .diagram-revenue-lifecycle .dg-stages,
+  .slide .diagram-governance .dg-models { grid-template-columns: 1fr; }
   .slide .diagram-pdca .dg-card { min-height: 0; }
 }
 /* Lead conversion: semantic company/person/deal records, not a vendor screenshot. */

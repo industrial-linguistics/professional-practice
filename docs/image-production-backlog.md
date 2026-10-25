@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-10-19.
+Last checked: 2026-10-26.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -75,13 +75,20 @@ These are the best first candidates because they either support early course con
 | 2 | delivery-pending | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | diagram | Evidence map for policy, logs, access reviews, backups and board reporting. | Protected database records `2026-07-13-due-diligence-evidence-map-rework-1` as processed; target PNG is absent from this checkout (2026-09-07). Audit delivery; do not regenerate or mark accepted. |
 | 2 | superseded-html | `content/part-06/capstone-red-team-exercise/images/startup-maturity-radar.png` | diagram | Startup maturity radar. | Native five-level evidence rubric on slide 8 (2026-09-07); slide 7 keeps separate domain scoring and remediation. No measured scores exist to justify a radar chart. |
 | 2 | backlog | `content/part-07/foss-licensing-options/images/license-decision-tree.png` | diagram | License choice decision tree. | Needs legal wording caution. |
-| 2 | backlog | `content/part-07/community-governance-structures/images/oss-governance-spectrum.png` | diagram | Maintainer to foundation governance spectrum. | Useful after Part 7 polish pass. |
+| 2 | superseded-html | `content/part-07/community-governance-structures/images/oss-governance-spectrum.png` | diagram | Compare maintainer, core-team and foundation governance. | Slide 9 now has a native HTML/CSS comparison (2026-10-26), with company support shown as a cross-cutting influence rather than an inevitable stage. |
 | 2 | backlog | `content/part-07/balancing-openness-cultural-safety/images/cultural-safety-access-matrix.png` | diagram | Open/restricted/community-approved/embargoed data states. | Needs cultural review sensitivity. |
 | 3 | backlog | `content/part-08/studio/images/capstone-evidence-pack.png` | diagram | Capstone evidence pack diagram. | Wait until Part 8 content exists. |
 
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-10-26 review sweep
+
+Synchronized the protected review database before selection: integrity `ok`, 11 processed and 14 rejected candidates, 86 events, and no pending reviewer action. The Māori governance diagram still requires cultural review; eight `delivery-pending` concepts were not regenerated. The Part 7 governance topic's nine slides and narratives were aligned and passed baseline geometry, clearing its previous polish hold.
+
+- Reworked the final governance slide as a native HTML/CSS comparison of solo maintainer, core team and foundation models. A separate note treats company support as cross-cutting. The original takeaway remains visible, matching narrative 09 now explains the comparison, and slides 2–6 retain their detailed material.
+- No raster was generated or installed, no image candidate was registered, and no reviewer status was changed. Evidence and layout QA are in `image-review/batches/2026-10-26.md`.
 
 ### 2026-10-19 review sweep
 

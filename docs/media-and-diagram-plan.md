@@ -1,6 +1,6 @@
 # Media and Diagram Plan
 
-Last checked: 2026-10-19.
+Last checked: 2026-10-26.
 
 ## Current media state
 
@@ -16,7 +16,7 @@ Last checked: 2026-10-19.
 - The SLA/OLA/KPI and vendor-scorecard PNGs above are retained for provenance but are no longer learner-referenced after semantic source rework on 2026-08-31.
 - Topics with matching slide and narrative counts: 81.
 
-The protected database records 11 processed and 14 rejected candidates on 2026-10-19, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
+The protected database records 11 processed and 14 rejected candidates on 2026-10-26, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
 
 Slide/narrative alignment is now complete across all 81 topics. The next media constraint is generating and verifying audio for the remaining topics; image work should continue in small reviewable batches rather than blocking audio coverage.
 
@@ -74,7 +74,7 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 | 2 | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | Evidence map | Link policy, logs, access reviews, backups and board reporting. |
 | 2 | `content/part-06/capstone-red-team-exercise/images/startup-maturity-radar.png` | Semantic maturity rubric | Five evidence levels on slide 8; score the four domains separately on slide 7. |
 | 2 | `content/part-07/foss-licensing-options/images/license-decision-tree.png` | License decision tree | Guide MIT/Apache/GPL/dual-license decisions. |
-| 2 | `content/part-07/community-governance-structures/images/oss-governance-spectrum.png` | Governance spectrum | Show maintainer, core team, foundation and commercial steward models. |
+| 2 | `content/part-07/community-governance-structures/slides.html` | Semantic governance comparison | Slide 9 compares solo maintainer, core team and foundation structures; company support appears as a cross-cutting influence. |
 | 2 | `content/part-07/balancing-openness-cultural-safety/images/cultural-safety-access-matrix.png` | Access matrix | Show open, restricted, community-approved and embargoed data states. |
 | 3 | `content/part-08/studio/images/capstone-evidence-pack.png` | Capstone evidence pack diagram | Help teams organise final pitch evidence across the course outcomes. |
 

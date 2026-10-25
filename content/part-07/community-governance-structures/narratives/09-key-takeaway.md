@@ -1,4 +1,4 @@
-Speaker 1: The takeaway is that governance is a design choice, not something that emerges on its own.
+Speaker 1: The takeaway is that governance is a design choice, not something that emerges on its own. A solo maintainer, a core team and a foundation place decisions and support in different hands. A company may back any of them, so ask who can actually decide and whose interests are visible.
 
 Speaker 2: And the choices only hold if they're written down, taught to newcomers, and applied with some humility about whose norms are being encoded.
 
