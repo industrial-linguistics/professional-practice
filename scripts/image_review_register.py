@@ -123,7 +123,7 @@ def main() -> int:
     args.db.parent.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(args.db) as conn:
         conn.executescript(SCHEMA)
-        conn.execute(
+        inserted = conn.execute(
             """
             INSERT INTO candidates(
                 id, batch_id, target_path, topic_path, slide_ref, brief, prompt,
@@ -132,24 +132,7 @@ def main() -> int:
                 updated_at
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', '', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP)
-            ON CONFLICT(id) DO UPDATE SET
-                batch_id = excluded.batch_id,
-                target_path = excluded.target_path,
-                topic_path = excluded.topic_path,
-                slide_ref = excluded.slide_ref,
-                brief = excluded.brief,
-                prompt = excluded.prompt,
-                candidate_url = excluded.candidate_url,
-                current_slide_url = excluded.current_slide_url,
-                proposed_slide_url = excluded.proposed_slide_url,
-                candidate_rel_path = excluded.candidate_rel_path,
-                status = 'pending',
-                review_comment = '',
-                reviewed_by = NULL,
-                reviewed_at = NULL,
-                processed_at = NULL,
-                requeued_at = NULL,
-                updated_at = CURRENT_TIMESTAMP
+            ON CONFLICT(id) DO NOTHING
             """,
             (
                 candidate_id,
@@ -165,6 +148,8 @@ def main() -> int:
                 candidate_rel_path,
             ),
         )
+        if inserted.rowcount != 1:
+            raise SystemExit(f"Candidate ID already exists: {candidate_id}; use a new ID for rework")
         conn.execute(
             """
             INSERT INTO review_events(candidate_id, actor, action, comment)

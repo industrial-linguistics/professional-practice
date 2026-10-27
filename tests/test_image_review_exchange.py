@@ -81,6 +81,7 @@ class ExchangeTests(unittest.TestCase):
 
     def test_snapshot_reuses_immutable_objects(self):
         before = [key for key in self.store.data if key.startswith('snapshots/')]
+        exchange.authority_export(self.live, self.assets, self.export)
         exchange.publish_snapshot(self.store, self.export)
         self.assertEqual(before, [key for key in self.store.data if key.startswith('snapshots/')])
 
@@ -218,6 +219,30 @@ class ExchangeTests(unittest.TestCase):
         self.assertEqual(result['acknowledged'], 0)
         self.assertEqual(result['stale_decisions_preserved'], 1)
         self.assertEqual(self.live_row('old')['review_comment'], 'newer review')
+
+    def test_processor_detects_same_second_repeat_review(self):
+        with sqlite3.connect(self.live) as conn:
+            conn.execute("UPDATE candidates SET status='approved' WHERE id='old'")
+        processed = self.root / 'processed.sqlite'
+        __import__('shutil').copy2(self.live, processed)
+        with sqlite3.connect(processed) as conn:
+            conn.execute("UPDATE candidates SET status='processed',processed_at='2026-10-27 01:00:00' WHERE id='old'")
+        with sqlite3.connect(self.live) as conn:
+            conn.execute("INSERT INTO review_events(candidate_id,actor,action,comment) VALUES ('old','reviewer','approve','repeat within same second')")
+        self.assertEqual(exchange.authority_ack(self.live, processed)['stale_decisions_preserved'], 1)
+        self.assertEqual(self.live_row('old')['status'], 'approved')
+
+    def test_local_registration_cannot_reset_review(self):
+        import subprocess
+        command = [sys.executable, str(Path(exchange.__file__).with_name('image_review_register.py')),
+                   '--db', str(self.live), '--id', 'old', '--brief', 'retry',
+                   '--target-path', 'content/part-01/topic/images/retry.png',
+                   '--batch-file', str(self.root / 'batch.md')]
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('use a new ID', result.stderr)
+        self.assertEqual(self.live_row('old')['status'], 'rejected')
+        self.assertEqual(exchange.check_db(self.live)['review_events'], 1)
 
 
 if __name__ == '__main__': unittest.main()

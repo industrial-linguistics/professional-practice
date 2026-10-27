@@ -85,7 +85,7 @@ MAILTO=professionalpractice
 
 The daily processor retains its 03:17 server schedule. Its synchronizer uses a consistent SQLite backup for reading, processes decisions in its checkout, and sends conditional acknowledgements back to merah. A newer review is preserved rather than overwritten. The stale processor checkout's unrelated rework notes and previously delivered images are preserved; the historical `delivery-pending` entries remain separate delivery work.
 
-The bridge has its own runtime and a process lock. Complete submissions have a final ready marker; partial uploads are ignored. Imports are idempotent and use an `image_review_imports` ledger in the live database. The server stages verified preview files before inserting pending candidates. An interrupted import can be retried without resetting reviews. Snapshot files use content-derived immutable names and `latest.json` is published last.
+The bridge has its own runtime, clean checkout and process lock. It fetches main with fast-forward-only merges, publishes the authority helper atomically, and keeps the protected review stylesheet current. Routine successful checks are retained in `logs/image-review-bridge.log`; changes, imports, rejections and failures produce cron mail. Complete submissions have a final ready marker; partial uploads are ignored. Imports are idempotent and use an `image_review_imports` ledger in the live database. The server stages verified preview files before inserting pending candidates. An interrupted import can be retried without resetting reviews. Snapshot files use content-derived immutable names and `latest.json` is published last.
 
 Validation:
 

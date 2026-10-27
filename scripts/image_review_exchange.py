@@ -139,9 +139,15 @@ def authority_export(db: Path, candidates_dir: Path, output: Path) -> dict:
         raise InvalidBundle("Authoritative database is missing")
     output.mkdir(parents=True, exist_ok=True)
     dest = output / "image-review.sqlite"
-    with sqlite3.connect(f"file:{db.resolve()}?mode=ro", uri=True) as source:
-        with sqlite3.connect(dest) as target:
-            source.backup(target)
+    # A fresh destination avoids SQLite changing the backup's header counters on
+    # every export, which would otherwise create redundant immutable S3 objects.
+    with tempfile.TemporaryDirectory(dir=output) as scratch:
+        staged = Path(scratch) / "image-review.sqlite"
+        with sqlite3.connect(f"file:{db.resolve()}?mode=ro", uri=True) as source:
+            with sqlite3.connect(staged) as target:
+                source.backup(target)
+        staged.chmod(0o644)
+        os.replace(staged, dest)
     stats = check_db(dest)
     atomic_write(output / "candidates.zip", make_zip(tree_files(candidates_dir)))
     metadata = {"schema_version": 1, "source": "merah", "checked_at": int(time.time()), **stats}
@@ -433,15 +439,16 @@ def authority_ack(db: Path, processed_db: Path) -> dict:
     changed = stale = 0
     with sqlite3.connect(f"file:{processed_db.resolve()}?mode=ro", uri=True) as source:
         source.row_factory = sqlite3.Row
-        rows = source.execute("SELECT * FROM candidates WHERE processed_at IS NOT NULL OR requeued_at IS NOT NULL").fetchall()
+        rows = [(row, source.execute("SELECT coalesce(max(id),0) FROM review_events WHERE candidate_id=? AND action IN ('approve','reject','comment')", (row["id"],)).fetchone()[0]) for row in source.execute("SELECT * FROM candidates WHERE processed_at IS NOT NULL OR requeued_at IS NOT NULL").fetchall()]
     with sqlite3.connect(db, timeout=30) as conn:
         conn.row_factory = sqlite3.Row
         conn.execute("BEGIN IMMEDIATE")
-        for row in rows:
+        for row, review_event_id in rows:
             live = conn.execute("SELECT * FROM candidates WHERE id=?", (row["id"],)).fetchone()
             if live is None:
                 continue
-            if any(live[key] != row[key] for key in ("reviewed_at", "reviewed_by", "review_comment")):
+            live_event_id = conn.execute("SELECT coalesce(max(id),0) FROM review_events WHERE candidate_id=? AND action IN ('approve','reject','comment')", (row["id"],)).fetchone()[0]
+            if live_event_id != review_event_id or any(live[key] != row[key] for key in ("reviewed_at", "reviewed_by", "review_comment")):
                 stale += 1
                 continue
             if row["status"] == "processed" and live["status"] == "approved" and live["processed_at"] is None:

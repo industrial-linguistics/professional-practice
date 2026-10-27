@@ -7,7 +7,7 @@ if [[ $(id -u) -ne 0 ]]; then ADMIN=(sudo); fi
 "${ADMIN[@]}" apt-get update
 "${ADMIN[@]}" apt-get install -y python3 python3-venv python3-pip sqlite3 graphviz nodejs npm \
   ffmpeg poppler-utils fonts-dejavu-core fonts-texgyre latexmk texlive-xetex \
-  texlive-latex-extra texlive-fonts-recommended texlive-lang-greek lmodern git curl
+  texlive-latex-extra texlive-fonts-recommended texlive-lang-greek lmodern git gh curl
 if ! command -v google-chrome >/dev/null && ! command -v chromium >/dev/null; then
   tmp_deb=$(mktemp --suffix=.deb)
   curl -fsSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o "$tmp_deb"
