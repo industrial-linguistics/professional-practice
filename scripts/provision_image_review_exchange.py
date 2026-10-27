@@ -5,28 +5,12 @@ import json
 import os
 from pathlib import Path
 import shlex
-import tempfile
 
 import boto3
 from botocore.exceptions import ClientError
 
 BUCKET = 'professional-practice-image-review-141101760219'
 REGION = 'ap-southeast-2'
-
-
-def credential_values(role, access, secret):
-    prefix = 'IMAGE_REVIEW_' if role == 'cloud' else ''
-    return {prefix+'AWS_ACCESS_KEY_ID': access, prefix+'AWS_SECRET_ACCESS_KEY': secret,
-            ('IMAGE_REVIEW_AWS_REGION' if role == 'cloud' else 'AWS_DEFAULT_REGION'): REGION,
-            'IMAGE_REVIEW_S3_URI': f's3://{BUCKET}/exchange'}
-
-
-def save_credentials(target, values):
-    # Temporary files are 0600; replacement also preserves that mode.
-    with tempfile.NamedTemporaryFile(mode='w', dir=target.parent, delete=False) as handle:
-        temporary = Path(handle.name)
-        handle.write(''.join(k+'='+shlex.quote(v)+'\n' for k,v in values.items()))
-    os.replace(temporary, target)
 
 
 def policy(role):
@@ -59,7 +43,11 @@ def provision(profile, directory):
     s3.put_bucket_policy(Bucket=BUCKET, Policy=json.dumps({'Version':'2012-10-17','Statement':[
         {'Sid':'RequireTLS','Effect':'Deny','Principal':'*','Action':'s3:*',
          'Resource':[f'arn:aws:s3:::{BUCKET}',f'arn:aws:s3:::{BUCKET}/*'],
-         'Condition':{'Bool':{'aws:SecureTransport':'false'}}}]}))
+         'Condition':{'Bool':{'aws:SecureTransport':'false'}}},
+        {'Sid':'OnlyBridgeMayChangeAuthoritativeState','Effect':'Deny','Principal':'*',
+         'Action':['s3:PutObject','s3:DeleteObject','s3:DeleteObjectVersion'],
+         'Resource':[f'arn:aws:s3:::{BUCKET}/exchange/'+p for p in ['latest.json','snapshots/*','receipts/*']],
+         'Condition':{'ArnNotEquals':{'aws:PrincipalArn':'arn:aws:iam::141101760219:user/professional-practice-image-review-bridge'}}}]}))
     directory.mkdir(parents=True, exist_ok=True)
     directory.chmod(0o700)
     for role in ('cloud', 'bridge'):
@@ -72,17 +60,17 @@ def provision(profile, directory):
         keys = iam.list_access_keys(UserName=name)['AccessKeyMetadata']
         if target.exists():
             if target.stat().st_mode & 0o077: raise RuntimeError(f'Unsafe permissions: {target}')
-            saved = {k:shlex.split(v)[0] for k,v in (line.split('=',1) for line in target.read_text().splitlines() if '=' in line)}
-            access = saved.get('IMAGE_REVIEW_AWS_ACCESS_KEY_ID', saved.get('AWS_ACCESS_KEY_ID'))
-            if not any(k['AccessKeyId'] == access and k['Status']=='Active' for k in keys):
+            saved = dict(line.split('=',1) for line in target.read_text().splitlines() if '=' in line)
+            if not any(k['AccessKeyId'] == shlex.split(saved['AWS_ACCESS_KEY_ID'])[0] and k['Status']=='Active' for k in keys):
                 raise RuntimeError(f'Saved credential is not active: {target}')
-            if role == 'cloud' and 'AWS_ACCESS_KEY_ID' in saved:
-                save_credentials(target, credential_values(role, access, saved['AWS_SECRET_ACCESS_KEY']))
         else:
             if keys: raise RuntimeError(f'{name} already has a key; refusing to create duplicate credentials')
             key = iam.create_access_key(UserName=name)['AccessKey']
-            values = credential_values(role, key['AccessKeyId'], key['SecretAccessKey'])
-            save_credentials(target, values)
+            values = {'AWS_ACCESS_KEY_ID':key['AccessKeyId'], 'AWS_SECRET_ACCESS_KEY':key['SecretAccessKey'],
+                      'AWS_DEFAULT_REGION':REGION, 'IMAGE_REVIEW_S3_URI':f's3://{BUCKET}/exchange'}
+            fd = os.open(target, os.O_WRONLY|os.O_CREAT|os.O_EXCL, 0o600)
+            with os.fdopen(fd,'w') as handle:
+                handle.write(''.join(k+'='+shlex.quote(v)+'\n' for k,v in values.items()))
         print(f'{role}: scoped credentials saved to {target} (0600); values withheld')
     print(f'Private, versioned, encrypted exchange: s3://{BUCKET}/exchange')
 

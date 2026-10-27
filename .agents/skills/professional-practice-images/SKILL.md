@@ -13,10 +13,10 @@ snapshot at the start. Cloud may add new pending candidates and upload immutable
 bundles. The server registers them without replacing reviewer records. Existing
 reviewer actions never belong in a cloud writeback.
 
-Required access: repository read/write, GitHub Actions status, and the scoped
-`IMAGE_REVIEW_S3_URI`, `IMAGE_REVIEW_AWS_REGION`, `IMAGE_REVIEW_AWS_ACCESS_KEY_ID`, and
-`IMAGE_REVIEW_AWS_SECRET_ACCESS_KEY` environment variables (or tested AWS OIDC credentials).
-Do not print secret values. No SSH key or private-network connection is needed.
+Required access: repository read/write, GitHub Actions status, and exchange access
+through the environment's existing shared `AWS_*` variables or tested AWS OIDC.
+Use the default S3 URI in the run instructions. Do not introduce job-specific
+credential variables or print secret values. No SSH key is needed.
 
 A submitted S3 bundle is awaiting import. Only an accepted server receipt confirms
 registration and protected preview publication. Source-level reworks stay in

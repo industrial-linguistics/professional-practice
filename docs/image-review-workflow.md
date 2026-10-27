@@ -17,11 +17,20 @@ Source-level HTML reworks keep semantic text in the course source and archive th
 - Durable task instructions: `.codex/cloud-task.md`
 - Repository skill: `.agents/skills/professional-practice-images/SKILL.md`
 - Server deployment: `/home/professionalpractice/image-review-exchange/` on raksasa and merah.
-- Server bridge credentials: `/home/professionalpractice/.config/professional-practice/image-review-bridge.env`, mode 0600. Cloud credentials belong in the published environment's vault as `IMAGE_REVIEW_AWS_ACCESS_KEY_ID` and `IMAGE_REVIEW_AWS_SECRET_ACCESS_KEY`, with `IMAGE_REVIEW_AWS_REGION=ap-southeast-2`, never in Git. They take precedence over shared `AWS_*` variables without changing access for the other repositories.
+- Server bridge credentials: `/home/professionalpractice/.config/professional-practice/image-review-bridge.env`, mode 0600. Cloud reuses the existing shared `AWS_*` vault variables or tested AWS OIDC; do not add job-specific secret variable names.
 
-The cloud identity can read snapshots and receipts and write submissions and source-rework evidence. It cannot write snapshots, receipts or review decisions. The bridge identity publishes snapshots and receipts. Bucket public access is blocked, TLS is required, default encryption is enabled, and versioning is enabled. `scripts/provision_image_review_exchange.py` configures these narrowly scoped identities without printing credentials.
+The cloud identity needs the permissions returned by `policy('cloud')` in `scripts/provision_image_review_exchange.py`: read snapshots and receipts; write submissions and source-rework evidence. Grant those permissions to the existing shared AWS identity. Cross-account access also needs an allow for that exact principal in the bucket policy. Verify the shared identity after Cloud connectivity works; never copy a replacement secret over the shared vault bindings. The provisioner's separate cloud identity is retained for the isolated transport smoke test, and does not need to be configured in document-handling.
+
+The bucket explicitly denies changes to authoritative snapshots and receipts by every identity except the server bridge. Review decisions stay on merah. Bucket public access is blocked, TLS is required, default encryption is enabled, and versioning is enabled. The provisioner configures these controls without printing credentials.
 
 Cloud setup and storage transport are separate from scheduling. Verify a published environment and an end-to-end hosted run before retiring the desktop schedule. A queued legacy task does not confirm a hosted run. Do not reuse local desktop sign-in credentials on a server.
+
+The selected environment is **document-handling**. On 27 October 2026 its setup
+could validate the cached course source and offered image generation, but its
+managed HTTPS proxy returned 503 for GitHub fetch and API requests. Current-main
+exchange tests, shared AWS access, browser geometry, publication and schedule
+cutover remain pending until connectivity is repaired. The desktop schedule stays
+active during this transition.
 
 ## Review app
 

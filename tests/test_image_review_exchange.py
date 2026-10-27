@@ -1,7 +1,6 @@
 """Exercise state preservation and corrupt/untrusted cloud deliveries."""
 from __future__ import annotations
 import json
-import os
 from pathlib import Path
 import sqlite3
 import struct
@@ -9,38 +8,11 @@ import sys
 import tempfile
 import time
 import unittest
-from unittest.mock import patch
 import zlib
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import image_review_exchange as exchange
 from image_review_register import SCHEMA
-
-
-class CredentialTests(unittest.TestCase):
-    def test_job_identity_takes_precedence_over_shared_aws_keys(self):
-        with patch.dict(os.environ, {'AWS_ACCESS_KEY_ID': 'shared', 'AWS_SECRET_ACCESS_KEY': 'shared-secret',
-                                    'IMAGE_REVIEW_AWS_ACCESS_KEY_ID': 'job',
-                                    'IMAGE_REVIEW_AWS_SECRET_ACCESS_KEY': 'job-secret'}, clear=True):
-            self.assertEqual(exchange.aws_session_options(),
-                             {'aws_access_key_id': 'job', 'aws_secret_access_key': 'job-secret'})
-            self.assertEqual(os.environ['AWS_ACCESS_KEY_ID'], 'shared')
-
-    def test_incomplete_job_identity_never_falls_back_to_shared_credentials(self):
-        with patch.dict(os.environ, {'IMAGE_REVIEW_AWS_ACCESS_KEY_ID': 'job'}, clear=True):
-            with self.assertRaisesRegex(RuntimeError, 'Both IMAGE_REVIEW_AWS'):
-                exchange.aws_session_options()
-
-    def test_profiles_and_oidc_keep_the_standard_credential_chain(self):
-        with patch.dict(os.environ, {}, clear=True):
-            self.assertEqual(exchange.aws_session_options(), {'profile_name': None})
-            self.assertEqual(exchange.aws_session_options('bridge'), {'profile_name': 'bridge'})
-
-    def test_ambiguous_profile_and_job_identity_is_rejected(self):
-        with patch.dict(os.environ, {'IMAGE_REVIEW_AWS_ACCESS_KEY_ID': 'job',
-                                    'IMAGE_REVIEW_AWS_SECRET_ACCESS_KEY': 'secret'}, clear=True):
-            with self.assertRaisesRegex(RuntimeError, 'Choose IMAGE_REVIEW_AWS'):
-                exchange.aws_session_options('other')
 
 
 class Store:
