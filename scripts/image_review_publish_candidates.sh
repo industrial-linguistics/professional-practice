@@ -1,28 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
 REPO_ROOT=${REPO_ROOT:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"}
-REMOTE=${IMAGE_REVIEW_REMOTE:-professionalpractice@merah}
-SITE=${IMAGE_REVIEW_SITE:-professional-practice.industrial-linguistics.com}
-VHOST=${IMAGE_REVIEW_VHOST:-/var/www/vhosts/$SITE}
-STATE_DIR=${IMAGE_REVIEW_STATE_DIR:-state/image-review}
-DB_PATH="$STATE_DIR/image-review.sqlite"
-CANDIDATE_DIR="$STATE_DIR/candidates"
-STYLESHEET_PATH=${IMAGE_REVIEW_STYLESHEET:-image-review/review.css}
-
 cd "$REPO_ROOT"
-
-if [[ ! -f "$DB_PATH" ]]; then
-  echo "No local image-review database found at $DB_PATH"
-  exit 1
+if [[ $# -eq 0 ]]; then
+  echo "Usage: scripts/image_review_publish_candidates.sh --candidate ID --format html --qa-passed [--run-id ID]" >&2
+  echo "Fetch a current snapshot first with scripts/image_review_exchange.py fetch." >&2
+  exit 2
 fi
-if [[ ! -f "$STYLESHEET_PATH" ]]; then
-  echo "No image-review stylesheet found at $STYLESHEET_PATH"
-  exit 1
-fi
-
-ssh "$REMOTE" "mkdir -p '$VHOST/htdocs/image-review/candidates' '$VHOST/db' && chmod 775 '$VHOST/db'"
-rsync -a "$CANDIDATE_DIR/" "$REMOTE:$VHOST/htdocs/image-review/candidates/"
-rsync -a "$STYLESHEET_PATH" "$REMOTE:$VHOST/htdocs/image-review/review.css"
-scp "$DB_PATH" "$REMOTE:$VHOST/db/image-review.sqlite"
-ssh "$REMOTE" "chmod 664 '$VHOST/db/image-review.sqlite'"
+# A pending S3 submission is not yet a published candidate: check its receipt.
+exec python3 scripts/image_review_exchange.py submit "$@"

@@ -31,6 +31,8 @@ textbook/kdp/ebook-cover.png
 .build-manifest.json
 bin/
 state/
+.venv/
+tests/__pycache__/
 logs/
 content/**/subtitles.vtt
 content/**/audio.mp3

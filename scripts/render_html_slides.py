@@ -17,6 +17,11 @@ from course_content import CONTENT, ROOT, load_topic
 SLIDE_IMAGES = ROOT / "assets" / "slide-images"
 
 
+def chrome_sandbox_flags() -> list[str]:
+    # Cloud containers may run as root; Chromium cannot start its own sandbox there.
+    return ["--no-sandbox"] if hasattr(os, "geteuid") and os.geteuid() == 0 else []
+
+
 def chrome_path() -> str:
     for env_name in ["CHROME_PATH", "BROWSER_PATH", "MARP_BROWSER_PATH"]:
         configured = os.environ.get(env_name)
@@ -122,6 +127,7 @@ def render_topic(topic_dir: Path, chrome: str) -> int:
         out = out_dir / f"slide.{slide.n:03d}.png"
         cmd = [
             chrome,
+            *chrome_sandbox_flags(),
             "--headless=new",
             "--disable-gpu",
             "--hide-scrollbars",

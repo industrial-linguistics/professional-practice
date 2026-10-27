@@ -10,13 +10,14 @@ import subprocess
 from pathlib import Path
 
 from course_content import ROOT, read_text, section_fragments
-from render_html_slides import chrome_path, render_page
+from render_html_slides import chrome_path, chrome_sandbox_flags, render_page
 
 
 def run_chrome(chrome: str, source: Path, output: Path, width: int, height: int) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
     command = [
         chrome,
+        *chrome_sandbox_flags(),
         "--headless=new",
         "--disable-gpu",
         "--hide-scrollbars",

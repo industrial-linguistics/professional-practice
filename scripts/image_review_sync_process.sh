@@ -9,6 +9,7 @@ STATE_DIR=${IMAGE_REVIEW_STATE_DIR:-state/image-review}
 DB_PATH="$STATE_DIR/image-review.sqlite"
 CANDIDATE_DIR="$STATE_DIR/candidates"
 REMOTE_TMP="/tmp/${SITE}-image-review-$$.sqlite"
+REMOTE_SCRIPT=${IMAGE_REVIEW_REMOTE_SCRIPT:-/home/professionalpractice/image-review-exchange/scripts/image_review_exchange.py}
 
 cd "$REPO_ROOT"
 mkdir -p "$STATE_DIR" "$CANDIDATE_DIR" logs
@@ -31,5 +32,7 @@ python3 scripts/image_review_process_reviews.py \
   --candidates-dir "$CANDIDATE_DIR" \
   --rework-file image-review/rework-queue.md
 
-scp "$DB_PATH" "$REMOTE:$VHOST/db/image-review.sqlite"
-ssh "$REMOTE" "chmod 664 '$VHOST/db/image-review.sqlite'"
+# Merge acknowledgements for unchanged decisions. Never replace the live DB.
+scp "$DB_PATH" "$REMOTE:$REMOTE_TMP"
+ssh "$REMOTE" "python3 '$REMOTE_SCRIPT' authority-ack --db '$VHOST/db/image-review.sqlite' --processed-db '$REMOTE_TMP'"
+ssh "$REMOTE" "rm -f '$REMOTE_TMP'"

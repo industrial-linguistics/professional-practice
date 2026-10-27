@@ -11,7 +11,7 @@ import subprocess
 from pathlib import Path
 
 from course_content import ROOT, load_topic
-from render_html_slides import chrome_path, render_page
+from render_html_slides import chrome_path, chrome_sandbox_flags, render_page
 
 
 QA_SCRIPT = r"""
@@ -127,6 +127,7 @@ def check_topic(topic_dir: Path, chrome: str) -> tuple[int, list[str]]:
         page_path.write_text(instrument(render_page(slide.html)), encoding="utf-8")
         command = [
             chrome,
+            *chrome_sandbox_flags(),
             "--headless=new",
             "--disable-gpu",
             "--hide-scrollbars",

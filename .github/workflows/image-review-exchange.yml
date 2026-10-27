@@ -1,0 +1,32 @@
+name: Validate image-review exchange
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/image_review*'
+      - 'scripts/provision_image_review_exchange.py'
+      - 'scripts/smoke_image_review_exchange.py'
+      - 'tests/test_image_review_exchange.py'
+      - '.codex/**'
+      - '.agents/skills/professional-practice-images/**'
+      - '.github/workflows/image-review-exchange.yml'
+  pull_request:
+    paths:
+      - 'scripts/image_review*'
+      - 'tests/test_image_review_exchange.py'
+      - '.codex/**'
+      - '.agents/skills/professional-practice-images/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: bash -n .codex/cloud-setup.sh scripts/image_review_bridge_cron.sh scripts/image_review_sync_process.sh scripts/image_review_publish_candidates.sh
+      - run: python scripts/validate_html_course.py

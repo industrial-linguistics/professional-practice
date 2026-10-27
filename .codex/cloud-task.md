@@ -1,0 +1,33 @@
+# Professional Practice images: hosted run
+
+Use the repository's `professional-practice-images` skill. Read AGENTS.md and work from current origin/main. Keep the original Monday 09:00 Australia/Sydney cadence when a hosted scheduler is configured. Environment setup is `.codex/cloud-setup.sh`; set PATH="$PWD/.venv/bin:$PATH" for commands.
+
+The S3 URI defaults to `s3://professional-practice-image-review-141101760219/exchange`. The configured credentials must be the dedicated cloud worker identity (or equivalent AWS OIDC). The worker can read snapshots and receipts and write submissions; it cannot change the authoritative snapshots or review decisions. Images remain pending until the protected CGI reviewer approves them and the server processor delivers them.
+
+If image generation is unavailable, complete suitable native HTML/CSS, Graphviz or other deterministic work. If only a raster item is appropriate, report the missing capability rather than silently replacing it or using another paid provider. Local/personal skills are not automatically present: use the checked-in repository skill and quality gates.
+
+Review the professional-practice image backlog, media plan, image rework queue, and docs/image-review-quality-gates.md. Start by putting .venv/bin first in PATH and running `python scripts/image_review_exchange.py fetch --max-age-hours 1`. This downloads a checksummed, recent snapshot from the private S3 exchange. Stop before generation if the fetch fails or the snapshot is stale. Do not run the SSH-based processor in Cloud. Select a small batch of ready or rework items that are useful now and cheap enough to produce without wasting image-generation capacity.
+
+Before producing each item, make and record a composition decision:
+- Prefer native slide HTML/CSS for tables, grids, checklists, comparisons, timelines, and text in boxes.
+- Prefer Graphviz for arrow-heavy dependency or network diagrams where automatic routing helps.
+- Use Mermaid only for small simple flows or sequences whose SVG can be inspected reliably.
+- Use a charting library for quantitative charts and TikZ only for genuinely mathematical or technical geometry suited to TeX.
+- Use generated raster imagery only for illustrative or realistic visuals; do not bake essential instructional text into a generated raster.
+- Add no image when the existing semantic slide is clearer.
+If the material has two distinct learning jobs or cannot fit legibly, split it into adjacent slides and update the matching narratives. If reviewer feedback calls for a source-level HTML correction, implement and render that source correction instead of forcing it through the PNG installer.
+
+For every proposed change, inventory the useful information on the current slide and in its narrative. Do not silently lose content: each useful item must remain visible, move to a named adjacent slide, or be adequately covered by the matching narrative, with that decision recorded.
+
+After rendering, perform the full geometry review in docs/image-review-quality-gates.md before registration. Inspect candidate.png and proposed-slide.png at 100% and as whole slides. Confirm that every text run inside a box is fully inside with padding; no box, badge, or image obscures external text; unrelated elements do not overlap; all connector heads and tails are visible, attach to the intended nodes, and do not cross unrelated boxes or labels; and the complete slide fits without clipping or scrolling. For deterministic HTML/SVG, also check browser-computed bounds and page overflow. Correct every defect and rerender. Do not register a candidate with any unresolved layout or content-preservation issue.
+
+For each image candidate that passes, create the repo review bundle under state/image-review/candidates/<candidate-id>/ with candidate image, current slide preview, proposed slide preview, prompt/spec text, and editable source. prompt.txt must include Composition decision, Content preservation, and Layout QA sections with concrete evidence. Register it with scripts/image_review_register.py so image-review/batches/<date>.md lists it, then submit ONLY the new candidates with `python scripts/image_review_exchange.py submit --candidate <candidate-id> --format <html|graphviz|mermaid|chart|tikz|raster> --qa-passed`. For multiple formats, submit separately. Record the returned run ID. Poll `python scripts/image_review_exchange.py receipt <run-id>` at most once per 30 seconds for up to 10 minutes; pending exits 3, rejected exits 1, accepted exits 0. Only an accepted receipt confirms registration and publication of protected previews. Never upload a replacement live database. Each rework uses a new candidate ID.
+
+Do not install generated images into content/.../images/... and do not mark assets accepted; approvals are handled through the protected review CGI and the daily raksasa processor. Source-level reworks should remain semantic HTML where appropriate and must be fully rendered and checked with their affected narratives. Report the batch file path, candidate IDs or source-level reworks, format decisions, and protected review URL.
+
+At the end of each run, run proportionate course validation, git commit and push the verified work, and make sure CI/CD successfully deploys the site.
+
+For a source-level rework, retain the complete evidence directory with
+`python scripts/image_review_exchange.py archive-evidence <directory> --run-id <source-rework-id>`.
+Record its S3 key and checksum in the dated batch note. This archives evidence;
+it does not register or accept an image candidate.
