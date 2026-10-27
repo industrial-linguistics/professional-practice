@@ -17,7 +17,7 @@ Source-level HTML reworks keep semantic text in the course source and archive th
 - Durable task instructions: `.codex/cloud-task.md`
 - Repository skill: `.agents/skills/professional-practice-images/SKILL.md`
 - Server deployment: `/home/professionalpractice/image-review-exchange/` on raksasa and merah.
-- Server bridge credentials: `/home/professionalpractice/.config/professional-practice/image-review-bridge.env`, mode 0600. Cloud credentials belong in the published environment's vault, never in Git.
+- Server bridge credentials: `/home/professionalpractice/.config/professional-practice/image-review-bridge.env`, mode 0600. Cloud credentials belong in the published environment's vault as `IMAGE_REVIEW_AWS_ACCESS_KEY_ID` and `IMAGE_REVIEW_AWS_SECRET_ACCESS_KEY`, with `IMAGE_REVIEW_AWS_REGION=ap-southeast-2`, never in Git. They take precedence over shared `AWS_*` variables without changing access for the other repositories.
 
 The cloud identity can read snapshots and receipts and write submissions and source-rework evidence. It cannot write snapshots, receipts or review decisions. The bridge identity publishes snapshots and receipts. Bucket public access is blocked, TLS is required, default encryption is enabled, and versioning is enabled. `scripts/provision_image_review_exchange.py` configures these narrowly scoped identities without printing credentials.
 

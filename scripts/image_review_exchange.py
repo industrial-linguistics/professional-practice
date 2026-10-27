@@ -155,6 +155,22 @@ def authority_export(db: Path, candidates_dir: Path, output: Path) -> dict:
     return metadata
 
 
+def aws_session_options(profile: str | None = None) -> dict:
+    """Use this job's identity without changing shared environment credentials."""
+    access = os.environ.get("IMAGE_REVIEW_AWS_ACCESS_KEY_ID")
+    secret = os.environ.get("IMAGE_REVIEW_AWS_SECRET_ACCESS_KEY")
+    if bool(access) != bool(secret):
+        raise RuntimeError("Both IMAGE_REVIEW_AWS credential variables are required")
+    if access:
+        if profile:
+            raise RuntimeError("Choose IMAGE_REVIEW_AWS credentials or an AWS profile")
+        options = {"aws_access_key_id": access, "aws_secret_access_key": secret}
+        if token := os.environ.get("IMAGE_REVIEW_AWS_SESSION_TOKEN"):
+            options["aws_session_token"] = token
+        return options
+    return {"profile_name": profile}
+
+
 class S3Store:
     def __init__(self, uri: str, profile: str | None = None):
         import boto3
@@ -163,8 +179,8 @@ class S3Store:
         if not match:
             raise ValueError("Expected s3://bucket/prefix")
         self.bucket, self.prefix = match[1], (match[2] or "").strip("/")
-        self.client = boto3.Session(profile_name=profile).client(
-            "s3", region_name=os.environ.get("AWS_DEFAULT_REGION", "ap-southeast-2"),
+        self.client = boto3.Session(**aws_session_options(profile)).client(
+            "s3", region_name=os.environ.get("IMAGE_REVIEW_AWS_REGION", os.environ.get("AWS_DEFAULT_REGION", "ap-southeast-2")),
             config=Config(connect_timeout=15, read_timeout=60, retries={"max_attempts": 3}))
         if "IfNoneMatch" not in self.client.meta.service_model.operation_model("PutObject").input_shape.members:
             raise RuntimeError("Install .codex/cloud-requirements.txt: this boto3 is too old for conditional S3 writes")
