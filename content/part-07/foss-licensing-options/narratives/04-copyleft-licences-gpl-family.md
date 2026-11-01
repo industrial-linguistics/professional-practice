@@ -1,7 +1,7 @@
-# Copyleft licences: reciprocity to sustain openness
+Speaker 1: Copyleft is reciprocity for covered work. If you distribute a modified GPL program or a combined work covered by the GPL, recipients must be able to get its corresponding source under the licence. Private changes need not be released, and unrelated programs do not become GPL merely because they sit beside it.
 
-Copyleft licences like GPLv3, LGPL and AGPL require that derivative works remain under the same licence when distributed. This “share alike” obligation is deliberate: it keeps improvements flowing back to the commons. Picture it like a viral clause—once your code touches GPL components and you ship it to customers, openness spreads to the whole bundle.
+Speaker 2: Consider a router shipped with modified GPL firmware. Its distributor must provide the matching source as the licence requires; it does not have to send patches upstream. The Linux kernel uses GPLv2, so this distinction matters for Android device vendors too.
 
-That does not mean every integration is doomed. The LGPL allows dynamic linking without relicensing your proprietary app, as long as users can relink to updated library versions. The AGPL closes the “software-as-a-service” loophole by treating network access as distribution. Android handset makers learned this the hard way: because the Linux kernel is GPLv2, device vendors must publish their modified source whenever they release a firmware image.
+Speaker 1: The family has different rules. LGPL can permit linking under conditions that preserve users' ability to replace the library. AGPLv3 adds a source offer to users interacting with a modified version over a network. Network use is not literally distribution.
 
-Copyleft rewards collaboration-heavy ecosystems such as public-sector platforms, civic tech or companies like Signal that want privacy features to remain inspectable. The key is operational discipline—track what licences flow into your builds, and brief stakeholders on when obligations trigger so surprises do not crop up the night before a launch.
+Speaker 2: Foundations, public agencies and privacy projects may choose these terms to support sharing. Track the actual licence version, what code is combined, and how it reaches users before promising a release.

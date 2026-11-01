@@ -1109,6 +1109,21 @@ main {
   font-size: .9em;
 }
 .slide .diagram-governance .dg-caption { font-size: max(14px, .9em); }
+/* Licence selection: questions and review checks, not an automatic legal rule. */
+.slide .diagram-license-choice .dg-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65em;
+}
+.slide .diagram-license-choice .dg-card { min-width: 0; }
+.slide .diagram-license-choice .dg-card p { margin: .4em 0 0; font-size: .88em; }
+.slide .diagram-license-choice .dg-check {
+  margin: .75em 0 0;
+  padding: .5em .7em;
+  border-left: 5px solid var(--blue);
+  background: var(--soft);
+  font-size: .9em;
+}
 @media (max-width: 600px) {
   .slide .diagram-evidence table,
   .slide .diagram-evidence thead,
@@ -1125,7 +1140,8 @@ main {
   .slide .diagram-updates .dg-channels,
   .slide .diagram-buying-committee .dg-stakeholders,
   .slide .diagram-revenue-lifecycle .dg-stages,
-  .slide .diagram-governance .dg-models { grid-template-columns: 1fr; }
+  .slide .diagram-governance .dg-models,
+  .slide .diagram-license-choice .dg-options { grid-template-columns: 1fr; }
   .slide .diagram-pdca .dg-card { min-height: 0; }
 }
 /* Lead conversion: semantic company/person/deal records, not a vendor screenshot. */

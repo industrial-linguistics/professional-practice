@@ -41,24 +41,24 @@
 <section class="slide" data-slide="4" data-kind="content" data-title="Copyleft licences (GPL family)">
 <h2>Copyleft licences (GPL family)</h2>
 <ul>
-<li>Derivative works must remain open-source
+<li>Copyleft keeps covered modified works under the licence when they are distributed
 </li>
-<li>Trigger "share alike" obligations on distribution of binaries
+<li>GPL source obligations apply to a covered combined work you distribute; separate programs do not automatically inherit the GPL
 </li>
 <li>Common in infrastructure maintained by foundations and public agencies
 </li>
-<li>Linux kernel's GPL ensures Android handset modifications were upstreamed for everyone
+<li>Linux kernel code uses GPLv2: vendors distributing modified kernels must make corresponding source available to recipients; upstreaming is separate
 </li>
-<li>Think of it as a viral clause—openness spreads to everything it touches once you distribute
+<li>LGPL has different linking conditions; AGPL adds a source offer for users of a modified network service
 </li>
-<li>Scenario: ship a router with modified GPL firmware? You must publish matching source
+<li>Router example: ship modified GPL firmware and provide recipients the matching source under the licence
 </li>
 </ul>
 </section>
 
 <section class="slide" data-slide="5" data-kind="content" data-title="Compatibility cheat sheet">
 <h2>Compatibility cheat sheet</h2>
-<table><thead><tr><th>You use…</th><th>Safe to combine with</th><th>Watch-outs</th></tr></thead><tbody><tr><td>MIT/BSD</td><td>Almost anything</td><td>Preserve attribution</td></tr><tr><td>Apache 2.0</td><td>MIT, Apache, GPLv3</td><td>Patent terms clash with GPLv2 only</td></tr><tr><td>GPLv3</td><td>GPLv3 code</td><td>Permissive code ok, but binaries must be GPL</td></tr><tr><td>AGPL</td><td>AGPL projects</td><td>Network use counts as distribution</td></tr></tbody></table>
+<table><thead><tr><th>You use…</th><th>Possible combination</th><th>Check before release</th></tr></thead><tbody><tr><td>MIT/BSD</td><td>Many proprietary or GPL projects</td><td>Retain required licence and copyright notices</td></tr><tr><td>Apache 2.0</td><td>Can enter GPLv3 projects</td><td>Direction matters; GPLv2-only is incompatible</td></tr><tr><td>GPLv3</td><td>Compatible permissive code can enter</td><td>Distribute covered combined work under GPLv3 with source</td></tr><tr><td>AGPLv3</td><td>Review the exact combination</td><td>Modified network service: offer source to interacting users</td></tr></tbody></table>
 </section>
 
 <section class="slide" data-slide="6" data-kind="content" data-title="Dual &amp; multi-licensing">
@@ -111,20 +111,14 @@
 
 <section class="slide" data-slide="10" data-kind="content" data-title="Choosing for your context">
 <h2>Choosing for your context</h2>
-<ul>
-<li>Align licence with business model, funding and compliance needs
-</li>
-<li>Consider third-party code compatibility and patent clauses
-</li>
-<li>Involve legal counsel, community tech-leads and product managers early
-</li>
-<li>Quick flow: need maximum adoption? go permissive. Need reciprocity? pick copyleft. Need revenue + openness? explore dual licence.
-</li>
-<li>Example: a government agency picks GPL to keep taxpayer-funded improvements public
-</li>
-<li>Choosing a licence is like a roommate agreement—get it wrong and the dishes (or obligations) pile up fast
-</li>
-</ul>
+<div class="diagram diagram-license-choice" role="group" aria-label="Three licence goals and the checks needed before choosing">
+<div class="dg-options">
+<div class="dg-card"><strong class="dg-title">Broad reuse</strong><p>Explore MIT or Apache 2.0 if proprietary reuse is acceptable. Keep required notices; Apache 2.0 also grants patent rights.</p></div>
+<div class="dg-card"><strong class="dg-title">Reciprocal sharing</strong><p>Explore a GPL-family licence if you want source obligations for covered work when it is conveyed. Check the exact version and trigger.</p></div>
+<div class="dg-card"><strong class="dg-title">Open and commercial terms</strong><p>Explore dual licensing if the project can grant both sets of rights. Check contribution permissions and community expectations.</p></div>
+</div>
+<p class="dg-check"><strong>Before deciding:</strong> map your business and funding goals, compliance duties, third-party compatibility, patent terms and jurisdiction. Involve legal, product and community leads.</p>
+</div>
 </section>
 
 <section class="slide" data-slide="11" data-kind="content" data-title="Staying compliant">

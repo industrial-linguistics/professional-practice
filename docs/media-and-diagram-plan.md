@@ -1,6 +1,6 @@
 # Media and Diagram Plan
 
-Last checked: 2026-10-26.
+Last checked: 2026-11-02.
 
 ## Current media state
 
@@ -73,7 +73,7 @@ Use diagrams where the concept is process, dependency, decision, or role ownersh
 | 2 | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | Cadence and scorecard diagram | Show weekly, monthly and quarterly vendor management rhythms. |
 | 2 | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | Evidence map | Link policy, logs, access reviews, backups and board reporting. |
 | 2 | `content/part-06/capstone-red-team-exercise/images/startup-maturity-radar.png` | Semantic maturity rubric | Five evidence levels on slide 8; score the four domains separately on slide 7. |
-| 2 | `content/part-07/foss-licensing-options/images/license-decision-tree.png` | License decision tree | Guide MIT/Apache/GPL/dual-license decisions. |
+| 2 | `content/part-07/foss-licensing-options/slides.html` | Semantic licence-choice cards | Slide 10 compares reuse, reciprocity and dual licensing with review checks; slides 4–5 clarify GPL and AGPL conditions. |
 | 2 | `content/part-07/community-governance-structures/slides.html` | Semantic governance comparison | Slide 9 compares solo maintainer, core team and foundation structures; company support appears as a cross-cutting influence. |
 | 2 | `content/part-07/balancing-openness-cultural-safety/images/cultural-safety-access-matrix.png` | Access matrix | Show open, restricted, community-approved and embargoed data states. |
 | 3 | `content/part-08/studio/images/capstone-evidence-pack.png` | Capstone evidence pack diagram | Help teams organise final pitch evidence across the course outcomes. |

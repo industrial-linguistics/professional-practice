@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-10-26.
+Last checked: 2026-11-02.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -74,7 +74,7 @@ These are the best first candidates because they either support early course con
 | 2 | superseded-html | `content/part-06/vendor-management-rhythms/images/vendor-scorecard-calendar.png` | diagram | Weekly/monthly/quarterly vendor cadence and scorecard. | The installed raster was later rejected for text outside boxes. It is no longer referenced: cadence remains on slide 3 and scorecard design and thresholds remain on slides 7–8 (2026-08-31). |
 | 2 | delivery-pending | `content/part-06/investor-due-diligence-prep/images/due-diligence-evidence-map.png` | diagram | Evidence map for policy, logs, access reviews, backups and board reporting. | Protected database records `2026-07-13-due-diligence-evidence-map-rework-1` as processed; target PNG is absent from this checkout (2026-09-07). Audit delivery; do not regenerate or mark accepted. |
 | 2 | superseded-html | `content/part-06/capstone-red-team-exercise/images/startup-maturity-radar.png` | diagram | Startup maturity radar. | Native five-level evidence rubric on slide 8 (2026-09-07); slide 7 keeps separate domain scoring and remediation. No measured scores exist to justify a radar chart. |
-| 2 | backlog | `content/part-07/foss-licensing-options/images/license-decision-tree.png` | diagram | License choice decision tree. | Needs legal wording caution. |
+| 2 | superseded-html | `content/part-07/foss-licensing-options/images/license-decision-tree.png` | diagram | License choice decision tree. | Slide 10 now uses native goal-and-check cards (2026-11-02); slides 4–5 and matching narratives were corrected against OSI, GNU and Apache guidance. No PNG needed. |
 | 2 | superseded-html | `content/part-07/community-governance-structures/images/oss-governance-spectrum.png` | diagram | Compare maintainer, core-team and foundation governance. | Slide 9 now has a native HTML/CSS comparison (2026-10-26), with company support shown as a cross-cutting influence rather than an inevitable stage. |
 | 2 | backlog | `content/part-07/balancing-openness-cultural-safety/images/cultural-safety-access-matrix.png` | diagram | Open/restricted/community-approved/embargoed data states. | Needs cultural review sensitivity. |
 | 3 | backlog | `content/part-08/studio/images/capstone-evidence-pack.png` | diagram | Capstone evidence pack diagram. | Wait until Part 8 content exists. |
@@ -82,6 +82,13 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-11-02 review sweep
+
+Fetched a checksummed protected snapshot before selection: 11 processed, 14 rejected, 86 review events and no pending candidates. The Māori governance map remains held for cultural review; eight `delivery-pending` concepts were not regenerated. The licensing decision-tree concept had sufficient source and official guidance to resolve its legal wording caution as one source-level batch.
+
+- Slide 10 now asks about broad reuse, reciprocal sharing and dual licensing in native HTML/CSS, then names compatibility, patent, jurisdiction and stakeholder checks. Slides 4–5 and narratives 4–5 were corrected so they do not contradict the new decision slide about GPL and AGPL triggers. All 13 slides and narratives remain aligned.
+- No raster was generated or installed, no image candidate was registered, and no review decision was changed. Evidence and geometry review are recorded in `image-review/batches/2026-11-02.md`.
 
 ### 2026-10-26 review sweep
 
