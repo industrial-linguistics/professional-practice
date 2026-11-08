@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-11-02.
+Last checked: 2026-11-09.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -82,6 +82,10 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-11-09 review sweep
+
+Fetched the current protected review snapshot before selection: 25 candidates, 11 processed, 14 rejected, 86 review events and no pending reviewer actions. No new candidate or source-level rework was safe to produce. The only `ready` item, the Māori governance map, still needs cultural review. The cultural-safety matrix is also held; Part 8 still has no studio slide source. All eight `delivery-pending` concepts are already processed and require delivery repair, not another candidate. No course image or reviewer record was changed. See `image-review/batches/2026-11-09.md`.
 
 ### 2026-11-02 review sweep
 
