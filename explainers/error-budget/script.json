@@ -1,0 +1,11 @@
+{
+ "model": "eleven_v4",
+ "narratives": [
+  "content/part-03/sre-error-budgets/narratives/01-intro.md",
+  "content/part-03/sre-error-budgets/narratives/03-error-budgets.md",
+  "content/part-03/sre-error-budgets/narratives/04-use.md"
+ ],
+ "tts_overrides": {
+  "8": "Teams can agree to slow deployments, add more testing, or even adjust the SLO, if customer impact warrants it. The data helps remove emotion from those decisions."
+ }
+}

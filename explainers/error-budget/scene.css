@@ -1,0 +1,35 @@
+/* Error-budget explainer. The scene is one SVG drawn for any narration time. */
+:root{--eb-bg:#101828;--eb-paper:#f5f7f9;--eb-muted:#9aa7bd;--eb-dim:#5b6b85;--eb-line:#33445f;--eb-green:#2cc2a8;--eb-red:#f26b5b;--eb-gold:#e6ad45;--eb-blue:#78a8e8;--eb-card:#0b1220}
+*{box-sizing:border-box}
+.eb-page{margin:0;background:var(--eb-bg);color:var(--eb-paper);font:17px/1.5 "Inter","Avenir Next",Avenir,"Trebuchet MS",system-ui,sans-serif}
+.eb-main{max-width:1500px;margin:0 auto;padding:22px 16px 56px}
+.eb-kicker{margin:0;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--eb-gold)}
+.eb-title{font-size:clamp(24px,3.2vw,40px);line-height:1.15;font-weight:600;margin:6px 0 16px}
+.eb-stage{position:relative;width:100%;aspect-ratio:16/9;background:var(--eb-bg);border:1px solid var(--eb-line);overflow:hidden}
+.eb-svg{display:block;width:100%;height:100%}
+.eb-caption{min-height:3.1em;margin:12px auto 0;max-width:60em;text-align:center;font-size:clamp(16px,1.6vw,21px)}
+.eb-caption[hidden]{display:block;visibility:hidden}
+.eb-transport{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin:8px 0 0}
+.eb-scrub{flex:1 1 220px;display:flex}.eb-scrub input{width:100%}
+.eb-time{font-variant-numeric:tabular-nums;min-width:6.5em;color:var(--eb-muted);font-size:15px}
+.eb-check{display:flex;align-items:center;gap:6px;font-size:15px}
+.eb-button{font:inherit;font-weight:700;color:var(--eb-bg);background:var(--eb-green);border:2px solid var(--eb-green);padding:9px 18px;min-width:6.2em;cursor:pointer}
+.eb-button:focus-visible,.eb-page input:focus-visible,.eb-page summary:focus-visible{outline:3px solid var(--eb-paper);outline-offset:3px}
+.eb-transcript{margin:22px 0 0;max-width:62em}.eb-transcript summary{cursor:pointer;font-weight:700}
+.eb-transcript p{margin:10px 0}.eb-transcript strong{color:var(--eb-gold)}
+.eb-source{margin:22px 0 0;max-width:70em;font-size:14px;color:var(--eb-muted)}
+.eb-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.eb-capture{overflow:hidden}
+.eb-capture .eb-kicker,.eb-capture .eb-title,.eb-capture .eb-transport,.eb-capture .eb-transcript,.eb-capture .eb-source,.eb-capture .eb-caption{display:none}
+.eb-capture .eb-main{max-width:none;margin:0;padding:0}
+.eb-capture .eb-stage{width:100vw;height:100vh;aspect-ratio:auto;border:0}
+.eb-svg text{font-family:"Inter","Avenir Next",Avenir,"Trebuchet MS",system-ui,sans-serif;fill:var(--eb-paper)}
+.eb-svg .display{font-family:"Inter Display","Inter","Avenir Next",Avenir,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em}
+.eb-svg .semi{font-weight:600}.eb-svg .bold{font-weight:700}.eb-svg .track{letter-spacing:.16em}.eb-svg .num{font-variant-numeric:tabular-nums}
+.eb-svg .muted{fill:var(--eb-muted)}.eb-svg .dim{fill:var(--eb-dim)}.eb-svg .green{fill:var(--eb-green)}.eb-svg .red{fill:var(--eb-red)}.eb-svg .gold{fill:var(--eb-gold)}.eb-svg .blue{fill:var(--eb-blue)}.eb-svg .ink{fill:var(--eb-bg)}
+.eb-svg .halo{paint-order:stroke;stroke:var(--eb-bg);stroke-width:10px;stroke-linejoin:round}
+.eb-svg .f-paper{fill:var(--eb-paper)}.eb-svg .f-bg{fill:var(--eb-bg)}.eb-svg .f-card{fill:var(--eb-card)}.eb-svg .f-green{fill:var(--eb-green)}.eb-svg .f-red{fill:var(--eb-red)}.eb-svg .f-gold{fill:var(--eb-gold)}.eb-svg .f-blue{fill:var(--eb-blue)}.eb-svg .f-line{fill:var(--eb-line)}.eb-svg .f-none{fill:none}
+.eb-svg .s-paper{stroke:var(--eb-paper)}.eb-svg .s-muted{stroke:var(--eb-muted)}.eb-svg .s-line{stroke:var(--eb-line)}.eb-svg .s-green{stroke:var(--eb-green)}.eb-svg .s-red{stroke:var(--eb-red)}.eb-svg .s-gold{stroke:var(--eb-gold)}.eb-svg .s-blue{stroke:var(--eb-blue)}
+.eb-svg .round{stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:640px){.eb-main{padding:14px 16px 40px}.eb-time{min-width:0}}
+@media print{.eb-transport{display:none}}
