@@ -40,6 +40,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__,formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('name');p.add_argument('--upload',action='store_true');p.add_argument('--fetch',action='store_true')
     p.add_argument('--create-bucket',action='store_true');p.add_argument('--captions',help='caption file, relative to the repository')
+    p.add_argument('--narration',help='JSON record of the narration take (with audio_sha256), relative to the repository')
     p.add_argument('--youtube',help='record a YouTube URL for this film');a=p.parse_args()
     home=ROOT/'explainers'/a.name;record_path=home/'release.json';old=json.loads(record_path.read_text()) if record_path.exists() else {}
     repo=repo_name();prefix=f'{repo}/{a.name}/'
@@ -54,11 +55,12 @@ def main():
     if not film.exists():raise SystemExit(f'Render first: {film} is missing')
     digest=sha(film);tag=digest[:12];duration,width,height=probe(film)
     captions=a.captions or old.get('captions') or (f'explainers/{a.name}/captions.vtt' if (home/'captions.vtt').exists() else None)
-    narration=home/'narration.json';take=json.loads(narration.read_text()).get('audio_sha256') if narration.exists() else old.get('narration_sha256')
+    narration_record=a.narration or old.get('narration_record') or (f'explainers/{a.name}/narration.json' if (home/'narration.json').exists() else None)
+    take=json.loads((ROOT/narration_record).read_text()).get('audio_sha256') if narration_record else None
     same=old.get('film',{}).get('sha256')==digest
     record={'name':a.name,'repository':repo,
         'film':{'file':f'{a.name}-{tag}.mp4','sha256':digest,'bytes':film.stat().st_size,'duration_seconds':duration,'width':width,'height':height},
-        'inputs_sha256':inputs_hash(home),'narration_sha256':take,'captions':captions,
+        'inputs_sha256':inputs_hash(home),'narration_record':narration_record,'narration_sha256':take,'captions':captions,
         'storage':old.get('storage',{'bucket':None,'prefix':prefix,'uploaded':None}) if same else {'bucket':None,'prefix':prefix,'uploaded':None},
         'youtube':a.youtube or (old.get('youtube') if same else None)}
     uploads=[(film,prefix+record['film']['file'])]
