@@ -1,0 +1,22 @@
+{
+ "name": "p1-outage",
+ "repository": "professional-practice",
+ "film": {
+  "file": "p1-outage-cd92cd46f246.mp4",
+  "sha256": "cd92cd46f2462b602dc21a3bec735149aee31c28b4ca5dbd8fdea8860e6614fd",
+  "bytes": 7201846,
+  "duration_seconds": 79.8,
+  "width": 1920,
+  "height": 1080
+ },
+ "inputs_sha256": "408c7457be754836fc671423b1970fa562c0e15f84f9b1837875ede3ee14a0a1",
+ "narration_record": "explainers/p1-outage/narration.json",
+ "narration_sha256": "63af3f64ace124d205faff69d00c138d7f4093054f6cdbce552085cadd34236b",
+ "captions": "explainers/p1-outage/captions.vtt",
+ "storage": {
+  "bucket": null,
+  "prefix": "professional-practice/p1-outage/",
+  "uploaded": null
+ },
+ "youtube": null
+}

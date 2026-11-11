@@ -1,6 +1,6 @@
 # Animated explainers
 
-An explainer is a short narrated animation built from a lesson's existing narration. It is real motion graphics rather than slide screenshots held under audio. The first is `error-budget/`, from Part 3's "Error Budgets & SLOs" (narratives 01, 03 and 04, about 90 seconds).
+An explainer is a short narrated animation built from a lesson's existing narration. It is real motion graphics rather than slide screenshots held under audio. The first is `error-budget/`, from Part 3's "Error Budgets & SLOs" (narratives 01, 03 and 04, about 90 seconds). The second is `p1-outage/`, a trailer for the Incident Triage Lab.
 
 Explainers are standalone. They are not yet part of the course player, the SCORM package or the textbook.
 
@@ -57,6 +57,16 @@ Line 8 is voiced with a comma after "SLO" (see `script.json`). Without it v4 ran
 - The month of incidents, the second month's burn (33 of 43 minutes used in 8 of 30 days, about 2.9 times the even rate) and the lever projections are illustrative. The closing credit says so.
 - Moving the SLO from 99.9% to 99.5% raises a 30-day budget from 43.2 to 216 minutes.
 - The closing line is the lesson's own slide text.
+
+## P1 outage trailer (`p1-outage/`)
+
+An 80-second trailer for the Incident Triage Lab, the Part 1 package. It follows the same pattern as `error-budget/`; pass `--name p1-outage` to the render script and `p1-outage` to the narration and publish scripts.
+
+- The script is `p1-outage/script.md`, a new two-speaker script written for the trailer. It draws on the lesson "Major Incident Management Drill" (narratives 03, 06 and 07) and keeps several of its sentences word for word or nearly so.
+- Product claims come from `CURRENT_STATUS.md` and `scripts/build_scorm.py`: seven narrated lessons, a five-ticket assessed simulation, SCORM completion, score and resume reporting, a 70% pass mark, a worksheet and a facilitator guide. The seven lesson titles follow `TOPIC_ORDER`.
+- The five ticket titles, their queue times and the four worked answers for the first ticket are taken from `scorm/incident-triage/scenarios.json`. The "Next owner" answer is shortened on screen.
+- The outage itself is an illustrative scenario: the clock times, order and alert counts, region names, alert names, pressure messages and incident-record entries are invented for the film. A label says so during those scenes and the closing credit repeats it.
+- Anna is on `eleven_v4` and Greg on `eleven_multilingual_v2`. All nine lines passed a transcription check on the first take.
 
 ## Fonts
 

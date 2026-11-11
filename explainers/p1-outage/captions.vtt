@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00:00.600 --> 00:00:02.680
+<v Anna>It's 8:42 in the morning.
+
+00:00:02.920 --> 00:00:05.760
+<v Anna>Checkout fails across every region at once.
+
+00:00:05.960 --> 00:00:08.440
+<v Anna>Customers can't complete a purchase anywhere.
+
+00:00:08.869 --> 00:00:10.994
+<v Greg>Revenue stops, and it stops visibly.
+
+00:00:11.237 --> 00:00:13.002
+<v Greg>The pressure arrives within minutes.
+
+00:00:13.429 --> 00:00:15.509
+<v Anna>Alerts fire from every layer.
+
+00:00:15.989 --> 00:00:20.309
+<v Anna>Database, network and application teams all need to be mobilised,
+
+00:00:20.429 --> 00:00:22.629
+<v Anna>and none of them can diagnose it alone.
+
+00:00:22.978 --> 00:00:25.033
+<v Greg>That's what makes it a major incident.
+
+00:00:25.416 --> 00:00:28.470
+<v Greg>The response needs coordination that nobody has time to invent
+
+00:00:28.504 --> 00:00:29.294
+<v Greg>on the spot.
+
+00:00:29.705 --> 00:00:32.905
+<v Anna>So a P1 response needs a cadence before it needs
+
+00:00:32.985 --> 00:00:36.265
+<v Anna>a perfect diagnosis. Declare the incident.
+
+00:00:36.505 --> 00:00:42.505
+<v Anna>Open one record. Assign four roles: commander, communications, resolver and
+
+00:00:42.585 --> 00:00:43.385
+<v Anna>scribe.
+
+00:00:43.721 --> 00:00:45.277
+<v Greg>Agree when the next update is due.
+
+00:00:45.602 --> 00:00:48.353
+<v Greg>Test the safest recovery path, verify that service has actually
+
+00:00:48.400 --> 00:00:51.569
+<v Greg>returned, and hand off every remaining action with an owner.
+
+00:00:51.990 --> 00:00:55.830
+<v Anna>That's the major incident drill: one of seven narrated lessons
+
+00:00:55.870 --> 00:00:57.670
+<v Anna>in the Incident Triage Lab.
+
+00:00:58.013 --> 00:01:01.008
+<v Greg>Then it's your turn. Five tickets land in your queue.
+
+00:01:01.333 --> 00:01:04.073
+<v Greg>You classify each one, set its priority, assign an owner
+
+00:01:04.155 --> 00:01:05.710
+<v Greg>and choose the first customer update.
+
+00:01:06.407 --> 00:01:08.880
+<v Greg>Your score is reported to your learning management system.
+
+00:01:09.286 --> 00:01:13.126
+<v Anna>The Incident Triage Lab, from IT Professional Practice.
+
+00:01:13.606 --> 00:01:16.246
+<v Anna>Practise the response before you need it.

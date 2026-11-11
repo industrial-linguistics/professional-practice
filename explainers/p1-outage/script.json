@@ -1,0 +1,10 @@
+{
+ "model": "eleven_v4",
+ "narratives": [
+  "explainers/p1-outage/script.md"
+ ],
+ "models": {
+  "Greg": "eleven_multilingual_v2"
+ },
+ "tts_overrides": {}
+}
