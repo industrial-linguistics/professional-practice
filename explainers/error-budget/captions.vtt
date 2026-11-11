@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00:00.600 --> 00:00:04.760
+<v Anna>Imagine you promised your app would be available 99.9% of
+
+00:00:04.840 --> 00:00:08.600
+<v Anna>the time. That still allows roughly nine hours of downtime
+
+00:00:08.640 --> 00:00:09.400
+<v Anna>a year.
+
+00:00:09.731 --> 00:00:12.982
+<v Greg>Site Reliability Engineering, or SRE, turns those promises into math
+
+00:00:13.017 --> 00:00:16.465
+<v Greg>we can track. The key tools are service level objectives,
+
+00:00:16.558 --> 00:00:19.019
+<v Greg>or SLOs, and the error budgets tied to them.
+
+00:00:19.437 --> 00:00:22.797
+<v Anna>By defining how reliable a service must be, we can
+
+00:00:22.917 --> 00:00:25.837
+<v Anna>decide when it's safe to launch new features and when
+
+00:00:25.877 --> 00:00:28.557
+<v Anna>it's time to pause and fix instability.
+
+00:00:29.377 --> 00:00:32.657
+<v Anna>An error budget is the small slice of allowable failure
+
+00:00:32.817 --> 00:00:38.177
+<v Anna>built into an SLO. If our target is 99.9% uptime,
+
+00:00:38.257 --> 00:00:41.457
+<v Anna>that gives us about forty minutes of downtime each month.
+
+00:00:41.800 --> 00:00:45.585
+<v Greg>As outages or performance issues occur, we "spend" that budget.
+
+00:00:46.189 --> 00:00:48.998
+<v Greg>When it's gone, engineering focuses on reliability work instead of
+
+00:00:49.045 --> 00:00:50.252
+<v Greg>shipping new features.
+
+00:00:50.670 --> 00:00:53.230
+<v Anna>This approach keeps everyone aligned.
+
+00:00:53.390 --> 00:00:57.470
+<v Anna>Product managers see how instability eats into development time, while
+
+00:00:57.630 --> 00:01:00.910
+<v Anna>engineers know exactly when to slow their release pace.
+
+00:01:01.707 --> 00:01:04.507
+<v Anna>Error budgets aren't just for ops teams.
+
+00:01:04.587 --> 00:01:08.187
+<v Anna>They spark conversations about risk across the organisation.
+
+00:01:08.513 --> 00:01:11.172
+<v Greg>When the budget burns down faster than expected, it's a
+
+00:01:11.218 --> 00:01:13.923
+<v Greg>sign our releases might be too risky or our SLO
+
+00:01:13.981 --> 00:01:15.015
+<v Greg>is unrealistic.
+
+00:01:15.424 --> 00:01:19.264
+<v Anna>Teams can agree to slow deployments, add more testing, or
+
+00:01:19.344 --> 00:01:22.624
+<v Anna>even adjust the SLO, if customer impact warrants it.
+
+00:01:23.184 --> 00:01:26.304
+<v Anna>The data helps remove emotion from those decisions.

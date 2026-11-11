@@ -1,0 +1,21 @@
+{
+ "name": "error-budget",
+ "repository": "professional-practice",
+ "film": {
+  "file": "error-budget-1598f4898b8c.mp4",
+  "sha256": "1598f4898b8c0be953a89157c98cf2a278d301caddc1c028347d7663e107867b",
+  "bytes": 7640358,
+  "duration_seconds": 89.867,
+  "width": 1920,
+  "height": 1080
+ },
+ "inputs_sha256": "f0c2dc003ccb02ce8987064f06bcbcfd835bf3e97027f1a5d2c6d28c3076e9a3",
+ "narration_sha256": "ccc18586097488261199a3975e1f459344f23aee9361144f7dd44ef573121592",
+ "captions": "explainers/error-budget/captions.vtt",
+ "storage": {
+  "bucket": null,
+  "prefix": "professional-practice/error-budget/",
+  "uploaded": null
+ },
+ "youtube": null
+}

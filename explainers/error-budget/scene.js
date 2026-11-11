@@ -1,7 +1,9 @@
 /* Error-budget explainer.
    render(t) draws the frame for narration time t, so the same scene plays against the audio
    in a browser and steps frame by frame for video (scripts/render_explainer.cjs).
-   Beat times below are tied to the recorded take described in narration.json. */
+   Beat times below are in authored time: the timeline of the first recorded take. A later take
+   (another model, other settings) carries a warp table in narration.js that maps its word times
+   back to authored time, so re-voicing needs no re-timing here. */
 (function(){
 'use strict';
 var root=document.querySelector('[data-explainer]'),NARR=window.EXPLAINER_NARRATION;
@@ -9,6 +11,12 @@ if(!root||!NARR)return;
 var query=new URLSearchParams(location.search),CAPTURE=query.has('capture');
 if(CAPTURE)document.body.classList.add('eb-capture');
 var W=1920,H=1080,DUR=NARR.duration,TOTAL=DUR+2.6,NS='http://www.w3.org/2000/svg';
+var A_DUR=NARR.authored_duration||DUR,A_TOTAL=A_DUR+2.6,WARP=NARR.warp||[];
+function authored(t){ // narration time in this take -> time in the authored take
+ var n=WARP.length;if(!n)return t;if(t>=WARP[n-1][0])return WARP[n-1][1]+(t-WARP[n-1][0]);
+ for(var i=1;i<n;i++)if(t<=WARP[i][0]){var a=WARP[i-1],b=WARP[i];return a[1]+(b[1]-a[1])*(t-a[0])/(b[0]-a[0])}
+ return t;
+}
 
 /* ---------- helpers ---------- */
 function cl(x){return x<0?0:x>1?1:x}
@@ -69,7 +77,8 @@ function drawS12(t){
  bigG.setAttribute('transform',tr(lerp(960,290,go),lerp(600,198,go),lerp(1,.2,go)*lerp(.6,1,pop)));op(bigG,P(t,2.95,3.2));
  op(tagNote,EO(P(t,6.4,7))*(1-P(t,9.6,10.2)));op(yearLabel,EO(P(t,6,6.6))*(1-P(t,9.6,10.2)));
  var wipe=E(P(t,5.96,7.2));wallClip.setAttribute('width',(COLS*PITCH*wipe).toFixed(1));wall.setAttribute('opacity',lerp(1,.32,E(P(t,9.6,10.4))).toFixed(3));
- var fly=E(P(t,13.4,14.9));
+ var fly=E(P(t,13.4,14.9)),above=t>=13.35; // the hours wait behind the card, then fly onto it
+ if(redLayer._above!==above){redLayer._above=above;redCells.forEach(function(g){(above?redLayer:S1).appendChild(g)})}
  redCells.forEach(function(g,i){var s=7.3+i*.07,u=P(t,s,s+.35),x0=WX+REDS[i][0]*PITCH+4.5,y0=WY+REDS[i][1]*PITCH+4.5,x1=1296+i*28,y1=638,ring=P(t,s,s+.9);
   g.setAttribute('transform',tr(lerp(x0,x1,fly),lerp(y0,y1,fly),lerp(lerp(1,2.4,EB(u)),1.85,fly)));op(g,u>0?1:0);
   set(g.firstChild,{r:lerp(6,22,EO(ring)),opacity:fly>0?0:(1-ring).toFixed(3)})});
@@ -175,8 +184,8 @@ function day1(t){if(t<=D1[0][1])return 0;for(var i=1;i<D1.length;i++)if(t<=D1[i]
 var End=G(svg),endA=T(End,'display',W/2,500,'Argue about reliability','middle',92),endB=T(End,'display green',W/2,612,'with numbers instead of opinions.','middle',92);
 var cred=G(End);T(cred,'muted',W/2,930,'IT Professional Practice · Part 3: High-Velocity Delivery · Error Budgets & SLOs','middle',24);T(cred,'muted',W/2,966,'Voices are AI-generated. The month of incidents and the lever projections are illustrative.','middle',22);
 function drawDash(t){
- var a=EO(P(t,44.7,45.4)),dim=lerp(1,.14,E(P(t,88.7,89.5)));op(Dg,a*dim*(1-E(P(t,TOTAL-.8,TOTAL-.1))));
- op(End,EO(P(t,88.9,89.7))*(1-E(P(t,TOTAL-.8,TOTAL-.1))));op(cred,EO(P(t,DUR-.4,DUR+.3)));
+ var a=EO(P(t,44.7,45.4)),dim=lerp(1,.14,E(P(t,88.7,89.5)));op(Dg,a*dim*(1-E(P(t,A_TOTAL-.8,A_TOTAL-.1))));
+ op(End,EO(P(t,88.9,89.7))*(1-E(P(t,A_TOTAL-.8,A_TOTAL-.1))));op(cred,EO(P(t,A_DUR-.4,A_DUR+.3)));
  if(a<=0)return;
  var d1=day1(t),month2=P(t,72.8,73.4),d2=8*E(P(t,73.4,74.7)),C=lerp(BUDGET,216,E(P(t,85.6,86.7))),extra=C-BUDGET;
  dTitle.textContent=t<60?'A month of error budget':'Next month';op(dTitle,Math.max(vis(t,44.9,45.5,55,55.6),vis(t,72.9,73.5,80.6,81.1)));
@@ -221,8 +230,8 @@ function drawDash(t){
 /* ---------- render ---------- */
 var bar=el('rect',svg,{'class':'f-green',y:H-5,height:5,opacity:.7});
 function render(t){
- t=Math.max(0,Math.min(TOTAL,t));drawS12(t);drawS3(t);drawS4(t);drawDash(t);
- var out=1-E(P(t,TOTAL-.8,TOTAL-.1));op(kicker,out);op(kick2,EO(P(t,5.8,6.4))*out);bar.setAttribute('width',(W*t/TOTAL).toFixed(1));
+ t=Math.max(0,Math.min(TOTAL,t));var a=authored(t);drawS12(a);drawS3(a);drawS4(a);drawDash(a);
+ var out=1-E(P(a,A_TOTAL-.8,A_TOTAL-.1));op(kicker,out);op(kick2,EO(P(a,5.8,6.4))*out);bar.setAttribute('width',(W*t/TOTAL).toFixed(1));
 }
 var api={render:render,total:TOTAL,narration:DUR,audio:NARR.audio,ready:document.fonts?document.fonts.ready:Promise.resolve()};
 window.__explainer=api;

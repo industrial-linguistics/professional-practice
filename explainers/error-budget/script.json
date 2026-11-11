@@ -7,5 +7,8 @@
  ],
  "tts_overrides": {
   "8": "Teams can agree to slow deployments, add more testing, or even adjust the SLO, if customer impact warrants it. The data helps remove emotion from those decisions."
+ },
+ "models": {
+  "Greg": "eleven_multilingual_v2"
  }
 }
