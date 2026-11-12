@@ -52,7 +52,8 @@ async function open(browser,base){
    }
    return;
   }
-  const info=await first.evaluate(()=>({total:window.__explainer.total,audio:window.__explainer.audio}));
+  const info=await first.evaluate(()=>({total:window.__explainer.total,audio:window.__explainer.audio,music:window.__explainer.music}));
+  const music=info.music&&path.join(SRC,info.music);if(music&&!fs.existsSync(music))throw Error('The explainer names a music bed that does not exist: '+info.music);
   const frames=Math.ceil(info.total*FPS),dir=path.join(OUT,NAME+'-frames');
   fs.mkdirSync(dir,{recursive:true});
   // One browser per worker: screenshots inside a single browser run one at a time.
@@ -67,9 +68,13 @@ async function open(browser,base){
    }
   }));
   const mp4=path.join(OUT,NAME+'.mp4');
-  const run=spawnSync('ffmpeg',['-nostdin','-y','-v','error','-framerate',String(FPS),'-start_number','0','-i',path.join(dir,'%05d.png'),'-i',path.join(SRC,info.audio),
-   '-map','0:v','-map','1:a','-frames:v',String(frames),'-c:v','libx264','-preset','slow','-crf','17','-pix_fmt','yuv420p','-r',String(FPS),
-   '-c:a','aac','-b:a','192k','-ar','48000','-af','loudnorm=I=-16:TP=-1.5:LRA=11,apad','-t',info.total.toFixed(3),'-movflags','+faststart',mp4],{stdio:'inherit'});
+  // The narration is normalised to -16 LUFS. A music bed is mixed in at the level it was made at.
+  const voice='loudnorm=I=-16:TP=-1.5:LRA=11',ff=['-nostdin','-y','-v','error','-framerate',String(FPS),'-start_number','0','-i',path.join(dir,'%05d.png'),'-i',path.join(SRC,info.audio)];
+  if(music)ff.push('-i',music,'-filter_complex','[1:a]'+voice+',aformat=channel_layouts=stereo[v];[v][2:a]amix=inputs=2:normalize=0:dropout_transition=0,alimiter=limit=0.84:level=false,apad[a]','-map','0:v','-map','[a]');
+  else ff.push('-map','0:v','-map','1:a','-af',voice+',apad');
+  ff.push('-frames:v',String(frames),'-c:v','libx264','-preset','slow','-crf','17','-pix_fmt','yuv420p','-r',String(FPS),
+   '-c:a','aac','-b:a','192k','-ar','48000','-t',info.total.toFixed(3),'-movflags','+faststart',mp4);
+  const run=spawnSync('ffmpeg',ff,{stdio:'inherit'});
   if(run.status!==0)throw Error('ffmpeg failed');
   console.log(mp4+' ('+(fs.statSync(mp4).size/1e6).toFixed(1)+' MB, '+info.total.toFixed(1)+' s). Frames are in '+dir+'; delete them when done.');
  }finally{await Promise.all(browsers.map(b=>b.close()));server.close()}

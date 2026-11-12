@@ -6,5 +6,115 @@
  "models": {
   "Greg": "eleven_multilingual_v2"
  },
- "tts_overrides": {}
+ "tts_overrides": {},
+ "music": {
+  "model": "music_v1",
+  "tail": 2.6,
+  "levels": [
+   [
+    0,
+    -24
+   ],
+   [
+    1.5,
+    -27
+   ],
+   [
+    29.7,
+    -28
+   ]
+  ],
+  "ending": -20,
+  "plan": {
+   "positive_global_styles": [
+    "instrumental",
+    "cinematic electronic underscore for a voice-over",
+    "minimal",
+    "pulsing analogue synth bass",
+    "tense but controlled",
+    "clean modern production",
+    "110 bpm",
+    "no lead melody, leaves room for speech"
+   ],
+   "negative_global_styles": [
+    "vocals",
+    "lyrics",
+    "choir",
+    "distorted guitar",
+    "comedic",
+    "busy drum fills",
+    "loud brass melody",
+    "lo-fi"
+   ],
+   "sections": [
+    {
+     "section_name": "The outage hits",
+     "positive_local_styles": [
+      "one low impact to open",
+      "sparse and uneasy",
+      "single pulsing bass note",
+      "ticking clock-like percussion",
+      "cold sustained pad"
+     ],
+     "negative_local_styles": [],
+     "duration_ms": 13430,
+     "lines": []
+    },
+    {
+     "section_name": "Alarms from every layer",
+     "positive_local_styles": [
+      "tension rising",
+      "layered staccato synth arpeggios stacking up",
+      "urgent short string ostinato",
+      "alarm-like high pings",
+      "building intensity"
+     ],
+     "negative_local_styles": [
+      "resolution"
+     ],
+     "duration_ms": 16270,
+     "lines": []
+    },
+    {
+     "section_name": "Finding a cadence",
+     "positive_local_styles": [
+      "the tension settles into a steady confident pulse",
+      "metronomic four-on-the-floor kick, soft",
+      "ordered and determined",
+      "warm bass",
+      "organised forward motion"
+     ],
+     "negative_local_styles": [],
+     "duration_ms": 22290,
+     "lines": []
+    },
+    {
+     "section_name": "Your turn",
+     "positive_local_styles": [
+      "lighter and brighter",
+      "optimistic forward drive",
+      "plucked synth pattern",
+      "motivating",
+      "open major harmony"
+     ],
+     "negative_local_styles": [],
+     "duration_ms": 17300,
+     "lines": []
+    },
+    {
+     "section_name": "End card",
+     "positive_local_styles": [
+      "resolve to a sustained major chord",
+      "one final warm hit",
+      "ring out and decay to silence"
+     ],
+     "negative_local_styles": [
+      "new rhythm"
+     ],
+     "duration_ms": 10520,
+     "lines": []
+    }
+   ]
+  }
+ }
 }

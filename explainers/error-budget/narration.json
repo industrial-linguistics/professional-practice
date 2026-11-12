@@ -14,9 +14,13 @@
   "content/part-03/sre-error-budgets/narratives/04-use.md"
  ],
  "audio": "narration.mp3",
- "audio_sha256": "ccc18586097488261199a3975e1f459344f23aee9361144f7dd44ef573121592",
+ "audio_sha256": "67534038e9b0d7c97bbdf0d7952b53a3c60fdef5c262e9e3d9c9a41f941cd210",
  "duration": 87.265,
  "authored_duration": 92.933,
+ "speaker_gain_db": {
+  "Greg": 16.6,
+  "Anna": 13.2
+ },
  "tts_overrides": {
   "8": "Teams can agree to slow deployments, add more testing, or even adjust the SLO, if customer impact warrants it. The data helps remove emotion from those decisions."
  },

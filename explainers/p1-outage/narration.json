@@ -12,9 +12,13 @@
   "explainers/p1-outage/script.md"
  ],
  "audio": "narration.mp3",
- "audio_sha256": "63af3f64ace124d205faff69d00c138d7f4093054f6cdbce552085cadd34236b",
+ "audio_sha256": "8d84aefa7c27c6d95fcaa7f5de6b9d6595f31efa67f545be5b21e4f7f8c47f2b",
  "duration": 77.208,
  "authored_duration": 77.208,
+ "speaker_gain_db": {
+  "Greg": 16.7,
+  "Anna": 12.5
+ },
  "tts_overrides": {},
  "lines": [
   {

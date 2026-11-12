@@ -17,6 +17,8 @@ Explainers are standalone. They are not yet part of the course player, the SCORM
 | `error-budget/release.json` | The tracking record for the rendered film: hash, size, duration, source hash, storage. |
 | `scripts/explainer_narration.py` | Voices the lines with ElevenLabs and writes the narration files. |
 | `scripts/render_explainer.cjs` | Stills and MP4. Requires Playwright and ffmpeg. |
+| `scripts/explainer_music.py` | Composes a music bed with ElevenLabs Music and levels it under the voices. |
+| `p1-outage/music-source.mp3`, `music.mp3`, `music.json` | The composition as it came back, the film-length bed made from it, and the record of what was asked for. |
 | `scripts/publish_explainer.py` | Writes `release.json` and stores the film in S3. |
 
 ## Commands
@@ -71,3 +73,21 @@ An 80-second trailer for the Incident Triage Lab, the Part 1 package. It follows
 ## Fonts
 
 The scene asks for Inter, which this repository does not bundle. A machine without Inter falls back to Avenir or the system sans-serif, and labels may shift slightly.
+
+## Voice levels
+
+The two voices come back from ElevenLabs at different levels: Greg on v2 is about four LU quieter than Anna on v4. `scripts/explainer_narration.py` gives each speaker one constant gain so their lines sit at about -16 LUFS before the mix. Both films were rebuilt this way on 12 November 2026; before that Greg sat about three LU under Anna. The gains used are recorded in each `narration.json`.
+
+## Music
+
+`p1-outage/` has a music bed. The brief is the `music` block in its `script.json`: a model, a style list, and five sections whose lengths add up to the film, so the music turns where the film turns (the outage, the alarms, the cadence, the offer, the end card).
+
+```sh
+python3 scripts/explainer_music.py p1-outage              # show the plan; spends nothing
+python3 scripts/explainer_music.py p1-outage --generate   # compose again (paid; a different piece every time)
+python3 scripts/explainer_music.py p1-outage --bed        # rebuild the bed after changing levels or re-voicing (free)
+```
+
+`music-source.mp3` is kept in git because composing again never returns the same piece. `music.mp3` is that source held at the loudness given in `levels` (LUFS at authored times; the voices are at about -16), lifted after the last word and faded out. The page plays it in step with the narration and has a Music checkbox; `render_explainer.cjs` mixes it into the MP4.
+
+Nobody has listened to the mix inside the build. It was checked by measurement: the bed sits about ten LU under the voices, the composition has no vocals, and a transcription of the mixed track matches the script. Listen before using it.

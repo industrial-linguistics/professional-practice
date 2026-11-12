@@ -206,7 +206,7 @@ var En=G(svg),enName=T(En,'display',W/2,470,'Incident Triage Lab','middle',150),
 var enLine=T(En,'display green',W/2,712,'Practise the response before you need it.','middle',68);
 var enWhat=T(En,'muted',W/2,806,'Seven narrated lessons · a five-ticket assessed simulation · SCORM reporting · worksheet · facilitator guide','middle',26);
 var cred=G(En);T(cred,'muted',W/2,950,'IT Professional Practice · Part 1: ITIL 4 Foundations · Major Incident Management Drill','middle',24);
-T(cred,'muted',W/2,986,'Voices are AI-generated. The outage, its clock times and its counts are an illustrative scenario.','middle',22);
+T(cred,'muted',W/2,986,'Voices and music are AI-generated. The outage, its clock times and its counts are an illustrative scenario.','middle',22);
 function drawEnd(t){
  var a=Math.min(EO(P(t,69.3,69.8)),1-E(P(t,A_TOTAL-.8,A_TOTAL-.1)));op(En,a);if(a<=0)return;
  var u=EB(P(t,69.5,70.1));enName.setAttribute('transform','translate('+W/2+',420) scale('+lerp(.82,1,u).toFixed(3)+') translate('+(-W/2)+',-420)');op(enName,P(t,69.5,69.75));
@@ -219,7 +219,7 @@ function render(t){
  t=Math.max(0,Math.min(TOTAL,t));var a=authored(t);drawOutage(a);drawResponse(a);drawOffer(a);drawEnd(a);
  var out=1-E(P(a,A_TOTAL-.8,A_TOTAL-.1));op(kicker,out);op(kick2,out);op(scenario,vis(a,.4,1,51.4,51.9));bar.setAttribute('width',(W*t/TOTAL).toFixed(1));
 }
-var api={render:render,total:TOTAL,narration:DUR,audio:NARR.audio,ready:document.fonts?document.fonts.ready:Promise.resolve()};
+var api={render:render,total:TOTAL,narration:DUR,audio:NARR.audio,music:NARR.music||null,ready:document.fonts?document.fonts.ready:Promise.resolve()};
 window.__explainer=api;
 if(CAPTURE){render(Number(query.get('t'))||0);return}
 
@@ -227,20 +227,27 @@ if(CAPTURE){render(Number(query.get('t'))||0);return}
 var audio=document.getElementById('p1-audio'),play=document.getElementById('p1-play'),seek=document.getElementById('p1-seek'),time=document.getElementById('p1-time'),
  caption=document.getElementById('p1-caption'),capBox=document.getElementById('p1-captions'),clockState={t:0,playing:false,base:0,at:0};
 audio.src=NARR.audio;
+var music=NARR.music?new Audio():null,musicOn=document.getElementById('p1-music-on');if(music){music.preload='auto';music.src=NARR.music}
+function tune(){ // the music bed follows the narration clock and covers the tail after the last word
+ if(!music)return;var on=clockState.playing&&clockState.t<TOTAL&&(!musicOn||musicOn.checked);
+ if(!on){if(!music.paused)music.pause();return}
+ if(Math.abs(music.currentTime-clockState.t)>.3)music.currentTime=clockState.t;if(music.paused)music.play().catch(function(){});
+}
 function mmss(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
 function now(){if(!clockState.playing)return clockState.t;if(!audio.paused&&!audio.ended)return audio.currentTime;return Math.min(TOTAL,clockState.base+(performance.now()-clockState.at)/1000)}
 function paint(){
  var t=now();clockState.t=t;render(!clockState.playing&&t===0?8.2:t);seek.value=Math.round(t/TOTAL*1000);time.textContent=mmss(t)+' / '+mmss(TOTAL);
- var line=null;NARR.lines.forEach(function(l){if(t>=l.start&&t<l.end+.3)line=l});caption.textContent=line?line.text:'';
+ var line=null;NARR.lines.forEach(function(l){if(t>=l.start&&t<l.end+.3)line=l});caption.textContent=line?line.text:'';tune();
 }
 function loop(){if(!clockState.playing)return;paint();if(clockState.t>=TOTAL){stop();return}requestAnimationFrame(loop)}
-function stop(){clockState.playing=false;audio.pause();play.textContent=clockState.t>=TOTAL?'Replay':'Play'}
+function stop(){clockState.playing=false;audio.pause();tune();play.textContent=clockState.t>=TOTAL?'Replay':'Play'}
 function start(){if(clockState.t>=TOTAL-.05)clockState.t=0;clockState.playing=true;play.textContent='Pause';clockState.base=clockState.t;clockState.at=performance.now();
- if(clockState.t<DUR-.05){audio.currentTime=clockState.t;audio.play().catch(function(){})}requestAnimationFrame(loop)}
+ if(clockState.t<DUR-.05){audio.currentTime=clockState.t;audio.play().catch(function(){})}tune();requestAnimationFrame(loop)}
 audio.addEventListener('ended',function(){clockState.base=DUR;clockState.at=performance.now()});
 play.addEventListener('click',function(){if(clockState.playing)stop();else start()});
 seek.addEventListener('input',function(){var was=clockState.playing;if(was)audio.pause();clockState.t=seek.value/1000*TOTAL;clockState.base=clockState.t;clockState.at=performance.now();if(was&&clockState.t<DUR-.05){audio.currentTime=clockState.t;audio.play().catch(function(){})}paint()});
 capBox.addEventListener('change',function(){caption.hidden=!capBox.checked});
+if(musicOn)musicOn.addEventListener('change',tune);
 var host=document.getElementById('p1-transcript');
 if(host)NARR.lines.forEach(function(l){var p=document.createElement('p'),b=document.createElement('strong');b.textContent=l.speaker+': ';p.appendChild(b);p.appendChild(document.createTextNode(l.text));host.appendChild(p)});
 api.ready.then(paint);
