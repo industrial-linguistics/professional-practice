@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+python3 -m unittest discover -s tests -p 'test_audio_provenance.py'
 python3 scripts/validate_html_course.py
 python3 scripts/validate_textbook_sources.py
 python3 scripts/validate_narratives.py

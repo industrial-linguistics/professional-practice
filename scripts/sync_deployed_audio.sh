@@ -21,6 +21,8 @@ mkdir -p "$DEST_DIR"
 rsync -avz -e "${RSYNC_SSH[*]}" \
   --include='*/' \
   --include='audio.mp3' \
+  --include='audio-source.json' \
+  --include='subtitles.vtt' \
   --exclude='*' \
   "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR/elearning/media/" \
   "$DEST_DIR/"

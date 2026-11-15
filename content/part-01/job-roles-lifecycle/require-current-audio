@@ -1,0 +1,3 @@
+Publish this lesson's audio only when audio-source.json matches the current
+narratives and media bytes. scripts/build_audio.sh records a fresh take after
+generation and output validation; --skip-audio cannot certify an old take.

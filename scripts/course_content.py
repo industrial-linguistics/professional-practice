@@ -8,7 +8,9 @@ Narratives remain Markdown because the audio pipeline uses them directly.
 
 from __future__ import annotations
 
+import hashlib
 import html
+import json
 import re
 import shutil
 from dataclasses import dataclass
@@ -203,11 +205,52 @@ def copy_if_exists(src: Path, dest_dir: Path) -> str | None:
 
 
 def topic_audio_filename(topic_dir: Path) -> str | None:
-    if (topic_dir / "audio.mp3").exists():
-        return "audio.mp3"
-    if (topic_dir / "audio.wav").exists():
-        return "audio.wav"
-    return None
+    audio, _subtitles = topic_media_files(topic_dir)
+    return audio.name if audio else None
+
+
+def narration_fingerprint(topic_dir: Path) -> str:
+    digest = hashlib.sha256()
+    for path in narrative_files(topic_dir):
+        digest.update(path.name.encode("utf-8") + b"\0")
+        digest.update(path.read_bytes() + b"\0")
+    return digest.hexdigest()
+
+
+def media_provenance(topic_dir: Path, audio: Path, subtitles: Path | None) -> dict:
+    return {
+        "narration_sha256": narration_fingerprint(topic_dir),
+        "audio_file": audio.name,
+        "audio_sha256": hashlib.sha256(audio.read_bytes()).hexdigest(),
+        "subtitles_sha256": (
+            hashlib.sha256(subtitles.read_bytes()).hexdigest() if subtitles else None
+        ),
+    }
+
+
+def topic_media_files(topic_dir: Path) -> tuple[Path | None, Path | None]:
+    subtitles = topic_dir / "subtitles.vtt"
+    subtitles = subtitles if subtitles.exists() else None
+    # Refreshed lessons opt in to source-bound audio. Other existing lessons
+    # retain their current media behaviour until their next narration refresh.
+    if (topic_dir / "require-current-audio").exists():
+        try:
+            metadata = json.loads((topic_dir / "audio-source.json").read_text())
+            filename = metadata["audio_file"]
+            if filename not in {"audio.mp3", "audio.wav"}:
+                return None, None
+            audio = topic_dir / filename
+            actual = media_provenance(topic_dir, audio, subtitles)
+            if metadata != actual:
+                return None, None
+            return audio, subtitles
+        except (OSError, ValueError, KeyError, TypeError):
+            return None, None
+    for filename in ["audio.mp3", "audio.wav"]:
+        audio = topic_dir / filename
+        if audio.exists():
+            return audio, subtitles
+    return None, subtitles
 
 
 def section_fragments(slides_html: str) -> list[str]:

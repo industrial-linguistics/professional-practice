@@ -21,7 +21,7 @@ SCORM_OUTPUT = ROOT / "output" / "scorm"
 SCORM_SOURCE = ROOT / "scorm" / "incident-triage"
 PACKAGE_NAME = "it-professional-practice-incident-triage.zip"
 TITLE = "IT Professional Practice — Incident Triage Lab"
-VERSION = "1.0.3"
+VERSION = "1.1.0"
 PASS_SCORE = 70
 PART_SLUG = "part-01"
 TOPIC_ORDER = [
@@ -209,7 +209,7 @@ def hub_page(topics: list[Topic]) -> str:
     <h1>Handle the queue before the queue handles you.</h1>
     <p class="module-lead">Learn the service-practice concepts, then triage five ambiguous workplace records under operational pressure.</p>
     <div class="module-facts" aria-label="Module facts">
-      <span><strong>7</strong> narrated lessons</span>
+      <span><strong>7</strong> lessons</span>
       <span><strong>{slide_count}</strong> learner slides</span>
       <span><strong>5</strong> ticket scenarios</span>
       <span><strong>{PASS_SCORE}%</strong> pass mark</span>

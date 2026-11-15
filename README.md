@@ -67,6 +67,13 @@ HTML slides with headless Chrome, then the existing VTT, ElevenLabs and FFmpeg
 tools can produce audio/video outputs. The step-by-step checklist is maintained
 in [TODO.md](TODO.md).
 
+The Part 1 [job-roles lesson](content/part-01/job-roles-lifecycle/slides.html) also
+compares modern software, infrastructure, security, data/AI, quality and
+customer-facing responsibilities. Its [handoff activity](content/part-01/practice-artifact.md)
+uses Coralline's returns portal to connect these roles with service ownership.
+The [coverage record](docs/modern-job-role-coverage.md) accounts for the
+prompting taxonomy's titles and records the source scope.
+
 # Raw material
 
 - `cmd/voicer/main.go` was pulled in from another project, and shows how to call the ElevenLabs API 

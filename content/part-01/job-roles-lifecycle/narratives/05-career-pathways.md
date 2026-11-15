@@ -1,2 +1,7 @@
-Speaker 1: Many IT careers start on the service desk. From there, you might move into a specialist role like change manager or rise through management ranks.
-Speaker 2: With experience, you could end up owning a service portfolio or leading operations for an entire organisation.
+Speaker 1: Support is one entry path into IT. Development, testing, data, apprenticeships and graduate programmes provide others.
+
+Speaker 2: From the desk, Priya can build technical depth, move towards service leadership or explore an adjacent specialism. She can start by shadowing colleagues and taking on small improvements.
+
+Speaker 1: Management is a different set of responsibilities. It is not a required step for someone who wants to keep growing technically.
+
+Speaker 2: Compare mentoring, decision scope and learning opportunities when you read an advertisement. The next slides explain the specialisms you might encounter, including roles that combine several kinds of work.

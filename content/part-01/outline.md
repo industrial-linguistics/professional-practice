@@ -9,6 +9,7 @@ Where the vocabulary of enterprise IT operations comes from, and what it buys yo
 - Distinguish between incidents and service requests.
 - Describe the responsibilities of L1, L2 and L3 support tiers.
 - Practise handling a major incident in the ServiceNow sandbox.
+- Compare modern software job responsibilities and map handoffs without assuming titles have universal definitions.
 
 ## Key Topics
 
@@ -18,4 +19,4 @@ Where the vocabulary of enterprise IT operations comes from, and what it buys yo
 - Escalation paths and support tiers (L1/L2/L3).
 - Major incident management and drill exercise.
 - Using ServiceNow as a visual guide to ITIL practices.
-- Job roles across the service lifecycle, covering seniority levels, common entry paths and career progression.
+- Job roles across the service lifecycle: software, architecture, leadership, infrastructure, security, data/AI, quality and customer-facing work; seniority, entry paths and handoff responsibilities.

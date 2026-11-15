@@ -20,7 +20,9 @@ from course_content import (
     copy_if_exists,
     copy_topic_images,
     load_course,
+    media_provenance,
     narrative_files,
+    topic_media_files,
     titleize,
 )
 from narrative_filler import find_generated_filler
@@ -98,7 +100,11 @@ def transcode_wav_to_mp3(src: Path, dest: Path) -> str:
     return dest.name
 
 
-def publish_audio(src_dir: Path, media_dir: Path) -> str | None:
+def publish_audio(src_dir: Path, media_dir: Path, source: Path | None = None) -> str | None:
+    if source is not None:
+        if source.suffix == ".wav":
+            return transcode_wav_to_mp3(source, media_dir / "audio.mp3")
+        return copy_if_exists(source, media_dir)
     source_mp3 = src_dir / "audio.mp3"
     if source_mp3.exists():
         return copy_if_exists(source_mp3, media_dir)
@@ -118,8 +124,16 @@ def audio_mime(filename: str) -> str:
 
 def copy_topic_media(topic: Topic) -> tuple[str | None, str | None]:
     media_dir = ELEARNING / "media" / topic.part / topic.slug
-    audio = publish_audio(topic.source_path, media_dir)
-    subtitles = copy_if_exists(topic.source_path / "subtitles.vtt", media_dir)
+    audio_source, subtitle_source = topic_media_files(topic.source_path)
+    audio = publish_audio(topic.source_path, media_dir, audio_source) if audio_source else None
+    subtitles = copy_if_exists(subtitle_source, media_dir) if subtitle_source else None
+    if audio and (topic.source_path / "require-current-audio").exists():
+        # Bind the delivered MP3 (including any WAV transcode) to its script.
+        metadata = media_provenance(
+            topic.source_path, media_dir / audio,
+            media_dir / subtitles if subtitles else None,
+        )
+        (media_dir / "audio-source.json").write_text(json.dumps(metadata, indent=2) + "\n")
     return audio, subtitles
 
 

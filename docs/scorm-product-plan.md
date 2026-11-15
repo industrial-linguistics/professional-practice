@@ -1,6 +1,7 @@
 # SCORM Product Plan
 
-Last checked: 2026-08-24.
+Commercial plan last checked: 2026-08-24.
+Role-content and package update: 2026-11-15.
 
 ## Product decision
 
@@ -17,10 +18,10 @@ artefact. It avoids marketing Parts 2–8 as a finished paid library while Part 
 course-wide assessment, accessibility evidence, audio coverage and specialist
 review remain incomplete.
 
-## Included in version 1.0
+## Included in source version 1.1.0
 
 - Seven Part 1 lessons in a deliberate learning order.
-- 35 learner-visible slides and seven existing narration tracks.
+- 52 learner-visible slides. The expanded job-roles lesson has 22 slides; its revised narration must be regenerated and checked before release.
 - Slide transcripts and plain-text transcripts.
 - Five workplace ticket scenarios with 20 scored decisions:
   - record classification;
@@ -77,8 +78,9 @@ External release means:
    purchase.
 
 Moodle 5.2.1 verification is complete for package version 1.0.2. The current
-source package is version 1.0.3 after adding the P1 role-responsibility slide;
-it must be re-imported before replacing the externally verified package. A disposable
+source package is version 1.1.0 after expanding the modern job-role material;
+its changed lesson needs fresh audio and transcription QA, and the package must
+be re-imported before replacing the externally verified package. A disposable
 Moodle instance imported the ZIP as SCORM 1.2 with one launchable SCO. It
 recorded an initial `incomplete` state without a premature score, lesson
 bookmark `part-01/overview/index.html#4`, all seven lesson-completion records,
@@ -90,8 +92,9 @@ package-local lesson link names an explicit HTML file, which Moodle's
 Moodle is the accepted reference-LMS gate for this release; a second SCORM Cloud
 run is not required.
 
-Narration transcription QA is also complete for all seven included lessons. A
-durable CPU job on `raksasa` screened the audio with Whisper `large-v3`; five
+Narration transcription QA was complete for the seven lessons before the
+November 2026 job-roles expansion; that result does not validate the revised
+job-roles script. A durable CPU job on `raksasa` screened the audio with Whisper `large-v3`; five
 lessons passed immediately at 0.0%–4.9% word error rate. The two apparent
 outliers were rerun with `medium.en`, voice-activity detection and
 previous-text conditioning disabled. They passed at 1.9% and 2.7%, confirming

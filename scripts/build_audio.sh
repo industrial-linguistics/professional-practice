@@ -126,6 +126,7 @@ for TOPIC_PATH in "${TOPICS[@]}"; do
 
     TOPIC_NAME="$(basename "$TOPIC_PATH")"
     PART_NAME="$(basename "$(dirname "$TOPIC_PATH")")"
+    NARRATION_FINGERPRINT="$(python3 scripts/record_audio_source.py "$TOPIC_PATH")"
 
     echo
     echo "Building audio: $PART_NAME / $TOPIC_NAME"
@@ -177,6 +178,27 @@ for TOPIC_PATH in "${TOPICS[@]}"; do
         echo "[extra] Validating audio transcript..."
         if ! python3 scripts/validate_audio_transcript.py "$TOPIC_PATH"; then
             echo "Audio transcript validation failed for $TOPIC_PATH" >&2
+            FAILED_TOPICS+=("$TOPIC_PATH")
+            continue
+        fi
+    fi
+
+    # Validation of an old take with --skip-audio cannot certify a new script.
+    if [[ "$SKIP_AUDIO" != "true" ]]; then
+        if ! python3 scripts/record_audio_source.py "$TOPIC_PATH" --expected-fingerprint "$NARRATION_FINGERPRINT"; then
+            FAILED_TOPICS+=("$TOPIC_PATH")
+            continue
+        fi
+    elif [[ -f "$TOPIC_PATH/require-current-audio" ]]; then
+        if ! python3 - "$TOPIC_PATH" <<'PY'
+import sys
+from pathlib import Path
+sys.path.insert(0, "scripts")
+from course_content import topic_media_files
+if topic_media_files(Path(sys.argv[1]))[0] is None:
+    raise SystemExit("Existing audio does not match the current narration; regenerate it")
+PY
+        then
             FAILED_TOPICS+=("$TOPIC_PATH")
             continue
         fi

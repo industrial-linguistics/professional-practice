@@ -37,6 +37,8 @@ logs/
 content/**/subtitles.vtt
 content/**/audio.mp3
 content/**/audio.wav
+content/**/audio-source.json
+content/**/audio-source.json.tmp
 content/**/final.mp4
 content/**/temp/
 
