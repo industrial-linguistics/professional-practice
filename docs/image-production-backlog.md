@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-11-09.
+Last checked: 2026-11-16.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
