@@ -1,6 +1,6 @@
 # Media and Diagram Plan
 
-Last checked: 2026-11-16.
+Last checked: 2026-11-23.
 
 ## Current media state
 
@@ -16,7 +16,7 @@ Last checked: 2026-11-16.
 - The SLA/OLA/KPI and vendor-scorecard PNGs above are retained for provenance but are no longer learner-referenced after semantic source rework on 2026-08-31.
 - Topics with matching slide and narrative counts: 81.
 
-The protected database records 11 processed and 14 rejected candidates in the 2026-11-16 snapshot, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
+The protected database records 11 processed and 14 rejected candidates in the 2026-11-23 snapshot, with no pending review. Eight processed concepts still lack their target PNG in this checkout; see the backlog entries marked `delivery-pending`. Processing is not proof of course delivery.
 
 Slide/narrative alignment is now complete across all 81 topics. The next media constraint is generating and verifying audio for the remaining topics; image work should continue in small reviewable batches rather than blocking audio coverage.
 

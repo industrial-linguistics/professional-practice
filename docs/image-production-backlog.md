@@ -1,6 +1,6 @@
 # Image Production Backlog
 
-Last checked: 2026-11-16.
+Last checked: 2026-11-23.
 
 This is the working queue for reviewed image batches. Weekly automation may generate candidates, but it must publish them through the protected image review workflow before any asset is installed into course content.
 
@@ -82,6 +82,10 @@ These are the best first candidates because they either support early course con
 ## Batch Notes
 
 Add a dated subsection here after each weekly review.
+
+### 2026-11-23 review sweep
+
+Fetched the current protected review snapshot before selection: 25 candidates, 11 processed, 14 rejected, 86 review events and no pending reviewer actions. No new candidate or source-level rework was safe to produce. The Te Hiku governance map and cultural-safety matrix still await specialist review; Part 8 still has no studio slide source or matching narrative. All eight `delivery-pending` concepts are already processed but remain absent and unreferenced in this checkout, so they need a delivery audit rather than regeneration. No learner slide, narrative, candidate or reviewer record changed. Composition decisions and validation are recorded in `image-review/batches/2026-11-23.md`.
 
 ### 2026-11-09 review sweep
 
