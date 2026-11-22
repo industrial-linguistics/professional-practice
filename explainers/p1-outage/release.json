@@ -14,9 +14,9 @@
  "narration_sha256": "8d84aefa7c27c6d95fcaa7f5de6b9d6595f31efa67f545be5b21e4f7f8c47f2b",
  "captions": "explainers/p1-outage/captions.vtt",
  "storage": {
-  "bucket": null,
+  "bucket": "industrial-linguistics-course-media-849621205733",
   "prefix": "professional-practice/p1-outage/",
-  "uploaded": null
+  "uploaded": "2026-11-22"
  },
  "youtube": null
 }

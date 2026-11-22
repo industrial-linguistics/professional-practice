@@ -34,7 +34,7 @@ def inputs_hash(home):
     """One hash over the files a render reads, so the record names its exact source."""
     h=hashlib.sha256()
     for f in sorted(home.iterdir()):
-        if f.is_file() and f.name not in ('release.json','README.md'):h.update(f.name.encode()+b'\0'+bytes.fromhex(sha(f)))
+        if f.is_file() and f.name not in ('release.json','README.md','published-elsewhere.txt'):h.update(f.name.encode()+b'\0'+bytes.fromhex(sha(f)))
     return h.hexdigest()
 def main():
     p=argparse.ArgumentParser(description=__doc__,formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -60,7 +60,8 @@ def main():
     same=old.get('film',{}).get('sha256')==digest
     record={'name':a.name,'repository':repo,
         'film':{'file':f'{a.name}-{tag}.mp4','sha256':digest,'bytes':film.stat().st_size,'duration_seconds':duration,'width':width,'height':height},
-        'inputs_sha256':inputs_hash(home),'narration_record':narration_record,'narration_sha256':take,'captions':captions,
+        'inputs_sha256':old['inputs_sha256'] if same and old.get('inputs_sha256') else inputs_hash(home),  # provenance belongs to the film: an unchanged film keeps it
+        'narration_record':narration_record,'narration_sha256':take,'captions':captions,
         'storage':old.get('storage',{'bucket':None,'prefix':prefix,'uploaded':None}) if same else {'bucket':None,'prefix':prefix,'uploaded':None},
         'youtube':a.youtube or (old.get('youtube') if same else None)}
     uploads=[(film,prefix+record['film']['file'])]

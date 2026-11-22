@@ -14,9 +14,9 @@
  "narration_sha256": "67534038e9b0d7c97bbdf0d7952b53a3c60fdef5c262e9e3d9c9a41f941cd210",
  "captions": "explainers/error-budget/captions.vtt",
  "storage": {
-  "bucket": null,
+  "bucket": "industrial-linguistics-course-media-849621205733",
   "prefix": "professional-practice/error-budget/",
-  "uploaded": null
+  "uploaded": "2026-11-22"
  },
  "youtube": null
 }
