@@ -1,5 +1,8 @@
 # To-do 
 
+The [course modernisation backlog](docs/course-modernisation-backlog.md) tracks
+content refreshes, animated explainers, simulations and B-roll requests.
+
 ### General
 
 - [x] Clean up the tables and dot points in the README so that they are in proper markdown format. They are in a mixture of lines, unicode dotpoints, tab separated texts and so on
